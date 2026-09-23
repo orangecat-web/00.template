@@ -1,0 +1,164 @@
+// 舊版 reference/legacy-sass/_grid.sass 的 Sass 模組版。
+// 12 欄、容器與原有斷點名稱沿用；共用設定取自 _function.sass。
+@use 'sass:math'
+@use './function' as base
+
+@mixin container($key: xl, $gutter: base.$custom-gutter-width)
+  width: 100%
+  max-width: base.container-width($key)
+  margin-inline: auto
+  padding-inline: math.div($gutter, 2)
+
+@mixin row($gutter: base.$custom-gutter-width)
+  display: flex
+  flex-wrap: wrap
+  margin-inline: -(math.div($gutter, 2))
+  @include breakpoint(xs)
+    margin-inline: 0
+  @include breakpoint(sm)
+    margin-inline: 0
+
+@mixin col($col, $gutter: base.$custom-gutter-width)
+  flex: 0 0 base.columns-width($col)
+  max-width: base.columns-width($col)
+  min-width: 0
+  padding-inline: math.div($gutter, 2)
+
+@mixin cols($gutter: base.$custom-gutter-width)
+  flex: 1 1 0
+  min-width: 0
+  max-width: 100%
+  padding-inline: math.div($gutter, 2)
+
+@mixin col-5($gutter: base.$custom-gutter-width)
+  flex: 0 0 20%
+  max-width: 20%
+  min-width: 0
+  padding-inline: math.div($gutter, 2)
+
+@mixin col-auto
+  flex: 0 0 auto
+  width: auto
+  max-width: 100%
+
+@mixin no-gutters
+  margin-inline: 0
+  padding-inline: 0
+  > *
+    padding-inline: 0
+
+// 無參數同舊版：小於 576px。未知名稱直接報錯，避免規則悄悄落到手機版。
+@mixin breakpoint($point: xs)
+  @if $point == xs or $point == null
+    @media screen and (max-width: 575.98px)
+      @content
+  @else if $point == sm
+    @media screen and (min-width: 576px) and (max-width: 767.98px)
+      @content
+  @else if $point == md
+    @media screen and (min-width: 768px) and (max-width: 991.98px)
+      @content
+  @else if $point == lg
+    @media screen and (min-width: 992px) and (max-width: 1199.98px)
+      @content
+  @else if $point == xl
+    @media screen and (min-width: 1200px)
+      @content
+  @else if $point == xxl
+    @media screen and (min-width: 1470px)
+      @content
+  @else if $point == d1280
+    @media screen and (min-width: 1280px)
+      @content
+  @else if $point == d1366
+    @media screen and (min-width: 1366px)
+      @content
+  @else if $point == d1440
+    @media screen and (min-width: 1440px)
+      @content
+  @else if $point == d1600
+    @media screen and (min-width: 1600px)
+      @content
+  @else if $point == d1680
+    @media screen and (min-width: 1680px)
+      @content
+  @else if $point == d1920
+    @media screen and (min-width: 1920px)
+      @content
+  @else if $point == ip5p
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)
+      @content
+  @else if $point == ip5l
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)
+      @content
+  @else if $point == ip6p
+    @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)
+      @content
+  @else if $point == ip6l
+    @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)
+      @content
+  @else if $point == iplusp
+    @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+      @content
+  @else if $point == iplusl
+    @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+      @content
+  @else if $point == ipxp
+    @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+      @content
+  @else if $point == ipxl
+    @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+      @content
+  @else if $point == ip11maxp
+    @media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+      @content
+  @else if $point == ip11maxl
+    @media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+      @content
+  @else if $point == ip12prop
+    @media only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+      @content
+  @else if $point == ip12prol
+    @media only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+      @content
+  @else if $point == ip12maxp
+    @media only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+      @content
+  @else if $point == ip12maxl
+    @media only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+      @content
+  @else if $point == ipadp
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2)
+      @content
+  @else if $point == ipadl
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)
+      @content
+  @else if $point == ipadprop
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)
+      @content
+  @else if $point == ipadprol
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)
+      @content
+  @else
+    @error 'Unknown breakpoint: #{$point}'
+
+// 舊版 DPI 縮放工具保留為手動選用；全頁 zoom 會影響現代 RWD。
+@mixin DPIreset
+  @media only screen and (min-resolution: 120dpi)
+    body
+      zoom: .8
+  @media only screen and (min-resolution: 125dpi)
+    body
+      zoom: .7
+
+@mixin NavSwitch
+  @media screen and (min-width: 992px)
+    nav.desktop
+      display: block
+    nav.mobile
+      display: none
+  @media screen and (max-width: 991.98px)
+    nav.desktop
+      display: none
+    nav.mobile
+      display: block

@@ -1,33 +1,31 @@
 // 舊版 reference/legacy-sass/_mixin.sass 的 Vue 3 / Sass 模組版。
-// 保留原 mixin 名稱；尺寸、色票可由 @use ... with (...) 覆寫。
+// 保留原 mixin 名稱；尺寸與字重使用 _function.sass 的共用設定。
 @use 'sass:map'
+@use './function' as base
 
-$base-size: 15px !default
-$base-font: 1rem !default
 $text-color: #1c2420 !default
 $border-color: #c9ccc3 !default
 $accent-color: #ff9a3d !default
-$font-weights: (1: 100, 3: 300, 4: 400, 5: 500, 7: 700, 9: 900) !default
 
 @function size($count: 1)
-  @return $base-size * $count
+  @return base.baseSize($count)
 
 // 字型與文字
 @mixin fontFamily($enfont: 'Roboto', $chfont: 'Noto Sans TC')
   font-family: $enfont, $chfont, sans-serif
 
 @mixin fontType($count: 1)
-  font-size: $base-font * $count
+  font-size: base.baseFont($count)
   font-weight: 400
   font-style: normal
   color: $text-color
   line-height: 1.75
 
 @mixin fontSize($count: 1)
-  font-size: $base-font * $count
+  font-size: base.baseFont($count)
 
 @mixin fontWeight($weight)
-  $mapped: map.get($font-weights, $weight)
+  $mapped: map.get(base.$font_weight, $weight)
   @if $mapped == null
     font-weight: $weight
   @else
@@ -44,7 +42,7 @@ $font-weights: (1: 100, 3: 300, 4: 400, 5: 500, 7: 700, 9: 900) !default
   transition: $properties $duration ease-in-out
 
 @mixin border($count: 1, $color: $border-color, $hover: $accent-color)
-  border: 1px * $count solid $color
+  border: base.$baseBorder * $count solid $color
   &:hover
     border-color: $hover
 

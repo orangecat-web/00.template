@@ -1,6 +1,8 @@
 @use 'sass:math'
+@use './function' as base
 @use './effects' as fx
 @use './mixin' as oc
+@use './grid' as grid
 
 $ink: #1c2420
 $muted: #65716b
@@ -42,11 +44,12 @@ a
   background: $orange
 
 .site
+  min-height: base.$height
   overflow: clip
 
 .shell
+  @include grid.container(fluid, 0)
   width: min(100% - 64px, 1320px)
-  margin-inline: auto
 
 .site-header
   position: sticky
@@ -402,6 +405,10 @@ a
   grid-template-columns: repeat(3, minmax(0, 1fr))
   gap: 42px 24px
   position: relative
+  @include grid.breakpoint(sm)
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  @include grid.breakpoint()
+    grid-template-columns: 1fr
 
 .gallery-card
   figure
@@ -704,8 +711,6 @@ a
     min-height: 380px
   .effect-controls
     padding: 25px
-  .gallery-grid
-    grid-template-columns: repeat(2, minmax(0, 1fr))
   .about-grid
     grid-template-columns: 1fr
     gap: 26px
@@ -725,8 +730,6 @@ a
   .effect-option
     grid-template-columns: 24px 1fr 70px 18px
     gap: 6px
-  .gallery-grid
-    grid-template-columns: 1fr
   .gallery-image
     aspect-ratio: 4 / 3.6
   .dialog-caption

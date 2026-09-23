@@ -1,0 +1,36 @@
+// 舊版 reference/legacy-sass/_function.sass 的共用設定與計算函式。
+// 用 @use 引入，不再使用 !global 或舊式 / 除法。
+@use 'sass:map'
+@use 'sass:math'
+
+$width: 100% !default
+$height: 100vh !default
+$galleryHeight: 1px !default
+$filterValue: 1% !default
+$total: 12 !default
+$baseSize: 15px !default
+$baseFont: 1rem !default
+$font_weight: (1: 100, 3: 300, 4: 400, 5: 500, 7: 700, 9: 900) !default
+$baseBorder: 1px !default
+$custom-gutter-width: 30px !default
+$container-max-widths: (sm: 576px, md: 768px, lg: 992px, xl: 1310px, xxl: 1470px, fluid: 100%) !default
+
+@function container-width($key: sm)
+  $value: map.get($container-max-widths, $key)
+  @if $value == null
+    @error 'Unknown container size: #{$key}'
+  @return $value
+
+@function columns-width($col)
+  @if $col < 0 or $col > $total
+    @error 'Column count must be between 0 and #{$total}'
+  @return math.percentage(math.div($col, $total))
+
+@function offset($col, $columns: $total)
+  @return math.percentage(math.div($col, $columns))
+
+@function baseFont($count: 1)
+  @return $baseFont * $count
+
+@function baseSize($count: 1)
+  @return $baseSize * $count
