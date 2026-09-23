@@ -1,0 +1,230 @@
+// 舊版 reference/legacy-sass/_mixin.sass 的 Vue 3 / Sass 模組版。
+// 保留原 mixin 名稱；尺寸、色票可由 @use ... with (...) 覆寫。
+@use 'sass:map'
+
+$base-size: 15px !default
+$base-font: 1rem !default
+$text-color: #1c2420 !default
+$border-color: #c9ccc3 !default
+$accent-color: #ff9a3d !default
+$font-weights: (1: 100, 3: 300, 4: 400, 5: 500, 7: 700, 9: 900) !default
+
+@function size($count: 1)
+  @return $base-size * $count
+
+// 字型與文字
+@mixin fontFamily($enfont: 'Roboto', $chfont: 'Noto Sans TC')
+  font-family: $enfont, $chfont, sans-serif
+
+@mixin fontType($count: 1)
+  font-size: $base-font * $count
+  font-weight: 400
+  font-style: normal
+  color: $text-color
+  line-height: 1.75
+
+@mixin fontSize($count: 1)
+  font-size: $base-font * $count
+
+@mixin fontWeight($weight)
+  $mapped: map.get($font-weights, $weight)
+  @if $mapped == null
+    font-weight: $weight
+  @else
+    font-weight: $mapped
+
+@mixin mline($lines: 1)
+  overflow: hidden
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: $lines
+
+// 共用外觀
+@mixin transition($properties: all, $duration: .5s)
+  transition: $properties $duration ease-in-out
+
+@mixin border($count: 1, $color: $border-color, $hover: $accent-color)
+  border: 1px * $count solid $color
+  &:hover
+    border-color: $hover
+
+@mixin radius($count: 1, $position: null)
+  $radius: size($count)
+  @if $position == top or $position == bottom
+    border-#{$position}-left-radius: $radius
+    border-#{$position}-right-radius: $radius
+  @else if $position == left or $position == right
+    border-top-#{$position}-radius: $radius
+    border-bottom-#{$position}-radius: $radius
+  @else if $position == top-left or $position == top-right or $position == bottom-left or $position == bottom-right
+    border-#{$position}-radius: $radius
+  @else
+    border-radius: $radius
+
+@mixin radius50
+  border-radius: 50%
+
+@mixin logo($count)
+  img
+    width: size($count)
+    max-width: 100%
+    height: auto
+
+@mixin goTop($bottom: 4rem, $right: 2rem, $layer: 19)
+  position: fixed
+  bottom: $bottom
+  right: $right
+  z-index: $layer
+  transition: transform .2s
+  &.hide
+    transform: translateX(200%)
+
+// 表單、頁碼與表格
+@mixin checkbox-radio
+  input[type='radio']
+    position: absolute
+    width: 1px
+    height: 1px
+    opacity: 0
+    + label
+      position: relative
+      display: inline-flex
+      align-items: center
+      gap: 8px
+      cursor: pointer
+      &::before
+        content: ''
+        width: 18px
+        height: 18px
+        border: 1px solid $border-color
+        border-radius: 50%
+        background: white
+      &::after
+        content: ''
+        position: absolute
+        left: 4px
+        width: 10px
+        height: 10px
+        border-radius: 50%
+        background: $accent-color
+        transform: scale(0)
+        transition: transform .2s
+    &:checked + label::after
+      transform: scale(1)
+    &:focus-visible + label::before
+      outline: 3px solid $accent-color
+      outline-offset: 3px
+
+@mixin pagination
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  gap: 8px
+  margin: size(2) auto
+  padding: 0
+  list-style: none
+  a
+    display: grid
+    place-items: center
+    min-width: 40px
+    min-height: 40px
+    padding: 8px
+    border-radius: 50%
+    background: #e7e2d9
+    color: $text-color
+    &:hover, &:focus-visible, &[aria-current='page']
+      background: $accent-color
+
+@mixin ListTable
+  table
+    width: 100%
+    border-collapse: collapse
+  @media (max-width: 767px)
+    table, tbody, tr, td
+      display: block
+    thead
+      display: none
+    tr
+      margin-bottom: size(1)
+      border: 1px solid $border-color
+    td
+      padding: 8px 12px
+      &::before
+        content: attr(data-label)
+        display: block
+        font-weight: 700
+
+// 圖文列表：承接舊版 .content > figure / figcaption 結構。
+@mixin card-grid($columns: 4)
+  display: grid
+  grid-template-columns: repeat($columns, minmax(0, 1fr))
+  gap: size(2)
+  .content
+    min-width: 0
+  figure
+    margin: 0
+    padding: size(.5)
+    border: 1px solid $border-color
+    &:hover, &:focus-within
+      border-color: $accent-color
+  img
+    display: block
+    width: 100%
+    height: 100%
+    object-fit: cover
+  @media (max-width: 991px)
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+  @media (max-width: 767px)
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  @media (max-width: 575px)
+    grid-template-columns: 1fr
+
+@mixin img_list01
+  @include card-grid
+  .img
+    overflow: hidden
+    aspect-ratio: 6 / 4
+  figcaption
+    h3
+      @include fontSize(1.15)
+      @include mline
+      color: $accent-color
+    p
+      @include mline(3)
+
+@mixin img_list02
+  @include card-grid
+  figure
+    position: relative
+  .img
+    overflow: hidden
+    aspect-ratio: 6 / 4
+  figcaption
+    position: absolute
+    inset: size(.5)
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    padding: size(1)
+    background: rgb(0 0 0 / 60%)
+    color: white
+    text-align: center
+    h3
+      @include mline
+    .intro_text
+      @include mline(3)
+    .more_link a
+      display: inline-block
+      padding: size(.5) size(1)
+      border: 1px solid white
+      color: white
+      &:hover, &:focus-visible
+        background: white
+        color: $text-color
+
+@mixin gallery
+  @include card-grid
+  .img
+    overflow: hidden
+    aspect-ratio: 1

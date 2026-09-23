@@ -1,5 +1,5 @@
-// 從舊版 _effects.sass 的濾鏡與疊色概念整理為 Sass 模組。
-// 效果本身只需要 CSS；切換效果由 Vue 狀態控制，不依賴 jQuery。
+// 從舊版 _effects.sass 的 imgfilter、hue-rotate、blur、saturate
+// 與 pseffects 搬移；保留可重用的 mixin，由 Vue 切換 class。
 @mixin image-filter($name)
   @if $name == grayscale
     filter: grayscale(1)
@@ -7,6 +7,18 @@
     filter: sepia(.9)
   @else if $name == contrast
     filter: contrast(1.55)
+  @else if $name == brightness
+    filter: brightness(1.5)
+  @else if $name == invert
+    filter: invert(1)
+  @else if $name == opacity
+    filter: opacity(.4)
+  @else if $name == hue-rotate
+    filter: hue-rotate(90deg)
+  @else if $name == blur
+    filter: blur(3px)
+  @else if $name == saturate
+    filter: saturate(2)
   @else
     filter: none
 

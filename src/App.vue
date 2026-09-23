@@ -3,12 +3,36 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
 import { photos } from './data/photos.js'
 
-const effects = [
-  { id: 'none', label: '原色', detail: 'Original' },
-  { id: 'grayscale', label: '灰階', detail: 'Grayscale' },
-  { id: 'sepia', label: '懷舊', detail: 'Sepia' },
-  { id: 'contrast', label: '對比', detail: 'Contrast' },
-  { id: 'warm', label: '暖色疊加', detail: 'Blend' },
+const effectGroups = [
+  { id: 'filter', label: '圖片濾鏡', effects: [
+    { id: 'none', label: '原色', detail: 'Original' },
+    { id: 'grayscale', label: '灰階', detail: 'Grayscale' },
+    { id: 'sepia', label: '懷舊', detail: 'Sepia' },
+    { id: 'contrast', label: '對比', detail: 'Contrast' },
+    { id: 'brightness', label: '亮度', detail: 'Brightness' },
+    { id: 'invert', label: '反相', detail: 'Invert' },
+    { id: 'opacity', label: '透明度', detail: 'Opacity' },
+    { id: 'hue-rotate', label: '色相旋轉', detail: 'Hue rotate' },
+    { id: 'blur', label: '模糊', detail: 'Blur' },
+    { id: 'saturate', label: '飽和度', detail: 'Saturate' },
+  ] },
+  { id: 'blend', label: '疊色模式', effects: [
+    { id: 'multiply', label: '色彩增值', detail: 'Multiply' },
+    { id: 'screen', label: '濾色', detail: 'Screen' },
+    { id: 'overlay', label: '覆蓋', detail: 'Overlay' },
+    { id: 'darken', label: '變暗', detail: 'Darken' },
+    { id: 'lighten', label: '變亮', detail: 'Lighten' },
+    { id: 'color-dodge', label: '加亮顏色', detail: 'Color dodge' },
+    { id: 'color-burn', label: '加深顏色', detail: 'Color burn' },
+    { id: 'hard-light', label: '實光', detail: 'Hard light' },
+    { id: 'soft-light', label: '柔光', detail: 'Soft light' },
+    { id: 'difference', label: '差異化', detail: 'Difference' },
+    { id: 'exclusion', label: '排除', detail: 'Exclusion' },
+    { id: 'hue', label: '色相', detail: 'Hue' },
+    { id: 'saturation', label: '飽和度', detail: 'Saturation' },
+    { id: 'color', label: '顏色', detail: 'Color' },
+    { id: 'luminosity', label: '明度', detail: 'Luminosity' },
+  ] },
 ]
 const categories = [
   { id: 'all', label: '全部' },
@@ -17,6 +41,7 @@ const categories = [
 ]
 
 const activeEffect = ref('none')
+const activeEffectGroup = ref('filter')
 const activeCategory = ref('all')
 const menuOpen = ref(false)
 const headerLow = ref(false)
@@ -29,6 +54,13 @@ const featuredPhoto = photos[0]
 const filteredPhotos = computed(() => activeCategory.value === 'all'
   ? photos
   : photos.filter((photo) => photo.category === activeCategory.value))
+const visibleEffects = computed(() => effectGroups.find((group) => group.id === activeEffectGroup.value).effects)
+const selectedEffect = computed(() => visibleEffects.value.find((effect) => effect.id === activeEffect.value))
+
+function selectEffectGroup(group) {
+  activeEffectGroup.value = group.id
+  activeEffect.value = group.effects[0].id
+}
 
 function updateScroll() {
   headerLow.value = window.scrollY > 350
@@ -128,20 +160,23 @@ onUnmounted(() => {
         .section-heading
           div
             p.kicker 01 / EFFECT LAB
-            h2#effects-title 同一張影像，<br>五種觀看方式<span class="period">.</span>
-          p.section-description 舊版的 `_effects.sass` 有濾鏡與疊色效果。這裡先選出常用效果，改寫成 Sass 模組，點選即可即時比較。
+            h2#effects-title 同一張影像，<br>多種觀看方式<span class="period">.</span>
+          p.section-description 舊版的 `_effects.sass` 有豐富的濾鏡與疊色效果。選擇分類與效果，就能用同一張照片即時比較。
         .effect-workbench
-          .effect-preview(:class="`effect-${activeEffect}`")
+          .effect-preview(:class="`effect-${activeEffectGroup}-${activeEffect}`")
             img(:src="featuredPhoto.src" :alt="featuredPhoto.alt")
-            span.effect-preview-label {{ effects.find((effect) => effect.id === activeEffect)?.detail }} / 01
+            span.effect-preview-label {{ selectedEffect?.detail }} / 01
           .effect-controls
             p.control-heading EFFECT SELECTOR
-            button.effect-option(v-for="(effect, index) in effects" :key="effect.id" type="button" :class="{ 'is-active': activeEffect === effect.id }" :aria-pressed="activeEffect === effect.id" @click="activeEffect = effect.id")
-              span.effect-number 0{{ index + 1 }}
-              span.effect-name {{ effect.label }}
-              span.effect-english {{ effect.detail }}
-              span.effect-arrow(aria-hidden="true") ↗
-            p.control-note CSS filter / blend mode · Vue reactive state
+            .effect-groups(role="group" aria-label="效果分類")
+              button.effect-group(v-for="group in effectGroups" :key="group.id" type="button" :class="{ 'is-active': activeEffectGroup === group.id }" :aria-pressed="activeEffectGroup === group.id" @click="selectEffectGroup(group)") {{ group.label }}
+            .effect-options(role="group" :aria-label="effectGroups.find((group) => group.id === activeEffectGroup).label")
+              button.effect-option(v-for="(effect, index) in visibleEffects" :key="effect.id" type="button" :class="{ 'is-active': activeEffect === effect.id }" :aria-pressed="activeEffect === effect.id" @click="activeEffect = effect.id")
+                span.effect-number {{ String(index + 1).padStart(2, '0') }}
+                span.effect-name {{ effect.label }}
+                span.effect-english {{ effect.detail }}
+                span.effect-arrow(aria-hidden="true") ↗
+            p.control-note 原版 Sass 濾鏡與疊色模式 · Vue 即時切換
     section#gallery.gallery-section(aria-labelledby="gallery-title")
       .shell
         .section-heading

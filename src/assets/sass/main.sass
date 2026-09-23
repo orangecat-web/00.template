@@ -1,5 +1,6 @@
 @use 'sass:math'
 @use './effects' as fx
+@use './mixin' as oc
 
 $ink: #1c2420
 $muted: #65716b
@@ -95,7 +96,7 @@ a
   font-size: rem(13)
   font-weight: 750
   a
-    transition: color .2s
+    @include oc.transition(color, .2s)
     &:hover
       color: #c65f05
 
@@ -238,21 +239,6 @@ a
   right: 0
   top: 4px
 
-.marquee
-  background: $ink
-  color: $cream
-  overflow: hidden
-  padding: 14px 0
-
-.marquee-inner
-  display: flex
-  width: max-content
-  white-space: nowrap
-  font-size: rem(12)
-  letter-spacing: .18em
-  font-weight: 900
-  animation: marquee 24s linear infinite
-
 .effects-section, .gallery-section, .about-section
   scroll-margin-top: 84px
   padding: 112px 0
@@ -298,14 +284,13 @@ a
     inset: 0
     object-fit: cover
     transition: filter .45s
-  &.effect-grayscale img
-    @include fx.image-filter(grayscale)
-  &.effect-sepia img
-    @include fx.image-filter(sepia)
-  &.effect-contrast img
-    @include fx.image-filter(contrast)
-  &.effect-warm
-    @include fx.blend-overlay
+  @each $name in grayscale, sepia, contrast, brightness, invert, opacity, hue-rotate, blur, saturate
+    &.effect-filter-#{$name} img
+      @include fx.image-filter($name)
+  // 舊版 pseffects 的 15 種模式；CSS 名稱中的連字號取代舊版縮寫。
+  @each $mode in multiply, screen, overlay, darken, lighten, color-dodge, color-burn, hard-light, soft-light, difference, exclusion, hue, saturation, color, luminosity
+    &.effect-blend-#{$mode}
+      @include fx.blend-overlay(rgba(255, 153, 0, .58), $mode)
 
 .effect-preview-label
   position: absolute
@@ -328,6 +313,30 @@ a
   font-weight: 850
   letter-spacing: .18em
   margin: 0 0 22px
+
+.effect-groups
+  display: flex
+  gap: 8px
+  margin-bottom: 22px
+
+.effect-group
+  flex: 1
+  min-width: 0
+  padding: 10px 6px
+  border: 1px solid rgba(28, 36, 32, .3)
+  background: transparent
+  color: $ink
+  cursor: pointer
+  font-size: rem(12)
+  font-weight: 750
+  &:hover, &.is-active
+    background: $ink
+    color: $white
+
+.effect-options
+  max-height: 425px
+  overflow-y: auto
+  overscroll-behavior: contain
 
 .effect-option
   display: grid
@@ -449,6 +458,7 @@ a
   h3
     font-size: rem(23)
     margin: 0
+    @include oc.mline(2)
   span
     font-size: rem(22)
 
@@ -529,14 +539,11 @@ a
   letter-spacing: .06em
 
 .back-to-top
-  position: fixed
-  z-index: 19
-  bottom: 24px
-  right: 24px
+  @include oc.goTop(24px, 24px)
   width: 50px
   height: 50px
   border: 1px solid $ink
-  border-radius: 50%
+  @include oc.radius50
   background: $orange
   cursor: pointer
   display: grid
@@ -608,10 +615,6 @@ a
     color: $muted
     font-size: rem(13)
     margin: 0 0 3px
-
-@keyframes marquee
-  to
-    transform: translateX(-50%)
 
 @media (max-width: 1020px)
   .hero
