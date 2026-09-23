@@ -14,11 +14,6 @@ const selectedStyle = ref(styles[0])
 const search = ref('')
 const copied = ref('')
 const layout = ref(null)
-const iconLinks = [
-  { href: '/', label: '視覺展示' },
-  { href: '#guide', label: '使用方式' },
-  { href: '#catalog', label: '圖示清單' },
-]
 const visibleGroups = computed(() => {
   const query = search.value.trim().toLocaleLowerCase()
   return iconGroups.map((group) => ({
@@ -52,7 +47,7 @@ async function copyName(name) {
 </script>
 
 <template lang="pug">
-SiteLayout(ref="layout" :links="iconLinks" brand-caption="/ ICON LIBRARY" footer-text="Orange Cat / Icon Library" :data-style="selectedStyle.id")
+SiteLayout(ref="layout" page-id="icons" brand-caption="/ ICON LIBRARY" footer-text="Orange Cat / Icon Library" :data-style="selectedStyle.id")
   section.icons-hero(aria-labelledby="icons-title")
     .hero-copy
       p.eyebrow UTILITY / 01 — MATERIAL ICONS

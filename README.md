@@ -39,7 +39,7 @@ npm run dev
 
 ## 網站共用外框
 
-`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂。每頁只傳自己的 `links` 與標題，主內容放在元件內；`App.vue` 保留首頁效果，`IconsApp.vue` 保留圖示清單。新增內頁可沿用 `variant` 預設值 `standard`，並傳入 `brand-caption` 與 `footer-text`。
+`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂。全部 nav 連結集中在 `src/data/navigation.js` 的 `navigationItems`，由 `pageId` 選出目前頁的連結；`App.vue`、`IconsApp.vue` 不再各存一份陣列。新增內頁時傳 `page-id`，在同一份清單加上連結，並視需要設定 `brand-caption` 和 `footer-text`。
 
 `src/composables/useOffcanvas.js` 管理 nav 的四方向、覆蓋／推擠和開關；`usePageScroll.js` 管理 350px header、200px 回頂與 600ms 捲動。共用元件會攔截本頁 `#section-id` 的 nav 連結，以同一動畫捲至目標（扣除 header 高度）；跨頁連結照網址導航。首頁的八種模式試玩仍在 `App.vue`，只控制共用 nav。
 

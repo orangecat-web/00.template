@@ -2,14 +2,15 @@
 import { computed } from 'vue'
 import { useOffcanvas } from '../composables/useOffcanvas.js'
 import { usePageScroll } from '../composables/usePageScroll.js'
+import { navigationFor } from '../data/navigation.js'
 
 const props = defineProps({
-  variant: { type: String, default: 'standard' },
-  links: { type: Array, required: true },
+  pageId: { type: String, required: true },
   brandCaption: { type: String, default: '' },
   footerText: { type: String, default: '' },
 })
-const isHome = computed(() => props.variant === 'home')
+const isHome = computed(() => props.pageId === 'home')
+const links = computed(() => navigationFor(props.pageId))
 
 const {
   side: navSide, mode: navMode, isOpen: menuOpen, isVisible: navVisible,
