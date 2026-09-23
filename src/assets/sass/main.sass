@@ -14,7 +14,7 @@ $white: #fffcf7
   box-sizing: border-box
 
 html
-  scroll-behavior: smooth
+  scroll-behavior: auto
 
 body
   margin: 0
@@ -55,11 +55,16 @@ a
   backdrop-filter: blur(15px)
   border-bottom: 1px solid rgba(28, 36, 32, .14)
   transition: box-shadow .3s
-  &.is-scrolled
+  &.headerlow
     box-shadow: 0 6px 24px rgba(28, 36, 32, .08)
+    .header-inner
+      min-height: 62px
+    .brand img
+      height: 52px
 
 .header-inner
   min-height: 84px
+  transition: min-height .3s
   display: flex
   align-items: center
   justify-content: space-between
@@ -74,6 +79,7 @@ a
     width: 100%
     height: 72px
     object-fit: contain
+    transition: height .3s
 
 .header-caption
   margin-right: auto
@@ -621,6 +627,11 @@ a
     width: min(100% - 36px, 620px)
   .header-inner
     min-height: 70px
+  .site-header.headerlow
+    .header-inner
+      min-height: 58px
+    .brand img
+      height: 50px
   .brand
     width: 120px
     img
@@ -643,7 +654,7 @@ a
   .site-nav
     display: none
     position: absolute
-    top: 70px
+    top: 100%
     left: 0
     right: 0
     padding: 25px 20px 30px

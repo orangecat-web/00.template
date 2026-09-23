@@ -19,9 +19,11 @@ const categories = [
 const activeEffect = ref('none')
 const activeCategory = ref('all')
 const menuOpen = ref(false)
-const isScrolled = ref(false)
+const headerLow = ref(false)
+const showGoTop = ref(false)
 const selectedPhoto = ref(null)
 const photoDialog = ref(null)
+let scrollFrame = 0
 const year = new Date().getFullYear()
 const featuredPhoto = photos[0]
 const filteredPhotos = computed(() => activeCategory.value === 'all'
@@ -29,7 +31,27 @@ const filteredPhotos = computed(() => activeCategory.value === 'all'
   : photos.filter((photo) => photo.category === activeCategory.value))
 
 function updateScroll() {
-  isScrolled.value = window.scrollY > 180
+  headerLow.value = window.scrollY > 350
+  showGoTop.value = window.scrollY > 200
+}
+
+function scrollToPosition(top, duration = 600) {
+  if (scrollFrame) cancelAnimationFrame(scrollFrame)
+  scrollFrame = 0
+  const destination = Math.max(0, Math.min(top, document.documentElement.scrollHeight - window.innerHeight))
+  if (Math.abs(destination - window.scrollY) < 1) return
+  const start = window.scrollY
+  const distance = destination - start
+  let startTime
+  function animate(time) {
+    if (startTime === undefined) startTime = time
+    const progress = Math.min((time - startTime) / duration, 1)
+    const eased = (1 - Math.cos(Math.PI * progress)) / 2
+    window.scrollTo(0, start + distance * eased)
+    if (progress < 1) scrollFrame = requestAnimationFrame(animate)
+    else scrollFrame = 0
+  }
+  scrollFrame = requestAnimationFrame(animate)
 }
 
 function goTo(id) {
@@ -37,7 +59,7 @@ function goTo(id) {
   const target = id === 'top' ? null : document.getElementById(id)
   if (id !== 'top' && !target) return
   const top = target ? target.getBoundingClientRect().top + window.scrollY - 80 : 0
-  window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  scrollToPosition(top)
 }
 
 function openPhoto(photo) {
@@ -57,12 +79,15 @@ onMounted(() => {
   updateScroll()
   window.addEventListener('scroll', updateScroll, { passive: true })
 })
-onUnmounted(() => window.removeEventListener('scroll', updateScroll))
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateScroll)
+  if (scrollFrame) cancelAnimationFrame(scrollFrame)
+})
 </script>
 
 <template lang="pug">
 .site#top
-  header.site-header(:class="{ 'is-scrolled': isScrolled }")
+  header.site-header.header(:class="{ headerlow: headerLow }")
     .shell.header-inner
       a.brand(href="#top" @click.prevent="goTo('top')" aria-label="Orange Cat 回到頁首")
         img(src="/images/logo.svg" alt="orangeCat's photography")
@@ -159,7 +184,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateScroll))
       span VUE 3 / PUG / SASS / VANILLA JS
       a(href="#top" @click.prevent="goTo('top')") BACK TO TOP ↑
   Transition(name="back-to-top")
-    button.back-to-top(v-if="isScrolled" type="button" aria-label="回到頁首" @click="goTo('top')")
+    button.back-to-top.goTop(v-if="showGoTop" type="button" aria-label="回到頁首" @click="goTo('top')")
       img(src="/images/btn_gotop.svg" alt="")
   dialog.photo-dialog(ref="photoDialog" @close="onDialogClose" @click="($event) => { if ($event.target === photoDialog) closePhoto() }")
     .photo-dialog-body(v-if="selectedPhoto")

@@ -34,7 +34,7 @@ npm run dev
 
 - 視覺濾鏡切換：原色、灰階、懷舊、對比、暖色疊加。
 - 圖文卡片依類別篩選、滑入效果、點擊放大與 Esc 關閉。
-- 手機選單、頁面定位捲動、回到頁首；全部沒有 jQuery 執行相依。
+- 手機選單、頁面定位捲動、回到頁首；保留舊版 `basic.js` 的門檻：捲過 350px 縮小 header、捲過 200px 顯示回頁首，點擊後以原生 `requestAnimationFrame` 做 600ms 捲動。全部沒有 jQuery 執行相依。
 - `<script setup>`、`<template lang="pug">`、縮排式 `.sass`、`sass:math`。
 
 ## 下一步
