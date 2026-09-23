@@ -11,7 +11,7 @@
 | `_color.sass` | 舊色票與表單 map；需要依新版視覺重新定義，不直接照搬全白預設值 |
 | `_reset.sass` | 重置規則；可與目前 `main.sass` 的基礎設定比對後合併，避免重複覆蓋 |
 | `_basic.sass`、`_layout.sass` | 舊版彙整與示範頁版型；有 `@import` 和舊式 off-canvas 樣式，需要拆成真正使用的區塊 |
-| `_icons.sass` | 舊版 Material Icons 設定保留；目前導覽不依賴圖示字型 |
+| `_icons.sass` | 舊版原檔保留；新版模組在 `src/assets/sass/_icons.sass`，只供 `/icons.html` 使用 |
 | `_include.sass` | 原檔保留；新版在 `src/assets/sass/_include.sass` 選用三種字型與後備字型串 |
 | `_extools.sass` | 程式碼示範的原檔保留，尚未移植 |
 | `_navs.sass` | 原檔保留；新版 `src/assets/sass/_navs.sass` 已接入四方向的 offcanvas 樣式 |

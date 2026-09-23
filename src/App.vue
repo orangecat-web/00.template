@@ -1,7 +1,8 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
 import { useOffcanvas } from './composables/useOffcanvas.js'
+import { usePageScroll } from './composables/usePageScroll.js'
 import { photos } from './data/photos.js'
 
 const effectGroups = [
@@ -57,11 +58,9 @@ const {
   open: openMenu, close: closeMenu, toggle: toggleMenu,
   setSide: setNavSide, setMode: setNavMode,
 } = useOffcanvas()
-const headerLow = ref(false)
-const showGoTop = ref(false)
+const { headerLow, showGoTop, goTo: scrollToSection } = usePageScroll()
 const selectedPhoto = ref(null)
 const photoDialog = ref(null)
-let scrollFrame = 0
 const year = new Date().getFullYear()
 const featuredPhoto = photos[0]
 const filteredPhotos = computed(() => activeCategory.value === 'all'
@@ -75,36 +74,9 @@ function selectEffectGroup(group) {
   activeEffect.value = group.effects[0].id
 }
 
-function updateScroll() {
-  headerLow.value = window.scrollY > 350
-  showGoTop.value = window.scrollY > 200
-}
-
-function scrollToPosition(top, duration = 600) {
-  if (scrollFrame) cancelAnimationFrame(scrollFrame)
-  scrollFrame = 0
-  const destination = Math.max(0, Math.min(top, document.documentElement.scrollHeight - window.innerHeight))
-  if (Math.abs(destination - window.scrollY) < 1) return
-  const start = window.scrollY
-  const distance = destination - start
-  let startTime
-  function animate(time) {
-    if (startTime === undefined) startTime = time
-    const progress = Math.min((time - startTime) / duration, 1)
-    const eased = (1 - Math.cos(Math.PI * progress)) / 2
-    window.scrollTo(0, start + distance * eased)
-    if (progress < 1) scrollFrame = requestAnimationFrame(animate)
-    else scrollFrame = 0
-  }
-  scrollFrame = requestAnimationFrame(animate)
-}
-
 function goTo(id) {
   closeMenu({ immediate: true, restoreFocus: false })
-  const target = id === 'top' ? null : document.getElementById(id)
-  if (id !== 'top' && !target) return
-  const top = target ? target.getBoundingClientRect().top + window.scrollY - 80 : 0
-  scrollToPosition(top)
+  scrollToSection(id)
 }
 
 function openPhoto(photo) {
@@ -120,14 +92,6 @@ function onDialogClose() {
   selectedPhoto.value = null
 }
 
-onMounted(() => {
-  updateScroll()
-  window.addEventListener('scroll', updateScroll, { passive: true })
-})
-onUnmounted(() => {
-  window.removeEventListener('scroll', updateScroll)
-  if (scrollFrame) cancelAnimationFrame(scrollFrame)
-})
 </script>
 
 <template lang="pug">
@@ -145,6 +109,7 @@ onUnmounted(() => {
           button.offcanvas-close(v-if="menuOpen" ref="menuCloseButton" type="button" aria-label="關閉導覽選單" @click="closeMenu()") ×
           a(href="#effects" @click.prevent="goTo('effects')") 視覺效果
           a(href="#gallery" @click.prevent="goTo('gallery')") 圖文列表
+          a(href="/icons.html" @click="closeMenu({ immediate: true, restoreFocus: false })") Google Icons
           a(href="#about" @click.prevent="goTo('about')") 關於這版
         button.nav-scrim(v-if="menuOpen" type="button" tabindex="-1" aria-label="關閉導覽選單" :class="{ 'is-visible': navVisible }" @click="closeMenu()")
   main

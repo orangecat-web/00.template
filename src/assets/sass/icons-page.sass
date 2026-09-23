@@ -1,0 +1,450 @@
+@use './include' as fonts
+@use './grid' as grid
+@use './icons' as icons
+@use './mixin' as oc
+@use './navs'
+
+$ink: #1c2420
+$muted: #67736c
+$cream: #f5f1e9
+$orange: #f29339
+
+*, *::before, *::after
+  box-sizing: border-box
+html
+  scroll-behavior: auto
+body
+  margin: 0
+  background: $cream
+  color: $ink
+  font-family: fonts.$font-body
+button, input
+  font: inherit
+a
+  color: inherit
+  text-decoration: none
+button
+  cursor: pointer
+:focus-visible
+  outline: 3px solid #d66005
+  outline-offset: 3px
+.icons-page
+  min-height: 100vh
+  overflow: clip
+.icons-shell
+  @include grid.container(fluid, 0)
+  width: min(100% - 64px, 1320px)
+.icons-header
+  position: sticky
+  top: 0
+  z-index: 20
+  border-bottom: 1px solid rgba($ink, .14)
+  background: rgba($cream, .96)
+  backdrop-filter: blur(15px)
+  &.headerlow
+    box-shadow: 0 6px 24px rgba($ink, .08)
+    .header-row
+      min-height: 62px
+    .icons-brand img
+      height: 52px
+.header-row
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 24px
+  min-height: 82px
+  transition: min-height .3s
+.icons-brand
+  display: flex
+  align-items: center
+  gap: 20px
+  font-size: 11px
+  font-weight: 850
+  letter-spacing: .15em
+  img
+    width: 118px
+    height: 66px
+    object-fit: contain
+    transition: height .3s
+.site-nav
+  display: flex
+  align-items: center
+  gap: clamp(18px, 3vw, 52px)
+  font-size: 13px
+  font-weight: 750
+  a:hover
+    color: #bd5c0b
+.menu-button
+  display: none
+.text-link
+  font-size: 13px
+  font-weight: 800
+  border-bottom: 1px solid currentColor
+  padding-bottom: 5px
+  &:hover
+    color: #bd5c0b
+.icons-hero
+  display: grid
+  grid-template-columns: 1.1fr .9fr
+  min-height: 560px
+  gap: 70px
+  align-items: center
+  padding: 64px 0 80px
+.eyebrow
+  margin: 0 0 24px
+  color: #aa550f
+  font-size: 11px
+  font-weight: 850
+  letter-spacing: .17em
+h1, h2, h3, p
+  margin-top: 0
+h1, h2
+  font-family: fonts.$font-display
+  letter-spacing: -.045em
+h1
+  font-size: clamp(56px, 6.7vw, 108px)
+  line-height: 1.06
+  font-weight: 900
+  margin-bottom: 28px
+  span
+    color: $orange
+.hero-lead
+  max-width: 600px
+  font-size: clamp(15px, 1.3vw, 19px)
+  line-height: 1.85
+  color: #4d5b53
+  margin-bottom: 28px
+.hero-preview
+  min-height: 410px
+  position: relative
+  display: grid
+  place-items: center
+  overflow: hidden
+  background: #222e28
+  border-radius: 18px 110px 18px 18px
+  color: #fff
+  box-shadow: 24px 24px 0 #e7e0d5
+.preview-orbit
+  width: 310px
+  height: 310px
+  border: 1px solid rgba(white, .18)
+  border-radius: 50%
+  box-shadow: 0 0 0 80px rgba(white, .035), 0 0 0 160px rgba(white, .02)
+.preview-icon
+  position: absolute
+  display: grid
+  place-items: center
+  width: 118px
+  height: 118px
+  border-radius: 28px
+  background: $orange
+  color: $ink
+  transform: rotate(-10deg)
+  box-shadow: 10px 15px 35px rgba(0, 0, 0, .18)
+  i
+    font-style: normal
+    font-size: 59px
+.preview-home
+  left: 15%
+  top: 18%
+.preview-star
+  right: 15%
+  top: 30%
+  transform: rotate(12deg)
+  background: #f9e2ad
+.preview-search
+  left: 40%
+  bottom: 15%
+  transform: rotate(7deg)
+  background: #fffaf0
+.preview-caption
+  position: absolute
+  right: 20px
+  bottom: 14px
+  font-size: 10px
+  letter-spacing: .17em
+  color: rgba(white, .65)
+.guide-section, .catalog-section
+  padding: 90px 0
+  border-top: 1px solid rgba($ink, .16)
+.section-head
+  max-width: 720px
+  margin-bottom: 36px
+  h2
+    font-size: clamp(36px, 4vw, 60px)
+    line-height: 1.18
+    margin-bottom: 18px
+  > p:last-child
+    color: $muted
+    line-height: 1.8
+.guide-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 18px
+.guide-card
+  padding: clamp(24px, 3.5vw, 46px)
+  background: #fffcf7
+  border: 1px solid #e4ddd2
+  border-radius: 12px
+  h3
+    font-size: 23px
+    margin: 15px 0 24px
+  p
+    color: $muted
+    line-height: 1.8
+    margin: 18px 0 0
+.guide-number
+  font-family: fonts.$font-display
+  font-size: 11px
+  font-weight: 850
+  letter-spacing: .12em
+  color: #ab540d
+pre
+  white-space: pre-wrap
+  overflow-wrap: anywhere
+  background: #202c26
+  color: #f9e2c3
+  padding: 17px 20px
+  border-radius: 8px
+  line-height: 1.7
+  font-size: 13px
+.mini-examples
+  display: flex
+  flex-wrap: wrap
+  gap: 20px
+  margin-top: 26px
+  color: #ba5e11
+  span
+    font-size: 36px
+.catalog-controls
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  align-items: end
+  gap: 25px
+  padding-bottom: 32px
+  border-bottom: 1px solid rgba($ink, .18)
+.style-choices
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+.style-choice
+  border: 1px solid rgba($ink, .3)
+  border-radius: 100px
+  background: transparent
+  color: $ink
+  padding: 10px 19px
+  font-size: 13px
+  font-weight: 750
+  transition: background .2s, color .2s
+  &:hover, &[aria-pressed='true']
+    background: $ink
+    color: white
+.search-field
+  display: grid
+  gap: 7px
+  min-width: min(100%, 290px)
+  color: $muted
+  font-size: 11px
+  font-weight: 750
+  input
+    width: 100%
+    padding: 12px 15px
+    border: 1px solid #c7c9c0
+    border-radius: 5px
+    background: #fffcf7
+    color: $ink
+    font-size: 14px
+.category-links
+  display: flex
+  flex-wrap: wrap
+  gap: 10px 25px
+  padding: 26px 0 10px
+  font-size: 13px
+  font-weight: 750
+  a:hover
+    color: #b65f11
+.icon-group
+  padding: 55px 0 12px
+  scroll-margin-top: 20px
+.group-heading
+  display: flex
+  align-items: baseline
+  justify-content: space-between
+  gap: 16px
+  margin-bottom: 23px
+  h3
+    font-size: 28px
+    margin: 0
+  span
+    font-size: 11px
+    letter-spacing: .13em
+    color: $muted
+.icon-grid
+  display: grid
+  grid-template-columns: repeat(5, minmax(0, 1fr))
+  gap: 10px
+.icon-tile
+  min-height: 154px
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  text-align: left
+  gap: 8px
+  padding: 20px
+  border: 1px solid #e4ddd2
+  border-radius: 8px
+  background: #fffcf7
+  color: $ink
+  transition: transform .2s, box-shadow .2s
+  &:hover
+    transform: translateY(-4px)
+    box-shadow: 0 10px 24px rgba($ink, .09)
+  strong
+    font-size: 13px
+  small
+    color: $muted
+    font-size: 11px
+    overflow-wrap: anywhere
+.icon-glyph
+  display: block
+  min-height: 44px
+  color: #c46719
+  &::before
+    font-family: 'Material Icons'
+    font-weight: normal
+    font-style: normal
+    font-size: 35px
+    line-height: 1
+    direction: ltr
+    white-space: nowrap
+    -webkit-font-smoothing: antialiased
+@each $name, $glyph in icons.$icon-glyphs
+  .icon-#{$name}::before
+    content: $glyph
+@each $style, $family in icons.$icon-families
+  .icons-page[data-style='#{$style}'] .icon-glyph::before
+    font-family: $family
+// 原版 +google_icons(home, round) 的兩參數工具仍可使用。
+.home-link
+  @include icons.google_icons(home, round)
+  display: inline-flex
+  align-items: center
+  gap: 8px
+  margin-top: 8px
+  font-weight: 700
+  color: #b65f11
+  > i::before
+    font-size: 28px
+@each $style, $family in icons.$icon-families
+  $suffix: '-#{$style}'
+  @if $style == filled
+    $suffix: ''
+  .material-icons#{$suffix}
+    font-family: $family
+    font-weight: normal
+    font-style: normal
+    line-height: 1
+    letter-spacing: normal
+    text-transform: none
+    white-space: nowrap
+    word-wrap: normal
+    direction: ltr
+    display: inline-block
+    -webkit-font-smoothing: antialiased
+    font-feature-settings: 'liga'
+.empty-message
+  padding: 50px 0
+  color: $muted
+.icons-footer
+  background: $ink
+  color: #faf3e8
+.footer-row
+  min-height: 120px
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 20px
+  font-size: 12px
+  letter-spacing: .08em
+.back-to-top
+  @include oc.goTop(24px, 24px)
+  width: 50px
+  height: 50px
+  border: 1px solid $ink
+  @include oc.radius50
+  background: $orange
+  display: grid
+  place-items: center
+  img
+    width: 32px
+    height: 32px
+.back-to-top-enter-active, .back-to-top-leave-active
+  transition: opacity .2s, transform .2s
+.back-to-top-enter-from, .back-to-top-leave-to
+  opacity: 0
+  transform: translateY(15px)
+@media (max-width: 1000px)
+  .icon-grid
+    grid-template-columns: repeat(4, minmax(0, 1fr))
+  .icons-hero
+    gap: 36px
+@media (max-width: 760px)
+  .icons-shell
+    width: min(100% - 36px, 1320px)
+  .header-row
+    min-height: 72px
+  .icons-header.headerlow .header-row
+    min-height: 58px
+  .icons-header.headerlow .icons-brand img
+    height: 50px
+  .icons-brand
+    gap: 7px
+    img
+      width: 90px
+  .menu-button
+    display: flex
+    flex-direction: column
+    justify-content: center
+    gap: 6px
+    width: 42px
+    height: 42px
+    padding: 10px
+    border: 1px solid rgba($ink, .3)
+    border-radius: 50%
+    background: transparent
+    span
+      width: 100%
+      height: 2px
+      background: $ink
+  .site-nav.offcanvas-panel:not(.is-open)
+    display: none
+  .icons-hero
+    grid-template-columns: 1fr
+    min-height: 0
+    padding: 55px 0 70px
+  .hero-preview
+    min-height: 340px
+  .guide-section, .catalog-section
+    padding: 65px 0
+  .guide-grid
+    grid-template-columns: 1fr
+  .icon-grid
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+@media (max-width: 480px)
+  .icons-brand span
+    display: none
+  .icon-grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  .icon-tile
+    padding: 15px
+  .preview-icon
+    width: 94px
+    height: 94px
+    i
+      font-size: 48px
+
+@media (prefers-reduced-motion: reduce)
+  *, *::before, *::after
+    animation-duration: .01ms !important
+    transition-duration: .01ms !important

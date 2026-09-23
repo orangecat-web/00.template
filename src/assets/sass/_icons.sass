@@ -1,0 +1,140 @@
+// 從舊版 _icons.sass 移植的常用代號與五種 Material Icons 字型。
+// 只由 icons.sass 載入，因此首頁不會下載圖示字型。
+@use 'sass:map'
+
+@font-face
+  font-family: 'Material Icons'
+  src: url('../fonts/MaterialIcons-Regular.ttf') format('truetype')
+  font-style: normal
+  font-weight: normal
+  font-display: block
+
+@font-face
+  font-family: 'Material Icons Round'
+  src: url('../fonts/MaterialIconsRound-Regular.otf') format('opentype')
+  font-style: normal
+  font-weight: normal
+  font-display: block
+
+@font-face
+  font-family: 'Material Icons Outlined'
+  src: url('../fonts/MaterialIconsOutlined-Regular.otf') format('opentype')
+  font-style: normal
+  font-weight: normal
+  font-display: block
+
+@font-face
+  font-family: 'Material Icons Sharp'
+  src: url('../fonts/MaterialIconsSharp-Regular.otf') format('opentype')
+  font-style: normal
+  font-weight: normal
+  font-display: block
+
+@font-face
+  font-family: 'Material Icons Two Tone'
+  src: url('../fonts/MaterialIconsTwoTone-Regular.otf') format('opentype')
+  font-style: normal
+  font-weight: normal
+  font-display: block
+
+$icon-glyphs: (
+  base: "\e5d3",
+  home: "\e88a",
+  nav: "\e5d2",
+  app: "\e5c3",
+  close: "\e14c",
+  gotop: "\e316",
+  first: "\eac3",
+  last: "\eac9",
+  next: "\e409",
+  prev: "\e408",
+  search: "\e8b6",
+  download: "\f090",
+  cloud_download: "\e2c0",
+  info: "\e88e",
+  renew: "\e863",
+  date: "\e616",
+  zoom_in: "\e8ff",
+  zoom_out: "\e900",
+  image: "\e3f4",
+  camera: "\e412",
+  email: "\e0be",
+  alternate_email: "\e0e6",
+  phone: "\e0b0",
+  mobile: "\e325",
+  fax: "\ead8",
+  support_agent: "\f0e2",
+  qr_code: "\f206",
+  location: "\e55f",
+  checkbox: "\e835",
+  checkbox_checked: "\e834",
+  radio: "\e836",
+  radio_checked: "\e837",
+  checklist: "\e6b1",
+  assignment_ind: "\e85e",
+  account_circle: "\e853",
+  person: "\e7fd",
+  groups: "\f233",
+  login: "\ea77",
+  logout: "\e9ba",
+  male: "\e58e",
+  female: "\e590",
+  visibility: "\e8f4",
+  visibility_off: "\e8f5",
+  upload: "\e2c3",
+  lock: "\e897",
+  manage_accounts: "\f02e",
+  edit: "\e3c9",
+  shopping_cart: "\e8cc",
+  shopping_bag: "\f1cc",
+  remove_cart: "\e928",
+  add_cart: "\e854",
+  pay: "\f041",
+  credit_card: "\e870",
+  delete: "\e872",
+  video: "\e63a",
+  smart_display: "\f06a",
+  play_arrow: "\e037",
+  stop_play: "\e047",
+  pause: "\e034",
+  skip_next: "\e044",
+  skip_previous: "\e045",
+  fast_forward: "\e01f",
+  fast_rewind: "\e020",
+  desktop: "\e30c",
+  laptop: "\e31e",
+  print: "\e8ad",
+  clock: "\e192",
+  settings: "\e8b8",
+)
+
+$icon-families: (
+  filled: 'Material Icons',
+  round: 'Material Icons Round',
+  outlined: 'Material Icons Outlined',
+  sharp: 'Material Icons Sharp',
+  twotone: 'Material Icons Two Tone',
+)
+
+// HTML: <span class="demo"><i aria-hidden="true"></i></span>
+// Sass: .demo / @include icons.google_icons(home, round)
+@mixin google_icons($name: base, $style: filled)
+  @if not map.has-key($icon-glyphs, $name)
+    @error "Unknown Material Icon: #{$name}"
+  @if not map.has-key($icon-families, $style)
+    @error "Unknown Material Icon style: #{$style}"
+  > i, > span
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    font-style: normal
+    &::before
+      content: map.get($icon-glyphs, $name)
+      font-family: map.get($icon-families, $style)
+      font-weight: normal
+      font-style: normal
+      line-height: 1
+      direction: ltr
+      white-space: nowrap
+      -webkit-font-smoothing: antialiased
+      font-feature-settings: "liga"

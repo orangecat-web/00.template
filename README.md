@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-開啟終端機顯示的網址，通常是 `http://localhost:5173/`。既有 `package.json` 的 `dev` 指令是 `vite --open`，會自動開啟瀏覽器。建置檢查：`npm run build`。
+開啟終端機顯示的網址，通常是 `http://localhost:5173/`。Google Icons 專頁是 `http://localhost:5173/icons.html`。既有 `package.json` 的 `dev` 指令是 `vite --open`，會自動開啟瀏覽器。建置檢查：`npm run build`。
 
 若 PowerShell 的 `npm.ps1` 被系統執行原則擋住，可將上面指令中的 `npm` 改成 `npm.cmd`。
 
@@ -25,16 +25,21 @@ npm run dev
 | `sass/_mixin.sass` | 保留名稱、修正舊相依後移植 | `src/assets/sass/_mixin.sass`；字型、文字截斷、轉場、邊框、圓角、回頁首、表單、分頁、表格、圖文列表與相簿 mixin。原檔仍在 `reference/legacy-sass/` |
 | `sass/_function.sass` | 搬移並共用 | `src/assets/sass/_function.sass`；保留尺寸、字重、12 欄、容器設定及計算函式，改用 `sass:math`、`sass:map` |
 | `sass/_grid.sass` | 搬移並接入 | `src/assets/sass/_grid.sass`；保留 `container`、`row`、`col`、`breakpoint` 等名稱與舊斷點；共用 `_function.sass` 的設定 |
-| `sass/_include.sass` | 選用字型並整理後備字型 | `src/assets/sass/_include.sass`；載入 Noto Sans TC、Roboto、Raleway，遠端無法載入時改用系統繁中字型；未使用的 Material Icons 不載入 |
+| `sass/_include.sass` | 選用字型並整理後備字型 | `src/assets/sass/_include.sass`；載入 Noto Sans TC、Roboto、Raleway，遠端無法載入時改用系統繁中字型；Material Icons 只由圖示專頁載入 |
 | `sass/_spacing.sass` | 名稱沿用、改為模組 | `src/assets/sass/_spacing.sass`；對齊、flex、margin、padding、display 快捷 mixin，距離取自新版 `_function.sass` |
 | `sass/_navs.sass` | 重新實作 | `src/assets/sass/_navs.sass`；四方向的 offcanvas 位置與覆蓋／推擠轉場 |
+| `pug/icon_exsample.pug`、`sass/_icons.sass` | 獨立頁移植 | `icons.html`、`src/IconsApp.vue`、`src/data/icons.js`、`src/assets/sass/_icons.sass`；五種本地字型在 `src/assets/fonts/`，僅由 `icons-page.sass` 載入 |
 | `pug/_base.pug` | 結構改寫 | `src/App.vue` 的 header、main、footer；原本兩份 desktop/mobile 導覽改成一份 `<nav>`，開啟時由 Vue Teleport 移到頁面上層 |
 | `pug/graphic_list.pug`、`pug/tools/_list.pug` | 元件化改寫 | `src/components/GalleryCard.vue` 與 `src/data/photos.js`；用 `v-for` 取代重複 markup |
 | `pug/portfolio.pug` | 效果概念沿用 | `App.vue` 的視覺效果實驗區；大量效果尚未逐一搬完 |
 | 舊版全部 13 支 `_*.sass` partial | 原檔複製 | `reference/legacy-sass/`；完整保留你的工具庫。`_effects.sass`、`_mixin.sass`、`_function.sass`、`_grid.sass`、`_include.sass`、`_spacing.sass`、`_navs.sass` 已另做新版模組 |
 | 舊版 `css/`、`dist/`、根目錄 HTML | 不複製 | 舊版編譯產物；新版交給 Vite 從 Vue / Sass 產生 |
 | `js/jquery-3.5.0.js`、`js/nav/slidebars*`、`js/basic.js` | 不複製 | 導覽功能由 `src/composables/useOffcanvas.js` 以原生事件與 Vue 狀態實作；捲動改用原生 API，照片放大使用 `<dialog>` |
-| 未使用的照片、Material Icons 字型與示範頁 | 暫不複製 | 先維持專案精簡；需要展示對應功能時再選擇性搬移 |
+| 其他未使用照片與示範頁 | 暫不複製 | 等需要展示對應功能時再選擇性搬移 |
+
+## Google Icons 獨立頁
+
+開啟 `/icons.html` 查看舊版六類、61 個常用範例；可切換 Filled、Round、Outlined、Sharp、Two Tone 五種字型樣式、搜尋名稱或標籤、點選圖示複製 Sass 名稱。`_icons.sass` 保留 `@include icons.google_icons(home, round)` 的兩參數用法（使用 `@use './icons' as icons`），也示範 Google 原生 ligature 寫法。舊版五個 Material Icons 字型檔放在 `src/assets/fonts/`；其 Apache 2.0 授權條款見該資料夾。首頁的 CSS 不包含這些字型，正式打包會生成 `dist/icons.html` 及獨立的 CSS。圖示頁沿用同一套選單邏輯，桌面顯示橫列、手機顯示可開關的側欄；分類、頁尾與浮動回頂按鈕使用 `usePageScroll.js` 的 600ms 動態捲動，捲過 350px 縮小 header、捲過 200px 顯示回頂按鈕。
 
 ## 已可操作
 

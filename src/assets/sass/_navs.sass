@@ -5,7 +5,7 @@
   --nav-vertical-size: min(70dvh, 320px)
   --nav-speed: 380ms
 
-.site
+.site, .icons-page
   transition: transform var(--nav-speed) cubic-bezier(.2, .7, .2, 1)
   &.nav-pushed[data-nav-side='left']
     transform: translateX(var(--nav-side-size))
@@ -151,5 +151,5 @@
     margin-top: 45px
 
 @media (prefers-reduced-motion: reduce)
-  .site, .site-nav.offcanvas-panel, .nav-scrim
+  .site, .icons-page, .site-nav.offcanvas-panel, .nav-scrim
     transition-duration: .01ms
