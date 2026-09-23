@@ -56,12 +56,11 @@ div#top(:class="[isHome ? 'site' : 'standard-page', { 'nav-pushed': navVisible &
         button.nav-scrim(v-if="menuOpen" type="button" tabindex="-1" aria-label="關閉導覽選單" :class="{ 'is-visible': navVisible }" @click="closeMenu()")
   main(:class="isHome ? null : 'page-shell'")
     slot
-  footer(:class="isHome ? 'site-footer' : 'standard-footer'")
-    div(:class="isHome ? 'shell footer-inner' : 'page-shell footer-row'")
-      span(v-if="!isHome") {{ footerText }}
-      span(v-else) © {{ year }} orangeCat's photography
-      span(v-if="isHome") VUE 3 / PUG / SASS / VANILLA JS
-      a(href="#top" @click.prevent="goTo('top')") {{ isHome ? 'BACK TO TOP ↑' : '↑ 回到頁首' }}
+  footer.site-footer
+    .shell.footer-inner
+      span © {{ year }} orangeCat's photography
+      span VUE 3 / PUG / SASS / VANILLA JS
+      a(href="#top" @click.prevent="goTo('top')") BACK TO TOP ↑
   Transition(name="back-to-top")
     button.back-to-top.goTop(v-if="showGoTop" type="button" aria-label="回到頁首" @click="goTo('top')")
       img(src="/images/btn_gotop.svg" alt="")

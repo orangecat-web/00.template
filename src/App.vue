@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
+import PhotoViewer from './components/PhotoViewer.vue'
 import SiteLayout from './components/SiteLayout.vue'
 import { photos } from './data/photos.js'
 
@@ -55,11 +56,16 @@ const layout = ref(null)
 const navSide = computed(() => layout.value?.navSide ?? 'left')
 const navMode = computed(() => layout.value?.navMode ?? 'overlay')
 const menuOpen = computed(() => layout.value?.menuOpen ?? false)
+const mainLinks = [
+  { href: '#effects', label: '視覺效果' },
+  { href: '#gallery', label: '圖文列表' },
+  { href: '/icons.html', label: 'Google Icons' },
+  { href: '#about', label: '關於這版' },
+]
 function setNavSide(value) { layout.value?.setNavSide(value) }
 function setNavMode(value) { layout.value?.setNavMode(value) }
 function openMenu(event) { layout.value?.openMenu(event) }
-const selectedPhoto = ref(null)
-const photoDialog = ref(null)
+const photoViewer = ref(null)
 const featuredPhoto = photos[0]
 const filteredPhotos = computed(() => activeCategory.value === 'all'
   ? photos
@@ -76,29 +82,20 @@ function goTo(id) {
   layout.value?.goTo(id)
 }
 
-function openPhoto(photo) {
-  selectedPhoto.value = photo
-  photoDialog.value?.showModal()
-}
-
-function closePhoto() {
-  photoDialog.value?.close()
-}
-
-function onDialogClose() {
-  selectedPhoto.value = null
+function openPhoto(photo, sourceElement) {
+  photoViewer.value?.open(photo, sourceElement)
 }
 
 </script>
 
 <template lang="pug">
-SiteLayout(ref="layout" page-id="home")
+SiteLayout(ref="layout" variant="home" :links="mainLinks")
   section.hero.shell(aria-labelledby="hero-title")
     .hero-copy
       p.kicker
         span.kicker-line
         | ORANGE CAT / VISUAL LAB
-      h1#hero-title 設計有感，<br>互動有據<span class="period">.</span>
+      h1#hero-title 設計有感，<br>互動有據<span class="period">．</span>
       p.hero-lead 以舊版 oc-template 的影像與視覺效果為起點，重新組成 Vue 3 的互動展示。從 Pug、Sass 到原生 JavaScript，讓頁面上的每個細節都能被看見，也能被操作。
       .hero-actions
         a.pill.pill-primary(href="#effects" @click.prevent="goTo('effects')") 看效果實驗
@@ -156,7 +153,7 @@ SiteLayout(ref="layout" page-id="home")
       .section-heading
         div
           p.kicker 02 / GRAPHIC LIST
-          h2#gallery-title 圖片與文字，<br>換個方式相遇<span class="period">.</span>
+          h2#gallery-title 圖片與文字，<br>換個方式相遇<span class="period">．</span>
         p.section-description 舊版 `graphic_list.pug` 的圖文列表概念，現在由 Vue 元件與資料陣列產生。分類、卡片展開與手機版都能實際操作。
       .category-controls(role="group" aria-label="攝影分類")
         button.category-button(v-for="category in categories" :key="category.id" type="button" :class="{ 'is-active': activeCategory === category.id }" :aria-pressed="activeCategory === category.id" @click="activeCategory = category.id") {{ category.label }}
@@ -167,7 +164,7 @@ SiteLayout(ref="layout" page-id="home")
     .shell.about-grid
       div
         p.kicker 03 / BEHIND THE BUILD
-        h2#about-title 既有設計資產，<br>新的互動方式<span class="period">.</span>
+        h2#about-title 既有設計資產，<br>新的互動方式<span class="period">．</span>
       .about-copy
         p 這版延續原本的 Pug 與縮排式 Sass，並把舊版選單、捲動與畫面更新改由 Vue 狀態及瀏覽器原生 API 處理。頁面上的濾鏡和圖文卡片，正是這次搬移的第一批成果。
         .about-stats
@@ -183,13 +180,5 @@ SiteLayout(ref="layout" page-id="home")
         .about-links
           a(href="https://github.com/orangecat-web" target="_blank" rel="noopener noreferrer") GitHub ↗
           a(href="https://orangecat-design.wixsite.com/cang" target="_blank" rel="noopener noreferrer") 其他視覺作品 ↗
-dialog.photo-dialog(ref="photoDialog" @close="onDialogClose" @click="($event) => { if ($event.target === photoDialog) closePhoto() }")
-  .photo-dialog-body(v-if="selectedPhoto")
-    button.dialog-close(type="button" aria-label="關閉照片" @click="closePhoto") ×
-    img(:src="selectedPhoto.src" :alt="selectedPhoto.alt")
-    .dialog-caption
-      div
-        span.kicker OC / IMAGE {{ selectedPhoto.id }}
-        h3 {{ selectedPhoto.title }}
-      p {{ selectedPhoto.description }}
+PhotoViewer(ref="photoViewer" :photos="filteredPhotos")
 </template>

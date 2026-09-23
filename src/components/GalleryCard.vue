@@ -9,7 +9,7 @@ article.gallery-card
     .gallery-image
       img(:src="photo.src" :alt="photo.alt" loading="lazy")
       span.image-overlay(aria-hidden="true") VIEW IMAGE ↗
-      button.card-open(type="button" :aria-label="`查看${photo.title}照片`" @click="$emit('open', photo)")
+      button.card-open(type="button" :aria-label="`查看${photo.title}照片`" @click="$emit('open', photo, $event.currentTarget.closest('.gallery-image'))")
     figcaption
       .card-meta
         span {{ photo.categoryLabel }}

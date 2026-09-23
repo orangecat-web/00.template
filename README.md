@@ -53,7 +53,7 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 
 - 視覺效果切換：原色與 9 種圖片濾鏡（灰階、懷舊、對比、亮度、反相、透明度、色相旋轉、模糊、飽和度），以及舊版 `pseffects` 的 15 種疊色模式。模式名稱和濾鏡參數可在 `src/assets/sass/_effects.sass`、`main.sass` 調整；效果清單在 `src/App.vue`。
 - 導覽動態試玩：一份導覽內容，四個方向（左、右、上、下）與兩個模式（覆蓋、推擠）；可用關閉鈕、背景或 Esc 關閉，開啟時鎖住背景捲動。手機的選單鈕使用同一份導覽。
-- 圖文卡片依類別篩選、滑入效果、點擊放大與 Esc 關閉。
+- 圖文卡片依類別篩選、滑入效果；點擊後由該卡片位置放大為照片資訊彈窗，背景同步漸暗。可用按鈕、方向鍵或手機左右滑交疊切換照片，關閉時縮回卡片位置（含 Esc 與背景點擊）。彈窗由 `src/components/PhotoViewer.vue` 與 `_photo-viewer.sass` 管理。
 - 手機選單、頁面定位捲動、回到頁首；保留舊版 `basic.js` 的門檻：捲過 350px 縮小 header、捲過 200px 顯示回頁首，點擊後以原生 `requestAnimationFrame` 做 600ms 捲動。全部沒有 jQuery 執行相依。
 - 已移除首頁跑馬燈；共用 Sass mixin 的 `transition`、`mline`、`goTop`、`radius50`，以及格線的 `container`、`breakpoint` 已在目前頁面實際使用。
 - `<script setup>`、`<template lang="pug">`、縮排式 `.sass`、`sass:math`。
