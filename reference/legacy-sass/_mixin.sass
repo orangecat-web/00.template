@@ -1,0 +1,431 @@
+// Orange's web template mixin v3.0
+// "=" 等同 "@mixin"
+// @function = 宣告運算式開始沒這個不會動可能會造成整個 SASS 錯誤, margin = 運算式名稱類似 ID 之類的東西, ($count: 1) 計算式預設值
+
+// mixin
+// fonts element
+// fonts
+=fontFamily($enfont: "Roboto", $chfont: "Noto Sans TC")
+	@if $chfont == Noto Serif TC, $chfont == Noto Sans SC, $chfont == Noto Serif SC, $chfont == Noto Sans JP, $chfont == Noto Serif JP, $enfont == Roboto, $enfont == Raleway
+		font-family: ($enfont), ($chfont), sans-serif
+	@else if $chfont null == true, $enfont null == true
+		font-family: 'Roboto', 'Noto Sans TC', sans-serif
+// 基本字體設定
+=fontType($conut)
+	font:
+		size: baseFont($conut) // 字型大小
+		weight: 400 // 基本粗細
+		style: normal
+	color: $text_color
+	line-height: 175% // 基本行高
+// 字體大小
+=fontSize($conut)
+	font-size: baseFont($conut)
+// 字體粗細 100 = Thin, Light = 300 = , Regular = 400, Medium = 500, Bold = 700, Black = 900
+// 100 = Thin & Black = 900 很少用
+=fontWeight($weight)
+	font-weight: map-get($font_weight, $weight)
+// 文字限制超過字數...
+=mline($mline: 1)
+	overflow: hidden
+	display: -webkit-box
+	-webkit-box-orient: vertical
+	@if $mline null == false
+		-webkit-line-clamp: $mline
+	@else
+		-webkit-line-clamp: 1
+// element
+// 顏色漸變效果
+=transition
+	-webkit-transition: all 0.50s ease-in-out
+	-moz-transition: all 0.50s ease-in-out
+	-ms-transition: all 0.50s ease-in-out
+	-o-transition: all 0.50s ease-in-out
+	transition: all 0.50s ease-in-out
+// border 未完成 測試中 2021/08/30
+=border($count)
+	border:
+		width: ($baseBorder * $count)
+		style: solid
+		color: map-get($box_border, border)
+	&:hover
+		border:
+			color: map-get($box_border, hover)
+// 圓角設定
+// top 上方左右圓角, bottom 下方左右圓角, left 左邊上下圓角, right 右邊上下圓角
+// top-left 左上方圓角, top-right 右上方圓角, bottom-left 左下方圓角, bottom-right 右下方圓角
+// 服用方式: "+radius(1, top-left)", 尺寸放前面位置放後面
+=radius($count, $position: 1)
+	@if $position == "top" or $position == "bottom"
+		border:
+			#{$position}-left-radius: baseSize($count)
+			#{$position}-right-radius: baseSize($count)
+	@else if $position == "left" or $position == "right"
+		border-top-#{$position}-radius: baseSize($count)
+		border-bottom-#{$position}-radius: baseSize($count)
+	@else if $position == "top-left" or $position == "top-right" or $position == "bottom-left" or $position == "bottom-right"
+		border-#{$position}-radius: baseSize($count)
+	@else
+		border-radius: baseSize($count)
+// 圓角 50%
+=radius50
+	border-radius: 50%
+// pages element
+// logo
+=logo($count)
+	img
+		width: baseSize($count)
+	// 測試中 2021/08/30
+	+breakpoint
+		img
+			width: baseSize($count) * 1
+	+breakpoint(sm)
+		img
+			width: baseSize($count) * 1
+	+breakpoint(md)
+		img
+			width: baseSize($count) * 1
+	+breakpoint(lg)
+		img
+			width: baseSize($count) * 1
+	+breakpoint(xl)
+		img
+			width: baseSize($count) * 1
+// go top
+=goTop
+	transform: translateX(0)
+	transition: transform 0.2s
+	position: fixed
+	bottom: 4rem
+	right: 2rem
+	z-index: 9999
+	&.hide
+		transform: translateX(200%)
+	a.goTop
+		background: #00000090
+		border: none
+		cursor: pointer
+// 自定義 checkbox & radio 未完成 2021/08/30
+=checkbox-radio
+	[type="radio"]:checked,
+	[type="radio"]:not(:checked)
+		position: absolute
+		left: -9999px
+
+	[type="radio"]:checked + label,
+	[type="radio"]:not(:checked) + label
+		position: relative
+		padding-left: size(1.75)
+		cursor: pointer
+		line-height: size(1.25)
+		display: inline-block
+		color: #666
+
+	[type="radio"]:checked + label:before,
+	[type="radio"]:not(:checked) + label:before
+		content: ''
+		position: absolute
+		left: 0
+		top: 0
+		width: size(1.125)
+		height: size(1.125)
+		border: 1px solid #ddd
+		border-radius: 100%
+		background: #fff
+
+	[type="radio"]:checked + label:after,
+	[type="radio"]:not(:checked) + label:after
+		content: ''
+		width: 12px
+		height: 12px
+		background: #f87da9
+		position: absolute
+		top: 4px
+		left: 4px
+		border-radius: 100%
+		-webkit-transition: all 0.2s ease
+		transition: all 0.2s ease
+
+	[type="radio"]:not(:checked) + label:after
+		opacity: 0
+		-webkit-transform: scale(0)
+		transform: scale(0)
+
+	[type="radio"]:checked + label:after
+		opacity: 1
+		-webkit-transform: scale(1)
+		transform: scale(1)
+// pagination 頁碼
+=pagination
+	width: 100%
+	+row
+	+jcc
+	+my(2)
+	+mx-auto
+	li
+		+px(.5)
+		a
+			position: relative
+			span
+				width: 45px
+				height: 45px
+				background: map-get($pagination_bg, base)
+				+radius50
+				color: map-get($pagination_text, base)
+				+p(.666666667)
+				&::before
+					content: ''
+					width: 40px
+					height: 40px
+					background:
+						size: 18px 18px
+						position: 50% 50%
+						repeat: no-repeat
+					position: absolute
+					top: 0
+					left: 0
+			span
+				position: relative
+				z-index: 2
+			&:hover, &:focus
+				span
+					color: map-get($pagination_text, hover)
+					background-color: map-get($pagination_bg, hover)
+		[active]
+			span
+				color: map-get($pagination_text, focus)
+				background-color: map-get($pagination_bg, focus)
+		a.first, a.last, a.prev, a.next
+			span
+				padding: 10px 20px
+		a.first
+			span
+				&::before
+					background-image: url("../images/icons/icon_pagi_first.svg")
+			&:hover, &:focus
+				span
+					&::before
+						background-image: url("../images/icons/icon_pagi_first_ove.svg")
+		a.prev
+			span
+				&::before
+					background:
+						size: 14px 14px
+						image: url("../images/icons/icon_pagi_prev.svg")
+			&:hover, &:focus
+				span
+					&::before
+						background-image: url("../images/icons/icon_pagi_prev_ove.svg")
+		a.last
+			span
+				&::before
+					background-image: url("../images/icons/icon_pagi_last.svg")
+			&:hover, &:focus
+				span
+					&::before
+						background-image: url("../images/icons/icon_pagi_last_ove.svg")
+		a.next
+			span
+				&::before
+					background:
+						size: 14px 14px
+						image: url("../images/icons/icon_pagi_next.svg")
+			&:hover, &:focus
+				span
+					&::before
+						background-image: url("../images/icons/icon_pagi_next_ove.svg")
+	+breakpoint(md)
+		li
+			+display(n)
+		li.first, li.last, li.prev, li.next
+			+display
+	+breakpoint(sm)
+		li
+			+display(n)
+		li.first, li.last, li.prev, li.next
+			+display
+	+breakpoint
+		li
+			+display(n)
+		li.prev, li.next
+			+display
+// table RWD 未完成 2021/08/30
+=ListTable
+	table
+		width: 100%
+	+breakpoint(md)
+		table, tbody, tr, th, td
+			display: block
+			+tal
+	+breakpoint(sm)
+		table, tbody, tr, th, td
+			display: block
+			+tal
+	+breakpoint
+		table, tbody, tr, th, td
+			display: block
+			+tal
+// graphic list 圖文列表 | 上圖下文
+=img_list01
+	+row
+	align-content: space-between
+	align-items: stretch
+	.content
+		display: flex
+		align-content: space-between
+		align-items: stretch
+		+mb(2)
+		+col(3)
+		+breakpoint
+			+col(12)
+		+breakpoint(sm)
+			+col(6)
+		+breakpoint(md)
+			+col(4)
+		figure
+			width: $width
+			border:
+				width: $baseBorder
+				style: solid
+				color: map-get($gallery, border)
+			&:hover
+				border:
+					color: map-get($gallery, borderhover)
+			+p(.5)
+			.img
+				height: 100%
+				overflow: hidden
+				display: flex
+				align-items: center
+				+mb(1)
+				position: relative
+				aspect-ratio: 6/4
+				img
+					height: 100%
+					object-fit: cover
+			figcaption
+				h3
+					+fontSize(1.15)
+					+fontWeight(5)
+					color: map-get($gallery, title)
+					+mline
+					+mb(.25)
+				p
+					color: map-get($gallery, context)
+					+mline(3)
+// graphic list 圖文列表 | 圖文重疊
+=img_list02
+	+row
+	align-content: space-between
+	align-items: stretch
+	.content
+		display: flex
+		flex-direction: column
+		align-content: space-between
+		align-items: stretch
+		+mb(2)
+		+col(3)
+		+breakpoint
+			+col(12)
+		+breakpoint(sm)
+			+col(6)
+		+breakpoint(md)
+			+col(4)
+		figure
+			width: $width
+			border:
+				width: $baseBorder
+				style: solid
+				color: map-get($gallery, border)
+			&:hover, &:focus
+				border:
+					color: map-get($gallery, borderhover)
+			+p(.5)
+			position: relative
+			div.img
+				height: 100%
+				overflow: hidden
+				display: flex
+				align-items: center
+				position: relative
+				aspect-ratio: 6/4
+				img
+					height: 100%
+					object-fit: cover
+			figcaption
+				width: 100%
+				height: 100%
+				background: $graphic_pic_bg
+				+px(1)
+				display: flex
+				flex-direction: column
+				+jcc
+				+aic
+				position: absolute
+				top: 0
+				left: 0
+				// opacity: 0
+				// +transition
+				// &:hover
+				// 	opacity: 1
+				h3
+					+fontSize(1.15)
+					+fontWeight(5)
+					+mline
+				p.intro_text
+					+mline(3)
+				p.more_link
+					+mt(1.5)
+					span
+						border:
+							width: $baseBorder
+							style: solid
+							color: $graphic_pic_text
+							radius: 5px
+						+fontSize(1)
+						color: $graphic_pic_text
+						text-transform: uppercase
+						+py(.5)
+						+px(1.5)
+					a
+						&:hover
+							span
+								background: map-get($graphic_pic_link_bg, hover)
+								color: map-get($graphic_pic_link_text, hover)
+// portfolio 相簿
+=gallery
+	+row
+	align-content: space-between
+	align-items: stretch
+	.content
+		+col(3)
+		display: flex
+		align-content: space-between
+		align-items: stretch
+		+mb(2)
+		+breakpoint
+			+col(12)
+		+breakpoint(sm)
+			+col(6)
+		+breakpoint(md)
+			+col(4)
+		a
+			figure
+				width: $width
+				border:
+					width: 1px
+					style: solid
+					color: map-get($gallery, border)
+				+p(.5)
+				position: relative
+				div.img
+					height: 100%
+					overflow: hidden
+					display: flex
+					align-items: center
+					+mb(1)
+					position: relative
+					aspect-ratio: 1/1
+					img
+						height: 100%
+						object-fit: cover

@@ -1,0 +1,117 @@
+=code
+	background: #282c34
+	+radius(.5)
+	+mb(2)
+	+py(.5)
+	+px(2)
+	+breakpoint
+		padding:
+			left: 12px
+			right: 12px
+	+breakpoint(sm)
+		+px(1)
+	position: relative
+	&::after
+		content: ''
+		width: 1px
+		height: 100%
+		border-left: 1px solid #000
+		position: absolute
+		top: 0
+		left: 3rem
+	.sass
+		&::before
+			content: 'sass'
+	code
+		+tal
+		&::before
+			content: ''
+			+fontSize(.75)
+			color: #999
+			position: absolute
+			top: 0
+			right: .5rem
+		.EXcode
+			+row
+			p
+				+cols
+				line-height: 175%
+				word-wrap: break-word
+				span.lazycode
+					&::before
+						content: '<'
+					&::after
+						content: '>'
+			p.number
+				+col-auto
+				font-family: arial
+				+fontSize(.9)
+				color: #666
+				+pl(.5)
+			p.comment
+				+cols
+				color: #999
+				font-style: italic
+			p.tag
+				+cols
+				color: #fff
+				i
+					color: #f90
+			p.cs1
+				+ml(1)
+				+breakpoint
+					+ml(1-.85)
+			p.cs2
+				+ml(2)
+				+breakpoint
+					+ml(2-.85)
+			p.cs3
+				+ml(3)
+				+breakpoint
+					+ml(3-.85)
+			p.cs4
+				+ml(4)
+				+breakpoint
+					+ml(4-.85)
+			p.cs5
+				+ml(5)
+				+breakpoint
+					+ml(5-.85)
+			p.cs6
+				+ml(6)
+				+breakpoint
+					+ml(6-.85)
+			p.cs7
+				+ml(7)
+				+breakpoint
+					+ml(7-.85)
+			p.cs8
+				+ml(8)
+				+breakpoint
+					+ml(8-.85)
+			p.cs9
+				+ml(9)
+				+breakpoint
+					+ml(9-.85)
+			p.cs10
+				+ml(10)
+				+breakpoint
+					+ml(10-.85)
+	code.sass
+		&::before
+			content: 'sass'
+	code.pug
+		&::before
+			content: 'pug'
+	code.js
+		&::before
+			content: 'js'
+	code.html
+		&::before
+			content: 'html'
+		p.tag
+			span
+				&::before
+					content: '<'
+				&::after
+					content: '>'

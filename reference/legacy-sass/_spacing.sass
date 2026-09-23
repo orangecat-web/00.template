@@ -1,0 +1,129 @@
+// Orange's web template spacing v1.0
+// "=" 等同 "@mixin"
+// @function = 宣告運算式開始沒這個不會動可能會造成整個 SASS 錯誤, margin = 運算式名稱類似 ID 之類的東西, ($count: 1) 計算式預設值
+// 對齊 ex. 置中 +tac, 左 +tal, 右 +tar
+=tal
+	text-align: left
+=tac
+	text-align: center
+=tar
+	text-align: right
+=taf
+	text-align: justify
+// layout element
+// row 對齊方式
+// justify-content
+=jcs
+	-ms-flex-pack: start !important
+	justify-content: flex-start !important
+=jce
+	-ms-flex-pack: end !important
+	justify-content: flex-end !important
+=jcc
+	-ms-flex-pack: center !important
+	justify-content: center !important
+=jcb
+	-ms-flex-pack: justify !important
+	justify-content: space-between !important
+// align-items
+=ais
+	-ms-flex-align: start !important
+	align-items: flex-start !important
+=aie
+	-ms-flex-align: end !important
+	align-items: flex-end !important
+=aic
+	-ms-flex-align: center !important
+	align-items: center !important
+=aib
+	-ms-flex-align: baseline !important
+	align-items: baseline !important
+// align-content
+=acs
+	-ms-flex-line-pack: start !important
+	align-content: flex-start !important
+=ace
+	-ms-flex-line-pack: end !important
+	align-content: flex-end !important
+=acc
+	-ms-flex-line-pack: center !important
+	align-content: center !important
+=acb
+	-ms-flex-line-pack: justify !important
+	align-content: space-between !important
+// align-self
+=ass
+	-ms-flex-item-align: start !important
+	align-self: flex-start !important
+=ase
+	-ms-flex-item-align: end !important
+	align-self: flex-end !important
+=asc
+	-ms-flex-item-align: center !important
+	align-self: center !important
+=asb
+	-ms-flex-item-align: baseline !important
+	align-self: baseline !important
+
+// 以 margin 來說, 在 SASS 寫法 +m(4) = margin: 60px
+// margin
+=m($count)
+	margin: baseSize($count)
+=mx($count)
+	margin:
+		left: baseSize($count)
+		right: baseSize($count)
+=my($count)
+	margin:
+		top: baseSize($count)
+		bottom: baseSize($count)
+=mt($count)
+	margin-top: baseSize($count)
+=mb($count)
+	margin-bottom: baseSize($count)
+=ml($count)
+	margin-left: baseSize($count)
+=mr($count)
+	margin-right: baseSize($count)
+=mx-auto
+	margin:
+		left: auto
+		right: auto
+=my-auto
+	margin:
+		top: auto
+		bottom: auto
+=mt-auto
+	margin-top: auto
+=mb-auto
+	margin-bottom: auto
+=ml-auto
+	margin-left: auto
+=mr-auto
+	margin-right: auto
+
+// padding
+=p($count)
+	padding: baseSize($count)
+=px($count)
+	padding:
+		left: baseSize($count)
+		right: baseSize($count)
+=py($count)
+	padding:
+		top: baseSize($count)
+		bottom: baseSize($count)
+=pt($count)
+	padding-top: baseSize($count)
+=pb($count)
+	padding-bottom: baseSize($count)
+=pl($count)
+	padding-left: baseSize($count)
+=pr($count)
+	padding-right: baseSize($count)
+// display
+=display($dp: 1)
+	@if $dp == n
+		display: none
+	@else if $dp null == true
+		display: block

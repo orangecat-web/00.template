@@ -1,0 +1,208 @@
+// Orange's web template gird v1.0
+// 框架布局
+=container($key)
+	max-width: container-width($key)
+	margin:
+		left: auto
+		right: auto
+	padding:
+		left: $custom-gutter-width / 2
+		right: $custom-gutter-width / 2
+// bootstrap 4 row
+=row
+	display: -ms-flexbox
+	display: flex
+	-ms-flex-wrap: wrap
+	flex-wrap: wrap
+	margin:
+		left: -$baseSize
+		right: -$baseSize
+	+breakpoint
+		margin:
+			left: $baseSize * 0
+			right: $baseSize * 0
+	+breakpoint(sm)
+		margin:
+			left: $baseSize * 0
+			right: $baseSize * 0
+// same bootstrap 4 col
+=col($col)
+	-ms-flex-preferred-size: 0
+	flex-basis: 0
+	-ms-flex-positive: 1
+	flex-grow: 1
+	-ms-flex: 0 0 columns-width($col)
+	flex: 0 0 columns-width($col)
+	max-width: columns-width($col)
+	position: relative
+	padding:
+		left: $custom-gutter-width / 2
+		right: $custom-gutter-width / 2
+=cols
+	-ms-flex-preferred-size: 0
+	flex-basis: 0
+	-ms-flex-positive: 1
+	flex-grow: 1
+	max-width: $width
+	padding:
+		left: $custom-gutter-width / 2
+		right: $custom-gutter-width / 2
+// for 5 col only
+=col-5
+	-ms-flex-preferred-size: 0
+	flex-basis: 0
+	-ms-flex-positive: 1
+	flex-grow: 1
+	// -ms-flex: 0 0 20%
+	flex: 0 0 20%
+	width: $width
+	max-width: $width / 5
+	position: relative
+	padding:
+		left: $custom-gutter-width / 2
+		right: $custom-gutter-width / 2
+=col-auto
+	-ms-flex: 0 0 auto
+	flex: 0 0 auto
+	width: auto
+	max-width: $width
+=no-gutters
+	margin:
+		right: 0
+		left: 0
+	padding:
+		left: 0
+		right: 0
+// breakpoint
+// RWD 設定
+=breakpoint($point: 1)
+	@if $point null == true
+	// bootstarp 4 預設 Small devices (landscape phones, 576px and up) 手機橫的
+	@if $point == sm
+		@media screen and (min-width: 576px) and (max-width: 767.98px)
+			@content
+	// bootstarp 4 預設 Medium devices (tablets, 768px and up) 平板直的
+	@else if $point == md
+		@media screen and (min-width: 768px) and (max-width: 991.98px)
+			@content
+	// bootstarp 4 預設 Large devices (desktops, 992px and up) 平板橫的 & 小螢幕電腦 ex.1024
+	@else if $point == lg
+		@media screen and (min-width: 992px) and (max-width: 1199.98px)
+			@content
+	// bootstarp 4 預設 Extra large devices (large desktops, 1200px and up) 寬 1200 以上螢幕
+	@else if $point == xl
+		@media (min-width: 1200px)
+			@content
+	// 橘子預設 寬 1280 x 800 8:5 以上螢幕
+	@else if $point == d1280
+		@media (min-width: 1280px)
+			@content
+	// 橘子預設 寬 1366 x 768 16:9 以上螢幕
+	@else if $point == d1366
+		@media (min-width: 1366px)
+			@content
+	// 橘子預設 寬 1440 x 900 8:5 以上螢幕
+	@else if $point == d1440
+		@media (min-width: 1440px)
+			@content
+	// 橘子預設 寬 1600 x 900 16:9 以上螢幕
+	@else if $point == d1600
+		@media (min-width: 1600px)
+			@content
+	// 橘子預設 寬 1680 x 1050 8:5 以上螢幕
+	@else if $point == d1680
+		@media (min-width:1680px)
+			@content
+	// 橘子預設 寬 1920 x 1080 16:9 以上螢幕
+	@else if $point == d1920
+		@media (min-width: 1920px)
+			@content
+	// iPhone 5 & 5S
+	@else if $point == ip5p
+		@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)
+			@content
+	@else if $point == ip5l
+		@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)
+			@content
+	// iPhone 6, 7, & 8
+	@else if $point == ip6p
+		@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)
+			@content
+	@else if $point == ip6l
+		@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)
+			@content
+	// iPhone 6, 7, & 8 Plus
+	@else if $point == iplusp
+		@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+			@content
+	@else if $point == iplusl
+		@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+			@content
+	// iPhone X & 11 Pro & 12 mini
+	@else if $point == ipxp
+		@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+			@content
+	@else if $point == ipxl
+		@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+			@content
+	// iPhone 11 & 11 MAX
+	@else if $point == ip11maxp
+		@media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+			@content
+	@else if $point == ip11maxl
+		@media only screen and (min-device-width: 414px) and (max-device-width: 896px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+			@content
+	// iPhone 12 & 12 pro
+	@else if $point == ip12prop
+		@media only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+			@content
+	@else if $point == ip12prol
+		@media only screen and (min-device-width: 390px) and (max-device-width: 844px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+			@content
+	// iPhone 12 pro MAX
+	@else if $point == ip12maxp
+		@media only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait)
+			@content
+	@else if $point == ip12maxl
+		@media only screen and (min-device-width: 428px) and (max-device-width: 926px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape)
+			@content
+	// Retina iPad
+	@else if $point == ipadp
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2)
+			@content
+	@else if $point == ipadl
+		@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)
+			@content
+	// Retina iPad pro
+	@else if $point == ipadprop
+		@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)
+			@content
+	@else if $point == ipadprol
+		@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)
+			@content
+	@else
+		// bootstarp 4 預設 Extra small devices (portrait phones, less than 576px) 手機直的
+		@media screen and (max-width: 575.98px)
+			@content
+
+// for desktop screen dpi or laptop dpi 125% & 150% only
+=DPIreset
+	@media only screen and (min-resolution: 120dpi)
+		body
+			zoom: 0.8
+	@media only screen and (min-resolution: 125dpi)
+		body
+			zoom: 0.7
+
+// for desktop nav & mobile nav
+=NavSwitch
+	@media screen and (min-width: 992px)
+		nav.desktop
+			+display
+		nav.mobile
+			+display(n)
+	@media screen and (max-width: 991.98px)
+		nav.desktop
+			+display(n)
+		nav.mobile
+			+display

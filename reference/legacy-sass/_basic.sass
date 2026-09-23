@@ -1,0 +1,175 @@
+// Orange's web template basic v3.0
+@charset "utf-8"
+// reset
+@import _reset
+// 基礎設定
+@import _function
+// 元件工具
+@import _mixin
+// 元件工具 | 濾鏡及轉場效果
+@import _effects
+// 格線系統
+@import _grid
+// 外部連結檔案
+@import _include
+// 網站顏色
+@import _color
+// google icons
+@import _icons
+// spacing
+@import _spacing
+// for desktop screen dpi or laptop dpi 125% & 150% only
++DPIreset
+
+// global
+html, body, [canvas=container], [off-canvas]
+	margin: 0
+	padding: 0
+	-webkit-box-sizing: border-box
+	box-sizing: border-box
+html, body
+	width: $width
+	height: $height
+	+fontFamily
+	+fontType(1)
+a,button,input,select,textarea
+	+transition
+
+// base
+button.openNav
+	background: none
+	border: none
+	cursor: pointer
+// links
+a
+	color: map-get($alink, base)
+	&:hover
+		color: map-get($alink, hover)
+	&:active
+		color: map-get($alink, focus)
+
+// form
+button
+	background: map-get($button_bg, base)
+	&:hover
+		background: map-get($button_bg, hover)
+	&:active
+		background: map-get($button_bg, focus)
+input
+	background: map-get($input_bg, base)
+	&:hover
+		background: map-get($input_bg, hover)
+	&:active
+		background: map-get($input_bg, focus)
+select
+	background: map-get($select_bg, base)
+	+tac
+	text-align-last: center
+	&:hover
+		background: map-get($select_bg, hover)
+	&:active
+		background: map-get($select_bg, focus)
+textarea
+	background: map-get($textarea_bg, base)
+	&:hover
+		background: map-get($textarea_bg, hover)
+	&:active
+		background: map-get($textarea_bg, focus)
+
+// img
+img
+	width: 100%
+	max-width: 100%
+	height: auto
+
+// nav mobile
+[canvas]
+	z-index: 1
+[canvas=container]
+	width: 100%
+	height: 100%
+	overflow-y: auto
+	position: relative
+	-webkit-overflow-scrolling: touch // Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS.
+[canvas=container]:before,
+[canvas=container]:after
+	clear: both
+	content: ''
+	display: table
+[off-canvas]
+	display: none
+	position: fixed
+	overflow: hidden
+	overflow-y: auto
+	// background-color: map-get($nav-bg, dark)
+	// Basic background color, overwrite this in your own css.
+	-webkit-overflow-scrolling: touch // Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS.
+// nav posistion
+[off-canvas*=top]
+	width: $width
+	height: 255px
+	top: 0
+[off-canvas*=right]
+	width: $width
+	height: $height
+	top: 0
+	right: 0
+[off-canvas*=bottom]
+	width: $width
+	height: 255px
+	bottom: 0
+[off-canvas*=left]
+	width: $width
+	height: $height
+	top: 0
+	left: 0
+[off-canvas*=reveal]
+	z-index: 0
+[off-canvas*=push]
+	z-index: 1
+[off-canvas*=overlay]
+	z-index: 9999
+[off-canvas*=shift]
+	z-index: 0
+// Animation
+[canvas], [off-canvas]
+	-webkit-transform: translate( 0px, 0px )
+	-ms-transform: translate( 0px, 0px )
+	transform: translate( 0px, 0px )
+	-webkit-transition: -webkit-transform 300ms
+	transition: transform 300ms
+	-webkit-backface-visibility: hidden /* Prevents flickering, may be removed if experiencing problems with fixed background images in Chrome. */
+[off-canvas*=shift][off-canvas*=top]
+	-webkit-transform: translate( 0px, 50% )
+	transform: translate( 0px, 50% )
+[off-canvas*=shift][off-canvas*=right]
+	-webkit-transform: translate( -50%, 0px )
+	transform: translate( -50%, 0px )
+[off-canvas*=shift][off-canvas*=bottom]
+	-webkit-transform: translate( 0px, -50% )
+	transform: translate( 0px, -50% )
+[off-canvas*=shift][off-canvas*=left]
+	-webkit-transform: translate( 50%, 0px )
+	transform: translate( 50%, 0px )
+// google icons
+.material-icons,
+.material-icons-outlined,
+.material-icons-sharp,
+.material-icons-two-tone,
+.material-icons-round
+	font-weight: normal
+	font-style: normal
+	display: inline-block
+	line-height: 1
+	text-transform: none
+	letter-spacing: normal
+	word-wrap: normal
+	white-space: nowrap
+	direction: ltr
+	-webkit-font-smoothing: antialiased
+	text-rendering: optimizeLegibility
+	-moz-osx-font-smoothing: grayscale
+	font-feature-settings: 'liga'
+// go top scroll
+div.goTop
+	+goTop

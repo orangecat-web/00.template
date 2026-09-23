@@ -1,0 +1,638 @@
+// Orange's web template Effects v1.0
+// 濾鏡效果 & 按鈕 , 圖片 , 列表轉場動畫效果
+// Image Hover Overlay & Effects for portfolio
+=pseffects($pseffect: 1)
+	position: relative
+	&::before
+		content: ''
+		mix-blend-mode: $pseffect
+		width: 100%
+		height: 100%
+		position: absolute
+		top: 0
+		left: 0
+		z-index: 2
+		+transition
+		@if $pseffect null == ture
+			background: none
+			mix-blend-mode: unset
+		@if $pseffect == multiply
+			// multiply 色彩增值
+			background: $effects
+			mix-blend-mode: multiply
+		@if $pseffect == screen
+			// screen 濾色
+			background: $effects
+			mix-blend-mode: screen
+		@if $pseffect == overlay
+			// overlay 覆蓋
+			background: $effects
+			mix-blend-mode: overlay
+		@if $pseffect == darken
+			// darken 變暗
+			background: $effects
+			mix-blend-mode: darken
+		@if $pseffect == lighten
+			// lighten 變亮
+			background: $effects
+			mix-blend-mode: lighten
+		@if $pseffect == colordodge
+			// color-dodge 加亮顏色
+			background: $effects
+			mix-blend-mode: color-dodge
+		@if $pseffect == colorburn
+			// color-burn 加深顏色
+			background: $effects
+			mix-blend-mode: color-burn
+		@if $pseffect == hardlight
+			// hard-light 實光
+			background: $effects
+			mix-blend-mode: hard-light
+		@if $pseffect == softlight
+			// soft-light 柔光
+			background: $effects
+			mix-blend-mode: soft-light
+		@if $pseffect == difference
+			// difference 差異化
+			background: $effects
+			mix-blend-mode: difference
+		@if $pseffect == exclusion
+			// exclusion 排除
+			background: $effects
+			mix-blend-mode: exclusion
+		@if $pseffect == hue
+			// hue 色相
+			background: $effects
+			mix-blend-mode: hue
+		@if $pseffect == saturation
+			// saturation 飽和度
+			background: $effects
+			mix-blend-mode: saturation
+		@if $pseffect == color
+			// color 顏色
+			background: $effects
+			mix-blend-mode: color
+		@if $pseffect == luminosity
+			// luminosity 明度
+			background: $effects
+			mix-blend-mode: luminosity
+// Images Effects | 圖片濾鏡效果
+=imgfilter($count, $imgfilter: 1)
+	img
+		+transition
+	@if $imgfilter == none, $count null == ture
+		img
+			// 無濾鏡效果
+			-webkit-filter: initial
+			filter: initial
+	@if $imgfilter == grayscale
+		img
+			// grayscale 灰階
+			-webkit-filter: grayscale($filterValue * $count)
+			filter: grayscale($filterValue * $count)
+	@if $imgfilter == brightness
+		img
+			// brightness 亮度
+			-webkit-filter: brightness($filterValue * $count)
+			filter: brightness($filterValue * $count)
+	@if $imgfilter == contrast
+		img
+			// contrast 對比
+			-webkit-filter: contrast($filterValue * $count)
+			filter: contrast($filterValue * $count)
+	@if $imgfilter == invert
+		img
+			// invert 負片
+			-webkit-filter: invert($filterValue * $count)
+			filter: invert($filterValue * $count)
+	@if $imgfilter == opacity
+		img
+			// opacity 不透明
+			-webkit-filter: opacity($filterValue * $count)
+			filter: opacity($filterValue * $count)
+	@if $imgfilter == sepia
+		img
+			// sepia 懷舊
+			-webkit-filter: sepia($filterValue * $count)
+			filter: sepia($filterValue * $count)
+// hue rotate 色相
+=hue-rotate($count)
+	$degValue: 1deg
+	img
+		-webkit-filter: hue-rotate($degValue * $count)
+// blur 模糊
+=blur($count)
+	$blurValue: 1px
+	img
+		-webkit-filter: blur($blurValue * $count)
+// saturate 飽和
+=saturate($count)
+	img
+		-webkit-filter: saturate($count)
+
+// graphic list 圖文列表 | 轉場效果 預設淡入
+// @keyframes 元件
+// slide in down
+=slideInDownE
+	@keyframes slideInDown
+		0%
+			transform: translate3d(0, -100%, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// slide in up
+=slideInUPE
+	@keyframes slideInUP
+		0%
+			transform: translate3d(0, 100%, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// slide in left
+=slideInLeftE
+	@keyframes slideInLeft
+		0%
+			transform: translate3d(-100%, 0, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// slide in right
+=slideInRightE
+	@keyframes slideInRight
+		0%
+			transform: translate3d(100%, 0, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// slide in left top
+=slideInLeftTopE
+	@keyframes slideInLeftTop
+		0%
+			transform: translate3d(-100%, -100%, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// slide in right top
+=slideInRightTopE
+	@keyframes slideInRightTop
+		0%
+			transform: translate3d(100%, -100%, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// slide in left bottom
+=slideInLeftBottomE
+	@keyframes slideInLeftBottom
+		0%
+			transform: translate3d(-100%, 100%, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// slide in right bottom
+=slideInRightBottomE
+	@keyframes slideInRightBottom
+		0%
+			transform: translate3d(100%, 100%, 0)
+		100%
+			transform: translate3d(0, 0, 0)
+// backIn 滑動放大
+// backInDown
+=backInDownE
+	@keyframes backInDown
+		0%
+			transform: translateY(-100%) scale(0.7)
+			opacity: 0.7
+		80%
+			transform: translateY(0) scale(0.7)
+			opacity: 0.7
+		100%
+			transform: scale(1)
+			opacity: 1
+// backInUp
+=backInUpE
+	@keyframes backInUp
+		0%
+			transform: translateY(100%) scale(0.7)
+			opacity: 0.7
+		80%
+			transform: translateY(0) scale(0.7)
+			opacity: 0.7
+		100%
+			transform: scale(1)
+			opacity: 1
+// backInLeft
+=backInLeftE
+	@keyframes backInLeft
+		0%
+			transform: translateX(-100%) scale(0.7)
+			opacity: 0.7
+		80%
+			transform: translateX(0) scale(0.7)
+			opacity: 0.7
+		100%
+			transform: scale(1)
+			opacity: 1
+// backInRight
+=backInRightE
+	@keyframes backInRight
+		0%
+			transform: translateX(100%) scale(0.7)
+			opacity: 0.7
+		80%
+			transform: translateX(0) scale(0.7)
+			opacity: 0.7
+		100%
+			transform: scale(1)
+			opacity: 1
+// zoomIn 放大
+=zoomInE
+	@keyframes zoomIn
+		0%
+			transform: scale3d(0.3, 0.3, 0.3)
+			opacity: 0
+		50%
+			opacity: 1
+// zoomIn 放大上往下
+=zoomInDownE
+	@keyframes zoomInDown
+		0%
+			transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0)
+			animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			opacity: 0
+		60%
+			transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0)
+			animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
+			opacity: 1
+// zoomIn 放大下往上
+=zoomInUpE
+	@keyframes zoomInUp
+  0%
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0)
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+    opacity: 0
+  60%
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0)
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
+    opacity: 1
+// zoomIn 放大左往右
+=zoomInLeftE
+	@keyframes zoomInLeft
+		0%
+			transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0)
+			animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			opacity: 0
+		60%
+			transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0)
+			animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
+			opacity: 1
+// zoomIn 放大右往左
+=zoomInRightE
+	@keyframes zoomInRight
+		0%
+			transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0)
+			animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+			opacity: 0
+		60%
+			transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0)
+			animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1)
+			opacity: 1
+// Flippers 旋轉 X 軸
+=flipInXE
+	@keyframes flipInX
+		from
+			transform: perspective(400px) rotate3d(0, 1, 0, 90deg)
+			animation-timing-function: ease-in
+			opacity: 0
+		40%
+			transform: perspective(400px) rotate3d(0, 1, 0, -20deg)
+			animation-timing-function: ease-in
+		60%
+			transform: perspective(400px) rotate3d(0, 1, 0, 10deg)
+			opacity: 1
+		80%
+			transform: perspective(400px) rotate3d(0, 1, 0, -5deg)
+		to
+			transform: perspective(400px)
+// Flippers 旋轉 Y 軸
+=flipInYE
+	@keyframes flipInY
+		from
+			transform: perspective(400px) rotate3d(1, 0, 0, 90deg)
+			animation-timing-function: ease-in
+			opacity: 0
+		40%
+			transform: perspective(400px) rotate3d(1, 0, 0, -20deg)
+			animation-timing-function: ease-in
+		60%
+			transform: perspective(400px) rotate3d(1, 0, 0, 10deg)
+			opacity: 1
+		80%
+			transform: perspective(400px) rotate3d(1, 0, 0, -5deg)
+		to
+			transform: perspective(400px)
+// bounceIn
+=bounceInE
+	@keyframes bounceIn
+		from, 20%, 40%, 60%, 80%, to
+			animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+		0%
+			opacity: 0
+			transform: scale3d(.3,.3,.3)
+		20%
+			transform: scale3d(1.1,1.1,1.1)
+		40%
+			transform: scale3d(.6,.6,.6)
+		60%
+			transform: scale3d(1.03,1.03,1.03)
+		80%
+			transform: scale3d(.97,.97,.97)
+		to
+			transform: scale3d(1,1,1)
+// bounceInDown
+=bounceInDownE
+	@keyframes bounceInDown
+		from, 60%, 75%, 90%, to
+			animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+		0%
+			opacity: 0
+			transform: translate3d(0, -3000px, 0) scaleY(3)
+		60%
+			opacity: 1
+			transform: translate3d(0, 25px, 0) scaleY(0.9)
+		75%
+			transform: translate3d(0, -10px, 0) scaleY(0.95)
+		90%
+			transform: translate3d(0, 5px, 0) scaleY(0.985)
+		to
+			transform: translate3d(0, 0, 0)
+// bounceInUp
+=bounceInUpE
+	@keyframes bounceInUp
+		from, 60%, 75%, 90%, to
+			animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+		0%
+			opacity: 0
+			transform: translate3d(0, 3000px, 0) scaleY(3)
+		60%
+			opacity: 1
+			transform: translate3d(0, -20px, 0) scaleY(0.9)
+		75%
+			transform: translate3d(0, 10px, 0) scaleY(0.95)
+		90%
+			transform: translate3d(0, -5px, 0) scaleY(0.985)
+		to
+			transform: translate3d(0, 0, 0)
+// bounceInLeft
+=bounceInLeftE
+	@keyframes bounceInLeft
+		from, 60%, 75%, 90%, to
+			animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+		0%
+			opacity: 0
+			transform: translate3d(-3000px, 0, 0) scaleX(3)
+		60%
+			opacity: 1
+			transform: translate3d(25px, 0, 0) scaleX(1)
+		75%
+			transform: translate3d(-10px, 0, 0) scaleX(0.98)
+		90%
+			transform: translate3d(5px, 0, 0) scaleX(0.995)
+		to
+			transform: translate3d(0, 0, 0)
+// bounceInRight
+=bounceInRightE
+	@keyframes bounceInRight
+		from, 60%, 75%, 90%, to
+			animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+		0%
+			opacity: 0
+			transform: translate3d(3000px, 0, 0) scaleX(3)
+		60%
+			opacity: 1
+			transform: translate3d(-25px, 0, 0) scaleX(1)
+		75%
+			transform: translate3d(10px, 0, 0) scaleX(0.98)
+		90%
+			transform: translate3d(-5px, 0, 0) scaleX(0.995)
+		to
+			transform: translate3d(0, 0, 0)
+
+// maxin tool 效果工具包
+=graphic_trans($trans: 1)
+	figure
+		overflow: hidden
+	&:hover
+		figcaption
+			transition: all ease 1s
+	@if $trans null == true
+		figcaption
+			opacity: 0
+		&:hover
+			figcaption
+				opacity: 1
+  // slide 滑動
+	@if $trans == slideInDown
+		+slideInDownE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInDown
+				animation-duration: 400ms
+	@if $trans == slideInUP
+		+slideInUPE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInUP
+				animation-duration: 400ms
+	@if $trans == slideInLeft
+		+slideInLeftE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInLeft
+				animation-duration: 400ms
+	@if $trans == slideInRight
+		+slideInRightE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInRight
+				animation-duration: 400ms
+	@if $trans == slideInLeftTop
+		+slideInLeftTopE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInLeftTop
+				animation-duration: 400ms
+	@if $trans == slideInRightTop
+		+slideInRightTopE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInRightTop
+				animation-duration: 400ms
+	@if $trans == slideInLeftBottom
+		+slideInLeftBottomE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInLeftBottom
+				animation-duration: 400ms
+	@if $trans == slideInRightBottom
+		+slideInRightBottomE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: slideInRightBottom
+				animation-duration: 400ms
+	@if $trans == backInDown
+		+backInDownE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: backInDown
+				animation-duration: 400ms
+	@if $trans == backInUp
+		+backInUpE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: backInUp
+				animation-duration: 400ms
+	@if $trans == backInLeft
+		+backInLeftE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: backInLeft
+				animation-duration: 400ms
+	@if $trans == backInRight
+		+backInRightE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: backInRight
+				animation-duration: 400ms
+	@if $trans == zoomIn
+		+zoomInE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: zoomIn
+				animation-duration: 400ms
+	@if $trans == zoomInDown
+		+zoomInDownE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: zoomInDown
+				animation-duration: 1s
+	@if $trans == zoomInUp
+		+zoomInUpE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: zoomInUp
+				animation-duration: 1s
+	@if $trans == zoomInLeft
+		+zoomInLeftE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: zoomInLeft
+				animation-duration: 1s
+	@if $trans == zoomInRight
+		+zoomInRightE
+		figcaption
+			animation-duration: 1s
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: zoomInRight
+				animation-duration: 1s
+	@if $trans == flipInX
+		+flipInXE
+		figcaption
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: flipInX
+				animation-duration: 1s
+				backface-visibility: visible
+	@if $trans == flipInY
+		+flipInYE
+		figcaption
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: flipInY
+				animation-duration: 1s
+				backface-visibility: visible
+	@if $trans == bounceIn
+		+bounceInE
+		figcaption
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: bounceIn
+				animation-duration: calc(1s * 0.75)
+				backface-visibility: visible
+	@if $trans == bounceInDown
+		+bounceInDownE
+		figcaption
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: bounceInDown
+				animation-duration: calc(1s * 0.75)
+	@if $trans == bounceInUp
+		+bounceInUpE
+		figcaption
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: bounceInUp
+				animation-duration: calc(1s * 0.75)
+	@if $trans == bounceInLeft
+		+bounceInLeftE
+		figcaption
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: bounceInLeft
+				animation-duration: calc(1s * 0.75)
+	@if $trans == bounceInRight
+		+bounceInRightE
+		figcaption
+			animation-fill-mode: forwards
+		&:hover
+			figcaption
+				animation-name: bounceInRight
+				animation-duration: calc(1s * 0.75)
