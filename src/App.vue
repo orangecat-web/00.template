@@ -56,12 +56,6 @@ const layout = ref(null)
 const navSide = computed(() => layout.value?.navSide ?? 'left')
 const navMode = computed(() => layout.value?.navMode ?? 'overlay')
 const menuOpen = computed(() => layout.value?.menuOpen ?? false)
-const mainLinks = [
-  { href: '#effects', label: '視覺效果' },
-  { href: '#gallery', label: '圖文列表' },
-  { href: '/icons.html', label: 'Google Icons' },
-  { href: '#about', label: '關於這版' },
-]
 function setNavSide(value) { layout.value?.setNavSide(value) }
 function setNavMode(value) { layout.value?.setNavMode(value) }
 function openMenu(event) { layout.value?.openMenu(event) }
@@ -92,7 +86,7 @@ function openPhoto(photo, sourceElement) {
 </script>
 
 <template lang="pug">
-SiteLayout(ref="layout" variant="home" :links="mainLinks")
+SiteLayout(ref="layout" page-id="home")
   section.hero.shell(aria-labelledby="hero-title")
     .hero-copy
       p.kicker
