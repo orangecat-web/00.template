@@ -123,10 +123,6 @@ onUnmounted(() => {
             strong → Vue 3
         span.media-note SELECTED IMAGE / OC-TEMPLATE
         span.media-index 001 / 005
-    .marquee(aria-hidden="true")
-      .marquee-inner
-        span DESIGN × CODE × CRAFT &nbsp; ✳ &nbsp; DESIGN × CODE × CRAFT &nbsp; ✳ &nbsp;
-        span DESIGN × CODE × CRAFT &nbsp; ✳ &nbsp; DESIGN × CODE × CRAFT &nbsp; ✳ &nbsp;
     section#effects.effects-section(aria-labelledby="effects-title")
       .shell
         .section-heading
