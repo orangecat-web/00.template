@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
-import PhotoViewer from './components/PhotoViewer.vue'
+import MediaLightbox from './components/MediaLightbox.vue'
 import SiteLayout from './components/SiteLayout.vue'
 import { photos } from './data/photos.js'
 
@@ -65,11 +65,14 @@ const mainLinks = [
 function setNavSide(value) { layout.value?.setNavSide(value) }
 function setNavMode(value) { layout.value?.setNavMode(value) }
 function openMenu(event) { layout.value?.openMenu(event) }
-const photoViewer = ref(null)
+const mediaLightbox = ref(null)
 const featuredPhoto = photos[0]
 const filteredPhotos = computed(() => activeCategory.value === 'all'
   ? photos
   : photos.filter((photo) => photo.category === activeCategory.value))
+const galleryItems = computed(() => filteredPhotos.value.map((photo) => ({
+  ...photo, type: 'image', caption: photo.description,
+})))
 const visibleEffects = computed(() => effectGroups.find((group) => group.id === activeEffectGroup.value).effects)
 const selectedEffect = computed(() => visibleEffects.value.find((effect) => effect.id === activeEffect.value))
 
@@ -83,7 +86,7 @@ function goTo(id) {
 }
 
 function openPhoto(photo, sourceElement) {
-  photoViewer.value?.open(photo, sourceElement)
+  mediaLightbox.value?.open(photo.id, sourceElement)
 }
 
 </script>
@@ -180,5 +183,5 @@ SiteLayout(ref="layout" variant="home" :links="mainLinks")
         .about-links
           a(href="https://github.com/orangecat-web" target="_blank" rel="noopener noreferrer") GitHub ↗
           a(href="https://orangecat-design.wixsite.com/cang" target="_blank" rel="noopener noreferrer") 其他視覺作品 ↗
-PhotoViewer(ref="photoViewer" :photos="filteredPhotos")
+MediaLightbox(ref="mediaLightbox" :items="galleryItems" aria-label="攝影作品檢視")
 </template>

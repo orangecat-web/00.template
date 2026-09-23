@@ -7,7 +7,6 @@ import { navigationFor } from '../data/navigation.js'
 const props = defineProps({
   pageId: { type: String, required: true },
   brandCaption: { type: String, default: '' },
-  footerText: { type: String, default: '' },
 })
 const isHome = computed(() => props.pageId === 'home')
 const links = computed(() => navigationFor(props.pageId))

@@ -34,12 +34,12 @@ npm run dev
 | `pug/portfolio.pug` | 效果概念沿用 | `App.vue` 的視覺效果實驗區；大量效果尚未逐一搬完 |
 | 舊版全部 13 支 `_*.sass` partial | 原檔複製 | `reference/legacy-sass/`；完整保留你的工具庫。`_effects.sass`、`_mixin.sass`、`_function.sass`、`_grid.sass`、`_include.sass`、`_spacing.sass`、`_navs.sass` 已另做新版模組 |
 | 舊版 `css/`、`dist/`、根目錄 HTML | 不複製 | 舊版編譯產物；新版交給 Vite 從 Vue / Sass 產生 |
-| `js/jquery-3.5.0.js`、`js/nav/slidebars*`、`js/basic.js` | 不複製 | 導覽功能由 `src/composables/useOffcanvas.js`、共用的 `SiteLayout.vue` 實作；`usePageScroll.js` 負責捲動，照片放大使用 `<dialog>` |
+| `js/jquery-3.5.0.js`、`js/nav/slidebars*`、`js/basic.js` | 不複製 | 導覽功能由 `src/composables/useOffcanvas.js`、共用的 `SiteLayout.vue` 實作；`usePageScroll.js` 負責捲動，媒體檢視使用 `<dialog>` |
 | 其他未使用照片與示範頁 | 暫不複製 | 等需要展示對應功能時再選擇性搬移 |
 
 ## 網站共用外框
 
-`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂。全部 nav 連結集中在 `src/data/navigation.js` 的 `navigationItems`，由 `pageId` 選出目前頁的連結；`App.vue`、`IconsApp.vue` 不再各存一份陣列。新增內頁時傳 `page-id`，在同一份清單加上連結，並視需要設定 `brand-caption` 和 `footer-text`。
+`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂，copyright 在此元件統一輸出。全部 nav 連結集中在 `src/data/navigation.js` 的 `navigationItems`，由 `pageId` 選出目前頁的連結；`App.vue`、`IconsApp.vue` 不再各存一份陣列。新增內頁時傳 `page-id`，在同一份清單加上連結，並視需要設定 `brand-caption`。
 
 `src/composables/useOffcanvas.js` 管理 nav 的四方向、覆蓋／推擠和開關；`usePageScroll.js` 管理 350px header、200px 回頂與 600ms 捲動。共用元件會攔截本頁 `#section-id` 的 nav 連結，以同一動畫捲至目標（扣除 header 高度）；跨頁連結照網址導航。首頁的八種模式試玩仍在 `App.vue`，只控制共用 nav。
 
@@ -53,10 +53,51 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 
 - 視覺效果切換：原色與 9 種圖片濾鏡（灰階、懷舊、對比、亮度、反相、透明度、色相旋轉、模糊、飽和度），以及舊版 `pseffects` 的 15 種疊色模式。模式名稱和濾鏡參數可在 `src/assets/sass/_effects.sass`、`main.sass` 調整；效果清單在 `src/App.vue`。
 - 導覽動態試玩：一份導覽內容，四個方向（左、右、上、下）與兩個模式（覆蓋、推擠）；可用關閉鈕、背景或 Esc 關閉，開啟時鎖住背景捲動。手機的選單鈕使用同一份導覽。
-- 圖文卡片依類別篩選、滑入效果；點擊後由該卡片位置放大為照片資訊彈窗，背景同步漸暗。可用按鈕、方向鍵或手機左右滑交疊切換照片，關閉時縮回卡片位置（含 Esc 與背景點擊）。彈窗由 `src/components/PhotoViewer.vue` 與 `_photo-viewer.sass` 管理。
+- 圖文卡片依類別篩選、滑入效果；點擊後開啟深色全螢幕媒體檢視，圖片由卡片位置放大進場。左右兩側切換、右上角縮圖／縮放／輪播／全螢幕／關閉，支援方向鍵、手機左右滑、Esc 和背景點擊。元件與樣式位於 `src/components/MediaLightbox.vue`、`src/assets/sass/_media-lightbox.sass`。
 - 手機選單、頁面定位捲動、回到頁首；保留舊版 `basic.js` 的門檻：捲過 350px 縮小 header、捲過 200px 顯示回頁首，點擊後以原生 `requestAnimationFrame` 做 600ms 捲動。全部沒有 jQuery 執行相依。
 - 已移除首頁跑馬燈；共用 Sass mixin 的 `transition`、`mline`、`goTop`、`radius50`，以及格線的 `container`、`breakpoint` 已在目前頁面實際使用。
 - `<script setup>`、`<template lang="pug">`、縮排式 `.sass`、`sass:math`。
+
+## 共用媒體檢視 MediaLightbox
+
+`src/components/MediaLightbox.vue` 透過 `items` 陣列決定內容，`open(id, sourceElement)` 或 `openAt(index, sourceElement)` 開啟。第二個參數可省略；傳入卡片元素時，圖片會從卡片位置放大，沒有來源元素時由中央淡入。首頁的 `src/App.vue` 已示範圖片清單的接法。互動與動畫都在同一個元件，不需 jQuery 或第三方 lightbox。
+
+| `type` | 使用資料 | 內容 |
+| --- | --- | --- |
+| `image` | `src`、`alt`、`title`、`caption` | 圖片，可縮放與輪播 |
+| `youtube` | YouTube 網址放 `src` | 轉成 youtube-nocookie 嵌入網址 |
+| `video` | 影片 `src`，可加 `poster` | HTML5 `<video controls>` |
+| `map` | Google Maps iframe 的 `src` | 地圖嵌入；需用分享選單提供的嵌入網址 |
+| `text` | `title`、`text` | 純文字；換行會保留 |
+| `custom` | 任意資料搭配 `#content` slot | 由 Vue 模板自行渲染 HTML 與元件 |
+
+每項需有**唯一 `id`**。`caption` 會放在底部，`poster` 可供影片縮圖使用。YouTube 與 Google Maps 只接受對應網站的嵌入網址；不直接渲染外部輸入的 HTML 字串，客製內容請用 Vue slot。
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import MediaLightbox from './components/MediaLightbox.vue'
+
+const lightbox = ref(null)
+const items = [
+  { id: 'photo', type: 'image', src: '/images/photo.jpg', alt: '作品照片', title: '作品照片' },
+  { id: 'film', type: 'video', src: '/videos/demo.mp4', poster: '/images/poster.jpg', title: '影片' },
+  { id: 'story', type: 'text', title: '設計說明', text: '第一段文字\n第二段文字' },
+  { id: 'details', type: 'custom', title: '自訂內容' },
+]
+</script>
+
+<template>
+  <button @click="lightbox.open('photo', $event.currentTarget)">看照片</button>
+  <MediaLightbox ref="lightbox" :items="items">
+    <template #content="{ item }">
+      <article v-if="item.id === 'details'">這裡可以放 Vue 元件或任意版面。</article>
+    </template>
+  </MediaLightbox>
+</template>
+```
+
+開啟 YouTube 時填一般觀看網址；地圖請從 Google Maps「分享 → 嵌入地圖」複製 iframe 的 `src`。媒體切換後原生影片與 iframe 會卸載，播放也會停止。工具列中的輪播只在圖片項目啟用；切到其他類型就會自動暫停。
 
 ## 使用舊版 mixin 的新版模組
 
