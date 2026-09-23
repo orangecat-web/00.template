@@ -1,8 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
-import { useOffcanvas } from './composables/useOffcanvas.js'
-import { usePageScroll } from './composables/usePageScroll.js'
+import SiteLayout from './components/SiteLayout.vue'
 import { photos } from './data/photos.js'
 
 const effectGroups = [
@@ -52,16 +51,21 @@ const navModes = [
 const activeEffect = ref('none')
 const activeEffectGroup = ref('filter')
 const activeCategory = ref('all')
-const {
-  side: navSide, mode: navMode, isOpen: menuOpen, isVisible: navVisible,
-  panel: menuPanel, closeButton: menuCloseButton,
-  open: openMenu, close: closeMenu, toggle: toggleMenu,
-  setSide: setNavSide, setMode: setNavMode,
-} = useOffcanvas()
-const { headerLow, showGoTop, goTo: scrollToSection } = usePageScroll()
+const layout = ref(null)
+const navSide = computed(() => layout.value?.navSide ?? 'left')
+const navMode = computed(() => layout.value?.navMode ?? 'overlay')
+const menuOpen = computed(() => layout.value?.menuOpen ?? false)
+const mainLinks = [
+  { href: '#effects', label: '視覺效果' },
+  { href: '#gallery', label: '圖文列表' },
+  { href: '/icons.html', label: 'Google Icons' },
+  { href: '#about', label: '關於這版' },
+]
+function setNavSide(value) { layout.value?.setNavSide(value) }
+function setNavMode(value) { layout.value?.setNavMode(value) }
+function openMenu(event) { layout.value?.openMenu(event) }
 const selectedPhoto = ref(null)
 const photoDialog = ref(null)
-const year = new Date().getFullYear()
 const featuredPhoto = photos[0]
 const filteredPhotos = computed(() => activeCategory.value === 'all'
   ? photos
@@ -75,8 +79,7 @@ function selectEffectGroup(group) {
 }
 
 function goTo(id) {
-  closeMenu({ immediate: true, restoreFocus: false })
-  scrollToSection(id)
+  layout.value?.goTo(id)
 }
 
 function openPhoto(photo) {
@@ -95,129 +98,104 @@ function onDialogClose() {
 </script>
 
 <template lang="pug">
-.site#top(:class="{ 'nav-pushed': navVisible && navMode === 'push' }" :data-nav-side="navSide")
-  header.site-header.header(:class="{ headerlow: headerLow }")
-    .shell.header-inner
-      a.brand(href="#top" @click.prevent="goTo('top')" aria-label="Orange Cat 回到頁首")
-        img(src="/images/logo.svg" alt="orangeCat's photography")
-      span.header-caption VISUAL DESIGN / FRONT-END
-      button.menu-button(type="button" :aria-expanded="menuOpen" aria-controls="site-nav" aria-label="切換導覽選單" @click="toggleMenu($event)")
-        span
-        span
-      Teleport(to="body" :disabled="!menuOpen")
-        nav#site-nav.site-nav.offcanvas-panel(ref="menuPanel" :class="{ 'is-open': menuOpen, 'is-visible': navVisible }" :data-side="navSide" aria-label="主要導覽")
-          button.offcanvas-close(v-if="menuOpen" ref="menuCloseButton" type="button" aria-label="關閉導覽選單" @click="closeMenu()") ×
-          a(href="#effects" @click.prevent="goTo('effects')") 視覺效果
-          a(href="#gallery" @click.prevent="goTo('gallery')") 圖文列表
-          a(href="/icons.html" @click="closeMenu({ immediate: true, restoreFocus: false })") Google Icons
-          a(href="#about" @click.prevent="goTo('about')") 關於這版
-        button.nav-scrim(v-if="menuOpen" type="button" tabindex="-1" aria-label="關閉導覽選單" :class="{ 'is-visible': navVisible }" @click="closeMenu()")
-  main
-    section.hero.shell(aria-labelledby="hero-title")
-      .hero-copy
-        p.kicker
-          span.kicker-line
-          | ORANGE CAT / VISUAL LAB
-        h1#hero-title 設計有感，<br>互動有據<span class="period">.</span>
-        p.hero-lead 以舊版 oc-template 的影像與視覺效果為起點，重新組成 Vue 3 的互動展示。從 Pug、Sass 到原生 JavaScript，讓頁面上的每個細節都能被看見，也能被操作。
-        .hero-actions
-          a.pill.pill-primary(href="#effects" @click.prevent="goTo('effects')") 看效果實驗
-            span(aria-hidden="true") ↗
-          a.pill.pill-outline(href="#gallery" @click.prevent="goTo('gallery')") 探索圖文列表
-        .hero-footnote
-          span 01 — DESIGN SYSTEM
-          span 02 — INTERACTION
-          span 03 — VUE 3
-      .hero-media
-        .hero-photo-frame
+SiteLayout(ref="layout" variant="home" :links="mainLinks")
+  section.hero.shell(aria-labelledby="hero-title")
+    .hero-copy
+      p.kicker
+        span.kicker-line
+        | ORANGE CAT / VISUAL LAB
+      h1#hero-title 設計有感，<br>互動有據<span class="period">.</span>
+      p.hero-lead 以舊版 oc-template 的影像與視覺效果為起點，重新組成 Vue 3 的互動展示。從 Pug、Sass 到原生 JavaScript，讓頁面上的每個細節都能被看見，也能被操作。
+      .hero-actions
+        a.pill.pill-primary(href="#effects" @click.prevent="goTo('effects')") 看效果實驗
+          span(aria-hidden="true") ↗
+        a.pill.pill-outline(href="#gallery" @click.prevent="goTo('gallery')") 探索圖文列表
+      .hero-footnote
+        span 01 — DESIGN SYSTEM
+        span 02 — INTERACTION
+        span 03 — VUE 3
+    .hero-media
+      .hero-photo-frame
+        img(:src="featuredPhoto.src" :alt="featuredPhoto.alt")
+        .hero-sticker(aria-hidden="true")
+          span Original
+          strong → Vue 3
+      span.media-note SELECTED IMAGE / OC-TEMPLATE
+      span.media-index 001 / 005
+  section#effects.effects-section(aria-labelledby="effects-title")
+    .shell
+      .section-heading
+        div
+          p.kicker 01 / EFFECT LAB
+          h2#effects-title 同一張影像，<br>多種觀看方式<span class="period">.</span>
+        p.section-description 舊版的 `_effects.sass` 有豐富的濾鏡與疊色效果。選擇分類與效果，就能用同一張照片即時比較。
+      .effect-workbench
+        .effect-preview(:class="`effect-${activeEffectGroup}-${activeEffect}`")
           img(:src="featuredPhoto.src" :alt="featuredPhoto.alt")
-          .hero-sticker(aria-hidden="true")
-            span Original
-            strong → Vue 3
-        span.media-note SELECTED IMAGE / OC-TEMPLATE
-        span.media-index 001 / 005
-    section#effects.effects-section(aria-labelledby="effects-title")
-      .shell
-        .section-heading
-          div
-            p.kicker 01 / EFFECT LAB
-            h2#effects-title 同一張影像，<br>多種觀看方式<span class="period">.</span>
-          p.section-description 舊版的 `_effects.sass` 有豐富的濾鏡與疊色效果。選擇分類與效果，就能用同一張照片即時比較。
-        .effect-workbench
-          .effect-preview(:class="`effect-${activeEffectGroup}-${activeEffect}`")
-            img(:src="featuredPhoto.src" :alt="featuredPhoto.alt")
-            span.effect-preview-label {{ selectedEffect?.detail }} / 01
-          .effect-controls
-            p.control-heading EFFECT SELECTOR
-            .effect-groups(role="group" aria-label="效果分類")
-              button.effect-group(v-for="group in effectGroups" :key="group.id" type="button" :class="{ 'is-active': activeEffectGroup === group.id }" :aria-pressed="activeEffectGroup === group.id" @click="selectEffectGroup(group)") {{ group.label }}
-            .effect-options(role="group" :aria-label="effectGroups.find((group) => group.id === activeEffectGroup).label")
-              button.effect-option(v-for="(effect, index) in visibleEffects" :key="effect.id" type="button" :class="{ 'is-active': activeEffect === effect.id }" :aria-pressed="activeEffect === effect.id" @click="activeEffect = effect.id")
-                span.effect-number {{ String(index + 1).padStart(2, '0') }}
-                span.effect-name {{ effect.label }}
-                span.effect-english {{ effect.detail }}
-                span.effect-arrow(aria-hidden="true") ↗
-            p.control-note 原版 Sass 濾鏡與疊色模式 · Vue 即時切換
-        .nav-lab
-          .nav-lab-copy
-            p.kicker NAV MOTION / ONE MENU
-            h3 同一份導覽，<br>八種出場方式<span class="period">.</span>
-            p 從舊版 Slidebars 的方向與動態概念重新寫成原生互動；桌面和手機共用同一份連結。
-          .nav-lab-controls
-            p.control-heading 滑出方向
-            .nav-choice-group(role="group" aria-label="滑出方向")
-              button.nav-choice(v-for="option in navDirections" :key="option.id" type="button" :aria-pressed="navSide === option.id" :class="{ 'is-active': navSide === option.id }" @click="setNavSide(option.id)") {{ option.label }}
-            p.control-heading 動態模式
-            .nav-choice-group(role="group" aria-label="動態模式")
-              button.nav-choice(v-for="option in navModes" :key="option.id" type="button" :aria-pressed="navMode === option.id" :class="{ 'is-active': navMode === option.id }" @click="setNavMode(option.id)") {{ option.label }}
-            button.nav-preview(type="button" :aria-expanded="menuOpen" aria-controls="site-nav" @click="openMenu($event)") 試開選單 ↗
-    section#gallery.gallery-section(aria-labelledby="gallery-title")
-      .shell
-        .section-heading
-          div
-            p.kicker 02 / GRAPHIC LIST
-            h2#gallery-title 圖片與文字，<br>換個方式相遇<span class="period">.</span>
-          p.section-description 舊版 `graphic_list.pug` 的圖文列表概念，現在由 Vue 元件與資料陣列產生。分類、卡片展開與手機版都能實際操作。
-        .category-controls(role="group" aria-label="攝影分類")
-          button.category-button(v-for="category in categories" :key="category.id" type="button" :class="{ 'is-active': activeCategory === category.id }" :aria-pressed="activeCategory === category.id" @click="activeCategory = category.id") {{ category.label }}
-        TransitionGroup.gallery-grid(name="gallery" tag="div")
-          GalleryCard(v-for="photo in filteredPhotos" :key="photo.id" :photo="photo" @open="openPhoto")
-        p.gallery-note 原始照片取自舊版 oc-template；此處展示的是版型與效果，不將它們標作客戶專案。
-    section#about.about-section(aria-labelledby="about-title")
-      .shell.about-grid
+          span.effect-preview-label {{ selectedEffect?.detail }} / 01
+        .effect-controls
+          p.control-heading EFFECT SELECTOR
+          .effect-groups(role="group" aria-label="效果分類")
+            button.effect-group(v-for="group in effectGroups" :key="group.id" type="button" :class="{ 'is-active': activeEffectGroup === group.id }" :aria-pressed="activeEffectGroup === group.id" @click="selectEffectGroup(group)") {{ group.label }}
+          .effect-options(role="group" :aria-label="effectGroups.find((group) => group.id === activeEffectGroup).label")
+            button.effect-option(v-for="(effect, index) in visibleEffects" :key="effect.id" type="button" :class="{ 'is-active': activeEffect === effect.id }" :aria-pressed="activeEffect === effect.id" @click="activeEffect = effect.id")
+              span.effect-number {{ String(index + 1).padStart(2, '0') }}
+              span.effect-name {{ effect.label }}
+              span.effect-english {{ effect.detail }}
+              span.effect-arrow(aria-hidden="true") ↗
+          p.control-note 原版 Sass 濾鏡與疊色模式 · Vue 即時切換
+      .nav-lab
+        .nav-lab-copy
+          p.kicker NAV MOTION / ONE MENU
+          h3 同一份導覽，<br>八種出場方式<span class="period">.</span>
+          p 從舊版 Slidebars 的方向與動態概念重新寫成原生互動；桌面和手機共用同一份連結。
+        .nav-lab-controls
+          p.control-heading 滑出方向
+          .nav-choice-group(role="group" aria-label="滑出方向")
+            button.nav-choice(v-for="option in navDirections" :key="option.id" type="button" :aria-pressed="navSide === option.id" :class="{ 'is-active': navSide === option.id }" @click="setNavSide(option.id)") {{ option.label }}
+          p.control-heading 動態模式
+          .nav-choice-group(role="group" aria-label="動態模式")
+            button.nav-choice(v-for="option in navModes" :key="option.id" type="button" :aria-pressed="navMode === option.id" :class="{ 'is-active': navMode === option.id }" @click="setNavMode(option.id)") {{ option.label }}
+          button.nav-preview(type="button" :aria-expanded="menuOpen" aria-controls="site-nav" @click="openMenu($event)") 試開選單 ↗
+  section#gallery.gallery-section(aria-labelledby="gallery-title")
+    .shell
+      .section-heading
         div
-          p.kicker 03 / BEHIND THE BUILD
-          h2#about-title 既有設計資產，<br>新的互動方式<span class="period">.</span>
-        .about-copy
-          p 這版延續原本的 Pug 與縮排式 Sass，並把舊版選單、捲動與畫面更新改由 Vue 狀態及瀏覽器原生 API 處理。頁面上的濾鏡和圖文卡片，正是這次搬移的第一批成果。
-          .about-stats
-            div
-              strong Pug
-              span Vue 模板語法
-            div
-              strong Sass
-              span 可重用視覺效果
-            div
-              strong JS
-              span 原生互動與 Vue 狀態
-          .about-links
-            a(href="https://github.com/orangecat-web" target="_blank" rel="noopener noreferrer") GitHub ↗
-            a(href="https://orangecat-design.wixsite.com/cang" target="_blank" rel="noopener noreferrer") 其他視覺作品 ↗
-  footer.site-footer
-    .shell.footer-inner
-      span © {{ year }} orangeCat's photography
-      span VUE 3 / PUG / SASS / VANILLA JS
-      a(href="#top" @click.prevent="goTo('top')") BACK TO TOP ↑
-  Transition(name="back-to-top")
-    button.back-to-top.goTop(v-if="showGoTop" type="button" aria-label="回到頁首" @click="goTo('top')")
-      img(src="/images/btn_gotop.svg" alt="")
-  dialog.photo-dialog(ref="photoDialog" @close="onDialogClose" @click="($event) => { if ($event.target === photoDialog) closePhoto() }")
-    .photo-dialog-body(v-if="selectedPhoto")
-      button.dialog-close(type="button" aria-label="關閉照片" @click="closePhoto") ×
-      img(:src="selectedPhoto.src" :alt="selectedPhoto.alt")
-      .dialog-caption
-        div
-          span.kicker OC / IMAGE {{ selectedPhoto.id }}
-          h3 {{ selectedPhoto.title }}
-        p {{ selectedPhoto.description }}
+          p.kicker 02 / GRAPHIC LIST
+          h2#gallery-title 圖片與文字，<br>換個方式相遇<span class="period">.</span>
+        p.section-description 舊版 `graphic_list.pug` 的圖文列表概念，現在由 Vue 元件與資料陣列產生。分類、卡片展開與手機版都能實際操作。
+      .category-controls(role="group" aria-label="攝影分類")
+        button.category-button(v-for="category in categories" :key="category.id" type="button" :class="{ 'is-active': activeCategory === category.id }" :aria-pressed="activeCategory === category.id" @click="activeCategory = category.id") {{ category.label }}
+      TransitionGroup.gallery-grid(name="gallery" tag="div")
+        GalleryCard(v-for="photo in filteredPhotos" :key="photo.id" :photo="photo" @open="openPhoto")
+      p.gallery-note 原始照片取自舊版 oc-template；此處展示的是版型與效果，不將它們標作客戶專案。
+  section#about.about-section(aria-labelledby="about-title")
+    .shell.about-grid
+      div
+        p.kicker 03 / BEHIND THE BUILD
+        h2#about-title 既有設計資產，<br>新的互動方式<span class="period">.</span>
+      .about-copy
+        p 這版延續原本的 Pug 與縮排式 Sass，並把舊版選單、捲動與畫面更新改由 Vue 狀態及瀏覽器原生 API 處理。頁面上的濾鏡和圖文卡片，正是這次搬移的第一批成果。
+        .about-stats
+          div
+            strong Pug
+            span Vue 模板語法
+          div
+            strong Sass
+            span 可重用視覺效果
+          div
+            strong JS
+            span 原生互動與 Vue 狀態
+        .about-links
+          a(href="https://github.com/orangecat-web" target="_blank" rel="noopener noreferrer") GitHub ↗
+          a(href="https://orangecat-design.wixsite.com/cang" target="_blank" rel="noopener noreferrer") 其他視覺作品 ↗
+dialog.photo-dialog(ref="photoDialog" @close="onDialogClose" @click="($event) => { if ($event.target === photoDialog) closePhoto() }")
+  .photo-dialog-body(v-if="selectedPhoto")
+    button.dialog-close(type="button" aria-label="關閉照片" @click="closePhoto") ×
+    img(:src="selectedPhoto.src" :alt="selectedPhoto.alt")
+    .dialog-caption
+      div
+        span.kicker OC / IMAGE {{ selectedPhoto.id }}
+        h3 {{ selectedPhoto.title }}
+      p {{ selectedPhoto.description }}
 </template>

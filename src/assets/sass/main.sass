@@ -4,8 +4,7 @@
 @use './mixin' as oc
 @use './grid' as grid
 @use './include' as fonts
-@use './spacing' as sp
-@use './navs'
+@use './nav-lab'
 
 $ink: #1c2420
 $muted: #65716b
@@ -53,62 +52,6 @@ a
 .shell
   @include grid.container(fluid, 0)
   width: min(100% - 64px, 1320px)
-
-.site-header
-  position: sticky
-  top: 0
-  z-index: 20
-  background: rgba(245, 241, 233, .92)
-  backdrop-filter: blur(15px)
-  border-bottom: 1px solid rgba(28, 36, 32, .14)
-  transition: box-shadow .3s
-  &.headerlow
-    box-shadow: 0 6px 24px rgba(28, 36, 32, .08)
-    .header-inner
-      min-height: 62px
-    .brand img
-      height: 52px
-
-.header-inner
-  min-height: 84px
-  transition: min-height .3s
-  display: flex
-  @include sp.aic
-  justify-content: space-between
-  gap: 35px
-
-.brand
-  display: flex
-  align-items: center
-  width: 155px
-  flex: none
-  img
-    width: 100%
-    height: 72px
-    object-fit: contain
-    transition: height .3s
-
-.header-caption
-  margin-right: auto
-  color: $muted
-  font-family: fonts.$font-display
-  font-size: rem(10)
-  letter-spacing: .15em
-  font-weight: 800
-
-.site-nav
-  display: flex
-  align-items: center
-  gap: clamp(18px, 3vw, 52px)
-  font-size: rem(13)
-  font-weight: 750
-  a
-    @include oc.transition(color, .2s)
-    &:hover
-      color: #c65f05
-
-.menu-button
-  display: none
 
 .kicker
   display: flex
@@ -535,40 +478,6 @@ a
     font-size: rem(13)
     font-weight: 800
 
-.site-footer
-  background: #111916
-  color: #aeb8ae
-
-.footer-inner
-  min-height: 70px
-  display: flex
-  align-items: center
-  justify-content: space-between
-  gap: 18px
-  font-size: rem(11)
-  font-weight: 750
-  letter-spacing: .06em
-
-.back-to-top
-  @include oc.goTop(24px, 24px)
-  width: 50px
-  height: 50px
-  border: 1px solid $ink
-  @include oc.radius50
-  background: $orange
-  cursor: pointer
-  display: grid
-  place-items: center
-  img
-    width: 32px
-    height: 32px
-
-.back-to-top-enter-active, .back-to-top-leave-active
-  transition: opacity .2s, transform .2s
-.back-to-top-enter-from, .back-to-top-leave-to
-  opacity: 0
-  transform: translateY(15px)
-
 .gallery-enter-active, .gallery-leave-active
   transition: opacity .25s, transform .25s
 .gallery-enter-from, .gallery-leave-to
@@ -633,38 +542,10 @@ a
     gap: 32px
   .hero h1
     font-size: clamp(rem(48), 5.6vw, rem(68))
-  .header-caption
-    display: none
 
 @media (max-width: 760px)
   .shell
     width: min(100% - 36px, 620px)
-  .header-inner
-    min-height: 70px
-  .site-header.headerlow
-    .header-inner
-      min-height: 58px
-    .brand img
-      height: 50px
-  .brand
-    width: 120px
-    img
-      height: 62px
-  .menu-button
-    display: flex
-    flex-direction: column
-    justify-content: center
-    gap: 6px
-    width: 42px
-    height: 42px
-    padding: 10px
-    border: 1px solid rgba(28, 36, 32, .3)
-    border-radius: 50%
-    background: transparent
-    span
-      width: 100%
-      height: 2px
-      background: $ink
   .hero
     display: flex
     flex-direction: column

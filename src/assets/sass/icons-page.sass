@@ -1,8 +1,6 @@
 @use './include' as fonts
 @use './grid' as grid
 @use './icons' as icons
-@use './mixin' as oc
-@use './navs'
 
 $ink: #1c2420
 $muted: #67736c
@@ -28,54 +26,9 @@ button
 :focus-visible
   outline: 3px solid #d66005
   outline-offset: 3px
-.icons-page
+.standard-page
   min-height: 100vh
   overflow: clip
-.icons-shell
-  @include grid.container(fluid, 0)
-  width: min(100% - 64px, 1320px)
-.icons-header
-  position: sticky
-  top: 0
-  z-index: 20
-  border-bottom: 1px solid rgba($ink, .14)
-  background: rgba($cream, .96)
-  backdrop-filter: blur(15px)
-  &.headerlow
-    box-shadow: 0 6px 24px rgba($ink, .08)
-    .header-row
-      min-height: 62px
-    .icons-brand img
-      height: 52px
-.header-row
-  display: flex
-  align-items: center
-  justify-content: space-between
-  gap: 24px
-  min-height: 82px
-  transition: min-height .3s
-.icons-brand
-  display: flex
-  align-items: center
-  gap: 20px
-  font-size: 11px
-  font-weight: 850
-  letter-spacing: .15em
-  img
-    width: 118px
-    height: 66px
-    object-fit: contain
-    transition: height .3s
-.site-nav
-  display: flex
-  align-items: center
-  gap: clamp(18px, 3vw, 52px)
-  font-size: 13px
-  font-weight: 750
-  a:hover
-    color: #bd5c0b
-.menu-button
-  display: none
 .text-link
   font-size: 13px
   font-weight: 800
@@ -323,7 +276,7 @@ pre
   .icon-#{$name}::before
     content: $glyph
 @each $style, $family in icons.$icon-families
-  .icons-page[data-style='#{$style}'] .icon-glyph::before
+  .standard-page[data-style='#{$style}'] .icon-glyph::before
     font-family: $family
 // 原版 +google_icons(home, round) 的兩參數工具仍可使用。
 .home-link
@@ -356,69 +309,12 @@ pre
 .empty-message
   padding: 50px 0
   color: $muted
-.icons-footer
-  background: $ink
-  color: #faf3e8
-.footer-row
-  min-height: 120px
-  display: flex
-  align-items: center
-  justify-content: space-between
-  gap: 20px
-  font-size: 12px
-  letter-spacing: .08em
-.back-to-top
-  @include oc.goTop(24px, 24px)
-  width: 50px
-  height: 50px
-  border: 1px solid $ink
-  @include oc.radius50
-  background: $orange
-  display: grid
-  place-items: center
-  img
-    width: 32px
-    height: 32px
-.back-to-top-enter-active, .back-to-top-leave-active
-  transition: opacity .2s, transform .2s
-.back-to-top-enter-from, .back-to-top-leave-to
-  opacity: 0
-  transform: translateY(15px)
 @media (max-width: 1000px)
   .icon-grid
     grid-template-columns: repeat(4, minmax(0, 1fr))
   .icons-hero
     gap: 36px
 @media (max-width: 760px)
-  .icons-shell
-    width: min(100% - 36px, 1320px)
-  .header-row
-    min-height: 72px
-  .icons-header.headerlow .header-row
-    min-height: 58px
-  .icons-header.headerlow .icons-brand img
-    height: 50px
-  .icons-brand
-    gap: 7px
-    img
-      width: 90px
-  .menu-button
-    display: flex
-    flex-direction: column
-    justify-content: center
-    gap: 6px
-    width: 42px
-    height: 42px
-    padding: 10px
-    border: 1px solid rgba($ink, .3)
-    border-radius: 50%
-    background: transparent
-    span
-      width: 100%
-      height: 2px
-      background: $ink
-  .site-nav.offcanvas-panel:not(.is-open)
-    display: none
   .icons-hero
     grid-template-columns: 1fr
     min-height: 0
@@ -432,8 +328,6 @@ pre
   .icon-grid
     grid-template-columns: repeat(3, minmax(0, 1fr))
 @media (max-width: 480px)
-  .icons-brand span
-    display: none
   .icon-grid
     grid-template-columns: repeat(2, minmax(0, 1fr))
   .icon-tile

@@ -16,4 +16,4 @@
 | `_extools.sass` | 程式碼示範的原檔保留，尚未移植 |
 | `_navs.sass` | 原檔保留；新版 `src/assets/sass/_navs.sass` 已接入四方向的 offcanvas 樣式 |
 
-現在運作中的關係是：`main.js` → `main.sass` → `@use` 各功能模組 → 在需要的位置 `@include`。檔名前面的 `_` 仍然是 Sass partial 的正常命名方式；**它不代表不能在 Vue 裡使用**。舊版 jQuery Slidebars 腳本沒有載入，新選單行為在 `src/composables/useOffcanvas.js`，桌面與手機使用同一份 `<nav>`。
+現在運作中的關係是：`main.js`／`icons.js` → `shared.sass` ＋各頁 Sass → `@use` 各功能模組 → 在需要的位置 `@include`。檔名前面的 `_` 仍然是 Sass partial 的正常命名方式；**它不代表不能在 Vue 裡使用**。舊版 jQuery Slidebars 腳本沒有載入，新選單行為在 `src/composables/useOffcanvas.js`，桌面與手機使用同一份 `<nav>`。

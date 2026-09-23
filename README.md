@@ -27,15 +27,23 @@ npm run dev
 | `sass/_grid.sass` | 搬移並接入 | `src/assets/sass/_grid.sass`；保留 `container`、`row`、`col`、`breakpoint` 等名稱與舊斷點；共用 `_function.sass` 的設定 |
 | `sass/_include.sass` | 選用字型並整理後備字型 | `src/assets/sass/_include.sass`；載入 Noto Sans TC、Roboto、Raleway，遠端無法載入時改用系統繁中字型；Material Icons 只由圖示專頁載入 |
 | `sass/_spacing.sass` | 名稱沿用、改為模組 | `src/assets/sass/_spacing.sass`；對齊、flex、margin、padding、display 快捷 mixin，距離取自新版 `_function.sass` |
-| `sass/_navs.sass` | 重新實作 | `src/assets/sass/_navs.sass`；四方向的 offcanvas 位置與覆蓋／推擠轉場 |
+| `sass/_navs.sass` | 重新實作 | `src/assets/sass/_navs.sass`；四方向的 offcanvas 位置與覆蓋／推擠轉場，首頁的八組試玩樣式另外放在 `_nav-lab.sass` |
 | `pug/icon_exsample.pug`、`sass/_icons.sass` | 獨立頁移植 | `icons.html`、`src/IconsApp.vue`、`src/data/icons.js`、`src/assets/sass/_icons.sass`；五種本地字型在 `src/assets/fonts/`，僅由 `icons-page.sass` 載入 |
-| `pug/_base.pug` | 結構改寫 | `src/App.vue` 的 header、main、footer；原本兩份 desktop/mobile 導覽改成一份 `<nav>`，開啟時由 Vue Teleport 移到頁面上層 |
+| `pug/_base.pug` | 結構改寫 | `src/components/SiteLayout.vue` 的共用 header、nav、footer、回頂；頁面內容各由 `App.vue`、`IconsApp.vue` 填入，桌面與手機共用一份 `<nav>` |
 | `pug/graphic_list.pug`、`pug/tools/_list.pug` | 元件化改寫 | `src/components/GalleryCard.vue` 與 `src/data/photos.js`；用 `v-for` 取代重複 markup |
 | `pug/portfolio.pug` | 效果概念沿用 | `App.vue` 的視覺效果實驗區；大量效果尚未逐一搬完 |
 | 舊版全部 13 支 `_*.sass` partial | 原檔複製 | `reference/legacy-sass/`；完整保留你的工具庫。`_effects.sass`、`_mixin.sass`、`_function.sass`、`_grid.sass`、`_include.sass`、`_spacing.sass`、`_navs.sass` 已另做新版模組 |
 | 舊版 `css/`、`dist/`、根目錄 HTML | 不複製 | 舊版編譯產物；新版交給 Vite 從 Vue / Sass 產生 |
-| `js/jquery-3.5.0.js`、`js/nav/slidebars*`、`js/basic.js` | 不複製 | 導覽功能由 `src/composables/useOffcanvas.js` 以原生事件與 Vue 狀態實作；捲動改用原生 API，照片放大使用 `<dialog>` |
+| `js/jquery-3.5.0.js`、`js/nav/slidebars*`、`js/basic.js` | 不複製 | 導覽功能由 `src/composables/useOffcanvas.js`、共用的 `SiteLayout.vue` 實作；`usePageScroll.js` 負責捲動，照片放大使用 `<dialog>` |
 | 其他未使用照片與示範頁 | 暫不複製 | 等需要展示對應功能時再選擇性搬移 |
+
+## 網站共用外框
+
+`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂。每頁只傳自己的 `links` 與標題，主內容放在元件內；`App.vue` 保留首頁效果，`IconsApp.vue` 保留圖示清單。新增內頁可沿用 `variant` 預設值 `standard`，並傳入 `brand-caption` 與 `footer-text`。
+
+`src/composables/useOffcanvas.js` 管理 nav 的四方向、覆蓋／推擠和開關；`usePageScroll.js` 管理 350px header、200px 回頂與 600ms 捲動。共用元件會攔截本頁 `#section-id` 的 nav 連結，以同一動畫捲至目標（扣除 header 高度）；跨頁連結照網址導航。首頁的八種模式試玩仍在 `App.vue`，只控制共用 nav。
+
+Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.sass` 和 `_navs.sass`）、`main.sass`（首頁）與 `icons-page.sass`（圖示頁）；首頁試玩樣式在 `_nav-lab.sass`。Vite 打包後也會分開產生共用 CSS 和各頁 CSS，圖示字型僅在圖示頁載入。
 
 ## Google Icons 獨立頁
 
@@ -91,7 +99,7 @@ npm run dev
 
 字型與間距也各自用命名空間，例如 `@use './include' as fonts` 後使用 `fonts.$font-body`，或 `@use './spacing' as sp` 後使用 `@include sp.mt(2)`（預設 `2 × 15px`）。若使用端無法下載 Google Fonts，字型會依照 `_include.sass` 中的後備順序回退。
 
-選單方向與模式的預設值在 `useOffcanvas({ initialSide: 'left', initialMode: 'overlay' })`；頁面上的試玩區可立即切換八種組合。`slidebars.js` 和 jQuery 不會進入正式 bundle。
+選單方向與模式的預設值在 `SiteLayout.vue` 呼叫的 `useOffcanvas({ initialSide: 'left', initialMode: 'overlay' })`；首頁上的試玩區可立即切換八種組合。`slidebars.js` 和 jQuery 不會進入正式 bundle。
 
 ## 下一步
 

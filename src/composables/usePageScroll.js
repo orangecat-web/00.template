@@ -35,7 +35,9 @@ export function usePageScroll({ duration = 600, headerOffset = 80 } = {}) {
   function goTo(id) {
     const target = id === 'top' ? null : document.getElementById(id)
     if (id !== 'top' && !target) return
-    const top = target ? target.getBoundingClientRect().top + window.scrollY - headerOffset : 0
+    // 推擠模式會平移整頁；以頁面根節點為基準，避免把 nav 的位移算進目標位置。
+    const pageTop = document.getElementById('top')?.getBoundingClientRect().top ?? -window.scrollY
+    const top = target ? target.getBoundingClientRect().top - pageTop - headerOffset : 0
     scrollToPosition(top)
   }
 
