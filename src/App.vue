@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
+import { useOffcanvas } from './composables/useOffcanvas.js'
 import { photos } from './data/photos.js'
 
 const effectGroups = [
@@ -39,11 +40,23 @@ const categories = [
   { id: 'cats', label: '貓咪肖像' },
   { id: 'spaces', label: '空間攝影' },
 ]
+const navDirections = [
+  { id: 'left', label: '左' }, { id: 'right', label: '右' },
+  { id: 'top', label: '上' }, { id: 'bottom', label: '下' },
+]
+const navModes = [
+  { id: 'overlay', label: '覆蓋' }, { id: 'push', label: '推擠' },
+]
 
 const activeEffect = ref('none')
 const activeEffectGroup = ref('filter')
 const activeCategory = ref('all')
-const menuOpen = ref(false)
+const {
+  side: navSide, mode: navMode, isOpen: menuOpen, isVisible: navVisible,
+  panel: menuPanel, closeButton: menuCloseButton,
+  open: openMenu, close: closeMenu, toggle: toggleMenu,
+  setSide: setNavSide, setMode: setNavMode,
+} = useOffcanvas()
 const headerLow = ref(false)
 const showGoTop = ref(false)
 const selectedPhoto = ref(null)
@@ -87,7 +100,7 @@ function scrollToPosition(top, duration = 600) {
 }
 
 function goTo(id) {
-  menuOpen.value = false
+  closeMenu({ immediate: true, restoreFocus: false })
   const target = id === 'top' ? null : document.getElementById(id)
   if (id !== 'top' && !target) return
   const top = target ? target.getBoundingClientRect().top + window.scrollY - 80 : 0
@@ -118,19 +131,22 @@ onUnmounted(() => {
 </script>
 
 <template lang="pug">
-.site#top
+.site#top(:class="{ 'nav-pushed': navVisible && navMode === 'push' }" :data-nav-side="navSide")
   header.site-header.header(:class="{ headerlow: headerLow }")
     .shell.header-inner
       a.brand(href="#top" @click.prevent="goTo('top')" aria-label="Orange Cat 回到頁首")
         img(src="/images/logo.svg" alt="orangeCat's photography")
       span.header-caption VISUAL DESIGN / FRONT-END
-      button.menu-button(type="button" :aria-expanded="menuOpen" aria-controls="site-nav" aria-label="切換導覽選單" @click="menuOpen = !menuOpen")
+      button.menu-button(type="button" :aria-expanded="menuOpen" aria-controls="site-nav" aria-label="切換導覽選單" @click="toggleMenu($event)")
         span
         span
-      nav#site-nav.site-nav(:class="{ 'is-open': menuOpen }" aria-label="主要導覽")
-        a(href="#effects" @click.prevent="goTo('effects')") 視覺效果
-        a(href="#gallery" @click.prevent="goTo('gallery')") 圖文列表
-        a(href="#about" @click.prevent="goTo('about')") 關於這版
+      Teleport(to="body" :disabled="!menuOpen")
+        nav#site-nav.site-nav.offcanvas-panel(ref="menuPanel" :class="{ 'is-open': menuOpen, 'is-visible': navVisible }" :data-side="navSide" aria-label="主要導覽")
+          button.offcanvas-close(v-if="menuOpen" ref="menuCloseButton" type="button" aria-label="關閉導覽選單" @click="closeMenu()") ×
+          a(href="#effects" @click.prevent="goTo('effects')") 視覺效果
+          a(href="#gallery" @click.prevent="goTo('gallery')") 圖文列表
+          a(href="#about" @click.prevent="goTo('about')") 關於這版
+        button.nav-scrim(v-if="menuOpen" type="button" tabindex="-1" aria-label="關閉導覽選單" :class="{ 'is-visible': navVisible }" @click="closeMenu()")
   main
     section.hero.shell(aria-labelledby="hero-title")
       .hero-copy
@@ -177,6 +193,19 @@ onUnmounted(() => {
                 span.effect-english {{ effect.detail }}
                 span.effect-arrow(aria-hidden="true") ↗
             p.control-note 原版 Sass 濾鏡與疊色模式 · Vue 即時切換
+        .nav-lab
+          .nav-lab-copy
+            p.kicker NAV MOTION / ONE MENU
+            h3 同一份導覽，<br>八種出場方式<span class="period">.</span>
+            p 從舊版 Slidebars 的方向與動態概念重新寫成原生互動；桌面和手機共用同一份連結。
+          .nav-lab-controls
+            p.control-heading 滑出方向
+            .nav-choice-group(role="group" aria-label="滑出方向")
+              button.nav-choice(v-for="option in navDirections" :key="option.id" type="button" :aria-pressed="navSide === option.id" :class="{ 'is-active': navSide === option.id }" @click="setNavSide(option.id)") {{ option.label }}
+            p.control-heading 動態模式
+            .nav-choice-group(role="group" aria-label="動態模式")
+              button.nav-choice(v-for="option in navModes" :key="option.id" type="button" :aria-pressed="navMode === option.id" :class="{ 'is-active': navMode === option.id }" @click="setNavMode(option.id)") {{ option.label }}
+            button.nav-preview(type="button" :aria-expanded="menuOpen" aria-controls="site-nav" @click="openMenu($event)") 試開選單 ↗
     section#gallery.gallery-section(aria-labelledby="gallery-title")
       .shell
         .section-heading

@@ -1,0 +1,155 @@
+// 舊版 _navs.sass 與 Slidebars 行為的 CSS 部分。
+// 同一份 nav 在桌面顯示為橫列，開啟時由 Vue Teleport 移至 body。
+:root
+  --nav-side-size: min(84vw, 360px)
+  --nav-vertical-size: min(70dvh, 320px)
+  --nav-speed: 380ms
+
+.site
+  transition: transform var(--nav-speed) cubic-bezier(.2, .7, .2, 1)
+  &.nav-pushed[data-nav-side='left']
+    transform: translateX(var(--nav-side-size))
+  &.nav-pushed[data-nav-side='right']
+    transform: translateX(calc(0px - var(--nav-side-size)))
+  &.nav-pushed[data-nav-side='top']
+    transform: translateY(var(--nav-vertical-size))
+  &.nav-pushed[data-nav-side='bottom']
+    transform: translateY(calc(0px - var(--nav-vertical-size)))
+
+.site-nav.offcanvas-panel.is-open
+  display: flex
+  position: fixed
+  z-index: 51
+  top: 0
+  left: 0
+  width: var(--nav-side-size)
+  height: 100dvh
+  padding: 100px 38px 38px
+  flex-direction: column
+  align-items: stretch
+  justify-content: center
+  gap: 20px
+  overflow-y: auto
+  background: #f5f1e9
+  color: #1c2420
+  border-right: 2px solid #1c2420
+  box-shadow: 12px 0 40px rgb(0 0 0 / 12%)
+  transform: translateX(-100%)
+  transition: transform var(--nav-speed) cubic-bezier(.2, .7, .2, 1)
+  a
+    padding: 10px 0
+    border-bottom: 1px solid rgb(28 36 32 / 22%)
+    font-size: clamp(18px, 3vw, 25px)
+  &[data-side='right']
+    left: auto
+    right: 0
+    border-right: 0
+    border-left: 2px solid #1c2420
+    transform: translateX(100%)
+  &[data-side='top'], &[data-side='bottom']
+    width: 100vw
+    height: var(--nav-vertical-size)
+    padding: 68px max(32px, calc((100vw - 1000px) / 2)) 28px
+    border-right: 0
+  &[data-side='top']
+    border-bottom: 2px solid #1c2420
+    transform: translateY(-100%)
+  &[data-side='bottom']
+    top: auto
+    bottom: 0
+    border-top: 2px solid #1c2420
+    transform: translateY(100%)
+  &.is-visible
+    transform: translate3d(0, 0, 0)
+
+.offcanvas-close
+  position: absolute
+  top: 22px
+  right: 24px
+  width: 42px
+  height: 42px
+  border: 1px solid #1c2420
+  border-radius: 50%
+  background: #ff9a3d
+  color: #1c2420
+  font-size: 28px
+  line-height: 1
+  cursor: pointer
+
+.nav-scrim
+  position: fixed
+  z-index: 50
+  inset: 0
+  width: 100%
+  height: 100%
+  border: 0
+  background: rgb(17 25 22 / 44%)
+  opacity: 0
+  pointer-events: none
+  transition: opacity var(--nav-speed)
+  &.is-visible
+    opacity: 1
+    pointer-events: auto
+
+.nav-lab
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: clamp(28px, 5vw, 80px)
+  margin-top: 70px
+  padding: clamp(25px, 4vw, 52px)
+  border: 1px solid rgb(28 36 32 / 20%)
+  background: #f5f1e9
+
+.nav-lab-copy
+  h3
+    margin: 20px 0
+    font-size: clamp(30px, 3vw, 48px)
+    line-height: 1.2
+    letter-spacing: -.05em
+  > p:last-child
+    max-width: 440px
+    color: #65716b
+    font-size: 14px
+    line-height: 1.8
+
+.nav-lab-controls
+  .control-heading
+    margin: 0 0 12px
+  .control-heading:not(:first-child)
+    margin-top: 20px
+
+.nav-choice-group
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+
+.nav-choice
+  min-width: 52px
+  padding: 9px 14px
+  border: 1px solid rgb(28 36 32 / 35%)
+  background: #fffcf7
+  color: #1c2420
+  cursor: pointer
+  &:hover, &.is-active
+    background: #1c2420
+    color: #fffcf7
+
+.nav-preview
+  margin-top: 26px
+  padding: 12px 20px
+  border: 1px solid #1c2420
+  background: #ff9a3d
+  color: #1c2420
+  font-weight: 800
+  cursor: pointer
+
+@media (max-width: 760px)
+  .site-nav.offcanvas-panel:not(.is-open)
+    display: none
+  .nav-lab
+    grid-template-columns: 1fr
+    margin-top: 45px
+
+@media (prefers-reduced-motion: reduce)
+  .site, .site-nav.offcanvas-panel, .nav-scrim
+    transition-duration: .01ms

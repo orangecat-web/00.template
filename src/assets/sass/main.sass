@@ -3,6 +3,9 @@
 @use './effects' as fx
 @use './mixin' as oc
 @use './grid' as grid
+@use './include' as fonts
+@use './spacing' as sp
+@use './navs'
 
 $ink: #1c2420
 $muted: #65716b
@@ -23,7 +26,7 @@ body
   margin: 0
   background: $cream
   color: $ink
-  font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif
+  font-family: fonts.$font-body
 
 button, a
   -webkit-tap-highlight-color: transparent
@@ -70,7 +73,7 @@ a
   min-height: 84px
   transition: min-height .3s
   display: flex
-  align-items: center
+  @include sp.aic
   justify-content: space-between
   gap: 35px
 
@@ -88,6 +91,7 @@ a
 .header-caption
   margin-right: auto
   color: $muted
+  font-family: fonts.$font-display
   font-size: rem(10)
   letter-spacing: .15em
   font-weight: 800
@@ -661,20 +665,6 @@ a
       width: 100%
       height: 2px
       background: $ink
-  .site-nav
-    display: none
-    position: absolute
-    top: 100%
-    left: 0
-    right: 0
-    padding: 25px 20px 30px
-    flex-direction: column
-    align-items: stretch
-    gap: 24px
-    background: $cream
-    box-shadow: 0 18px 30px rgba(0, 0, 0, .1)
-    &.is-open
-      display: flex
   .hero
     display: flex
     flex-direction: column

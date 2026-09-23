@@ -1,0 +1,95 @@
+// 舊版 _spacing.sass 的快捷 mixin；間距倍率沿用 _function.sass 的 $baseSize。
+@use './function' as base
+
+@mixin tal
+  text-align: left
+@mixin tac
+  text-align: center
+@mixin tar
+  text-align: right
+@mixin taf
+  text-align: justify
+
+@mixin jcs
+  justify-content: flex-start
+@mixin jce
+  justify-content: flex-end
+@mixin jcc
+  justify-content: center
+@mixin jcb
+  justify-content: space-between
+
+@mixin ais
+  align-items: flex-start
+@mixin aie
+  align-items: flex-end
+@mixin aic
+  align-items: center
+@mixin aib
+  align-items: baseline
+
+@mixin acs
+  align-content: flex-start
+@mixin ace
+  align-content: flex-end
+@mixin acc
+  align-content: center
+@mixin acb
+  align-content: space-between
+
+@mixin ass
+  align-self: flex-start
+@mixin ase
+  align-self: flex-end
+@mixin asc
+  align-self: center
+@mixin asb
+  align-self: baseline
+
+@mixin m($count)
+  margin: base.baseSize($count)
+@mixin mx($count)
+  margin-inline: base.baseSize($count)
+@mixin my($count)
+  margin-block: base.baseSize($count)
+@mixin mt($count)
+  margin-top: base.baseSize($count)
+@mixin mb($count)
+  margin-bottom: base.baseSize($count)
+@mixin ml($count)
+  margin-left: base.baseSize($count)
+@mixin mr($count)
+  margin-right: base.baseSize($count)
+@mixin mx-auto
+  margin-inline: auto
+@mixin my-auto
+  margin-block: auto
+@mixin mt-auto
+  margin-top: auto
+@mixin mb-auto
+  margin-bottom: auto
+@mixin ml-auto
+  margin-left: auto
+@mixin mr-auto
+  margin-right: auto
+
+@mixin p($count)
+  padding: base.baseSize($count)
+@mixin px($count)
+  padding-inline: base.baseSize($count)
+@mixin py($count)
+  padding-block: base.baseSize($count)
+@mixin pt($count)
+  padding-top: base.baseSize($count)
+@mixin pb($count)
+  padding-bottom: base.baseSize($count)
+@mixin pl($count)
+  padding-left: base.baseSize($count)
+@mixin pr($count)
+  padding-right: base.baseSize($count)
+
+@mixin display($dp: block)
+  @if $dp == n or $dp == none
+    display: none
+  @else
+    display: $dp
