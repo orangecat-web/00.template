@@ -144,17 +144,31 @@ a
   position: relative
   aspect-ratio: 4 / 5
   max-height: 540px
+  background: #d9dfcf
   transform: rotate(3deg)
   box-shadow: 22px 22px 0 #d9dfcf
   overflow: visible
-  img
+  .hero-slide
+    position: absolute
+    inset: 0
     width: 100%
     height: 100%
     object-fit: cover
     display: block
 
+.hero-slide-enter-active, .hero-slide-leave-active
+  transition: opacity .75s ease, transform .75s ease
+
+.hero-slide-enter-from
+  opacity: 0
+  transform: scale(1.04)
+
+.hero-slide-leave-to
+  opacity: 0
+
 .hero-sticker
   position: absolute
+  z-index: 1
   right: -30px
   bottom: 12%
   width: 144px
@@ -190,6 +204,28 @@ a
 .media-index
   right: 0
   top: 4px
+
+.hero-carousel-controls
+  position: absolute
+  right: 0
+  bottom: -5px
+  display: flex
+  gap: 6px
+
+.hero-carousel-button
+  display: grid
+  place-items: center
+  width: 32px
+  height: 32px
+  border: 1px solid $ink
+  border-radius: 50%
+  background: $white
+  color: $ink
+  cursor: pointer
+  transition: background .2s ease, transform .2s ease
+  &:hover
+    background: $orange
+    transform: translateY(-2px)
 
 .effects-section, .gallery-section, .about-section
   scroll-margin-top: 84px
@@ -374,6 +410,17 @@ a
     display: block
     object-fit: cover
 
+.gallery-placeholder
+  display: flex
+  width: 100%
+  height: 100%
+  align-items: center
+  justify-content: center
+  color: $ink
+  font-size: rem(20)
+  font-weight: 900
+  letter-spacing: .14em
+
 .image-overlay
   position: absolute
   inset: auto 0 0
@@ -546,8 +593,15 @@ a
     white-space: normal
   .hero-media
     width: 90%
+    padding-bottom: 65px
   .hero-sticker
     right: -14px
+  .media-note
+    bottom: 39px
+  .hero-carousel-controls
+    left: 10px
+    right: auto
+    bottom: -2px
   .effect-preview
     min-height: 300px
   .effect-option

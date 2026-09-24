@@ -1,9 +1,10 @@
 <script setup>
 import { computed, ref } from 'vue'
 import GalleryCard from './components/GalleryCard.vue'
+import HeroCarousel from './components/HeroCarousel.vue'
 import MediaLightbox from './components/MediaLightbox.vue'
 import SiteLayout from './components/SiteLayout.vue'
-import { photos } from './data/photos.js'
+import { mediaCategoryNames, mediaItems } from './data/media.js'
 
 const effectGroups = [
   { id: 'filter', label: '圖片濾鏡', effects: [
@@ -36,11 +37,11 @@ const effectGroups = [
     { id: 'luminosity', label: '明度', detail: 'Luminosity' },
   ] },
 ]
-const categories = [
+const categories = computed(() => [
   { id: 'all', label: '全部' },
-  { id: 'cats', label: '貓咪肖像' },
-  { id: 'spaces', label: '空間攝影' },
-]
+  ...[...new Set(mediaItems.map((item) => item.category).filter(Boolean))]
+    .map((id) => ({ id, label: mediaCategoryNames[id] || id })),
+])
 const navDirections = [
   { id: 'left', label: '左' }, { id: 'right', label: '右' },
   { id: 'top', label: '上' }, { id: 'bottom', label: '下' },
@@ -60,13 +61,11 @@ function setNavSide(value) { layout.value?.setNavSide(value) }
 function setNavMode(value) { layout.value?.setNavMode(value) }
 function openMenu(event) { layout.value?.openMenu(event) }
 const mediaLightbox = ref(null)
-const featuredPhoto = photos[0]
-const filteredPhotos = computed(() => activeCategory.value === 'all'
-  ? photos
-  : photos.filter((photo) => photo.category === activeCategory.value))
-const galleryItems = computed(() => filteredPhotos.value.map((photo) => ({
-  ...photo, type: 'image', caption: photo.description,
-})))
+const heroPhotos = mediaItems.filter((item) => item.type === 'image')
+const featuredPhoto = heroPhotos[0]
+const filteredItems = computed(() => activeCategory.value === 'all'
+  ? mediaItems
+  : mediaItems.filter((item) => item.category === activeCategory.value))
 const visibleEffects = computed(() => effectGroups.find((group) => group.id === activeEffectGroup.value).effects)
 const selectedEffect = computed(() => visibleEffects.value.find((effect) => effect.id === activeEffect.value))
 
@@ -79,8 +78,8 @@ function goTo(id) {
   layout.value?.goTo(id)
 }
 
-function openPhoto(photo, sourceElement) {
-  mediaLightbox.value?.open(photo.id, sourceElement)
+function openMedia(item, sourceElement) {
+  mediaLightbox.value?.open(item.id, sourceElement)
 }
 
 </script>
@@ -102,14 +101,7 @@ SiteLayout(ref="layout" page-id="home")
         span 01 — DESIGN SYSTEM
         span 02 — INTERACTION
         span 03 — VUE 3
-    .hero-media
-      .hero-photo-frame
-        img(:src="featuredPhoto.src" :alt="featuredPhoto.alt")
-        .hero-sticker(aria-hidden="true")
-          span Original
-          strong → Vue 3
-      span.media-note SELECTED IMAGE / OC-TEMPLATE
-      span.media-index 001 / 005
+    HeroCarousel(:photos="heroPhotos")
   section#effects.effects-section(aria-labelledby="effects-title")
     .shell
       .section-heading
@@ -152,10 +144,10 @@ SiteLayout(ref="layout" page-id="home")
           p.kicker 02 / GRAPHIC LIST
           h2#gallery-title 圖片與文字，<br>換個方式相遇<span class="period">．</span>
         p.section-description 舊版 `graphic_list.pug` 的圖文列表概念，現在由 Vue 元件與資料陣列產生。分類、卡片展開與手機版都能實際操作。
-      .category-controls(role="group" aria-label="攝影分類")
+      .category-controls(role="group" aria-label="媒體分類")
         button.category-button(v-for="category in categories" :key="category.id" type="button" :class="{ 'is-active': activeCategory === category.id }" :aria-pressed="activeCategory === category.id" @click="activeCategory = category.id") {{ category.label }}
       TransitionGroup.gallery-grid(name="gallery" tag="div")
-        GalleryCard(v-for="photo in filteredPhotos" :key="photo.id" :photo="photo" @open="openPhoto")
+        GalleryCard(v-for="(item, index) in filteredItems" :key="item.id" :item="item" :index="index" :total="filteredItems.length" @open="openMedia")
       p.gallery-note 原始照片取自舊版 oc-template；此處展示的是版型與效果，不將它們標作客戶專案。
   section#about.about-section(aria-labelledby="about-title")
     .shell.about-grid
@@ -177,5 +169,5 @@ SiteLayout(ref="layout" page-id="home")
         .about-links
           a(href="https://github.com/orangecat-web" target="_blank" rel="noopener noreferrer") GitHub ↗
           a(href="https://orangecat-design.wixsite.com/cang" target="_blank" rel="noopener noreferrer") 其他視覺作品 ↗
-MediaLightbox(ref="mediaLightbox" :items="galleryItems" aria-label="攝影作品檢視")
+MediaLightbox(ref="mediaLightbox" :items="filteredItems" aria-label="媒體作品檢視")
 </template>

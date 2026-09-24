@@ -20,7 +20,7 @@ npm run dev
 | --- | --- | --- |
 | `images/logo.svg`、`btn_open.svg`、`btn_close.svg`、`btn_gotop.svg` | 原檔複製 | `public/images/`；logo 與回頁首圖已使用，選單圖先留待下一步比較 |
 | `favicon.ico` | 原檔複製 | `public/favicon.ico` |
-| `upload/` 中的 5 張照片 | 原檔複製 | `src/assets/photos/`；由 `src/data/photos.js` 引用，Vite 只打包有用到的照片 |
+| `upload/` 中的 5 張照片 | 原檔複製 | `src/assets/photos/`；由 `src/data/media.js` 引用，Vite 只打包有用到的照片 |
 | `sass/_effects.sass` | 挑選、修正、改寫 | `src/assets/sass/_effects.sass`；已移植 10 種圖片濾鏡／原色與 15 種疊色模式，使用 `@use` 模組；原始轉場工具仍保存在 `reference/legacy-sass/` |
 | `sass/_mixin.sass` | 保留名稱、修正舊相依後移植 | `src/assets/sass/_mixin.sass`；字型、文字截斷、轉場、邊框、圓角、回頁首、表單、分頁、表格、圖文列表與相簿 mixin。原檔仍在 `reference/legacy-sass/` |
 | `sass/_function.sass` | 搬移並共用 | `src/assets/sass/_function.sass`；保留尺寸、字重、12 欄、容器設定及計算函式，改用 `sass:math`、`sass:map` |
@@ -30,7 +30,7 @@ npm run dev
 | `sass/_navs.sass` | 重新實作 | `src/assets/sass/_navs.sass`；四方向的 offcanvas 位置與覆蓋／推擠轉場，首頁的八組試玩樣式另外放在 `_nav-lab.sass` |
 | `pug/icon_exsample.pug`、`sass/_icons.sass` | 獨立頁移植 | `icons.html`、`src/IconsApp.vue`、`src/data/icons.js`、`src/assets/sass/_icons.sass`；五種本地字型在 `src/assets/fonts/`，僅由 `icons-page.sass` 載入 |
 | `pug/_base.pug` | 結構改寫 | `src/components/SiteLayout.vue` 的共用 header、nav、footer、回頂；頁面內容各由 `App.vue`、`IconsApp.vue` 填入，桌面與手機共用一份 `<nav>` |
-| `pug/graphic_list.pug`、`pug/tools/_list.pug` | 元件化改寫 | `src/components/GalleryCard.vue` 與 `src/data/photos.js`；用 `v-for` 取代重複 markup |
+| `pug/graphic_list.pug`、`pug/tools/_list.pug` | 元件化改寫 | `src/components/GalleryCard.vue` 與 `src/data/media.js`；用 `v-for` 取代重複 markup |
 | `pug/portfolio.pug` | 效果概念沿用 | `App.vue` 的視覺效果實驗區；大量效果尚未逐一搬完 |
 | 舊版全部 13 支 `_*.sass` partial | 原檔複製 | `reference/legacy-sass/`；完整保留你的工具庫。`_effects.sass`、`_mixin.sass`、`_function.sass`、`_grid.sass`、`_include.sass`、`_spacing.sass`、`_navs.sass` 已另做新版模組 |
 | 舊版 `css/`、`dist/`、根目錄 HTML | 不複製 | 舊版編譯產物；新版交給 Vite 從 Vue / Sass 產生 |
@@ -51,6 +51,7 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 
 ## 已可操作
 
+- 首頁精選照片由 `src/components/HeroCarousel.vue` 讀取 `src/data/media.js` 裡的圖片項目；每 6 秒淡入切換，可手動上一張、下一張或暫停，也能在手機左右滑。游標停留、鍵盤焦點進入、分頁隱藏或輪播滑出畫面時會暫停；系統設定減少動態效果時不會自動播放。
 - 視覺效果切換：原色與 9 種圖片濾鏡（灰階、懷舊、對比、亮度、反相、透明度、色相旋轉、模糊、飽和度），以及舊版 `pseffects` 的 15 種疊色模式。模式名稱和濾鏡參數可在 `src/assets/sass/_effects.sass`、`main.sass` 調整；效果清單在 `src/App.vue`。
 - 導覽動態試玩：一份導覽內容，四個方向（左、右、上、下）與兩個模式（覆蓋、推擠）；可用關閉鈕、背景或 Esc 關閉，開啟時鎖住背景捲動。手機的選單鈕使用同一份導覽。
 - 圖文卡片依類別篩選、滑入效果；點擊後開啟深色全螢幕媒體檢視，圖片由卡片位置放大進場。左右兩側切換、右上角縮圖／縮放／輪播／全螢幕／關閉，支援方向鍵、手機左右滑、Esc 和背景點擊。元件與樣式位於 `src/components/MediaLightbox.vue`、`src/assets/sass/_media-lightbox.sass`。
@@ -60,7 +61,7 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 
 ## 共用媒體檢視 MediaLightbox
 
-`src/components/MediaLightbox.vue` 透過 `items` 陣列決定內容，`open(id, sourceElement)` 或 `openAt(index, sourceElement)` 開啟。第二個參數可省略；傳入卡片元素時，圖片會從卡片位置放大，沒有來源元素時由中央淡入。首頁的 `src/App.vue` 已示範圖片清單的接法。互動與動畫都在同一個元件，不需 jQuery 或第三方 lightbox。
+`src/components/MediaLightbox.vue` 透過 `items` 陣列決定內容，`open(id, sourceElement)` 或 `openAt(index, sourceElement)` 開啟。第二個參數可省略；傳入卡片元素時，內容會從卡片位置放大，沒有來源元素時由中央淡入。首頁從 `src/data/media.js` 讀取同一份清單，卡片、分類與燈箱同步更新。互動與動畫都在同一個元件，不需 jQuery 或第三方 lightbox。
 
 | `type` | 使用資料 | 內容 |
 | --- | --- | --- |
@@ -71,7 +72,20 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 | `text` | `title`、`text` | 純文字；換行會保留 |
 | `custom` | 任意資料搭配 `#content` slot | 由 Vue 模板自行渲染 HTML 與元件 |
 
-每項需有**唯一 `id`**。`caption` 會放在底部，`poster` 可供影片縮圖使用。YouTube 與 Google Maps 只接受對應網站的嵌入網址；不直接渲染外部輸入的 HTML 字串，客製內容請用 Vue slot。
+每項需有**唯一 `id`**。`caption` 會放在卡片文字與燈箱底部，非圖片項目建議加 `poster` 作為卡片及縮圖封面，省略時卡片會顯示媒體類型。`category` 的顯示名稱可在 `mediaCategoryNames` 設定，首頁只顯示有項目的分類。YouTube 可用一般觀看、Shorts 或嵌入網址；Google Maps 須用分享選單提供的嵌入網址。不直接渲染外部輸入的 HTML 字串，客製內容請用 Vue slot。
+
+### 在同一份清單混用圖片、影片與地圖
+
+編輯 `src/data/media.js` 的 `mediaItems`，把下列項目加在現有照片後面，換成自己的網址和封面即可。首頁會自動出現「影片」與「地點」分類，點卡片後開啟對應內容；`src/App.vue` 不用另外建立一份影片或地圖陣列。`public/images/` 的圖片以 `/images/檔名.jpg` 引用；若放在 `src/assets/`，先 import 再指定給 `poster`。
+
+```js
+{ id: 'film-1', type: 'youtube', category: 'videos', categoryLabel: 'VIDEO',
+  title: '影片標題', caption: '影片說明',
+  src: 'https://www.youtube.com/watch?v=你的影片ID', poster: '/images/你的影片封面.jpg' },
+{ id: 'place-1', type: 'map', category: 'places', categoryLabel: 'LOCATION',
+  title: '地點名稱', caption: '地點說明',
+  src: '從 Google Maps 嵌入程式碼取出的 iframe src', poster: '/images/你的地圖封面.jpg' },
+```
 
 ```vue
 <script setup>
