@@ -51,7 +51,7 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 
 ## 已可操作
 
-- 首頁精選照片由 `src/components/HeroCarousel.vue` 讀取 `src/data/media.js` 裡的圖片項目；每 6 秒淡入切換，可手動上一張、下一張或暫停，也能在手機左右滑。游標停留、鍵盤焦點進入、分頁隱藏或輪播滑出畫面時會暫停；系統設定減少動態效果時不會自動播放。
+- 首頁精選照片由 `src/components/HeroCarousel.vue` 讀取 `src/data/media.js` 裡的圖片項目；每 6 秒向左滑動切換，上一張向右、下一張向左，也能暫停或在手機左右滑。游標停留、鍵盤焦點進入、分頁隱藏或輪播滑出畫面時會暫停；系統設定減少動態效果時不會自動播放。
 - 視覺效果切換：原色與 9 種圖片濾鏡（灰階、懷舊、對比、亮度、反相、透明度、色相旋轉、模糊、飽和度），以及舊版 `pseffects` 的 15 種疊色模式。模式名稱和濾鏡參數可在 `src/assets/sass/_effects.sass`、`main.sass` 調整；效果清單在 `src/App.vue`。
 - 導覽動態試玩：一份導覽內容，四個方向（左、右、上、下）與兩個模式（覆蓋、推擠）；可用關閉鈕、背景或 Esc 關閉，開啟時鎖住背景捲動。手機的選單鈕使用同一份導覽。
 - 圖文卡片依類別篩選、滑入效果；點擊後開啟深色全螢幕媒體檢視，圖片由卡片位置放大進場。左右兩側切換、右上角縮圖／縮放／輪播／全螢幕／關閉，支援方向鍵、手機左右滑、Esc 和背景點擊。元件與樣式位於 `src/components/MediaLightbox.vue`、`src/assets/sass/_media-lightbox.sass`。
