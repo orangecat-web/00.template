@@ -2,11 +2,17 @@
 
 ## 首頁作品版（2026-09-26）
 
-首頁現在依序呈現個人定位、三件精選作品、合作服務、工作經歷、互動實驗室預告與關於我的短摘要。完整作品一覽在 `/work.html`，原本首頁的影像濾鏡、八種導覽動態及圖文媒體檢視移到 `/lab.html`；Google Icons 維持 `/icons.html`。精選作品由 `src/data/projects.js` 管理，卡片元件是 `src/components/ProjectCard.vue`。新增專案到 `projects` 後，作品頁會自動列出；設定 `featured: true` 的前三件會出現在首頁。站外案例連到已公開的原站，正式案例頁完成後可替換 `href`。
+首頁現在依序呈現個人定位、三件精選作品、合作服務、工作經歷、互動實驗室預告與關於我的短摘要。完整作品一覽在 `/work.html`，原本首頁的影像濾鏡、八種導覽動態及圖文媒體檢視移到 `/lab.html`；Google Icons 維持 `/icons.html`。精選作品由 `src/data/projects.js` 管理，卡片元件是 `src/components/ProjectCard.vue`。新增專案到 `projects` 後，作品頁會自動列出；設定 `featured: true` 的前三件會出現在首頁。卡片去向由各作品資料決定，可進本站內頁，也可直接開啟已上線網站。
 
 首頁 `03 / EXPERIENCE` 參考 Knight Lab TimelineJS 的閱讀方式：中央一次顯示一段經歷，使用左右箭頭或下方年份節點切換，內容會依方向水平滑動。七段資料集中在 `src/data/experience.js`，元件是 `src/components/ExperienceTimeline.vue`，不需 jQuery、外部 iframe 或試算表；時間軸可在手機橫向捲動，也支援鍵盤左右鍵。首頁文字維持摘要長度，未來完整職責與成果可放在 About 頁。
 
-`src/data/media.js` 仍管理實驗室圖庫和燈箱內容，與專案資料分開。首頁載入 `main.sass`，實驗室額外載入 `lab-page.sass` 中的效果、媒體檢視及導覽試玩樣式；Vite 會產生對應的 CSS。既有選單、回頁首、輪播與 Google Icons 專頁保留。`npm run build` 會檢查四個入口。關於與聯絡頁預計獨立製作；目前還沒有公開聯絡信箱，所以首頁沒有失效的聯絡按鈕。
+`src/data/media.js` 仍管理實驗室圖庫和燈箱內容，與專案資料分開。首頁載入 `main.sass`，實驗室額外載入 `lab-page.sass` 中的效果、媒體檢視及導覽試玩樣式；Vite 會產生對應的 CSS。既有選單、回頁首、輪播與 Google Icons 專頁保留。`npm run build` 會檢查五個入口。關於與聯絡頁預計獨立製作；目前還沒有公開聯絡信箱，所以首頁沒有失效的聯絡按鈕。
+
+## 作品列表與內頁
+
+`/work.html` 可選「全部作品／平面設計／網頁設計／商品攝影」分類。每個分類最多顯示 18 件作品；第 19 件開始自動出現頁碼。分類和頁碼會同步網址，例如 `/work.html?category=web&page=2`，可以直接分享；瀏覽器上一頁也能恢復篩選與頁碼。切換分類從第 1 頁開始，空分類顯示整理中的提示。分頁元件在 `src/components/PaginationNav.vue`，計算邏輯在 `src/utils/pagination.js`。目前只有三件真實資料，均歸在網頁設計；沒有案例的分類不會杜撰內容。
+
+作品不一定需要內頁。卡片預設進 `/project.html?id=作品id`；需要直接開啟網站時，在該筆作品加上 `destination: { type: 'url', href: 'https://…', label: '查看上線網站' }`。雙語商業資源入口網已設定直連公開網站，首頁精選與列表使用同一個卡片元件，封面與文字按鈕一致。站外連結另開分頁。內頁以 `src/ProjectApp.vue` 呈現左側作品圖、右側摘要與負責項目、返回列表、同分類的上一件／下一件；進入時保留分類與頁碼，關閉詳情仍回原篩選位置。DISH-LIFE 的長圖來自你提供的原 Wix 作品頁，保存在 `src/assets/projects/dish-life.jpg`。`src/data/projects.js` 是作品資料唯一來源：`projectCategories` 加入 `{ id, label }` 即可新增分類，專案以 `categoryIds: ['web']` 指定分類，也可同時列入多個分類；`detailImage` 可指定內頁圖而不更改首頁卡片視覺，`externalUrl` 可供內頁附上原站或可操作展示。新增作品需給唯一 `id`、`categoryIds` 與基本欄位；沒有圖時顯示文字視覺佔位，之後可替換素材。
 
 這份專案以你上傳的 **`00.template(1).zip`** 為底，從舊版 **`oc-template.zip`** 挑出能沿用的資產。它是可執行的 Vue 3 視覺效果展示，原版並不是客戶案例集；頁面也沒有把示範照片說成客戶專案。
 
@@ -47,7 +53,7 @@ npm run dev
 
 ## 網站共用外框
 
-`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂，copyright 在此元件統一輸出。全部 nav 連結集中在 `src/data/navigation.js` 的 `navigationItems`，由 `pageId` 選出目前頁的連結；`App.vue`、`IconsApp.vue` 不再各存一份陣列。新增內頁時傳 `page-id`，在同一份清單加上連結，並視需要設定 `brand-caption`。
+`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂，copyright 在此元件統一輸出。全站四頁使用 `src/data/navigation.js` 的同一組主導覽、同一套 logo 尺寸與頁首外觀；`.shell` 容器也定義在共用 `_site-chrome.sass`，Icons 頁不必載入首頁樣式就能對齊頁首與頁尾。`pageId` 僅標示目前頁。首頁區塊連結在首頁改為本頁錨點，交由共用 600ms 動畫捲動；在內頁則連回首頁對應區塊。新增主項目只需編輯這一份清單，頁內工具導覽仍由各頁負責。
 
 `src/composables/useOffcanvas.js` 管理 nav 的四方向、覆蓋／推擠和開關；`usePageScroll.js` 管理 350px header、200px 回頂與 600ms 捲動。共用元件會攔截本頁 `#section-id` 的 nav 連結，以同一動畫捲至目標（扣除 header 高度）；跨頁連結照網址導航。八種模式試玩位於 `LabApp.vue`，只控制共用 nav。
 

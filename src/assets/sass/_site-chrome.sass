@@ -8,16 +8,16 @@
 $ink: #1c2420
 $cream: #f5f1e9
 
-.page-shell
+.page-shell, .shell
   @include grid.container(fluid, 0)
   width: min(100% - 64px, 1320px)
 
 .site
   --chrome-accent: #ff9a3d
 .standard-page
-  --chrome-accent: #f29339
+  --chrome-accent: #ff9a3d
 
-.site-header, .standard-header
+.site-header
   position: sticky
   top: 0
   z-index: 20
@@ -27,12 +27,12 @@ $cream: #f5f1e9
   transition: box-shadow .3s
   &.headerlow
     box-shadow: 0 6px 24px rgba($ink, .08)
-    .header-inner, .header-row
+    .header-inner
       min-height: 62px
-    .brand img, .standard-brand img
+    .brand img
       height: 52px
 
-.header-inner, .header-row
+.header-inner
   display: flex
   align-items: center
   justify-content: space-between
@@ -40,26 +40,16 @@ $cream: #f5f1e9
   min-height: 84px
   transition: min-height .3s
 
-.brand, .standard-brand
+.brand
   display: flex
   align-items: center
   flex: none
-  img
-    object-fit: contain
-    transition: height .3s
-.brand
   width: 155px
   img
     width: 100%
     height: 72px
-.standard-brand
-  gap: 20px
-  font-size: 11px
-  font-weight: 850
-  letter-spacing: .15em
-  img
-    width: 118px
-    height: 66px
+    object-fit: contain
+    transition: height .3s
 .header-caption
   margin-right: auto
   color: #65716b
@@ -71,12 +61,14 @@ $cream: #f5f1e9
 .site-nav
   display: flex
   align-items: center
-  gap: clamp(18px, 3vw, 52px)
+  gap: clamp(14px, 2vw, 26px)
   font-size: 13px
   font-weight: 750
   a
     @include oc.transition(color, .2s)
     &:hover
+      color: #c65f05
+    &[aria-current='page']
       color: #c65f05
 .menu-button
   display: none
@@ -121,29 +113,9 @@ $cream: #f5f1e9
   opacity: 0
   transform: translateY(15px)
 
-@media (max-width: 1020px)
+@media (max-width: 1100px)
   .header-caption
     display: none
-
-@media (max-width: 760px)
-  .page-shell
-    width: min(100% - 36px, 1320px)
-  .header-inner
-    min-height: 70px
-  .header-row
-    min-height: 72px
-  .site-header.headerlow .header-inner, .standard-header.headerlow .header-row
-    min-height: 58px
-  .site-header.headerlow .brand img, .standard-header.headerlow .standard-brand img
-    height: 50px
-  .brand
-    width: 120px
-    img
-      height: 62px
-  .standard-brand
-    gap: 7px
-    img
-      width: 90px
   .menu-button
     display: flex
     flex-direction: column
@@ -162,6 +134,18 @@ $cream: #f5f1e9
   .site-nav.offcanvas-panel:not(.is-open)
     display: none
 
-@media (max-width: 480px)
-  .standard-brand span
-    display: none
+@media (max-width: 760px)
+  .page-shell
+    width: min(100% - 36px, 1320px)
+  .shell
+    width: min(100% - 36px, 620px)
+  .header-inner
+    min-height: 70px
+  .site-header.headerlow .header-inner
+    min-height: 58px
+  .site-header.headerlow .brand img
+    height: 50px
+  .brand
+    width: 120px
+    img
+      height: 62px

@@ -77,7 +77,7 @@ function openMedia(item, sourceElement) {
 </script>
 
 <template lang="pug">
-SiteLayout(ref="layout" page-id="lab" brand-caption="INTERACTIVE LAB")
+SiteLayout(ref="layout" page-id="lab")
   section.lab-page-intro(aria-labelledby="lab-page-title")
     p.kicker INTERACTIVE LAB / VUE 3
     h1#lab-page-title 動手試試，<br>互動怎麼發生<span class="period">．</span>

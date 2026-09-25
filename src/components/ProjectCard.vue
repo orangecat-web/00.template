@@ -1,14 +1,23 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import { projectDestination } from '../data/projects.js'
+
+const props = defineProps({
   project: { type: Object, required: true },
   index: { type: Number, required: true },
   total: { type: Number, required: true },
+  page: { type: Number, default: 1 },
+  selectedCategory: { type: String, default: 'all' },
 })
+const destination = computed(() => projectDestination(props.project, {
+  category: props.selectedCategory,
+  page: props.page,
+}))
 </script>
 
 <template lang="pug">
 article.project-card
-  a.project-cover(:class="`project-cover--${project.cover}`" :href="project.href" :target="project.href.startsWith('http') ? '_blank' : undefined" :rel="project.href.startsWith('http') ? 'noopener noreferrer' : undefined" :aria-label="`${project.title}：${project.linkLabel}`")
+  a.project-cover(:class="`project-cover--${project.cover}`" :href="destination.href" :target="destination.external ? '_blank' : undefined" :rel="destination.external ? 'noopener noreferrer' : undefined" :aria-label="`${project.title}：${destination.label}${destination.external ? '（另開分頁）' : ''}`")
     img(v-if="project.image" :src="project.image" :alt="project.imageAlt" loading="lazy")
     .project-cover-design(v-else aria-hidden="true")
       template(v-if="project.cover === 'bilingual'")
@@ -29,5 +38,5 @@ article.project-card
     p {{ project.summary }}
     .project-bottom
       span {{ project.role }}
-      a(:href="project.href" :target="project.href.startsWith('http') ? '_blank' : undefined" :rel="project.href.startsWith('http') ? 'noopener noreferrer' : undefined") {{ project.linkLabel }} ↗
+      a(:href="destination.href" :target="destination.external ? '_blank' : undefined" :rel="destination.external ? 'noopener noreferrer' : undefined") {{ destination.label }} ↗
 </template>

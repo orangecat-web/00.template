@@ -47,7 +47,7 @@ async function copyName(name) {
 </script>
 
 <template lang="pug">
-SiteLayout(ref="layout" page-id="icons" brand-caption="/ ICON LIBRARY" :data-style="selectedStyle.id")
+SiteLayout(ref="layout" page-id="icons" :data-style="selectedStyle.id")
   section.icons-hero(aria-labelledby="icons-title")
     .hero-copy
       p.eyebrow UTILITY / 01 — MATERIAL ICONS
