@@ -8,5 +8,7 @@ export default defineConfig({
   input: {
     main: resolve(import.meta.dirname, 'index.html'),
     icons: resolve(import.meta.dirname, 'icons.html'),
+    work: resolve(import.meta.dirname, 'work.html'),
+    lab: resolve(import.meta.dirname, 'lab.html'),
   },
 })

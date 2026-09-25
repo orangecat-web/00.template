@@ -1,12 +1,8 @@
 @use 'sass:math'
 @use './function' as base
-@use './effects' as fx
-@use './mixin' as oc
 @use './grid' as grid
 @use './spacing' as sp
 @use './include' as fonts
-@use './nav-lab'
-@use './media-lightbox'
 
 $ink: #1c2420
 $muted: #65716b
@@ -232,12 +228,196 @@ a
     background: $orange
     transform: translateY(-2px)
 
-.effects-section, .gallery-section, .about-section
+.work-section, .services-section, .experience-section, .lab-teaser, .about-section
   scroll-margin-top: 84px
   padding: 112px 0
 
-.effects-section
-  background: $white
+.work-section
+  background: #e9e6dd
+
+.project-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 24px
+
+.project-card
+  min-width: 0
+
+.project-cover
+  display: block
+  position: relative
+  height: clamp(310px, 31vw, 430px)
+  overflow: hidden
+  isolation: isolate
+  background: #d1d7c7
+  img
+    display: block
+    width: 100%
+    height: 100%
+    object-fit: cover
+    transition: transform .55s cubic-bezier(.2, .7, .2, 1)
+  &:hover img
+    transform: scale(1.055)
+
+.project-cover-design
+  position: absolute
+  inset: 0
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  padding: clamp(24px, 3vw, 42px)
+  transition: transform .55s cubic-bezier(.2, .7, .2, 1)
+  strong
+    font-size: clamp(rem(38), 4vw, rem(70))
+    line-height: 1.12
+    letter-spacing: -.06em
+    font-weight: 900
+  .cover-small, .cover-end
+    font-size: rem(10)
+    font-weight: 800
+    letter-spacing: .13em
+  .cover-line
+    align-self: flex-end
+    width: 43%
+    height: 2px
+    background: currentColor
+
+.project-cover:hover .project-cover-design
+  transform: scale(1.035)
+
+.project-cover--bilingual
+  color: #243534
+  background: #acd9cf
+  &::before
+    content: ''
+    position: absolute
+    z-index: -1
+    width: 65%
+    aspect-ratio: 1
+    right: -22%
+    top: 7%
+    border: 40px solid rgba(255, 252, 247, .4)
+    border-radius: 50%
+  .project-cover-design
+    background: linear-gradient(135deg, #e4ead8 0%, #b3d9c9 56%, #85c4c7 100%)
+
+.project-cover--dish
+  color: #fffcf7
+  background: #a83a31
+  .project-cover-design
+    background: radial-gradient(circle at 75% 25%, #ffb24b 0 12%, transparent 13%), linear-gradient(145deg, #1c2420 0%, #3a4337 52%, #a95133 100%)
+  strong
+    font-family: Georgia, serif
+    font-style: italic
+    font-weight: 700
+  .cover-dot
+    color: #ff9a3d
+
+.cover-arrow
+  position: absolute
+  right: 16px
+  bottom: 16px
+  display: grid
+  place-items: center
+  width: 42px
+  height: 42px
+  border-radius: 50%
+  background: $orange
+  color: $ink
+  font-size: rem(22)
+  transition: transform .25s
+
+.project-cover:hover .cover-arrow
+  transform: rotate(45deg)
+
+.project-details
+  padding-top: 19px
+  h3
+    margin: 16px 0 9px
+    font-size: clamp(rem(21), 2vw, rem(27))
+    line-height: 1.3
+    letter-spacing: -.035em
+  > p
+    min-height: 3.4em
+    margin: 0
+    color: $muted
+    font-size: rem(13)
+    line-height: 1.7
+
+.project-meta, .project-bottom
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 16px
+  font-size: rem(10)
+  font-weight: 800
+  letter-spacing: .1em
+
+.project-meta
+  color: $muted
+
+.project-bottom
+  margin-top: 25px
+  padding-top: 16px
+  border-top: 1px solid rgba(28, 36, 32, .22)
+  letter-spacing: 0
+  span
+    color: $muted
+  a
+    border-bottom: 1px solid currentColor
+    padding-bottom: 3px
+    &:hover
+      color: #c2601c
+
+.services-section
+  background: #e3a05e
+
+.services-grid
+  display: grid
+  grid-template-columns: .95fr 1.05fr
+  gap: clamp(45px, 8vw, 120px)
+
+.services-intro
+  h2
+    margin: 25px 0
+    font-size: clamp(rem(40), 4.5vw, rem(68))
+    line-height: 1.23
+    letter-spacing: -.06em
+  > p:not(.kicker)
+    max-width: 500px
+    font-size: rem(16)
+    line-height: 1.85
+
+.text-link
+  display: inline-block
+  margin-top: 24px
+  padding-bottom: 7px
+  border-bottom: 1px solid currentColor
+  font-weight: 800
+
+.service-item
+  display: grid
+  grid-template-columns: 38px 1fr 24px
+  gap: 18px
+  align-items: start
+  padding: 28px 0
+  border-top: 1px solid rgba(28, 36, 32, .35)
+  &:last-child
+    border-bottom: 1px solid rgba(28, 36, 32, .35)
+  h3
+    margin: 0 0 9px
+    font-size: clamp(rem(21), 2vw, rem(27))
+  p
+    max-width: 460px
+    margin: 0
+    font-size: rem(13)
+    line-height: 1.75
+  .service-number
+    padding-top: 6px
+    font-size: rem(11)
+    font-weight: 850
+  .service-icon
+    font-size: rem(25)
 
 .section-heading
   display: flex
@@ -259,227 +439,287 @@ a
   font-size: rem(14)
   line-height: 1.9
 
-.effect-workbench
-  display: grid
-  grid-template-columns: 1.25fr .75fr
-  min-height: 520px
-  border: 1px solid rgba(28, 36, 32, .17)
+.section-tail
+  display: flex
+  justify-content: flex-end
+  margin-top: 42px
 
-.effect-preview
+.experience-section
+  background: #3c484c
+  color: $white
+  background-image: radial-gradient(ellipse at 50% 25%, rgba(148, 171, 166, .16), transparent 60%), linear-gradient(145deg, #3c484c, #263239)
+
+.experience-heading
+  text-align: center
+  .kicker
+    justify-content: center
+    color: #ffb968
+  h2
+    margin: 20px 0 12px
+    font-size: clamp(rem(42), 5vw, rem(76))
+    line-height: 1.2
+    letter-spacing: -.06em
+  > p:last-child
+    margin: 0 auto
+    max-width: 580px
+    color: #d2dcda
+    font-size: rem(15)
+    line-height: 1.8
+
+.experience-widget
+  max-width: 1120px
+  margin: 55px auto 0
+
+.experience-player
   position: relative
+  background: #f1eee5
+  color: $ink
+  box-shadow: 16px 16px 0 rgba(15, 24, 26, .18)
+
+.experience-viewport
+  position: relative
+  height: 360px
   overflow: hidden
-  background: #d6d1c7
-  img
-    display: block
-    width: 100%
-    height: 100%
-    position: absolute
-    inset: 0
-    object-fit: cover
-    transition: filter .45s
-  @each $name in grayscale, sepia, contrast, brightness, invert, opacity, hue-rotate, blur, saturate
-    &.effect-filter-#{$name} img
-      @include fx.image-filter($name)
-  // 舊版 pseffects 的 15 種模式；CSS 名稱中的連字號取代舊版縮寫。
-  @each $mode in multiply, screen, overlay, darken, lighten, color-dodge, color-burn, hard-light, soft-light, difference, exclusion, hue, saturation, color, luminosity
-    &.effect-blend-#{$mode}
-      @include fx.blend-overlay(rgba(255, 153, 0, .58), $mode)
 
-.effect-preview-label
+.experience-slide
   position: absolute
-  z-index: 2
-  left: 20px
-  bottom: 20px
-  padding: 8px 11px
-  color: $cream
-  background: rgba(28, 36, 32, .83)
-  font-size: rem(11)
-  letter-spacing: .08em
+  inset: 0
+  display: grid
+  grid-template-columns: .85fr 1.15fr
+  align-items: center
+  gap: clamp(30px, 5vw, 75px)
+  padding: 48px clamp(80px, 10vw, 145px)
 
-.effect-controls
+.experience-slide-date
   display: flex
   flex-direction: column
-  padding: clamp(20px, 3vw, 46px)
+  line-height: 1
 
-.control-heading
+.experience-slide-ordinal
+  color: #dce1d5
+  font-family: Georgia, serif
+  font-size: clamp(rem(112), 13vw, rem(180))
+  font-style: italic
+  letter-spacing: -.09em
+
+.experience-slide-period
+  margin-top: -18px
+  color: #d36a1e
+  font-size: clamp(rem(22), 2.6vw, rem(35))
+  font-weight: 900
+  white-space: nowrap
+
+.experience-slide-content
+  position: relative
+  z-index: 1
+  min-width: 0
+  h3
+    margin: 16px 0 14px
+    font-size: clamp(rem(30), 3.5vw, rem(48))
+    line-height: 1.25
+    letter-spacing: -.05em
+  p
+    margin: 0
+
+.experience-slide-label
+  color: #9a5731
   font-size: rem(11)
   font-weight: 850
-  letter-spacing: .18em
-  margin: 0 0 22px
+  letter-spacing: .14em
 
-.effect-groups
-  display: flex
-  gap: 8px
-  margin-bottom: 22px
-
-.effect-group
-  flex: 1
-  min-width: 0
-  padding: 10px 6px
-  border: 1px solid rgba(28, 36, 32, .3)
-  background: transparent
-  color: $ink
-  cursor: pointer
-  font-size: rem(12)
-  font-weight: 750
-  &:hover, &.is-active
-    background: $ink
-    color: $white
-
-.effect-options
-  max-height: 425px
-  overflow-y: auto
-  overscroll-behavior: contain
-
-.effect-option
-  display: grid
-  grid-template-columns: 30px 1fr 94px 20px
-  align-items: center
-  gap: 10px
-  width: 100%
-  min-height: 67px
-  border: 0
-  border-top: 1px solid rgba(28, 36, 32, .17)
-  background: transparent
-  text-align: left
-  color: $ink
-  cursor: pointer
-  transition: padding .2s, background .2s
-  &:last-of-type
-    border-bottom: 1px solid rgba(28, 36, 32, .17)
-  &:hover, &.is-active
-    background: #ffe7d0
-    padding-inline: 11px
-
-.effect-number, .effect-english
-  color: $muted
-  font-size: rem(11)
-
-.effect-name
+.experience-slide-role
   font-size: rem(17)
   font-weight: 800
 
-.effect-arrow
-  font-size: rem(20)
+.experience-slide-description
+  max-width: 450px
+  padding-top: 14px
+  color: #53615a
+  font-size: rem(15)
+  line-height: 1.8
 
-.control-note
-  color: $muted
-  font-size: rem(11)
-  margin: auto 0 0
-  padding-top: 20px
-
-.gallery-section
-  background: $cream
-
-.category-controls
-  display: flex
-  flex-wrap: wrap
-  gap: 8px
-  margin-bottom: 32px
-
-.category-button
-  border: 1px solid rgba(28, 36, 32, .3)
-  background: transparent
-  color: $ink
-  padding: 9px 17px
-  border-radius: 100px
-  cursor: pointer
-  font-size: rem(13)
-  transition: background .2s, color .2s
-  &:hover, &.is-active
-    background: $ink
-    color: $white
-
-.gallery-grid
-  display: grid
-  grid-template-columns: repeat(3, minmax(0, 1fr))
-  gap: 42px 24px
-  position: relative
-  @include grid.breakpoint(sm)
-    grid-template-columns: repeat(2, minmax(0, 1fr))
-  @include grid.breakpoint()
-    grid-template-columns: 1fr
-
-.gallery-card
-  figure
-    margin: 0
-
-.gallery-image
-  position: relative
-  aspect-ratio: 4 / 4.4
-  background: #ddd5c6
-  @include fx.image-reveal
-  img
-    width: 100%
-    height: 100%
-    display: block
-    object-fit: cover
-
-.gallery-placeholder
-  display: flex
-  width: 100%
-  height: 100%
-  align-items: center
-  justify-content: center
-  color: $ink
-  font-size: rem(20)
-  font-weight: 900
-  letter-spacing: .14em
-
-.image-overlay
+.experience-arrow
   position: absolute
-  inset: auto 0 0
-  min-height: 58px
-  display: flex
-  align-items: center
-  justify-content: center
+  z-index: 3
+  top: 50%
+  display: grid
+  place-items: center
+  width: 48px
+  height: 48px
+  padding: 0
+  transform: translateY(-50%)
+  border: 1px solid $ink
+  border-radius: 50%
+  background: $orange
   color: $ink
-  background: rgba(255, 154, 61, .95)
-  font-size: rem(12)
-  font-weight: 900
+  font-size: rem(24)
+  cursor: pointer
+  transition: background .2s, opacity .2s
+  &:hover:not(:disabled)
+    background: #ffbd79
+  &:disabled
+    opacity: .28
+    cursor: default
+
+.experience-arrow--prev
+  left: 22px
+
+.experience-arrow--next
+  right: 22px
+
+.experience-forward-enter-active, .experience-forward-leave-active, .experience-backward-enter-active, .experience-backward-leave-active
+  transition: transform .7s cubic-bezier(.77, 0, .18, 1), opacity .7s ease
+
+.experience-forward-enter-from, .experience-backward-leave-to
+  transform: translateX(100%)
+  opacity: .35
+
+.experience-forward-leave-to, .experience-backward-enter-from
+  transform: translateX(-100%)
+  opacity: .35
+
+.experience-timeline-meta
+  display: flex
+  justify-content: space-between
+  gap: 15px
+  margin: 26px 0 13px
+  color: #d5dfd9
+  font-size: rem(11)
+  font-weight: 750
   letter-spacing: .08em
 
-.card-open
-  position: absolute
-  inset: 0
-  width: 100%
+.experience-timeline
+  overflow-x: auto
+  overscroll-behavior-inline: contain
+  scrollbar-width: thin
+  scrollbar-color: $orange transparent
+
+.experience-track
+  position: relative
+  display: flex
+  width: max-content
+  min-width: 100%
+  &::before
+    content: ''
+    position: absolute
+    top: 12px
+    left: 0
+    right: 0
+    height: 2px
+    background: rgba(255, 154, 61, .48)
+
+.experience-marker
+  position: relative
+  display: flex
+  flex: 1 0 155px
+  flex-direction: column
+  gap: 6px
+  min-width: 0
+  padding: 34px 10px 19px
   border: 0
   background: transparent
+  color: #d3ded8
+  text-align: left
   cursor: pointer
-  &:focus-visible
-    outline: 3px solid #dc6808
-    outline-offset: -6px
+  transition: color .2s
+  &::before
+    content: ''
+    position: absolute
+    top: 6px
+    left: 10px
+    width: 14px
+    height: 14px
+    border: 2px solid $orange
+    border-radius: 50%
+    background: #3c484c
+    transition: background .2s, transform .2s
+  &:hover, &.is-current
+    color: $white
+  &.is-current::before
+    background: $orange
+    transform: scale(1.18)
 
-.card-meta
-  display: flex
-  justify-content: space-between
-  color: $muted
-  font-size: rem(10)
-  font-weight: 850
-  letter-spacing: .1em
-  padding: 17px 0 7px
-
-.card-title
-  display: flex
-  justify-content: space-between
-  align-items: center
-  h3
-    font-size: rem(23)
-    margin: 0
-    @include oc.mline(2)
-  span
-    font-size: rem(22)
-
-.gallery-card figcaption > p
-  color: $muted
+.experience-marker-period
+  color: $orange
   font-size: rem(13)
-  line-height: 1.6
-  margin: 7px 0 0
+  font-weight: 850
 
-.gallery-note
-  margin: 50px 0 0
-  color: $muted
+.experience-marker-company
   font-size: rem(12)
+  line-height: 1.4
+
+.lab-teaser
+  background: #27342d
+  color: $white
+
+.lab-teaser-grid
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: clamp(42px, 7vw, 110px)
+  align-items: center
+  h2
+    margin: 22px 0
+    font-size: clamp(rem(42), 5vw, rem(76))
+    line-height: 1.2
+    letter-spacing: -.06em
+  .period
+    color: $orange
+
+.lab-teaser-copy
+  max-width: 550px
+  margin: 0 0 28px
+  color: #d0dbd0
+  font-size: rem(15)
+  line-height: 1.85
+
+.lab-teaser-list
+  border-top: 1px solid rgba(255, 255, 255, .35)
+  a
+    display: grid
+    grid-template-columns: 1fr auto
+    align-items: center
+    gap: 12px
+    padding: 26px 10px
+    border-bottom: 1px solid rgba(255, 255, 255, .35)
+    transition: padding .25s, background .25s
+    &:hover
+      padding-inline: 20px
+      background: rgba(255, 255, 255, .07)
+    span:first-child
+      grid-column: 1 / -1
+      color: #ffc692
+      font-size: rem(10)
+      letter-spacing: .13em
+      font-weight: 800
+    strong
+      font-size: clamp(rem(20), 2.2vw, rem(30))
+    span:last-child
+      font-size: rem(23)
+
+.work-page-intro, .lab-page-intro
+  padding: 90px 0 75px
+  max-width: 940px
+  h1
+    margin: 25px 0
+    font-size: clamp(rem(46), 6vw, rem(84))
+    line-height: 1.17
+    letter-spacing: -.065em
+  > p:not(.kicker)
+    max-width: 670px
+    color: $muted
+    font-size: rem(16)
+    line-height: 1.85
+
+.work-page-list
+  padding-bottom: 95px
+
+.work-page-back
+  display: inline-block
+  margin-bottom: 60px
+
+.lab-page-intro .text-link
+  display: inline-block
+  margin-top: 14px
 
 .about-section
   color: $cream
@@ -532,20 +772,18 @@ a
     font-size: rem(13)
     font-weight: 800
 
-.gallery-enter-active, .gallery-leave-active
-  transition: opacity .25s, transform .25s
-.gallery-enter-from, .gallery-leave-to
-  opacity: 0
-  transform: translateY(15px)
-.gallery-leave-active
-  position: absolute
-
 @media (max-width: 1020px)
   .hero
     min-height: 570px
     gap: 32px
   .hero h1
     font-size: clamp(rem(48), 5.6vw, rem(68))
+  .project-grid
+    gap: 16px
+  .project-cover
+    height: 340px
+  .project-cover-design strong
+    font-size: rem(43)
 
 @media (max-width: 760px)
   .shell
@@ -574,18 +812,30 @@ a
       font-size: rem(15)
     strong
       font-size: rem(16)
-  .effects-section, .gallery-section, .about-section
+  .work-section, .services-section, .experience-section, .lab-teaser, .about-section
     padding: 78px 0
+  .experience-slide
+    gap: 24px
+    padding-inline: 75px
+  .experience-slide-ordinal
+    font-size: rem(115)
+  .lab-teaser-grid
+    grid-template-columns: 1fr
+    gap: 44px
+  .work-page-intro, .lab-page-intro
+    padding: 68px 0 55px
+  .project-grid
+    grid-template-columns: 1fr 1fr
+    gap: 38px 20px
+  .project-cover
+    height: 380px
+  .services-grid
+    grid-template-columns: 1fr
+    gap: 38px
   .section-heading
     display: block
   .section-description
     margin-top: 20px
-  .effect-workbench
-    grid-template-columns: 1fr
-  .effect-preview
-    min-height: 380px
-  .effect-controls
-    padding: 25px
   .about-grid
     grid-template-columns: 1fr
     gap: 26px
@@ -599,6 +849,47 @@ a
   .hero-media
     width: 90%
     padding-bottom: 65px
+  .project-grid
+    grid-template-columns: 1fr
+  .project-cover
+    height: 370px
+  .project-details > p
+    min-height: 0
+  .service-item
+    grid-template-columns: 27px 1fr 18px
+    gap: 10px
+  .experience-heading h2
+    font-size: rem(39)
+  .experience-widget
+    margin-top: 38px
+  .experience-viewport
+    height: 420px
+  .experience-slide
+    display: block
+    padding: 38px 60px
+  .experience-slide-date
+    flex-direction: row
+    align-items: center
+    gap: 20px
+  .experience-slide-ordinal
+    font-size: rem(78)
+  .experience-slide-period
+    margin-top: 0
+    font-size: rem(22)
+  .experience-slide-content h3
+    margin-top: 9px
+    font-size: rem(30)
+  .experience-arrow
+    width: 37px
+    height: 37px
+    font-size: rem(20)
+  .experience-arrow--prev
+    left: 9px
+  .experience-arrow--next
+    right: 9px
+  .experience-timeline-meta span:last-child
+    max-width: 190px
+    text-align: right
   .hero-sticker
     right: -14px
   .media-note
@@ -607,13 +898,6 @@ a
     left: 10px
     right: auto
     bottom: -2px
-  .effect-preview
-    min-height: 300px
-  .effect-option
-    grid-template-columns: 24px 1fr 70px 18px
-    gap: 6px
-  .gallery-image
-    aspect-ratio: 4 / 3.6
   .about-stats
     gap: 9px
     strong
@@ -627,3 +911,6 @@ a
   *, *::before, *::after
     animation-duration: .01ms !important
     transition-duration: .01ms !important
+  // 經歷切換由訪客主動點擊，保留作品展示需要的水平轉場。
+  .experience-widget .experience-forward-enter-active, .experience-widget .experience-forward-leave-active, .experience-widget .experience-backward-enter-active, .experience-widget .experience-backward-leave-active
+    transition-duration: .7s !important

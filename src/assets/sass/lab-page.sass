@@ -1,0 +1,283 @@
+@use 'sass:math'
+@use './main'
+@use './effects' as fx
+@use './mixin' as oc
+@use './grid' as grid
+@use './nav-lab'
+@use './media-lightbox'
+
+$ink: #1c2420
+$muted: #65716b
+$cream: #f5f1e9
+$white: #fffcf7
+
+@function rem($px)
+  @return math.div($px, 16) * 1rem
+
+.effects-section, .gallery-section
+  scroll-margin-top: 84px
+  padding: 112px 0
+
+.standard-page .effects-section,
+.standard-page .gallery-section
+  margin-inline: -32px
+  padding-inline: 32px
+
+.standard-page .gallery-section
+  background: transparent
+
+.effects-section
+  background: $white
+
+.effect-workbench
+  display: grid
+  grid-template-columns: 1.25fr .75fr
+  min-height: 520px
+  border: 1px solid rgba(28, 36, 32, .17)
+
+.effect-preview
+  position: relative
+  overflow: hidden
+  background: #d6d1c7
+  img
+    display: block
+    width: 100%
+    height: 100%
+    position: absolute
+    inset: 0
+    object-fit: cover
+    transition: filter .45s
+  @each $name in grayscale, sepia, contrast, brightness, invert, opacity, hue-rotate, blur, saturate
+    &.effect-filter-#{$name} img
+      @include fx.image-filter($name)
+  // 舊版 pseffects 的 15 種模式；CSS 名稱中的連字號取代舊版縮寫。
+  @each $mode in multiply, screen, overlay, darken, lighten, color-dodge, color-burn, hard-light, soft-light, difference, exclusion, hue, saturation, color, luminosity
+    &.effect-blend-#{$mode}
+      @include fx.blend-overlay(rgba(255, 153, 0, .58), $mode)
+
+.effect-preview-label
+  position: absolute
+  z-index: 2
+  left: 20px
+  bottom: 20px
+  padding: 8px 11px
+  color: $cream
+  background: rgba(28, 36, 32, .83)
+  font-size: rem(11)
+  letter-spacing: .08em
+
+.effect-controls
+  display: flex
+  flex-direction: column
+  padding: clamp(20px, 3vw, 46px)
+
+.control-heading
+  font-size: rem(11)
+  font-weight: 850
+  letter-spacing: .18em
+  margin: 0 0 22px
+
+.effect-groups
+  display: flex
+  gap: 8px
+  margin-bottom: 22px
+
+.effect-group
+  flex: 1
+  min-width: 0
+  padding: 10px 6px
+  border: 1px solid rgba(28, 36, 32, .3)
+  background: transparent
+  color: $ink
+  cursor: pointer
+  font-size: rem(12)
+  font-weight: 750
+  &:hover, &.is-active
+    background: $ink
+    color: $white
+
+.effect-options
+  max-height: 425px
+  overflow-y: auto
+  overscroll-behavior: contain
+
+.effect-option
+  display: grid
+  grid-template-columns: 30px 1fr 94px 20px
+  align-items: center
+  gap: 10px
+  width: 100%
+  min-height: 67px
+  border: 0
+  border-top: 1px solid rgba(28, 36, 32, .17)
+  background: transparent
+  text-align: left
+  color: $ink
+  cursor: pointer
+  transition: padding .2s, background .2s
+  &:last-of-type
+    border-bottom: 1px solid rgba(28, 36, 32, .17)
+  &:hover, &.is-active
+    background: #ffe7d0
+    padding-inline: 11px
+
+.effect-number, .effect-english
+  color: $muted
+  font-size: rem(11)
+
+.effect-name
+  font-size: rem(17)
+  font-weight: 800
+
+.effect-arrow
+  font-size: rem(20)
+
+.control-note
+  color: $muted
+  font-size: rem(11)
+  margin: auto 0 0
+  padding-top: 20px
+
+.gallery-section
+  background: $cream
+
+.category-controls
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+  margin-bottom: 32px
+
+.category-button
+  border: 1px solid rgba(28, 36, 32, .3)
+  background: transparent
+  color: $ink
+  padding: 9px 17px
+  border-radius: 100px
+  cursor: pointer
+  font-size: rem(13)
+  transition: background .2s, color .2s
+  &:hover, &.is-active
+    background: $ink
+    color: $white
+
+.gallery-grid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  gap: 42px 24px
+  position: relative
+  @include grid.breakpoint(sm)
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  @include grid.breakpoint()
+    grid-template-columns: 1fr
+
+.gallery-card
+  figure
+    margin: 0
+
+.gallery-image
+  position: relative
+  aspect-ratio: 4 / 4.4
+  background: #ddd5c6
+  @include fx.image-reveal
+  img
+    width: 100%
+    height: 100%
+    display: block
+    object-fit: cover
+
+.gallery-placeholder
+  display: flex
+  width: 100%
+  height: 100%
+  align-items: center
+  justify-content: center
+  color: $ink
+  font-size: rem(20)
+  font-weight: 900
+  letter-spacing: .14em
+
+.image-overlay
+  position: absolute
+  inset: auto 0 0
+  min-height: 58px
+  display: flex
+  align-items: center
+  justify-content: center
+  color: $ink
+  background: rgba(255, 154, 61, .95)
+  font-size: rem(12)
+  font-weight: 900
+  letter-spacing: .08em
+
+.card-open
+  position: absolute
+  inset: 0
+  width: 100%
+  border: 0
+  background: transparent
+  cursor: pointer
+  &:focus-visible
+    outline: 3px solid #dc6808
+    outline-offset: -6px
+
+.card-meta
+  display: flex
+  justify-content: space-between
+  color: $muted
+  font-size: rem(10)
+  font-weight: 850
+  letter-spacing: .1em
+  padding: 17px 0 7px
+
+.card-title
+  display: flex
+  justify-content: space-between
+  align-items: center
+  h3
+    font-size: rem(23)
+    margin: 0
+    @include oc.mline(2)
+  span
+    font-size: rem(22)
+
+.gallery-card figcaption > p
+  color: $muted
+  font-size: rem(13)
+  line-height: 1.6
+  margin: 7px 0 0
+
+.gallery-note
+  margin: 50px 0 0
+  color: $muted
+  font-size: rem(12)
+
+.gallery-enter-active, .gallery-leave-active
+  transition: opacity .25s, transform .25s
+.gallery-enter-from, .gallery-leave-to
+  opacity: 0
+  transform: translateY(15px)
+.gallery-leave-active
+  position: absolute
+
+@media (max-width: 760px)
+  .effects-section, .gallery-section
+    padding: 78px 0
+  .effect-workbench
+    grid-template-columns: 1fr
+  .effect-preview
+    min-height: 380px
+  .effect-controls
+    padding: 25px
+
+@media (max-width: 520px)
+  .standard-page .effects-section,
+  .standard-page .gallery-section
+    margin-inline: -18px
+    padding-inline: 18px
+  .effect-preview
+    min-height: 300px
+  .effect-option
+    grid-template-columns: 24px 1fr 70px 18px
+    gap: 6px
+  .gallery-image
+    aspect-ratio: 4 / 3.6

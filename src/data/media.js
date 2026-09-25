@@ -66,26 +66,24 @@ export const mediaItems = [
     src: overhead,
   },
 
-  // 加入自己的影片或地圖時，取消註解並替換網址與封面：
+  // 影片與地圖示範沒有封面時，GalleryCard 會顯示類型文字卡。
   {
     id: "film-1",
     type: "youtube",
     category: "videos",
     categoryLabel: "VIDEO",
-    title: "影片標題",
-    caption: "影片說明",
+    title: "YouTube 嵌入示範",
+    caption: "影片與圖片共用同一個媒體檢視元件。",
     src: "https://www.youtube.com/watch?v=iyBqtc03b9M",
-    poster: "/images/你的影片封面.jpg",
   },
   {
     id: "place-1",
     type: "map",
     category: "places",
     categoryLabel: "LOCATION",
-    title: "地點名稱",
-    caption: "地點說明",
+    title: "Google 地圖嵌入示範",
+    caption: "地圖也能從圖文卡片開啟與切換。",
     src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1300!2d120.292146!3d22.68234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e059f55ca6d3b%3A0x6b5b827a9b90955c!2z5bem54ef5ZWf5piO5aCC!5e0!3m2!1szh-TW!2stw!4v1790189831097!5m2!1szh-TW!2stw",
-    poster: "/images/你的地圖封面.jpg",
   },
   // { id: 'clip-1', type: 'video', category: 'videos', categoryLabel: 'VIDEO', title: '本地影片', caption: '影片說明', src: '/videos/demo.mp4', poster: '/images/影片封面.jpg' },
 ];

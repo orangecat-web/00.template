@@ -41,12 +41,26 @@ export function usePageScroll({ duration = 600, headerOffset = 80 } = {}) {
     scrollToPosition(top)
   }
 
+  function positionInitialHash() {
+    if (!window.location.hash) return
+    let id
+    try { id = decodeURIComponent(window.location.hash.slice(1)) }
+    catch { return }
+    const target = document.getElementById(id)
+    if (!target) return
+    window.scrollTo(0, target.getBoundingClientRect().top + window.scrollY - headerOffset)
+    updateScroll()
+  }
+
   onMounted(() => {
     updateScroll()
     window.addEventListener('scroll', updateScroll, { passive: true })
+    if (document.readyState === 'complete') requestAnimationFrame(positionInitialHash)
+    else window.addEventListener('load', positionInitialHash, { once: true })
   })
   onUnmounted(() => {
     window.removeEventListener('scroll', updateScroll)
+    window.removeEventListener('load', positionInitialHash)
     if (scrollFrame) cancelAnimationFrame(scrollFrame)
   })
 
