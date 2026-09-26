@@ -1,6 +1,6 @@
 <script setup>
 import { computed, nextTick, ref } from 'vue'
-import { iconGroups } from './data/icons.js'
+import iconGroups from './data/icons.json'
 import SiteLayout from './components/SiteLayout.vue'
 
 const styles = [

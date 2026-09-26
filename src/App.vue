@@ -5,7 +5,7 @@ import ExperienceTimeline from './components/ExperienceTimeline.vue'
 import ProjectCard from './components/ProjectCard.vue'
 import SiteLayout from './components/SiteLayout.vue'
 import { mediaItems } from './data/media.js'
-import { experience } from './data/experience.js'
+import experience from './data/experience.json'
 import { featuredProjects } from './data/projects.js'
 
 const layout = ref(null)

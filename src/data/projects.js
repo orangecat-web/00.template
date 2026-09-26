@@ -1,60 +1,8 @@
-import catPair from '../assets/photos/IMG_8157.JPG'
-import dishLife from '../assets/projects/dish-life.jpg'
+import projectData from './projects.json'
 
-// 分類是資料設定；作品可同時屬於多個分類，新增類別無須改列表元件。
-export const projectCategories = [
-  { id: 'all', label: '全部作品' },
-  { id: 'graphic', label: '平面設計' },
-  { id: 'web', label: '網頁設計' },
-  { id: 'product-photo', label: '商品攝影' },
-]
-
-// 專案總清單。destination 可讓卡片直連網站；省略時進共用內頁。
-export const projects = [
-  {
-    id: 'orange-cat-vue',
-    featured: true,
-    categoryIds: ['web'],
-    category: 'FRONT-END / VUE 3',
-    title: 'Orange Cat · 互動樣版',
-    summary: '從 oc-template 延伸的 Vue 3 實作：影像輪播、媒體檢視、動態導覽與 Sass 視覺效果。',
-    role: '視覺設計、前端實作',
-    externalUrl: '/lab.html#effects',
-    externalLabel: '操作互動展示',
-    cover: 'photo',
-    image: catPair,
-    imageAlt: '兩隻橘白貓咪坐在沙發上的攝影作品',
-  },
-  {
-    id: 'bilingual-shop',
-    featured: true,
-    categoryIds: ['web'],
-    category: 'WEBSITE / REAL PROJECT',
-    title: '雙語商業資源入口網',
-    summary: '涵蓋雙語檢索、內容列表、主題資源與相簿的網站作品。',
-    role: '既有網站作品',
-    destination: {
-      type: 'url',
-      href: 'https://serv.gcis.nat.gov.tw/bilingualshop/tw/homepage',
-      label: '查看上線網站',
-    },
-    cover: 'bilingual',
-  },
-  {
-    id: 'dish-life',
-    featured: true,
-    categoryIds: ['web'],
-    category: 'WEB / VISUAL DESIGN',
-    title: 'DISH-LIFE 網站設計',
-    summary: '以商品影像、色彩與資訊層次構成的商業網站視覺作品。',
-    role: '網頁視覺設計',
-    externalUrl: 'https://orangecat-design.wixsite.com/cang/webdesign?pgid=lpkulvgb-688e7727-a90b-4450-9df3-a1440896ec6b',
-    externalLabel: '查看原始作品',
-    cover: 'dish',
-    detailImage: dishLife,
-    detailImageAlt: 'DISH-LIFE 網站設計長圖，呈現首頁商品、活動區塊與頁尾',
-  },
-]
+// 資料放 JSON，分頁與導向判斷留在 JS。
+export const projectCategories = projectData.projectCategories
+export const projects = projectData.projects
 
 export const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)
 
