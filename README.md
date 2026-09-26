@@ -16,15 +16,15 @@
 
 ## 互動實驗室的模組架構
 
-`/lab.html` 現在有影像濾鏡、選單動態、Lightbox 媒體檢視、左右滑動輪播與 360 環景五個可操作展示。`src/data/lab.json` 是展示資料清單，`src/lab/modules.js` 將 id 對應到 Vue 元件：每項包含 `id`、`eyebrow`、`label`、`title`、`description` 等欄位的設定物件；`src/LabApp.vue` 依清單產生入口與區塊編號。加入新展示時，建立獨立 Demo 元件並在 `lab.json` 新增資料、於 `modules.js` 註冊元件，不需在總頁面複製整段區塊。分頁仍保留 `status: 'planned'`，完成元件後才加入可操作區，不會顯示空殼按鈕。
+`/lab.html` 現在有影像濾鏡、選單動態、Lightbox 媒體檢視、左右滑動輪播與 360 環景五個可操作展示。`src/data/lab.json` 是展示資料清單，`src/lab/modules.js` 將 id 對應到 Vue 元件：每項包含 `id`、`eyebrow`、`label`、`title`、`description` 等欄位的設定物件；`src/LabApp.vue` 依清單產生入口與區塊編號。入口在桌面顯示方格，760px 以下切換為原生下拉選單，選取後使用共用捲動效果定位。加入新展示時，建立獨立 Demo 元件並在 `lab.json` 新增資料、於 `modules.js` 註冊元件，不需在總頁面複製整段區塊。分頁仍保留 `status: 'planned'`，完成元件後才加入可操作區，不會顯示空殼按鈕。
 
 每個展示自己管理狀態：`ImageEffectsDemo.vue` 管理濾鏡與疊色選擇；`NavMotionDemo.vue` 操作共用 `SiteLayout.vue` 的選單；`MediaGalleryDemo.vue` 使用 `GalleryCard.vue` 和 `MediaLightbox.vue`；`CarouselDemo.vue` 重用首頁的 `HeroCarousel.vue`；`PanoramaDemo.vue` 從場景清單選取素材，交給 `PanoramaViewer.vue` 顯示。圖片、影片及地圖內容集中於 `src/data/media.json`。新增濾鏡除了設定項目，也要在 `src/assets/sass/lab-page.sass` 補上對應 Sass 效果。這裡用資料物件、元件責任和組合來保留擴充性，不需要替每種動畫寫一套繼承階層。
 
 ### 360 環景素材與操作
 
-實驗室以你提供的 **「醒吾北歐風套房」2048×1024 實拍環景**作為預設場景；另外保留「山間湖景」與「設計展間」兩張**向量示意場景**供切換測試，畫面標註會區分實拍與插畫。拖曳或滑動可轉向，滾輪、`+`／`−` 按鈕可縮放，方向鍵轉向，`0` 重設視角，也可切換全螢幕。WebGL 繪圖由 `src/utils/PanoramaRenderer.js` 封裝；元件負責操作與載入，未使用 jQuery 或第三方環景服務。瀏覽器若無法啟用 WebGL，會顯示錯誤提示。
+實驗室以你提供的 **「醒吾北歐風套房」2048×1024 實拍環景**作為預設場景；另依你提供的四樓平面圖，從藍色相機點模擬一張 2:1 的「四樓走廊」環景；「山間湖景」與「設計展間」仍是向量示意場景。套房房門方向（約 169°）的熱點可進入模擬走廊，走廊左側近處的門可返回套房。只有套房環景是真實拍攝；走廊的門面、材質與光線是模擬，不能當作該建物的實景紀錄。拖曳或滑動可轉向，滾輪、`+`／`−` 按鈕可縮放，方向鍵轉向，`0` 重設視角，也可切換全螢幕。WebGL 繪圖由 `src/utils/PanoramaRenderer.js` 封裝；元件負責操作與載入，未使用 jQuery 或第三方環景服務。瀏覽器若無法啟用 WebGL，會顯示錯誤提示。
 
-正式素材使用 **2:1 的等距柱狀全景圖**，例如 4096×2048。把圖片放進 `public/images/panoramas/`、在 `src/data/panoramas.json` 新增 `{ id, label, src, description, initialYaw, initialPitch }` 即可增添場景；同一檢視器會自動讀取新資料。一般廣角照片不是環景圖，放入後無法產生真實的背面或上下視角；載入器會拒絕明顯不符合 2:1 的圖片。若使用外部圖片，來源也必須允許跨網域 WebGL 貼圖。
+正式素材使用 **2:1 的等距柱狀全景圖**，例如 4096×2048。把圖片放進 `public/images/panoramas/`、在 `src/data/panoramas.json` 新增 `{ id, label, src, description, initialYaw, initialPitch }` 即可增添場景；同一檢視器會自動讀取新資料。場景可加上 `hotspots: [{ id, label, yaw, pitch, targetSceneId }]`；`yaw`／`pitch` 是熱點在原始環景上的經緯角度（單位：度），`targetSceneId` 指向清單裡另一個場景 `id`。熱點會隨拖曳、縮放和全螢幕投影到對應位置，移出視野時隱藏。走廊圖放在 `public/images/panoramas/corridor-simulated.png`；日後拿到實拍走廊環景，可替換該場景的 `src`，並依新照片重新校準返回房門熱點的角度。一般廣角照片不是環景圖，放入後無法產生真實的背面或上下視角；載入器會拒絕明顯不符合 2:1 的圖片。若使用外部圖片，來源也必須允許跨網域 WebGL 貼圖。
 
 ## 作品列表與內頁
 

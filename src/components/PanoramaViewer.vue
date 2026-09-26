@@ -1,8 +1,10 @@
 <script setup>
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { PanoramaRenderer } from '../utils/PanoramaRenderer.js'
+import { projectPanoramaPoint } from '../utils/panoramaProjection.js'
 
 const props = defineProps({ scene: { type: Object, required: true } })
+const emit = defineEmits(['navigate'])
 const root = ref(null)
 const stage = ref(null)
 const canvas = ref(null)
@@ -12,6 +14,13 @@ const isFullscreen = ref(false)
 const yaw = ref(0)
 const pitch = ref(0)
 const fov = ref(72)
+const stageSize = ref({ width: 0, height: 0 })
+const visibleHotspots = computed(() => (props.scene.hotspots || []).flatMap((hotspot) => {
+  if (loading.value || error.value) return []
+  const position = projectPanoramaPoint(hotspot,
+    { yaw: yaw.value, pitch: pitch.value, fov: fov.value }, stageSize.value.width, stageSize.value.height)
+  return position ? [{ ...hotspot, position }] : []
+}))
 let renderer = null
 let resizeObserver = null
 let requestId = 0
@@ -21,6 +30,7 @@ const toRadians = (degrees) => degrees * Math.PI / 180
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
 
 function render() {
+  if (stage.value) stageSize.value = { width: stage.value.clientWidth, height: stage.value.clientHeight }
   renderer?.draw({ yaw: yaw.value, pitch: pitch.value, fov: fov.value })
 }
 
@@ -167,10 +177,13 @@ onBeforeUnmount(() => {
   .panorama-stage(ref="stage")
     canvas.panorama-canvas(ref="canvas" :aria-label="`拖曳查看${scene.label}環景`" @pointerdown="onPointerDown" @pointermove="onPointerMove" @pointerup="onPointerEnd" @pointercancel="onPointerEnd" @wheel.prevent="zoom($event.deltaY * .06)" @contextmenu.prevent)
     .panorama-status(v-if="loading || error" role="status") {{ error || '載入環景中…' }}
+    button.panorama-hotspot(v-for="hotspot in visibleHotspots" :key="hotspot.id" type="button" :style="hotspot.position" :aria-label="hotspot.label" @click="emit('navigate', hotspot.targetSceneId)")
+      span.panorama-hotspot-icon(aria-hidden="true") ↗
+      span.panorama-hotspot-label {{ hotspot.label }}
     .panorama-topline
       span 360° / PANORAMA
       span {{ scene.label }}
-    span.panorama-reticle(aria-hidden="true") +
+    span.panorama-reticle(v-if="!scene.hotspots?.length" aria-hidden="true") +
     .panorama-bottomline
       span.panorama-hint 拖曳轉向 · 滾輪縮放 · 方向鍵操作
       .panorama-controls(role="group" aria-label="環景控制")

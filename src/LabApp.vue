@@ -8,6 +8,12 @@ const layout = ref(null)
 provide(labLayoutKey, layout)
 
 function goTo(id) { layout.value?.goTo(id) }
+
+function selectModule(event) {
+  if (!event.target.value) return
+  goTo(event.target.value)
+  event.target.value = ''
+}
 </script>
 
 <template lang="pug">
@@ -22,6 +28,11 @@ SiteLayout(ref="layout" page-id="lab")
       span.lab-module-number {{ String(index + 1).padStart(2, '0') }} / {{ module.eyebrow }}
       strong {{ module.label }}
       span.lab-module-arrow(aria-hidden="true") ↗
+  .lab-module-picker
+    select#lab-module-select(aria-label="選擇互動實驗室項目" @change="selectModule")
+      option(value="" disabled selected) 選擇實驗項目
+      option(v-for="(module, index) in availableLabModules" :key="module.id" :value="module.id") {{ String(index + 1).padStart(2, '0') }} / {{ module.label }}
+    span(aria-hidden="true") ↓
   section.lab-module-section(v-for="(module, index) in availableLabModules" :id="module.id" :key="module.id" :class="`lab-module--${module.id}`" :aria-labelledby="`${module.id}-title`")
     .shell
       .section-heading

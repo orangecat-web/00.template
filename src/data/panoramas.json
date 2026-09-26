@@ -6,7 +6,34 @@
     "description": "醒吾北歐風套房的實拍 360° 環景；拖曳畫面查看床鋪、窗邊與工作區。",
     "credit": "醒吾北歐風套房 / 360° 實拍 · 2048 × 1024",
     "initialYaw": 0,
-    "initialPitch": 0
+    "initialPitch": 0,
+    "hotspots": [
+      {
+        "id": "room-door",
+        "label": "走出房間 · 走廊示意",
+        "yaw": 169,
+        "pitch": -7,
+        "targetSceneId": "fourth-floor-corridor"
+      }
+    ]
+  },
+  {
+    "id": "fourth-floor-corridor",
+    "label": "四樓走廊（模擬）",
+    "src": "/images/panoramas/corridor-simulated.png",
+    "description": "依四樓平面圖、從藍色標記位置模擬的走廊 360° 場景；左側近處為 407 房門。此圖為生成示意，並非實景拍攝。",
+    "credit": "四樓走廊 / 依平面圖模擬 · 非實拍 · 1774 × 887",
+    "initialYaw": 0,
+    "initialPitch": 0,
+    "hotspots": [
+      {
+        "id": "corridor-room-407",
+        "label": "返回醒吾北歐風套房",
+        "yaw": -135,
+        "pitch": -3,
+        "targetSceneId": "xingwu-nordic-room"
+      }
+    ]
   },
   {
     "id": "mountain-lake",

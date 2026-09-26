@@ -22,6 +22,9 @@ $white: #fffcf7
   border: 1px solid rgba($ink, .24)
   background: rgba($ink, .24)
 
+.lab-module-picker
+  display: none
+
 .lab-module-link
   display: grid
   grid-template-columns: 1fr auto
@@ -150,6 +153,51 @@ $white: #fffcf7
   cursor: grab
   &:active
     cursor: grabbing
+
+.panorama-hotspot
+  position: absolute
+  z-index: 2
+  display: grid
+  justify-items: center
+  gap: 7px
+  width: max-content
+  max-width: 165px
+  padding: 0
+  border: 0
+  background: transparent
+  color: $white
+  cursor: pointer
+  transform: translate(-50%, -50%)
+  &:focus-visible
+    outline: 2px solid $white
+    outline-offset: 6px
+  &:hover .panorama-hotspot-icon, &:focus-visible .panorama-hotspot-icon
+    transform: scale(1.12)
+    background: $white
+    color: $ink
+
+.panorama-hotspot-icon
+  display: grid
+  place-items: center
+  width: 48px
+  height: 48px
+  border: 2px solid $white
+  border-radius: 50%
+  background: #ff9a3d
+  color: $ink
+  box-shadow: 0 0 0 7px rgba($white, .23), 0 4px 18px rgba($ink, .65)
+  font-size: rem(22)
+  font-weight: 800
+  transition: transform .2s, background .2s
+
+.panorama-hotspot-label
+  padding: 5px 9px
+  background: rgba($ink, .86)
+  font-size: rem(11)
+  font-weight: 750
+  line-height: 1.4
+  text-align: center
+  white-space: normal
 
 .panorama-topline, .panorama-bottomline
   position: absolute
@@ -453,7 +501,34 @@ $white: #fffcf7
 
 @media (max-width: 760px)
   .lab-module-index
-    grid-template-columns: repeat(2, minmax(0, 1fr))
+    display: none
+  .lab-module-picker
+    display: block
+    position: relative
+    margin-bottom: 24px
+    select
+      appearance: none
+      width: 100%
+      min-height: 62px
+      padding: 14px 54px 14px 18px
+      border: 1px solid rgba($ink, .35)
+      border-radius: 0
+      background: $cream
+      color: $ink
+      font: inherit
+      font-size: rem(16)
+      font-weight: 750
+      cursor: pointer
+      &:focus-visible
+        outline: 2px solid #e67828
+        outline-offset: 3px
+    span
+      position: absolute
+      top: 50%
+      right: 19px
+      transform: translateY(-50%)
+      color: $ink
+      pointer-events: none
   .lab-module-section
     padding: 78px 0
   .carousel-demo
@@ -477,13 +552,6 @@ $white: #fffcf7
   .standard-page .lab-module-section
     margin-inline: -18px
     padding-inline: 18px
-  .lab-module-link
-    min-height: 105px
-    padding: 14px
-    &:hover
-      padding-left: 17px
-    strong
-      font-size: rem(16)
   .carousel-demo .hero-media
     width: min(90%, 460px)
   .panorama-stage
@@ -496,6 +564,9 @@ $white: #fffcf7
   .panorama-controls button
     width: 35px
     height: 35px
+  .panorama-hotspot-icon
+    width: 42px
+    height: 42px
   .effect-preview
     min-height: 300px
   .effect-option
