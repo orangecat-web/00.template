@@ -101,7 +101,7 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 
 ## 共用媒體檢視 MediaLightbox
 
-`src/components/MediaLightbox.vue` 透過 `items` 陣列決定內容，`open(id, sourceElement)` 或 `openAt(index, sourceElement)` 開啟。第二個參數可省略；傳入卡片元素時，內容會從卡片位置放大，沒有來源元素時由中央淡入。實驗室從 `src/data/media.json` 讀取同一份清單，卡片、分類與燈箱同步更新。互動與動畫都在同一個元件，不需 jQuery 或第三方 lightbox。
+`src/components/MediaLightbox.vue` 透過 `items` 陣列決定內容，`open(id, sourceElement)` 或 `openAt(index, sourceElement)` 開啟。第二個參數可省略；圖片傳入卡片元素時會從縮圖位置移動並放大至中央，關閉時縮回原位；沒有來源元素或其他媒體類型由中央淡入。圖片開啟後可用右上角按鈕或滑鼠滾輪縮放，放大後能以滑鼠或手指拖曳移動；切換項目會重設縮放位置。實驗室從 `src/data/media.json` 讀取同一份清單，卡片、分類與燈箱同步更新。互動與動畫都在同一個元件，不需 jQuery 或第三方 lightbox。
 
 | `type` | 使用資料 | 內容 |
 | --- | --- | --- |

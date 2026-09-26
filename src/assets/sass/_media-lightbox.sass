@@ -2,7 +2,8 @@
 .media-lightbox
   --lightbox-from-x: 0px
   --lightbox-from-y: 20px
-  --lightbox-from-scale: .92
+  --lightbox-from-scale-x: .45
+  --lightbox-from-scale-y: .45
   position: fixed
   inset: 0
   width: 100vw
@@ -17,10 +18,9 @@
   overflow: hidden
   &::backdrop
     background: transparent
-  &[open]:not(.is-closing)
-    animation: lightbox-appear .5s ease both
-    .lightbox-motion
-      animation: lightbox-media-in .62s cubic-bezier(.16, 1, .3, 1) both
+  &[open]:not(.is-ready)
+    opacity: 0
+  &[open].is-ready:not(.is-closing)
     .lightbox-toolbar, .lightbox-bottom, .lightbox-arrow
       animation: lightbox-controls-in .48s .12s ease both
   &.is-closing
@@ -42,8 +42,8 @@
 
 @keyframes lightbox-media-in
   from
-    opacity: 0
-    transform: translate(var(--lightbox-from-x), var(--lightbox-from-y)) scale(var(--lightbox-from-scale))
+    opacity: .65
+    transform: translate(var(--lightbox-from-x), var(--lightbox-from-y)) scale(var(--lightbox-from-scale-x), var(--lightbox-from-scale-y))
   to
     opacity: 1
     transform: translate(0, 0) scale(1)
@@ -54,7 +54,7 @@
     transform: translate(0, 0) scale(1)
   to
     opacity: 0
-    transform: translate(var(--lightbox-from-x), var(--lightbox-from-y)) scale(var(--lightbox-from-scale))
+    transform: translate(var(--lightbox-from-x), var(--lightbox-from-y)) scale(var(--lightbox-from-scale-x), var(--lightbox-from-scale-y))
 
 @keyframes lightbox-controls-in
   from
@@ -143,6 +143,13 @@
 
 .lightbox-image
   transition: transform .25s ease
+  cursor: zoom-in
+  &.is-zoomed
+    cursor: zoom-out
+    touch-action: none
+  &.is-dragging
+    cursor: grabbing
+    transition: none
 
 .lightbox-embed
   display: block
@@ -245,6 +252,12 @@
 .lightbox-switch-leave-to
   opacity: 0
   transform: scale(.985)
+
+@media (prefers-reduced-motion: reduce)
+  .media-lightbox[open].is-ready:not(.is-closing), .media-lightbox.is-closing
+    animation-duration: .01ms
+    .lightbox-motion, .lightbox-toolbar, .lightbox-bottom, .lightbox-arrow
+      animation-duration: .01ms
 
 @media (max-width: 760px)
   .lightbox-toolbar
