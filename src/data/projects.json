@@ -25,11 +25,14 @@
         "web"
       ],
       "category": "FRONT-END / VUE 3",
-      "title": "Orange Cat · 互動樣版",
+      "title": "互動實驗室",
       "summary": "從 oc-template 延伸的 Vue 3 實作：影像輪播、媒體檢視、動態導覽與 Sass 視覺效果。",
       "role": "視覺設計、前端實作",
-      "externalUrl": "/lab.html#effects",
-      "externalLabel": "操作互動展示",
+      "destination": {
+        "type": "url",
+        "href": "/lab.html",
+        "label": "進入互動實驗室"
+      },
       "cover": "photo",
       "image": "/images/photos/IMG_8157.JPG",
       "imageAlt": "兩隻橘白貓咪坐在沙發上的攝影作品"

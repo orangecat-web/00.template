@@ -134,14 +134,30 @@ $white: #fffcf7
 
 .panorama-viewer
   background: #172d35
+  color: $white
   outline-offset: 5px
-  &:fullscreen
+  &:fullscreen, &.is-fallback-fullscreen
     width: 100vw
+    height: 100vh
     height: 100dvh
     .panorama-stage
       height: 100%
       max-height: none
       aspect-ratio: auto
+    .panorama-scene-menu
+      top: max(14px, env(safe-area-inset-top))
+      left: max(14px, env(safe-area-inset-left))
+    .panorama-floorplan
+      bottom: max(14px, env(safe-area-inset-bottom))
+      left: max(14px, env(safe-area-inset-left))
+    .panorama-bottomline
+      right: max(16px, env(safe-area-inset-right))
+      bottom: max(20px, env(safe-area-inset-bottom))
+  &.is-fallback-fullscreen
+    position: fixed
+    z-index: 1000
+    inset: 0
+    width: 100%
 
 .panorama-stage
   position: relative
@@ -714,6 +730,8 @@ $white: #fffcf7
     flex-direction: column
   .panorama-stage
     height: min(64vh, 520px)
+  .panorama-bottomline
+    justify-content: flex-end
   .panorama-hint
     display: none
   .effect-workbench
@@ -748,6 +766,8 @@ $white: #fffcf7
       width: min(190px, calc(100% - 28px))
   .panorama-bottomline
     align-items: end
+  .panorama-controls
+    flex-direction: column
   .panorama-hint
     max-width: 135px
     line-height: 1.5
