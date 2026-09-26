@@ -14,20 +14,215 @@ $white: #fffcf7
 @function rem($px)
   @return math.div($px, 16) * 1rem
 
-.effects-section, .gallery-section
+.lab-module-index
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr))
+  gap: 1px
+  margin-bottom: 24px
+  border: 1px solid rgba($ink, .24)
+  background: rgba($ink, .24)
+
+.lab-module-link
+  display: grid
+  grid-template-columns: 1fr auto
+  gap: 14px
+  align-items: center
+  min-height: 125px
+  padding: clamp(18px, 2vw, 30px)
+  background: $cream
+  transition: background .25s, padding .25s
+  &:hover
+    background: #ffe7d0
+    padding-left: clamp(24px, 2.6vw, 38px)
+  .lab-module-number
+    grid-column: 1 / -1
+    color: $muted
+    font-size: rem(10)
+    font-weight: 850
+    letter-spacing: .12em
+  strong
+    font-size: clamp(rem(17), 1.8vw, rem(23))
+  .lab-module-arrow
+    font-size: rem(22)
+
+.lab-module-section
   scroll-margin-top: 84px
   padding: 112px 0
 
-.standard-page .effects-section,
-.standard-page .gallery-section
+.standard-page .lab-module-section
   margin-inline: -32px
   padding-inline: 32px
 
-.standard-page .gallery-section
-  background: transparent
-
-.effects-section
+.lab-module--effects, .lab-module--carousel
   background: $white
+
+.lab-module--nav-demo, .lab-module--gallery
+  background: $cream
+
+.lab-module--nav-demo .nav-lab
+  margin-top: 0
+
+.carousel-demo
+  display: grid
+  grid-template-columns: 1fr 1fr
+  align-items: center
+  gap: clamp(32px, 6vw, 90px)
+  min-height: 590px
+
+.carousel-demo-copy
+  h3
+    margin: 20px 0
+    font-size: clamp(rem(32), 3.8vw, rem(54))
+    line-height: 1.25
+    letter-spacing: -.05em
+  > p:last-child
+    max-width: 480px
+    color: $muted
+    font-size: rem(15)
+    line-height: 1.85
+
+.carousel-demo .hero-media
+  width: min(100%, 520px)
+  justify-self: center
+
+.lab-module--panorama
+  background: $ink
+  color: $white
+  .section-description
+    color: #bbc9bf
+
+.panorama-scene-bar
+  display: flex
+  align-items: end
+  justify-content: space-between
+  gap: 28px
+  margin-bottom: 24px
+
+.panorama-scene-description
+  margin: 12px 0 0
+  color: #bbc9bf
+  font-size: rem(13)
+  line-height: 1.7
+
+.panorama-scene-options
+  display: flex
+  gap: 8px
+  flex-wrap: wrap
+
+.panorama-scene-button
+  padding: 11px 17px
+  border: 1px solid rgba($white, .5)
+  background: transparent
+  color: $white
+  cursor: pointer
+  font-size: rem(13)
+  font-weight: 750
+  white-space: nowrap
+  &:hover, &.is-active
+    border-color: #ff9a3d
+    background: #ff9a3d
+    color: $ink
+
+.panorama-viewer
+  background: #172d35
+  outline-offset: 5px
+  &:fullscreen
+    width: 100vw
+    height: 100dvh
+    .panorama-stage
+      height: 100%
+      max-height: none
+      aspect-ratio: auto
+
+.panorama-stage
+  position: relative
+  isolation: isolate
+  width: 100%
+  height: clamp(420px, 52vw, 680px)
+  overflow: hidden
+  border: 1px solid rgba($white, .25)
+
+.panorama-canvas
+  display: block
+  width: 100%
+  height: 100%
+  touch-action: none
+  cursor: grab
+  &:active
+    cursor: grabbing
+
+.panorama-topline, .panorama-bottomline
+  position: absolute
+  z-index: 2
+  right: clamp(16px, 3vw, 36px)
+  left: clamp(16px, 3vw, 36px)
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 16px
+  pointer-events: none
+
+.panorama-topline
+  top: 24px
+  font-size: rem(11)
+  font-weight: 850
+  letter-spacing: .15em
+  text-shadow: 0 2px 8px #142c31
+
+.panorama-bottomline
+  bottom: 24px
+
+.panorama-hint
+  color: $white
+  font-size: rem(12)
+  font-weight: 750
+  text-shadow: 0 2px 8px #142c31
+
+.panorama-controls
+  display: flex
+  gap: 6px
+  pointer-events: auto
+  button
+    display: grid
+    place-items: center
+    width: 42px
+    height: 42px
+    border: 1px solid rgba($white, .55)
+    background: rgba($ink, .78)
+    color: $white
+    cursor: pointer
+    font-size: rem(20)
+    &:hover
+      background: #ff9a3d
+      color: $ink
+
+.panorama-reticle
+  position: absolute
+  z-index: 1
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  color: rgba($white, .65)
+  font-size: rem(22)
+  font-weight: 300
+  pointer-events: none
+
+.panorama-status
+  position: absolute
+  z-index: 3
+  inset: 0
+  display: grid
+  place-items: center
+  padding: 30px
+  background: rgba($ink, .73)
+  color: $white
+  text-align: center
+  font-size: rem(14)
+
+.panorama-credit
+  margin: 15px 0 0
+  color: #bbc9bf
+  font-size: rem(11)
 
 .effect-workbench
   display: grid
@@ -137,9 +332,6 @@ $white: #fffcf7
   font-size: rem(11)
   margin: auto 0 0
   padding-top: 20px
-
-.gallery-section
-  background: $cream
 
 .category-controls
   display: flex
@@ -260,8 +452,20 @@ $white: #fffcf7
   position: absolute
 
 @media (max-width: 760px)
-  .effects-section, .gallery-section
+  .lab-module-index
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  .lab-module-section
     padding: 78px 0
+  .carousel-demo
+    grid-template-columns: 1fr
+    min-height: 0
+  .carousel-demo .hero-media
+    width: min(85%, 460px)
+  .panorama-scene-bar
+    align-items: start
+    flex-direction: column
+  .panorama-stage
+    height: min(64vh, 520px)
   .effect-workbench
     grid-template-columns: 1fr
   .effect-preview
@@ -270,10 +474,28 @@ $white: #fffcf7
     padding: 25px
 
 @media (max-width: 520px)
-  .standard-page .effects-section,
-  .standard-page .gallery-section
+  .standard-page .lab-module-section
     margin-inline: -18px
     padding-inline: 18px
+  .lab-module-link
+    min-height: 105px
+    padding: 14px
+    &:hover
+      padding-left: 17px
+    strong
+      font-size: rem(16)
+  .carousel-demo .hero-media
+    width: min(90%, 460px)
+  .panorama-stage
+    height: 440px
+  .panorama-bottomline
+    align-items: end
+  .panorama-hint
+    max-width: 135px
+    line-height: 1.5
+  .panorama-controls button
+    width: 35px
+    height: 35px
   .effect-preview
     min-height: 300px
   .effect-option

@@ -8,6 +8,18 @@
 
 `src/data/media.js` 仍管理實驗室圖庫和燈箱內容，與專案資料分開。首頁載入 `main.sass`，實驗室額外載入 `lab-page.sass` 中的效果、媒體檢視及導覽試玩樣式；Vite 會產生對應的 CSS。既有選單、回頁首、輪播與 Google Icons 專頁保留。`npm run build` 會檢查五個入口。關於與聯絡頁預計獨立製作；目前還沒有公開聯絡信箱，所以首頁沒有失效的聯絡按鈕。
 
+## 互動實驗室的模組架構
+
+`/lab.html` 現在有影像濾鏡、選單動態、Lightbox 媒體檢視、左右滑動輪播與 360 環景五個可操作展示。`src/lab/modules.js` 是模組清單：每項是包含 `id`、`eyebrow`、`label`、`title`、`description` 和 `component` 的設定物件；`src/LabApp.vue` 依清單產生入口與區塊編號。加入新展示時，建立獨立 Demo 元件並新增一項設定，不需在總頁面複製整段區塊。分頁仍保留 `status: 'planned'`，完成元件後才加入可操作區，不會顯示空殼按鈕。
+
+每個展示自己管理狀態：`ImageEffectsDemo.vue` 管理濾鏡與疊色選擇；`NavMotionDemo.vue` 操作共用 `SiteLayout.vue` 的選單；`MediaGalleryDemo.vue` 使用 `GalleryCard.vue` 和 `MediaLightbox.vue`；`CarouselDemo.vue` 重用首頁的 `HeroCarousel.vue`；`PanoramaDemo.vue` 從場景清單選取素材，交給 `PanoramaViewer.vue` 顯示。圖片、影片及地圖內容仍集中於 `src/data/media.js`。新增濾鏡除了設定項目，也要在 `src/assets/sass/lab-page.sass` 補上對應 Sass 效果。這裡用資料物件、元件責任和組合來保留擴充性，不需要替每種動畫寫一套繼承階層。
+
+### 360 環景素材與操作
+
+實驗室目前有「山間湖景」與「設計展間」兩張**向量示意場景**，展示球面投影，不宣稱是實際拍攝的環景。拖曳或滑動可轉向，滾輪、`+`／`−` 按鈕可縮放，方向鍵轉向，`0` 重設視角，也可切換全螢幕。WebGL 繪圖由 `src/utils/PanoramaRenderer.js` 封裝；元件負責操作與載入，未使用 jQuery 或第三方環景服務。瀏覽器若無法啟用 WebGL，會顯示錯誤提示。
+
+正式素材使用 **2:1 的等距柱狀全景圖**，例如 4096×2048。把圖片放進 `src/assets/panoramas/`、在 `src/data/panoramas.js` import，新增 `{ id, label, src, description, initialYaw, initialPitch }` 即可增添場景；同一檢視器會自動讀取新資料。一般廣角照片不是環景圖，放入後無法產生真實的背面或上下視角；載入器會拒絕明顯不符合 2:1 的圖片。若使用外部圖片，來源也必須允許跨網域 WebGL 貼圖。
+
 ## 作品列表與內頁
 
 `/work.html` 可選「全部作品／平面設計／網頁設計／商品攝影」分類。每個分類最多顯示 18 件作品；第 19 件開始自動出現頁碼。分類和頁碼會同步網址，例如 `/work.html?category=web&page=2`，可以直接分享；瀏覽器上一頁也能恢復篩選與頁碼。切換分類從第 1 頁開始，空分類顯示整理中的提示。分頁元件在 `src/components/PaginationNav.vue`，計算邏輯在 `src/utils/pagination.js`。目前只有三件真實資料，均歸在網頁設計；沒有案例的分類不會杜撰內容。
@@ -44,8 +56,8 @@ npm run dev
 | `sass/_navs.sass` | 重新實作 | `src/assets/sass/_navs.sass`；四方向的 offcanvas 位置與覆蓋／推擠轉場，實驗室的八組試玩樣式另外放在 `_nav-lab.sass` |
 | `pug/icon_exsample.pug`、`sass/_icons.sass` | 獨立頁移植 | `icons.html`、`src/IconsApp.vue`、`src/data/icons.js`、`src/assets/sass/_icons.sass`；五種本地字型在 `src/assets/fonts/`，僅由 `icons-page.sass` 載入 |
 | `pug/_base.pug` | 結構改寫 | `src/components/SiteLayout.vue` 的共用 header、nav、footer、回頂；頁面內容各由 `App.vue`、`IconsApp.vue` 填入，桌面與手機共用一份 `<nav>` |
-| `pug/graphic_list.pug`、`pug/tools/_list.pug` | 元件化改寫 | `src/components/GalleryCard.vue`、`src/LabApp.vue` 與 `src/data/media.js`；用 `v-for` 取代重複 markup |
-| `pug/portfolio.pug` | 效果概念沿用 | `LabApp.vue` 的視覺效果實驗區；大量效果尚未逐一搬完 |
+| `pug/graphic_list.pug`、`pug/tools/_list.pug` | 元件化改寫 | `src/components/GalleryCard.vue`、`src/lab/MediaGalleryDemo.vue` 與 `src/data/media.js`；用 `v-for` 取代重複 markup |
+| `pug/portfolio.pug` | 效果概念沿用 | `src/lab/ImageEffectsDemo.vue` 的視覺效果實驗區；大量效果尚未逐一搬完 |
 | 舊版全部 13 支 `_*.sass` partial | 原檔複製 | `reference/legacy-sass/`；完整保留你的工具庫。`_effects.sass`、`_mixin.sass`、`_function.sass`、`_grid.sass`、`_include.sass`、`_spacing.sass`、`_navs.sass` 已另做新版模組 |
 | 舊版 `css/`、`dist/`、根目錄 HTML | 不複製 | 舊版編譯產物；新版交給 Vite 從 Vue / Sass 產生 |
 | `js/jquery-3.5.0.js`、`js/nav/slidebars*`、`js/basic.js` | 不複製 | 導覽功能由 `src/composables/useOffcanvas.js`、共用的 `SiteLayout.vue` 實作；`usePageScroll.js` 負責捲動，媒體檢視使用 `<dialog>` |
@@ -55,7 +67,7 @@ npm run dev
 
 `src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂，copyright 在此元件統一輸出。全站四頁使用 `src/data/navigation.js` 的同一組主導覽、同一套 logo 尺寸與頁首外觀；`.shell` 容器也定義在共用 `_site-chrome.sass`，Icons 頁不必載入首頁樣式就能對齊頁首與頁尾。`pageId` 僅標示目前頁。首頁區塊連結在首頁改為本頁錨點，交由共用 600ms 動畫捲動；在內頁則連回首頁對應區塊。新增主項目只需編輯這一份清單，頁內工具導覽仍由各頁負責。
 
-`src/composables/useOffcanvas.js` 管理 nav 的四方向、覆蓋／推擠和開關；`usePageScroll.js` 管理 350px header、200px 回頂與 600ms 捲動。共用元件會攔截本頁 `#section-id` 的 nav 連結，以同一動畫捲至目標（扣除 header 高度）；跨頁連結照網址導航。八種模式試玩位於 `LabApp.vue`，只控制共用 nav。
+`src/composables/useOffcanvas.js` 管理 nav 的四方向、覆蓋／推擠和開關；`usePageScroll.js` 管理 350px header、200px 回頂與 600ms 捲動。共用元件會攔截本頁 `#section-id` 的 nav 連結，以同一動畫捲至目標（扣除 header 高度）；跨頁連結照網址導航。八種模式試玩位於 `src/lab/NavMotionDemo.vue`，透過 `src/lab/context.js` 取得共用外框實例，只控制同一份 nav。
 
 Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.sass` 和 `_navs.sass`）、`main.sass`（首頁與作品頁版型）、`lab-page.sass`（實驗室效果、媒體檢視和 `_nav-lab.sass`）與 `icons-page.sass`（圖示頁）。Vite 打包後會按入口產生 CSS，圖示字型僅在圖示頁載入。
 
@@ -66,7 +78,7 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 ## 已可操作
 
 - 首頁精選照片由 `src/components/HeroCarousel.vue` 讀取 `src/data/media.js` 裡的圖片項目；每 6 秒向左滑動切換，上一張向右、下一張向左，也能暫停或在手機左右滑。游標停留、鍵盤焦點進入、分頁隱藏或輪播滑出畫面時會暫停；系統設定減少動態效果時不會自動播放。
-- 視覺效果切換：原色與 9 種圖片濾鏡（灰階、懷舊、對比、亮度、反相、透明度、色相旋轉、模糊、飽和度），以及舊版 `pseffects` 的 15 種疊色模式。模式名稱和濾鏡參數可在 `src/assets/sass/_effects.sass`、`lab-page.sass` 調整；效果清單在 `src/LabApp.vue`。
+- 視覺效果切換：原色與 9 種圖片濾鏡（灰階、懷舊、對比、亮度、反相、透明度、色相旋轉、模糊、飽和度），以及舊版 `pseffects` 的 15 種疊色模式。模式名稱和濾鏡參數可在 `src/assets/sass/_effects.sass`、`lab-page.sass` 調整；效果清單在 `src/lab/ImageEffectsDemo.vue`。
 - 導覽動態試玩：一份導覽內容，四個方向（左、右、上、下）與兩個模式（覆蓋、推擠）；可用關閉鈕、背景或 Esc 關閉，開啟時鎖住背景捲動。手機的選單鈕使用同一份導覽。
 - 圖文卡片依類別篩選、滑入效果；點擊後開啟深色全螢幕媒體檢視，圖片由卡片位置放大進場。左右兩側切換、右上角縮圖／縮放／輪播／全螢幕／關閉，支援方向鍵、手機左右滑、Esc 和背景點擊。元件與樣式位於 `src/components/MediaLightbox.vue`、`src/assets/sass/_media-lightbox.sass`。
 - 手機選單、頁面定位捲動、回到頁首；保留舊版 `basic.js` 的門檻：捲過 350px 縮小 header、捲過 200px 顯示回頁首，點擊後以原生 `requestAnimationFrame` 做 600ms 捲動。全部沒有 jQuery 執行相依。
@@ -90,7 +102,7 @@ Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.
 
 ### 在同一份清單混用圖片、影片與地圖
 
-編輯 `src/data/media.js` 的 `mediaItems`，把下列項目加在現有照片後面，換成自己的網址和封面即可。實驗室會自動出現「影片」與「地點」分類，點卡片後開啟對應內容；`src/LabApp.vue` 不用另外建立一份影片或地圖陣列。`public/images/` 的圖片以 `/images/檔名.jpg` 引用；若放在 `src/assets/`，先 import 再指定給 `poster`。
+編輯 `src/data/media.js` 的 `mediaItems`，把下列項目加在現有照片後面，換成自己的網址和封面即可。實驗室會自動出現「影片」與「地點」分類，點卡片後開啟對應內容；`src/lab/MediaGalleryDemo.vue` 不用另外建立一份影片或地圖陣列。`public/images/` 的圖片以 `/images/檔名.jpg` 引用；若放在 `src/assets/`，先 import 再指定給 `poster`。
 
 ```js
 { id: 'film-1', type: 'youtube', category: 'videos', categoryLabel: 'VIDEO',
