@@ -1,6 +1,8 @@
 [
   {
     "id": "xingwu-nordic-room",
+    "group": "tour",
+    "availability": "showcase",
     "label": "醒吾北歐風套房",
     "src": "/images/panoramas/360room.jpg",
     "description": "醒吾北歐風套房的實拍 360° 環景；拖曳畫面查看床鋪、窗邊與工作區。",
@@ -19,6 +21,9 @@
   },
   {
     "id": "fourth-floor-corridor",
+    "group": "tour",
+    "availability": "shared",
+    "parentId": "xingwu-nordic-room",
     "label": "四樓走廊（模擬）",
     "src": "/images/panoramas/corridor-simulated.png",
     "description": "依四樓平面圖、從藍色標記位置模擬的走廊 360° 場景；左側近處為 407 房門。此圖為生成示意，並非實景拍攝。",
@@ -37,6 +42,7 @@
   },
   {
     "id": "mountain-lake",
+    "group": "demo",
     "label": "山間湖景",
     "src": "/images/panoramas/mountain-lake.svg",
     "description": "以向量繪製的示範環景，用來展示 360° 球面觀看與縮放。",
@@ -46,6 +52,7 @@
   },
   {
     "id": "design-studio",
+    "group": "demo",
     "label": "設計展間",
     "src": "/images/panoramas/design-studio.svg",
     "description": "第二個示範場景，展示同一個檢視器切換素材。",

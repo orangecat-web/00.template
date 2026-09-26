@@ -1,0 +1,12 @@
+{
+  "floorPlan": {
+    "rootSceneId": "xingwu-nordic-room",
+    "src": "/images/panoramas/fourth-floor-plan.jpg",
+    "alt": "四樓平面圖：紅框標出 407 套房，橘框標出模擬走廊，藍圈標出走廊環景的相機位置",
+    "caption": "點選紅框房間或橘框走廊進入環景；藍點是模擬走廊機位。",
+    "spots": [
+      { "id": "room-407", "label": "407 房間", "sceneId": "xingwu-nordic-room", "left": 63, "top": 53, "width": 32, "height": 40 },
+      { "id": "fourth-floor-hall", "label": "四樓走廊", "sceneId": "fourth-floor-corridor", "left": 23, "top": 44, "width": 53, "height": 7 }
+    ]
+  }
+}

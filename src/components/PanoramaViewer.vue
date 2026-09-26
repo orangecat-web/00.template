@@ -2,8 +2,13 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { PanoramaRenderer } from '../utils/PanoramaRenderer.js'
 import { projectPanoramaPoint } from '../utils/panoramaProjection.js'
+import { canOpenPanorama, unavailablePanoramaLabel } from '../utils/panoramaAccess.js'
 
-const props = defineProps({ scene: { type: Object, required: true } })
+const props = defineProps({
+  scene: { type: Object, required: true },
+  scenes: { type: Array, default: () => [] },
+  floorPlan: { type: Object, default: null },
+})
 const emit = defineEmits(['navigate'])
 const root = ref(null)
 const stage = ref(null)
@@ -11,12 +16,14 @@ const canvas = ref(null)
 const loading = ref(true)
 const error = ref('')
 const isFullscreen = ref(false)
+const floorPlanOpen = ref(false)
+const sceneMenuOpen = ref(true)
 const yaw = ref(0)
 const pitch = ref(0)
 const fov = ref(72)
 const stageSize = ref({ width: 0, height: 0 })
 const visibleHotspots = computed(() => (props.scene.hotspots || []).flatMap((hotspot) => {
-  if (loading.value || error.value) return []
+  if (loading.value || error.value || !canOpenPanorama(hotspot.targetSceneId, props.scenes)) return []
   const position = projectPanoramaPoint(hotspot,
     { yaw: yaw.value, pitch: pitch.value, fov: fov.value }, stageSize.value.width, stageSize.value.height)
   return position ? [{ ...hotspot, position }] : []
@@ -120,6 +127,21 @@ function onKeyDown(event) {
   actions[event.key]()
 }
 
+function selectScene(targetId) {
+  if (!canOpenPanorama(targetId, props.scenes)) return
+  sceneMenuOpen.value = false
+  emit('navigate', targetId)
+}
+
+function unavailableLabel(sceneId) {
+  return unavailablePanoramaLabel(props.scenes.find((item) => item.id === sceneId))
+}
+
+function toggleFloorPlan() {
+  floorPlanOpen.value = !floorPlanOpen.value
+  if (floorPlanOpen.value) sceneMenuOpen.value = false
+}
+
 async function toggleFullscreen() {
   try {
     if (document.fullscreenElement === root.value) await document.exitFullscreen()
@@ -182,7 +204,24 @@ onBeforeUnmount(() => {
       span.panorama-hotspot-label {{ hotspot.label }}
     .panorama-topline
       span 360° / PANORAMA
-      span {{ scene.label }}
+    .panorama-scene-menu(v-if="scenes.length" aria-label="房間環景選單")
+      button.panorama-menu-toggle(type="button" :aria-expanded="sceneMenuOpen" aria-controls="panorama-room-scene-list" @click="sceneMenuOpen = !sceneMenuOpen")
+        span.panorama-menu-toggle-text
+          small {{ sceneMenuOpen ? `ROOMS / ${String(scenes.length).padStart(2, '0')}` : '目前位置' }}
+          span {{ scene.label }}
+        span.panorama-menu-chevron(aria-hidden="true") {{ sceneMenuOpen ? '⌃' : '⌄' }}
+      .panorama-menu-list(v-show="sceneMenuOpen" id="panorama-room-scene-list")
+        button.panorama-menu-option(v-for="item in scenes" :key="item.id" type="button" :class="{ 'is-active': scene.id === item.id }" :disabled="!canOpenPanorama(item.id, scenes)" :aria-current="scene.id === item.id ? 'true' : undefined" @click="selectScene(item.id)")
+          span {{ item.label }}
+          small(v-if="!canOpenPanorama(item.id, scenes)") {{ unavailablePanoramaLabel(item) }}
+    .panorama-floorplan(v-if="floorPlan?.src" :class="{ 'is-open': floorPlanOpen }")
+      button.panorama-floorplan-toggle(type="button" :aria-expanded="floorPlanOpen" aria-controls="panorama-floorplan-image" @click="toggleFloorPlan") {{ floorPlanOpen ? '收起格局圖' : '展開格局圖' }} {{ floorPlanOpen ? '⌄' : '⌃' }}
+      .panorama-floorplan-content(v-show="floorPlanOpen" id="panorama-floorplan-image")
+        .panorama-floorplan-map
+          img(:src="floorPlan.src" :alt="floorPlan.alt" loading="lazy")
+          button.panorama-map-spot(v-for="spot in floorPlan.spots || []" :key="spot.id" type="button" :class="{ 'is-current': scene.id === spot.sceneId }" :style="{ left: `${spot.left}%`, top: `${spot.top}%`, width: `${spot.width}%`, height: `${spot.height}%` }" :disabled="!canOpenPanorama(spot.sceneId, scenes)" :aria-label="canOpenPanorama(spot.sceneId, scenes) ? `進入${spot.label}的 360 度環景` : `${spot.label}${unavailableLabel(spot.sceneId)}，無法檢視環景`" :aria-current="scene.id === spot.sceneId ? 'location' : undefined" @click="selectScene(spot.sceneId)")
+            span {{ spot.label }}{{ canOpenPanorama(spot.sceneId, scenes) ? '' : ` · ${unavailableLabel(spot.sceneId)}` }}
+        p(v-if="floorPlan.caption") {{ floorPlan.caption }}
     span.panorama-reticle(v-if="!scene.hotspots?.length" aria-hidden="true") +
     .panorama-bottomline
       span.panorama-hint 拖曳轉向 · 滾輪縮放 · 方向鍵操作
