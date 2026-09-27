@@ -71,6 +71,10 @@ SiteLayout(ref="layout" page-id="work")
         label.sr-only(for="work-search-input") 搜尋作品
         input#work-search-input(v-model="query" type="search" placeholder="搜尋作品名稱、內容或類型" autocomplete="off" @input="updateQuery" @keydown.esc="clearQuery")
         button(v-if="query" type="button" aria-label="清除搜尋關鍵字" @click="clearQuery") 清除
+        span.work-search-icon(aria-hidden="true")
+          svg(viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+            circle(cx="10.8" cy="10.8" r="6.8")
+            path(d="m16 16 4.5 4.5")
       .work-category-tabs(role="group" aria-label="作品分類")
         button.work-category-tab(v-for="item in projectCategories" :key="item.id" type="button" :class="{ 'is-active': category === item.id }" :aria-pressed="category === item.id" @click="selectCategory(item.id)") {{ item.label }}
     p.work-result-count(v-if="query.trim()") 符合「{{ query.trim() }}」的 {{ filteredProjects.length }} 件作品
