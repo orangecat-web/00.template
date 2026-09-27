@@ -57,7 +57,7 @@ div#top(:class="[isHome ? 'site' : 'standard-page', { 'nav-pushed': navVisible &
     .shell.footer-inner
       span © {{ year }} orangeCat's photography
       span VUE 3 / PUG / SASS / VANILLA JS
-      a(href="#top" @click.prevent="goTo('top')") BACK TO TOP ↑
+      //- a(href="#top" @click.prevent="goTo('top')") BACK TO TOP ↑
   Transition(name="back-to-top")
     button.back-to-top.goTop(v-if="showGoTop" type="button" aria-label="回到頁首" @click="goTo('top')")
       img(src="/images/btn_gotop.svg" alt="")

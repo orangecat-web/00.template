@@ -1,209 +1,56 @@
-# 00.template — Vue 3 作品集與互動實驗室
+# 00.template
 
-本專案是可獨立展示的前端作品集。新接手的工程師請先看 [前後端交接說明](docs/backend-handoff.md)：包含建置與部署、作品資料欄位、圖片路徑、網址規則和日後 API 串接邊界。下方保留開發過程中的設計與移植紀錄。
+我用 Vue 3 製作的作品集與互動展示。網站可獨立執行；作品資料目前由本地 JSON 提供，尚未連接後端 API。
 
-## 首頁作品版（2026-09-26）
+## 技術與啟動
 
-首頁現在依序呈現個人定位、三件精選作品、合作服務、工作經歷、互動實驗室預告與關於我的短摘要。完整作品一覽在 `/work.html`，原本首頁的影像濾鏡、八種導覽動態及圖文媒體檢視移到 `/lab.html`；Google Icons 維持 `/icons.html`。精選作品由 `src/data/projects.json` 管理，`projects.js` 負責篩選與導向，卡片元件是 `src/components/ProjectCard.vue`。新增專案到 `projects` 後，作品頁會自動列出；設定 `featured: true` 的前三件會出現在首頁。首頁及列表卡片一律先進作品內頁，實際網站或可操作展示的連結放在內頁。
+- Vue 3、Vite、Pug、縮排式 Sass、原生 JavaScript；無 jQuery 執行相依。
+- Node.js 與 npm 環境下執行：
 
-首頁 `03 / EXPERIENCE` 參考 Knight Lab TimelineJS 的閱讀方式：中央一次顯示一段經歷，使用左右箭頭或下方年份節點切換，內容會依方向水平滑動。七段資料集中在 `src/data/experience.json`，元件是 `src/components/ExperienceTimeline.vue`，不需 jQuery、外部 iframe 或試算表；時間軸可在手機橫向捲動，也支援鍵盤左右鍵。首頁文字維持摘要長度，未來完整職責與成果可放在 About 頁。
-
-`src/data/media.json` 管理實驗室圖庫和燈箱內容；`media.js` 提供共用入口，與專案資料分開。首頁載入 `main.sass`，實驗室額外載入 `lab-page.sass` 中的效果、媒體檢視及導覽試玩樣式；Vite 會產生對應的 CSS。既有選單、回頁首、輪播與 Google Icons 專頁保留。`npm run build` 會檢查五個入口。關於與聯絡頁預計獨立製作；目前還沒有公開聯絡信箱，所以首頁沒有失效的聯絡按鈕。
-
-## 內容資料與後端串接
-
-內容集中於 `src/data/*.json`：`projects.json`（分類及作品）、`media.json`（照片、影片與地圖）、`panoramas.json`（環景）、`navigation.json`、`experience.json`、`icons.json`、`lab.json`。圖片位於 `public/images/`，以 `/images/...` 指向。每項作品、媒體與環景應有唯一 `id`。修改 JSON 後，開發模式會更新畫面；正式版需重新執行 `npm run build` 並部署。
-
-目前 JSON 是由 Vite **建置時匯入前端**，尚無後端 API，不能把改動 JSON 誤稱為即時更新。日後接 API 時，可以把 `projects.js`／`media.js` 這類入口改為資料取得與轉換層，由後端回傳相同欄位的 JSON，元件便能沿用；非同步載入時還需處理載入中、錯誤與空資料。分類、頁碼、連結與互動邏輯繼續由 JS／Vue 處理。
-
-## 互動實驗室的模組架構
-
-`/lab.html` 現在有影像濾鏡、選單動態、Lightbox 媒體檢視、左右滑動輪播與 360 環景五個可操作展示。`src/data/lab.json` 是展示資料清單，`src/lab/modules.js` 將 id 對應到 Vue 元件：每項包含 `id`、`eyebrow`、`label`、`title`、`description` 等欄位的設定物件；`src/LabApp.vue` 依清單產生入口與區塊編號。入口在桌面顯示方格，760px 以下切換為原生下拉選單，選取後使用共用捲動效果定位。加入新展示時，建立獨立 Demo 元件並在 `lab.json` 新增資料、於 `modules.js` 註冊元件，不需在總頁面複製整段區塊。分頁仍保留 `status: 'planned'`，完成元件後才加入可操作區，不會顯示空殼按鈕。
-
-每個展示自己管理狀態：`ImageEffectsDemo.vue` 管理濾鏡與疊色選擇；`NavMotionDemo.vue` 操作共用 `SiteLayout.vue` 的選單；`MediaGalleryDemo.vue` 使用 `GalleryCard.vue` 和 `MediaLightbox.vue`；`CarouselDemo.vue` 重用首頁的 `HeroCarousel.vue`；`PanoramaDemo.vue` 從場景清單選取素材，交給 `PanoramaViewer.vue` 顯示。圖片、影片及地圖內容集中於 `src/data/media.json`。新增濾鏡除了設定項目，也要在 `src/assets/sass/lab-page.sass` 補上對應 Sass 效果。這裡用資料物件、元件責任和組合來保留擴充性，不需要替每種動畫寫一套繼承階層。
-
-### 360 環景素材與操作
-
-實驗室以你提供的 **「醒吾北歐風套房」2048×1024 實拍環景**作為預設場景；另依你提供的四樓平面圖，從藍色相機點模擬一張 2:1 的「四樓走廊」環景；「山間湖景」與「設計展間」仍是向量示意場景。套房房門方向（約 169°）的熱點可進入模擬走廊，走廊左側近處的門可返回套房。只有套房環景是真實拍攝；走廊的門面、材質與光線是模擬，不能當作該建物的實景紀錄。第一層是畫面上方右側的「醒吾北歐風套房／山間湖景／設計展間」tab；第二層「四樓走廊」只屬於套房。進入套房或走廊時，左上選單顯示這一組場景（最多四筆，超出於選單內上下捲動），左下格局圖可點選紅框房間或橘框走廊；切換到其他第一層場景時，套房選單和格局圖會隱藏。進入走廊時上方仍標示套房 tab，點選該 tab 可返回套房。展開格局圖或點選圖上區域時，左上選單會收起並顯示目前位置。藍點固定表示模擬走廊相機位置。格局圖及可點選區域由 `src/data/panoramaTour.json` 設定。拖曳或滑動可轉向，滾輪、`+`／`−` 按鈕可縮放，方向鍵轉向，`0` 重設視角，也可切換全螢幕。WebGL 繪圖由 `src/utils/PanoramaRenderer.js` 封裝；元件負責操作與載入，未使用 jQuery 或第三方環景服務。瀏覽器若無法啟用 WebGL，會顯示錯誤提示。
-
-全螢幕按鈕會先嘗試瀏覽器原生元素全螢幕；手機瀏覽器若不支援或拒絕，改以佔滿可用視窗的檢視模式顯示，保留拖曳、縮放、場景切換和平面圖。再次點按按鈕或按 Esc 可退出，並返回原先的捲動位置。後備模式可能仍會顯示手機瀏覽器的網址列／系統列，這由瀏覽器控制。
-
-正式素材使用 **2:1 的等距柱狀全景圖**，例如 4096×2048。把圖片放進 `public/images/panoramas/`、在 `src/data/panoramas.json` 新增 `{ id, label, src, description, initialYaw, initialPitch }` 即可增添第一層場景；有 `parentId` 的場景是對應第一層場景的第二層，不會出現在上方 tab。只在有子場景的第一層顯示左上選單。格局圖在 `src/data/panoramaTour.json` 指定 `rootSceneId`，只在該第一層及其子場景顯示；`spots` 各有唯一 `id`、`label`、`sceneId` 與以圖片寬高百分比表示的 `left`、`top`、`width`、`height`，`sceneId` 對應場景 ID。場景可加上 `hotspots: [{ id, label, yaw, pitch, targetSceneId }]`；`yaw`／`pitch` 是熱點在原始環景上的經緯角度（單位：度），`targetSceneId` 指向清單裡另一個場景 `id`。熱點會隨拖曳、縮放和全螢幕投影到對應位置，移出視野時隱藏。走廊圖放在 `public/images/panoramas/corridor-simulated.png`；日後拿到實拍走廊環景，可替換該場景的 `src`，並依新照片重新校準返回房門熱點的角度。一般廣角照片不是環景圖，放入後無法產生真實的背面或上下視角；載入器會拒絕明顯不符合 2:1 的圖片。若使用外部圖片，來源也必須允許跨網域 WebGL 貼圖。
-
-### 房間開放狀態
-
-`panoramas.json` 的房間可設定 `availability: "vacant"`（空房、可進入）或 `availability: "occupied"`（已出租、選單與平面圖顯示狀態但無法點選）。共用走廊使用 `"shared"`；現有套房僅作作品展示，使用 `"showcase"`，**不表示目前可租**。新加入的 `group: "tour"` 場景若未填狀態，預設無法進入。`src/utils/panoramaAccess.js` 統一檢查右上 tab、左上選單、平面圖、環景熱點與父場景；父場景已出租時，其子場景也無法進入。
-
-這是前端的操作限制。若租客**不能看到已出租房間的環景影像本身**，正式公開版還必須把該影像從 `public/`、`dist/` 和公開 CDN 移除，不要只把 `availability` 改為 `"occupied"`；先前公開過的圖片網址或快取也要處理。日後串後端時，由 API 只回傳可公開房間的資料與授權素材，房態則由後端管理。目前這份 JSON 是建置時匯入，改狀態後需要重新 `npm run build` 與部署。
-
-## 作品列表與內頁
-
-`/work.html` 可選「全部作品／平面設計／網頁設計／商品攝影」分類。每頁最多顯示 15 件作品；第 16 件開始自動出現頁碼。分類和頁碼會同步網址，例如 `/work.html?category=web&page=2`，可以直接分享；瀏覽器上一頁也能恢復篩選與頁碼。切換分類從第 1 頁開始，空分類顯示整理中的提示。分頁元件在 `src/components/PaginationNav.vue`，計算邏輯在 `src/utils/pagination.js`。作品數量以 `src/data/projects.json` 為準；沒有案例的分類不會杜撰內容。
-
-每件作品都有 `/project.html?id=作品id` 內頁。首頁精選與列表使用同一個卡片元件，封面與文字按鈕都先進本站內頁；有公開網站或互動展示時，在作品資料加上 `externalUrl`、`externalLabel`，於內頁顯示額外按鈕，站外連結另開分頁。內頁以 `src/ProjectApp.vue` 呈現作品圖、摘要與負責項目、返回列表、同分類的上一件／下一件；進入時保留分類與頁碼，關閉詳情仍回原篩選位置。DISH-LIFE 的既有長圖保存在 `public/images/projects/dish-life.jpg`，另有兩張同系列畫面。`src/data/projects.json` 是作品內容唯一來源，`projects.js` 保留篩選與網址邏輯：`projectCategories` 加入 `{ id, label }` 即可新增分類，專案以 `categoryIds: ['web']` 指定分類，也可同時列入多個分類；`detailImage` 可指定內頁圖而不更改首頁卡片視覺。新增作品需給唯一 `id`、`categoryIds` 與基本欄位；沒有圖時顯示文字視覺佔位，之後可替換素材。圖片集的路徑規則請見[前後端交接說明](docs/backend-handoff.md)。
-
-這份專案以你上傳的 **`00.template(1).zip`** 為底，從舊版 **`oc-template.zip`** 挑出能沿用的資產。它是可執行的 Vue 3 視覺效果展示，原版並不是客戶案例集；頁面也沒有把示範照片說成客戶專案。
-
-## 啟動
-
-```powershell
-cd D:\00.orangeCatWork\01.httpdoc\00.template
-npm install
+```bash
+npm ci
 npm run dev
+npm run check:data
+npm run build
+npm run preview
 ```
 
-開啟終端機顯示的網址，通常是 `http://localhost:5173/`。Google Icons 專頁是 `http://localhost:5173/icons.html`。既有 `package.json` 的 `dev` 指令是 `vite --open`，會自動開啟瀏覽器。建置檢查：`npm run build`。
+`dev` 啟動開發伺服器；`check:data` 檢查作品 id、分類及圖片路徑；`build` 先檢查資料，再輸出 `dist/`；`preview` 檢視建置結果。
 
-若 PowerShell 的 `npm.ps1` 被系統執行原則擋住，可將上面指令中的 `npm` 改成 `npm.cmd`。
+## 頁面
 
-## 舊版檔案盤點與處理
+| 網址 | 用途 |
+| --- | --- |
+| `/` | 首頁、精選作品、經歷與互動實驗室入口 |
+| `/work.html` | 全部作品、分類與每頁 15 筆分頁 |
+| `/project.html?id=<id>` | 作品內頁、圖片集與相鄰作品 |
+| `/lab.html` | 影像效果、導覽動態、媒體檢視、輪播與環景展示 |
+| `/icons.html` | Google Material Icons 樣式展示 |
 
-| 舊版 | 這一版的處理 | 新版位置／原因 |
-| --- | --- | --- |
-| `images/logo.svg`、`btn_open.svg`、`btn_close.svg`、`btn_gotop.svg` | 原檔複製 | `public/images/`；logo 與回頁首圖已使用，選單圖先留待下一步比較 |
-| `favicon.ico` | 原檔複製 | `public/favicon.ico` |
-| `upload/` 中的 5 張照片 | 原檔複製 | `public/images/photos/`；JSON 以 `/images/photos/檔名.JPG` 引用，正式打包會複製這些照片 |
-| `sass/_effects.sass` | 挑選、修正、改寫 | `src/assets/sass/_effects.sass`；已移植 10 種圖片濾鏡／原色與 15 種疊色模式，使用 `@use` 模組；原始轉場工具仍保存在 `reference/legacy-sass/` |
-| `sass/_mixin.sass` | 保留名稱、修正舊相依後移植 | `src/assets/sass/_mixin.sass`；字型、文字截斷、轉場、邊框、圓角、回頁首、表單、分頁、表格、圖文列表與相簿 mixin。原檔仍在 `reference/legacy-sass/` |
-| `sass/_function.sass` | 搬移並共用 | `src/assets/sass/_function.sass`；保留尺寸、字重、12 欄、容器設定及計算函式，改用 `sass:math`、`sass:map` |
-| `sass/_grid.sass` | 搬移並接入 | `src/assets/sass/_grid.sass`；保留 `container`、`row`、`col`、`breakpoint` 等名稱與舊斷點；共用 `_function.sass` 的設定 |
-| `sass/_include.sass` | 選用字型並整理後備字型 | `src/assets/sass/_include.sass`；載入 Noto Sans TC、Roboto、Raleway，遠端無法載入時改用系統繁中字型；Material Icons 只由圖示專頁載入 |
-| `sass/_spacing.sass` | 名稱沿用、改為模組 | `src/assets/sass/_spacing.sass`；對齊、flex、margin、padding、display 快捷 mixin，距離取自新版 `_function.sass` |
-| `sass/_navs.sass` | 重新實作 | `src/assets/sass/_navs.sass`；四方向的 offcanvas 位置與覆蓋／推擠轉場，實驗室的八組試玩樣式另外放在 `_nav-lab.sass` |
-| `pug/icon_exsample.pug`、`sass/_icons.sass` | 獨立頁移植 | `icons.html`、`src/IconsApp.vue`、`src/data/icons.json`、`src/assets/sass/_icons.sass`；五種本地字型在 `src/assets/fonts/`，僅由 `icons-page.sass` 載入 |
-| `pug/_base.pug` | 結構改寫 | `src/components/SiteLayout.vue` 的共用 header、nav、footer、回頂；頁面內容各由 `App.vue`、`IconsApp.vue` 填入，桌面與手機共用一份 `<nav>` |
-| `pug/graphic_list.pug`、`pug/tools/_list.pug` | 元件化改寫 | `src/components/GalleryCard.vue`、`src/lab/MediaGalleryDemo.vue` 與 `src/data/media.json`；用 `v-for` 取代重複 markup |
-| `pug/portfolio.pug` | 效果概念沿用 | `src/lab/ImageEffectsDemo.vue` 的視覺效果實驗區；大量效果尚未逐一搬完 |
-| 舊版全部 13 支 `_*.sass` partial | 原檔複製 | `reference/legacy-sass/`；完整保留你的工具庫。`_effects.sass`、`_mixin.sass`、`_function.sass`、`_grid.sass`、`_include.sass`、`_spacing.sass`、`_navs.sass` 已另做新版模組 |
-| 舊版 `css/`、`dist/`、根目錄 HTML | 不複製 | 舊版編譯產物；新版交給 Vite 從 Vue / Sass 產生 |
-| `js/jquery-3.5.0.js`、`js/nav/slidebars*`、`js/basic.js` | 不複製 | 導覽功能由 `src/composables/useOffcanvas.js`、共用的 `SiteLayout.vue` 實作；`usePageScroll.js` 負責捲動，媒體檢視使用 `<dialog>` |
-| 其他未使用照片與示範頁 | 暫不複製 | 等需要展示對應功能時再選擇性搬移 |
+## 程式位置
 
-## 網站共用外框
+| 路徑 | 用途 |
+| --- | --- |
+| `src/App.vue`、`src/WorkApp.vue`、`src/ProjectApp.vue` | 首頁、作品列表、作品內頁 |
+| `src/components/SiteLayout.vue` | 共用頁首、導覽、頁尾與回頁首 |
+| `src/components/ProjectCard.vue` | 首頁精選與列表共用卡片 |
+| `src/components/MediaLightbox.vue` | 作品圖片與實驗室共用媒體檢視 |
+| `src/data/projects.json`、`src/data/projects.js` | 作品資料、分類與內頁網址 |
+| `src/utils/pagination.js` | 列表分頁規則 |
+| `src/assets/sass/` | 共用樣式、頁面樣式與 Sass 工具 |
+| `public/images/` | 網站圖片；以 `/images/...` 引用 |
+| `reference/legacy-sass/` | 從舊版保留的 Sass 參考檔 |
 
-`src/components/SiteLayout.vue` 是首頁與內頁共用的 header、nav、footer、浮動回頂，copyright 在此元件統一輸出。全站五頁使用 `src/data/navigation.json` 的同一組主導覽，`navigation.js` 處理本頁錨點；logo 尺寸與頁首外觀也共用；`.shell` 容器也定義在共用 `_site-chrome.sass`，Icons 頁不必載入首頁樣式就能對齊頁首與頁尾。`pageId` 僅標示目前頁。首頁區塊連結在首頁改為本頁錨點，交由共用 600ms 動畫捲動；在內頁則連回首頁對應區塊。新增主項目只需編輯這一份清單，頁內工具導覽仍由各頁負責。
+## 作品資料
 
-`src/composables/useOffcanvas.js` 管理 nav 的四方向、覆蓋／推擠和開關；`usePageScroll.js` 管理 350px header、200px 回頂與 600ms 捲動。共用元件會攔截本頁 `#section-id` 的 nav 連結，以同一動畫捲至目標（扣除 header 高度）；跨頁連結照網址導航。八種模式試玩位於 `src/lab/NavMotionDemo.vue`，透過 `src/lab/context.js` 取得共用外框實例，只控制同一份 nav。
+我將分類與作品集中在 `src/data/projects.json`。作品 `id` 唯一且穩定；`categoryIds` 對應分類；清單順序就是列表順序。首頁顯示前 3 件 `featured: true` 的作品。
 
-Sass 分為 `src/assets/sass/shared.sass`（共用外框，匯入 `_site-chrome.sass` 和 `_navs.sass`）、`main.sass`（首頁與作品頁版型）、`lab-page.sass`（實驗室效果、媒體檢視和 `_nav-lab.sass`）與 `icons-page.sass`（圖示頁）。Vite 打包後會按入口產生 CSS，圖示字型僅在圖示頁載入。
+作品卡片一律導向本站內頁。若有上線網站或可操作展示，我在該作品設定 `externalUrl` 與 `externalLabel`，由內頁提供額外連結。`gallery[].src` 是相對於 `image`（無 `image` 時為 `detailImage`）所在資料夾的檔名；內頁以 `MediaLightbox` 放大圖片。
 
-## Google Icons 獨立頁
+列表透過 `?category=web&page=2` 保存篩選與頁碼；內頁以 `?id=<id>&category=web&from=2` 保留返回列表的狀態。新增作品後執行 `npm run check:data`。本地 JSON 會進入建置結果，正式版更新內容需要重新建置與部署。
 
-開啟 `/icons.html` 查看舊版六類、61 個常用範例；可切換 Filled、Round、Outlined、Sharp、Two Tone 五種字型樣式、搜尋名稱或標籤、點選圖示複製 Sass 名稱。`_icons.sass` 保留 `@include icons.google_icons(home, round)` 的兩參數用法（使用 `@use './icons' as icons`），也示範 Google 原生 ligature 寫法。舊版五個 Material Icons 字型檔放在 `src/assets/fonts/`；其 Apache 2.0 授權條款見該資料夾。首頁的 CSS 不包含這些字型，正式打包會生成 `dist/icons.html` 及獨立的 CSS。圖示頁沿用同一套選單邏輯，桌面顯示橫列、手機顯示可開關的側欄；分類、頁尾與浮動回頂按鈕使用 `usePageScroll.js` 的 600ms 動態捲動，捲過 350px 縮小 header、捲過 200px 顯示回頂按鈕。
+## 部署與後端交接
 
-## 已可操作
+我將 `dist/` 部署在網站根目錄；目前網址與圖片使用 `/...` 絕對路徑。若部署在子路徑，需要調整 Vite `base` 與站內連結。
 
-- 首頁精選照片由 `src/components/HeroCarousel.vue` 讀取 `src/data/media.json` 裡的圖片項目；每 6 秒向左滑動切換，上一張向右、下一張向左，也能暫停或在手機左右滑。游標停留、鍵盤焦點進入、分頁隱藏或輪播滑出畫面時會暫停；系統設定減少動態效果時不會自動播放。
-- 視覺效果切換：原色與 9 種圖片濾鏡（灰階、懷舊、對比、亮度、反相、透明度、色相旋轉、模糊、飽和度），以及舊版 `pseffects` 的 15 種疊色模式。模式名稱和濾鏡參數可在 `src/assets/sass/_effects.sass`、`lab-page.sass` 調整；效果清單在 `src/lab/ImageEffectsDemo.vue`。
-- 導覽動態試玩：一份導覽內容，四個方向（左、右、上、下）與兩個模式（覆蓋、推擠）；可用關閉鈕、背景或 Esc 關閉，開啟時鎖住背景捲動。手機的選單鈕使用同一份導覽。
-- 圖文卡片依類別篩選、滑入效果；點擊後開啟深色全螢幕媒體檢視，圖片由卡片位置放大進場。左右兩側切換、右上角縮圖／縮放／輪播／全螢幕／關閉，支援方向鍵、手機左右滑、Esc 和背景點擊。元件與樣式位於 `src/components/MediaLightbox.vue`、`src/assets/sass/_media-lightbox.sass`。
-- 手機選單、頁面定位捲動、回到頁首；保留舊版 `basic.js` 的門檻：捲過 350px 縮小 header、捲過 200px 顯示回頁首，點擊後以原生 `requestAnimationFrame` 做 600ms 捲動。全部沒有 jQuery 執行相依。
-- 已移除首頁跑馬燈；共用 Sass mixin 的 `transition`、`mline`、`goTop`、`radius50`，以及格線的 `container`、`breakpoint` 已在目前頁面實際使用。
-- `<script setup>`、`<template lang="pug">`、縮排式 `.sass`、`sass:math`。
-
-## 共用媒體檢視 MediaLightbox
-
-`src/components/MediaLightbox.vue` 透過 `items` 陣列決定內容，`open(id, sourceElement)` 或 `openAt(index, sourceElement)` 開啟。第二個參數可省略；圖片傳入卡片元素時會從縮圖位置移動並放大至中央，關閉時縮回原位；沒有來源元素或其他媒體類型由中央淡入。圖片開啟後可用右上角按鈕或滑鼠滾輪縮放，放大後能以滑鼠或手指拖曳移動；切換項目會重設縮放位置。實驗室從 `src/data/media.json` 讀取同一份清單，卡片、分類與燈箱同步更新。互動與動畫都在同一個元件，不需 jQuery 或第三方 lightbox。
-
-| `type` | 使用資料 | 內容 |
-| --- | --- | --- |
-| `image` | `src`、`alt`、`title`、`caption` | 圖片，可縮放與輪播 |
-| `youtube` | YouTube 網址放 `src` | 轉成 youtube-nocookie 嵌入網址 |
-| `video` | 影片 `src`，可加 `poster` | HTML5 `<video controls>` |
-| `map` | Google Maps iframe 的 `src` | 地圖嵌入；需用分享選單提供的嵌入網址 |
-| `text` | `title`、`text` | 純文字；換行會保留 |
-| `custom` | 任意資料搭配 `#content` slot | 由 Vue 模板自行渲染 HTML 與元件 |
-
-每項需有**唯一 `id`**。`caption` 會放在卡片文字與燈箱底部，非圖片項目建議加 `poster` 作為卡片及縮圖封面，省略時卡片會顯示媒體類型。`category` 的顯示名稱可在 `mediaCategoryNames` 設定，實驗室只顯示有項目的分類。YouTube 可用一般觀看、Shorts 或嵌入網址；Google Maps 須用分享選單提供的嵌入網址。不直接渲染外部輸入的 HTML 字串，客製內容請用 Vue slot。
-
-### 在同一份清單混用圖片、影片與地圖
-
-編輯 `src/data/media.json` 的 `items` 陣列，加入圖片、影片、地圖等項目。實驗室會依 `category` 自動呈現分類；分類名稱設定在同檔的 `categoryNames`。本地封面與照片放進 `public/images/`，在 JSON 使用 `/images/檔名.jpg` 路徑。以下是 JSON 項目格式；實際網址與唯一 `id` 請換成自己的：
-
-```json
-{
-  "id": "film-2",
-  "type": "youtube",
-  "category": "videos",
-  "categoryLabel": "VIDEO",
-  "title": "影片標題",
-  "caption": "影片說明",
-  "src": "https://www.youtube.com/watch?v=你的影片ID",
-  "poster": "/images/影片封面.jpg"
-}
-```
-
-地圖項目改用 `"type": "map"`，`src` 填 Google Maps iframe 的嵌入網址；HTML5 影片使用 `"type": "video"` 與影片檔網址。新增時將物件放在 `items` 陣列中，以逗號分隔。JSON 使用雙引號，不支援註解或 JS 函式。
-
-```vue
-<script setup>
-import { ref } from 'vue'
-import MediaLightbox from './components/MediaLightbox.vue'
-
-const lightbox = ref(null)
-const items = [
-  { id: 'photo', type: 'image', src: '/images/photo.jpg', alt: '作品照片', title: '作品照片' },
-  { id: 'film', type: 'video', src: '/videos/demo.mp4', poster: '/images/poster.jpg', title: '影片' },
-  { id: 'story', type: 'text', title: '設計說明', text: '第一段文字\n第二段文字' },
-  { id: 'details', type: 'custom', title: '自訂內容' },
-]
-</script>
-
-<template>
-  <button @click="lightbox.open('photo', $event.currentTarget)">看照片</button>
-  <MediaLightbox ref="lightbox" :items="items">
-    <template #content="{ item }">
-      <article v-if="item.id === 'details'">這裡可以放 Vue 元件或任意版面。</article>
-    </template>
-  </MediaLightbox>
-</template>
-```
-
-開啟 YouTube 時填一般觀看網址；地圖請從 Google Maps「分享 → 嵌入地圖」複製 iframe 的 `src`。媒體切換後原生影片與 iframe 會卸載，播放也會停止。工具列中的輪播只在圖片項目啟用；切到其他類型就會自動暫停。
-
-## 使用舊版 mixin 的新版模組
-
-在需要套用樣式的 `.sass` 檔加入 `@use './mixin' as oc`（相對路徑依檔案位置調整），再呼叫熟悉的名稱，例如：
-
-```sass
-@use './mixin' as oc
-
-.card-description
-  @include oc.mline(3)
-
-.rounded-photo
-  @include oc.radius(1, top-left)
-```
-
-模組中保留舊版 mixin 名稱，尺寸與字重改從新版 `_function.sass` 讀取，不再依賴舊版全域 `@import`；舊版未完成的表單與頁碼功能也整理成不依賴缺失圖片的版本。`@use` 本身不會把全部 mixin 變成 CSS，只有實際 `@include` 的規則會輸出。
-
-## 共用設定與 RWD 格線
-
-`_function.sass` 是共用設定來源；`_grid.sass`、`_mixin.sass` 都由它讀取。每支要使用變數或 mixin 的 Sass 檔，仍要自行宣告命名空間。若要覆寫設定，先載入 `_function.sass`，再載入依賴它的模組：
-
-```sass
-@use './function' as base with ($baseSize: 16px, $custom-gutter-width: 32px)
-@use './grid' as grid
-@use './mixin' as oc
-
-.row
-  @include grid.row
-
-.half
-  @include grid.col(6)
-  @include grid.breakpoint()
-    @include grid.col(12)
-
-.card-title
-  @include oc.mline(2)
-```
-
-`grid.breakpoint()` 是小於 576px；`sm` 是 576–767.98px，`md` 是 768–991.98px，`lg` 是 992–1199.98px，`xl` 是 1200px 以上。舊版裝置代號也保留作為相容選項；`DPIreset` 會縮放整頁，需明確呼叫才會輸出。
-
-字型與間距也各自用命名空間，例如 `@use './include' as fonts` 後使用 `fonts.$font-body`，或 `@use './spacing' as sp` 後使用 `@include sp.mt(2)`（預設 `2 × 15px`）。若使用端無法下載 Google Fonts，字型會依照 `_include.sass` 中的後備順序回退。
-
-選單方向與模式的預設值在 `SiteLayout.vue` 呼叫的 `useOffcanvas({ initialSide: 'left', initialMode: 'overlay' })`；實驗室的試玩區可立即切換八種組合。`slidebars.js` 和 jQuery 不會進入正式 bundle。
-
-## 下一步
-
-舊版的 `basic_exsample.pug`、`graphic_list.pug` 有更多工具展示。可依面試需求逐項挑最能證明切版與互動能力的部分，再移植成 Vue 元件；網站視覺也可在此基礎上換成正式作品內容。舊 Sass partial 已留在 `reference/legacy-sass/`，使用狀態見該資料夾的說明。
+目前沒有作品 API 或管理後台。我保留可獨立展示的資料版本；日後接 API 時，維持作品 `id`、分類、排序、圖片與 `gallery` 欄位，再補非同步載入、錯誤和空資料狀態。欄位契約與串接邊界見 [前後端交接說明](docs/backend-handoff.md)。
