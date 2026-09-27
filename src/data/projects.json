@@ -43,7 +43,7 @@
       "category": "WEBSITE / REAL PROJECT",
       "title": "雙語商業資源入口網",
       "summary": "涵蓋雙語檢索、內容列表、主題資源與相簿的網站作品。",
-      "role": "既有網站作品",
+      "role": "前端切版",
       "externalUrl": "https://serv.gcis.nat.gov.tw/bilingualshop/tw/homepage",
       "cover": "bilingual"
     },
@@ -110,7 +110,8 @@
       "category": "WEB / VISUAL DESIGN",
       "title": "Furry Smiles 救援網站設計",
       "summary": "Furry Smiles 動物救援網站首頁視覺。",
-      "role": "網頁視覺設計",
+      "role": "網頁視覺設計與前端切版",
+      "externalUrl": "https://www.lovefsir.org/",
       "cover": "web-design",
       "image": "/images/projects/furry-smiles-rescue/homepage.jpg",
       "imageAlt": "Furry Smiles 救援網站設計首頁畫面",
@@ -125,25 +126,30 @@
       ]
     },
     {
-      "id": "grc-site-concept-04",
+      "id": "grc-site-concept",
       "featured": false,
       "categoryIds": [
         "web"
       ],
       "category": "WEB / VISUAL DESIGN",
-      "title": "GRC 網站設計提案 04",
+      "title": "GRC 網站設計提案",
       "summary": "GRC 企業網站首頁的版型提案。",
       "role": "網頁視覺設計",
       "cover": "web-design",
-      "image": "/images/projects/grc-site-concept-04/homepage.jpg",
+      "image": "/images/projects/grc-site-concept/homepage-01.jpg",
       "imageAlt": "GRC 網站設計提案 04首頁畫面",
-      "detailImage": "/images/projects/grc-site-concept-04/homepage.jpg",
+      "detailImage": "/images/projects/grc-site-concept/homepage-01.jpg",
       "detailImageAlt": "GRC 網站設計提案 04首頁畫面",
       "gallery": [
         {
-          "src": "homepage.jpg",
-          "title": "網站畫面",
-          "alt": "GRC 網站設計提案 04完整畫面"
+          "src": "homepage-01.jpg",
+          "title": "首頁網站畫面 01",
+          "alt": "GRC 網站設計提案 01完整畫面"
+        },
+        {
+          "src": "homepage-02.jpg",
+          "title": "首頁網站畫面 02",
+          "alt": "GRC 網站設計提案 02完整畫面"
         }
       ]
     },
@@ -167,29 +173,6 @@
           "src": "homepage.jpg",
           "title": "網站畫面",
           "alt": "GGS 企業網站設計完整畫面"
-        }
-      ]
-    },
-    {
-      "id": "grc-site-concept-03",
-      "featured": false,
-      "categoryIds": [
-        "web"
-      ],
-      "category": "WEB / VISUAL DESIGN",
-      "title": "GRC 網站設計提案 03",
-      "summary": "GRC 企業網站的另一款首頁版型提案。",
-      "role": "網頁視覺設計",
-      "cover": "web-design",
-      "image": "/images/projects/grc-site-concept-03/homepage.jpg",
-      "imageAlt": "GRC 網站設計提案 03首頁畫面",
-      "detailImage": "/images/projects/grc-site-concept-03/homepage.jpg",
-      "detailImageAlt": "GRC 網站設計提案 03首頁畫面",
-      "gallery": [
-        {
-          "src": "homepage.jpg",
-          "title": "網站畫面",
-          "alt": "GRC 網站設計提案 03完整畫面"
         }
       ]
     },
@@ -604,6 +587,7 @@
       "title": "株式会社ミクニ 網站設計",
       "summary": "株式会社ミクニ企業網站首頁視覺。",
       "role": "網頁視覺設計",
+      "externalUrl": "http://www.mikuni-inc.com/",
       "cover": "web-design",
       "image": "/images/projects/mikuni/homepage.jpg",
       "imageAlt": "株式会社ミクニ 網站設計網站畫面",
@@ -811,6 +795,7 @@
       "title": "PSS 集團網站設計",
       "summary": "PSS 集團企業網站首頁長頁設計。",
       "role": "網頁視覺設計",
+      "externalUrl": "https://www.pss-group.com/",
       "cover": "web-design",
       "image": "/images/projects/pss-group/homepage.jpg",
       "imageAlt": "PSS 集團網站設計網站畫面",
@@ -834,6 +819,7 @@
       "title": "PURE LIFE 網站設計",
       "summary": "PURE LIFE 口腔清潔用品購物網站首頁視覺。",
       "role": "網頁視覺設計",
+      "externalUrl": "https://www.pure-life.com.tw/",
       "cover": "web-design",
       "image": "/images/projects/pure-life/homepage.jpg",
       "imageAlt": "PURE LIFE 網站設計網站畫面",
