@@ -1,6 +1,7 @@
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import SiteLayout from './components/SiteLayout.vue'
+import MediaLightbox from './components/MediaLightbox.vue'
 import { filterProjects, projectDestination, projects, resolveProjectCategory, workListUrl } from './data/projects.js'
 import { clampPage } from './utils/pagination.js'
 
@@ -20,6 +21,18 @@ const previous = index > 0 ? siblings[index - 1] : null
 const next = index >= 0 && index < siblings.length - 1 ? siblings[index + 1] : null
 const previousDestination = previous && projectDestination(previous, context)
 const nextDestination = next && projectDestination(next, context)
+const galleryLightbox = ref(null)
+const galleryBase = project?.image || project?.detailImage
+const galleryItems = computed(() => (project?.gallery || []).map((item, galleryIndex) => ({
+  ...item,
+  id: `${project.id}-${galleryIndex}`,
+  type: 'image',
+  src: `${galleryBase.slice(0, galleryBase.lastIndexOf('/') + 1)}${item.src}`,
+})))
+
+function openGallery(item, event) {
+  galleryLightbox.value?.open(item.id, event.currentTarget.querySelector('img'))
+}
 
 onMounted(() => {
   document.title = project ? `${project.title} — 陳泓蒼 Orange Cat` : '找不到作品 — 陳泓蒼 Orange Cat'
@@ -53,10 +66,24 @@ SiteLayout(page-id="work")
               dt 負責項目
               dd {{ project.role }}
           a.project-detail-external(v-if="project.externalUrl" :href="project.externalUrl" :target="project.externalUrl.startsWith('http') ? '_blank' : undefined" :rel="project.externalUrl.startsWith('http') ? 'noopener noreferrer' : undefined") {{ project.externalLabel }} ↗
+      section.project-series(v-if="galleryItems.length" aria-labelledby="project-series-title")
+        .project-series-heading
+          div
+            p.kicker {{ galleryItems.length === 1 ? 'PROJECT IMAGE' : 'VISUAL SERIES' }} / {{ String(galleryItems.length).padStart(2, '0') }} {{ galleryItems.length === 1 ? 'PIECE' : 'PIECES' }}
+            h2#project-series-title {{ galleryItems.length === 1 ? '作品影像' : '系列作品' }}<span class="period">．</span>
+          p 點選作品可放大檢視。
+        .project-series-grid
+          button.project-series-item(v-for="item in galleryItems" :key="item.id" type="button" :class="{ 'is-wide': item.wide }" :aria-label="`放大查看${item.title}`" @click="openGallery(item, $event)")
+            span.project-series-image
+              img(:src="item.src" :alt="item.alt" loading="lazy")
+            span.project-series-caption
+              strong {{ item.title }}
+              span(aria-hidden="true") ↗
+        MediaLightbox(ref="galleryLightbox" :items="galleryItems" :aria-label="`${project.title}系列作品檢視`")
       nav.project-detail-neighbors(aria-label="其他作品")
-        a(v-if="previous" :href="previousDestination.href" :target="previousDestination.external ? '_blank' : undefined" :rel="previousDestination.external ? 'noopener noreferrer' : undefined") ← {{ previous.title }}
+        a(v-if="previous" :href="previousDestination.href") ← {{ previous.title }}
         span(v-else)
-        a(v-if="next" :href="nextDestination.href" :target="nextDestination.external ? '_blank' : undefined" :rel="nextDestination.external ? 'noopener noreferrer' : undefined") {{ next.title }} →
+        a(v-if="next" :href="nextDestination.href") {{ next.title }} →
   section.project-not-found(v-else)
     p.kicker PROJECT / NOT FOUND
     h1 找不到這件作品<span class="period">．</span>

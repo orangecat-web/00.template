@@ -17,7 +17,7 @@ const destination = computed(() => projectDestination(props.project, {
 
 <template lang="pug">
 article.project-card
-  a.project-cover(:class="`project-cover--${project.cover}`" :href="destination.href" :target="destination.external ? '_blank' : undefined" :rel="destination.external ? 'noopener noreferrer' : undefined" :aria-label="`${project.title}：${destination.label}${destination.external ? '（另開分頁）' : ''}`")
+  a.project-cover(:class="`project-cover--${project.cover}`" :href="destination.href" :aria-label="`${project.title}：${destination.label}`")
     img(v-if="project.image" :src="project.image" :alt="project.imageAlt" loading="lazy")
     .project-cover-design(v-else aria-hidden="true")
       template(v-if="project.cover === 'bilingual'")
@@ -38,5 +38,5 @@ article.project-card
     p {{ project.summary }}
     .project-bottom
       span {{ project.role }}
-      a(:href="destination.href" :target="destination.external ? '_blank' : undefined" :rel="destination.external ? 'noopener noreferrer' : undefined") {{ destination.label }} ↗
+      a(:href="destination.href") {{ destination.label }} ↗
 </template>

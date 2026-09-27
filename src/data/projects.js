@@ -1,6 +1,6 @@
 import projectData from './projects.json'
 
-// 資料放 JSON，分頁與導向判斷留在 JS。
+// 資料放 JSON，分類與作品內頁網址留在 JS。
 export const projectCategories = projectData.projectCategories
 export const projects = projectData.projects
 
@@ -29,12 +29,5 @@ export function projectUrl(project, { category = 'all', page = 1 } = {}) {
 }
 
 export function projectDestination(project, context = {}) {
-  if (project.destination?.type === 'url') {
-    return {
-      href: project.destination.href,
-      label: project.destination.label || '查看網站',
-      external: /^https?:\/\//.test(project.destination.href),
-    }
-  }
-  return { href: projectUrl(project, context), label: '查看作品內容', external: false }
+  return { href: projectUrl(project, context), label: '查看作品內容' }
 }

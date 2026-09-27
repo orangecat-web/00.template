@@ -1,4 +1,4 @@
-export const PROJECTS_PER_PAGE = 18
+export const PROJECTS_PER_PAGE = 15
 
 export function totalPages(total, pageSize = PROJECTS_PER_PAGE) {
   return Math.max(1, Math.ceil(total / pageSize))
