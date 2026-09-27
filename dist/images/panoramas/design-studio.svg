@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2048" height="1024" viewBox="0 0 2048 1024">
+  <defs>
+    <linearGradient id="ceiling" x2="0" y2="1">
+      <stop stop-color="#263b3a"/>
+      <stop offset="1" stop-color="#60716a"/>
+    </linearGradient>
+    <linearGradient id="wall" x2="0" y2="1">
+      <stop stop-color="#b4b8a7"/>
+      <stop offset="1" stop-color="#efe3cb"/>
+    </linearGradient>
+    <linearGradient id="floor" x2="0" y2="1">
+      <stop stop-color="#ad8f6b"/>
+      <stop offset="1" stop-color="#453b35"/>
+    </linearGradient>
+    <pattern id="panels" width="512" height="440" patternUnits="userSpaceOnUse">
+      <path d="M0 0v440" stroke="#69766e" stroke-width="5" opacity=".5"/>
+      <path d="M23 30v370M489 30v370" stroke="#fff8e6" stroke-width="2" opacity=".45"/>
+    </pattern>
+    <g id="art">
+      <rect x="0" y="0" width="258" height="248" rx="3" fill="#e9dfc9" stroke="#6e5946" stroke-width="12"/>
+      <rect x="18" y="18" width="222" height="212" fill="#263f45"/>
+      <circle cx="152" cy="82" r="41" fill="#e9ab67"/>
+      <path d="M18 173 70 115 127 178 176 124 240 181v49H18z" fill="#678c80"/>
+      <path d="M18 196 73 165 135 211 240 161v69H18z" fill="#233b3e"/>
+    </g>
+    <g id="lamp">
+      <path d="M0-200V-42" stroke="#233a38" stroke-width="8"/>
+      <path d="M-56-42h112L33 0h-66z" fill="#314c49"/>
+      <ellipse cy="2" rx="34" ry="8" fill="#ffdcaa" opacity=".8"/>
+    </g>
+  </defs>
+  <path d="M0 0h2048v256H0z" fill="url(#ceiling)"/>
+  <path d="M0 256h2048v400H0z" fill="url(#wall)"/>
+  <path d="M0 256h2048v400H0z" fill="url(#panels)"/>
+  <path d="M0 656h2048v368H0z" fill="url(#floor)"/>
+  <path d="M0 241h2048v22H0z" fill="#283b39"/>
+  <path d="M0 647h2048v18H0z" fill="#6d695b"/>
+  <path d="M0 676h2048M0 786h2048M0 928h2048" stroke="#e6c9a1" stroke-width="3" opacity=".25"/>
+  <path d="M256 656 85 1024m427-368-154 368m410-368-90 368m346-368v368m256-368 90 368m166-368 154 368m171-368 171 368" stroke="#423c37" stroke-width="4" opacity=".42"/>
+  <g opacity=".18" fill="#ffdfb5">
+    <path d="M65 666h320l150 358H0zM617 666h307l-80 358H482zM1100 666h298l155 358h-362zM1651 666h310l87 358h-236z"/>
+  </g>
+  <use xlink:href="#art" x="126" y="339"/>
+  <use xlink:href="#art" x="640" y="339"/>
+  <use xlink:href="#art" x="1150" y="339"/>
+  <use xlink:href="#art" x="1662" y="339"/>
+  <use xlink:href="#lamp" transform="translate(256 235)"/>
+  <use xlink:href="#lamp" transform="translate(768 235)"/>
+  <use xlink:href="#lamp" transform="translate(1280 235)"/>
+  <use xlink:href="#lamp" transform="translate(1792 235)"/>
+  <path d="M0 225h2048" stroke="#e2c593" stroke-width="3" opacity=".4"/>
+</svg>
