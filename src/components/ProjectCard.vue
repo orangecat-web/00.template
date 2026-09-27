@@ -8,10 +8,12 @@ const props = defineProps({
   total: { type: Number, required: true },
   page: { type: Number, default: 1 },
   selectedCategory: { type: String, default: 'all' },
+  query: { type: String, default: '' },
 })
 const destination = computed(() => projectDestination(props.project, {
   category: props.selectedCategory,
   page: props.page,
+  query: props.query,
 }))
 </script>
 

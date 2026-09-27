@@ -2,18 +2,19 @@
 import { computed, onMounted, ref } from 'vue'
 import SiteLayout from './components/SiteLayout.vue'
 import MediaLightbox from './components/MediaLightbox.vue'
-import { filterProjects, projectDestination, projects, resolveProjectCategory, workListUrl } from './data/projects.js'
+import { filterProjects, projectDestination, projects, resolveProjectCategory, searchProjects, workListUrl } from './data/projects.js'
 import { clampPage } from './utils/pagination.js'
 
 const params = new URLSearchParams(window.location.search)
 const id = params.get('id')
 const selectedProject = projects.find((item) => item.id === id)
 const requestedCategory = resolveProjectCategory(params.get('category'))
+const query = params.get('q') || ''
 const category = selectedProject && filterProjects([selectedProject], requestedCategory).length
   ? requestedCategory : 'all'
-const siblings = filterProjects(projects, category)
+const siblings = searchProjects(filterProjects(projects, category), query)
 const fromPage = clampPage(params.get('from'), siblings.length)
-const context = { category, page: fromPage }
+const context = { category, page: fromPage, query }
 const backUrl = workListUrl(context)
 const index = siblings.findIndex((item) => item.id === id)
 const project = siblings[index]

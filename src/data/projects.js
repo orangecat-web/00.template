@@ -18,15 +18,37 @@ export function filterProjects(items, categoryId) {
   return categoryId === 'all' ? items : items.filter((project) => project.categoryIds?.includes(categoryId))
 }
 
-export function workListUrl({ category = 'all', page = 1 } = {}) {
+export function searchProjects(items, query) {
+  const keyword = query.trim().toLocaleLowerCase()
+  if (!keyword) return items
+
+  return items.filter((project) => [
+    project.id,
+    project.title,
+    project.summary,
+    project.role,
+    project.category,
+    ...(project.categoryIds || []),
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLocaleLowerCase()
+    .includes(keyword))
+}
+
+export function workListUrl({ category = 'all', page = 1, query = '' } = {}) {
   const params = new URLSearchParams()
+  const keyword = query.trim()
+  if (keyword) params.set('q', keyword)
   if (category !== 'all') params.set('category', category)
   if (page > 1) params.set('page', page)
   return `/work.html${params.size ? `?${params}` : ''}`
 }
 
-export function projectUrl(project, { category = 'all', page = 1 } = {}) {
+export function projectUrl(project, { category = 'all', page = 1, query = '' } = {}) {
   const params = new URLSearchParams({ id: project.id })
+  const keyword = query.trim()
+  if (keyword) params.set('q', keyword)
   if (category !== 'all') params.set('category', category)
   if (page > 1) params.set('from', page)
   return `/project.html?${params}`
