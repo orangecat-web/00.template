@@ -1,8 +1,10 @@
-# oc-template → Vue 3：第一批搬移
+# 00.template — Vue 3 作品集與互動實驗室
+
+本專案是可獨立展示的前端作品集。新接手的工程師請先看 [前後端交接說明](docs/backend-handoff.md)：包含建置與部署、作品資料欄位、圖片路徑、網址規則和日後 API 串接邊界。下方保留開發過程中的設計與移植紀錄。
 
 ## 首頁作品版（2026-09-26）
 
-首頁現在依序呈現個人定位、三件精選作品、合作服務、工作經歷、互動實驗室預告與關於我的短摘要。完整作品一覽在 `/work.html`，原本首頁的影像濾鏡、八種導覽動態及圖文媒體檢視移到 `/lab.html`；Google Icons 維持 `/icons.html`。精選作品由 `src/data/projects.json` 管理，`projects.js` 負責篩選與導向，卡片元件是 `src/components/ProjectCard.vue`。新增專案到 `projects` 後，作品頁會自動列出；設定 `featured: true` 的前三件會出現在首頁。卡片去向由各作品資料決定，可進本站內頁，也可直接開啟已上線網站。
+首頁現在依序呈現個人定位、三件精選作品、合作服務、工作經歷、互動實驗室預告與關於我的短摘要。完整作品一覽在 `/work.html`，原本首頁的影像濾鏡、八種導覽動態及圖文媒體檢視移到 `/lab.html`；Google Icons 維持 `/icons.html`。精選作品由 `src/data/projects.json` 管理，`projects.js` 負責篩選與導向，卡片元件是 `src/components/ProjectCard.vue`。新增專案到 `projects` 後，作品頁會自動列出；設定 `featured: true` 的前三件會出現在首頁。首頁及列表卡片一律先進作品內頁，實際網站或可操作展示的連結放在內頁。
 
 首頁 `03 / EXPERIENCE` 參考 Knight Lab TimelineJS 的閱讀方式：中央一次顯示一段經歷，使用左右箭頭或下方年份節點切換，內容會依方向水平滑動。七段資料集中在 `src/data/experience.json`，元件是 `src/components/ExperienceTimeline.vue`，不需 jQuery、外部 iframe 或試算表；時間軸可在手機橫向捲動，也支援鍵盤左右鍵。首頁文字維持摘要長度，未來完整職責與成果可放在 About 頁。
 
@@ -36,9 +38,9 @@
 
 ## 作品列表與內頁
 
-`/work.html` 可選「全部作品／平面設計／網頁設計／商品攝影」分類。每個分類最多顯示 18 件作品；第 19 件開始自動出現頁碼。分類和頁碼會同步網址，例如 `/work.html?category=web&page=2`，可以直接分享；瀏覽器上一頁也能恢復篩選與頁碼。切換分類從第 1 頁開始，空分類顯示整理中的提示。分頁元件在 `src/components/PaginationNav.vue`，計算邏輯在 `src/utils/pagination.js`。目前只有三件真實資料，均歸在網頁設計；沒有案例的分類不會杜撰內容。
+`/work.html` 可選「全部作品／平面設計／網頁設計／商品攝影」分類。每頁最多顯示 15 件作品；第 16 件開始自動出現頁碼。分類和頁碼會同步網址，例如 `/work.html?category=web&page=2`，可以直接分享；瀏覽器上一頁也能恢復篩選與頁碼。切換分類從第 1 頁開始，空分類顯示整理中的提示。分頁元件在 `src/components/PaginationNav.vue`，計算邏輯在 `src/utils/pagination.js`。作品數量以 `src/data/projects.json` 為準；沒有案例的分類不會杜撰內容。
 
-作品不一定需要內頁。卡片預設進 `/project.html?id=作品id`；需要直接開啟網站時，在該筆作品加上 `destination: { type: 'url', href: 'https://…', label: '查看上線網站' }`。雙語商業資源入口網已設定直連公開網站，首頁精選與列表使用同一個卡片元件，封面與文字按鈕一致。站外連結另開分頁。內頁以 `src/ProjectApp.vue` 呈現左側作品圖、右側摘要與負責項目、返回列表、同分類的上一件／下一件；進入時保留分類與頁碼，關閉詳情仍回原篩選位置。DISH-LIFE 的長圖來自你提供的原 Wix 作品頁，保存在 `public/images/projects/dish-life.jpg`。`src/data/projects.json` 是作品內容唯一來源，`projects.js` 保留篩選與網址邏輯：`projectCategories` 加入 `{ id, label }` 即可新增分類，專案以 `categoryIds: ['web']` 指定分類，也可同時列入多個分類；`detailImage` 可指定內頁圖而不更改首頁卡片視覺，`externalUrl` 可供內頁附上原站或可操作展示。新增作品需給唯一 `id`、`categoryIds` 與基本欄位；沒有圖時顯示文字視覺佔位，之後可替換素材。
+每件作品都有 `/project.html?id=作品id` 內頁。首頁精選與列表使用同一個卡片元件，封面與文字按鈕都先進本站內頁；有公開網站或互動展示時，在作品資料加上 `externalUrl`、`externalLabel`，於內頁顯示額外按鈕，站外連結另開分頁。內頁以 `src/ProjectApp.vue` 呈現作品圖、摘要與負責項目、返回列表、同分類的上一件／下一件；進入時保留分類與頁碼，關閉詳情仍回原篩選位置。DISH-LIFE 的既有長圖保存在 `public/images/projects/dish-life.jpg`，另有兩張同系列畫面。`src/data/projects.json` 是作品內容唯一來源，`projects.js` 保留篩選與網址邏輯：`projectCategories` 加入 `{ id, label }` 即可新增分類，專案以 `categoryIds: ['web']` 指定分類，也可同時列入多個分類；`detailImage` 可指定內頁圖而不更改首頁卡片視覺。新增作品需給唯一 `id`、`categoryIds` 與基本欄位；沒有圖時顯示文字視覺佔位，之後可替換素材。圖片集的路徑規則請見[前後端交接說明](docs/backend-handoff.md)。
 
 這份專案以你上傳的 **`00.template(1).zip`** 為底，從舊版 **`oc-template.zip`** 挑出能沿用的資產。它是可執行的 Vue 3 視覺效果展示，原版並不是客戶案例集；頁面也沒有把示範照片說成客戶專案。
 
