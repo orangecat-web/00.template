@@ -496,16 +496,16 @@ a
 
 .experience-viewport
   position: relative
-  height: 360px
+  min-height: 360px
   overflow: hidden
 
 .experience-slide
-  position: absolute
-  inset: 0
+  position: relative
   display: grid
   grid-template-columns: .85fr 1.15fr
   align-items: center
   gap: clamp(30px, 5vw, 75px)
+  min-height: 360px
   padding: 48px clamp(80px, 10vw, 145px)
 
 .experience-slide-date
@@ -587,6 +587,11 @@ a
 
 .experience-forward-enter-active, .experience-forward-leave-active, .experience-backward-enter-active, .experience-backward-leave-active
   transition: transform .7s cubic-bezier(.77, 0, .18, 1), opacity .7s ease
+
+.experience-forward-leave-active, .experience-backward-leave-active
+  position: absolute
+  inset: 0
+  width: 100%
 
 .experience-forward-enter-from, .experience-backward-leave-to
   transform: translateX(100%)
@@ -1195,9 +1200,10 @@ a
   .experience-widget
     margin-top: 38px
   .experience-viewport
-    height: 420px
+    min-height: 420px
   .experience-slide
     display: block
+    min-height: 420px
     padding: 38px 60px
   .experience-slide-date
     flex-direction: row

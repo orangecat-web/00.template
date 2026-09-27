@@ -46,7 +46,6 @@ for (const project of data.projects || []) {
     if (!project[`${field}Alt`]) errors.push(`${label}: missing ${field}Alt`)
   }
   if (project.externalUrl) {
-    if (!project.externalLabel) errors.push(`${label}: missing externalLabel`)
     if (!/^https?:\/\//.test(project.externalUrl) && !project.externalUrl.startsWith('/')) {
       errors.push(`${label}: externalUrl must be HTTP(S) or a site-root path`)
     }

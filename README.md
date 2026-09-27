@@ -45,7 +45,7 @@ npm run preview
 
 我將分類與作品集中在 `src/data/projects.json`。作品 `id` 唯一且穩定；`categoryIds` 對應分類；清單順序就是列表順序。首頁顯示前 3 件 `featured: true` 的作品。
 
-作品卡片一律導向本站內頁。若有上線網站或可操作展示，我在該作品設定 `externalUrl` 與 `externalLabel`，由內頁提供額外連結。`gallery[].src` 是相對於 `image`（無 `image` 時為 `detailImage`）所在資料夾的檔名；內頁以 `MediaLightbox` 放大圖片。
+作品卡片一律導向本站內頁。若有上線網站或可操作展示，我在該作品設定 `externalUrl`，內頁按鈕預設顯示「查看上線網站」；需要不同文字時才加 `externalLabel`。`gallery[].src` 是相對於 `image`（無 `image` 時為 `detailImage`）所在資料夾的檔名；內頁以 `MediaLightbox` 放大圖片。
 
 列表透過 `?category=web&page=2` 保存篩選與頁碼；內頁以 `?id=<id>&category=web&from=2` 保留返回列表的狀態。新增作品後執行 `npm run check:data`。本地 JSON 會進入建置結果，正式版更新內容需要重新建置與部署。
 

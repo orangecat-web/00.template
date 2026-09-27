@@ -2,7 +2,11 @@ import projectData from './projects.json'
 
 // 資料放 JSON，分類與作品內頁網址留在 JS。
 export const projectCategories = projectData.projectCategories
-export const projects = projectData.projects
+export const projects = projectData.projects.map((project) =>
+  project.externalUrl && !project.externalLabel
+    ? { ...project, externalLabel: '查看上線網站' }
+    : project,
+)
 
 export const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)
 

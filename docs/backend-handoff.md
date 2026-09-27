@@ -46,8 +46,7 @@ npm run preview
       "gallery": [
         { "src": "homepage.jpg", "title": "首頁", "alt": "範例網站首頁畫面" }
       ],
-      "externalUrl": "https://example.com/",
-      "externalLabel": "查看上線網站"
+      "externalUrl": "https://example.com/"
     }
   ]
 }
@@ -66,7 +65,7 @@ npm run preview
 | `image`、`imageAlt` | 列表封面圖及替代文字；無圖片時顯示既有文字佔位。 |
 | `detailImage`、`detailImageAlt` | 內頁主圖及替代文字；未填主圖時改用 `image`。 |
 | `gallery` | 內頁可點開的圖片陣列；每筆有 `src`、`title`、`alt`，可選 `wide: true`。燈箱重用 `MediaLightbox`。 |
-| `externalUrl`、`externalLabel` | 可選；只在作品內頁顯示「上線網站／展示」按鈕，卡片一律先進內頁。HTTP(S) 網址另開分頁；站內路徑留在本站。 |
+| `externalUrl`、`externalLabel` | `externalUrl` 可選，只在作品內頁顯示額外按鈕，卡片一律先進內頁。`projects.js` 會補上預設文字「查看上線網站」；僅在需要不同文字時填 `externalLabel`。HTTP(S) 網址另開分頁；站內路徑留在本站。 |
 
 `gallery[].src` **目前是相對檔名**，前端以 `image`（若無則 `detailImage`）所在目錄組成完整網址。例如 `image: "/images/projects/mim/homepage.jpg"` 配 `src: "products.jpg"`，會讀取 `/images/projects/mim/products.jpg`。不能直接把 API 回傳的完整圖片網址塞入 `gallery[].src`，除非同步修改 `src/ProjectApp.vue` 的組址方式。作品陣列順序就是列表順序；分類頁保留原順序。
 
