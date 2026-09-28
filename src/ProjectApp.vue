@@ -70,8 +70,8 @@ SiteLayout(page-id="work")
       section.project-series(v-if="galleryItems.length" aria-labelledby="project-series-title")
         .project-series-heading
           div
-            p.kicker {{ galleryItems.length === 1 ? 'PROJECT IMAGE' : 'VISUAL SERIES' }} / {{ String(galleryItems.length).padStart(2, '0') }} {{ galleryItems.length === 1 ? 'PIECE' : 'PIECES' }}
-            h2#project-series-title {{ galleryItems.length === 1 ? '作品影像' : '系列作品' }}<span class="period">．</span>
+            p.kicker PROJECT DETAILS / {{ String(galleryItems.length).padStart(2, '0') }} {{ galleryItems.length === 1 ? 'ITEM' : 'ITEMS' }}
+            h2#project-series-title 作品內容<span class="period">．</span>
           p 點選作品可放大檢視。
         .project-series-grid
           button.project-series-item(v-for="item in galleryItems" :key="item.id" type="button" :class="{ 'is-wide': item.wide }" :aria-label="`放大查看${item.title}`" @click="openGallery(item, $event)")
@@ -80,7 +80,7 @@ SiteLayout(page-id="work")
             span.project-series-caption
               strong {{ item.title }}
               span(aria-hidden="true") ↗
-        MediaLightbox(ref="galleryLightbox" :items="galleryItems" :aria-label="`${project.title}系列作品檢視`")
+        MediaLightbox(ref="galleryLightbox" :items="galleryItems" :aria-label="`${project.title}作品內容檢視`")
       nav.project-detail-neighbors(aria-label="其他作品")
         a(v-if="previous" :href="previousDestination.href") ← {{ previous.title }}
         span(v-else)

@@ -7,7 +7,8 @@ export function usePageScroll({ duration = 600, headerOffset = 80 } = {}) {
   let scrollFrame = 0
 
   function updateScroll() {
-    headerLow.value = window.scrollY > 350
+    // 短頁面的 header 縮小會改變可捲動高度；留出回復區間，避免在 350px 反覆切換。
+    headerLow.value = headerLow.value ? window.scrollY > 310 : window.scrollY > 350
     showGoTop.value = window.scrollY > 200
   }
 
