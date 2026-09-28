@@ -51,6 +51,29 @@
     ]
   },
   {
+    "id": "cthouse",
+    "featured": true,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "中信房屋網站設計",
+    "summary": "以明亮的居家場景帶出「找到你的最適生活圈」主題，將區域、CP 值、捷運及地圖找屋方式集中在首頁首屏，讓訪客一進站就能選擇適合自己的搜尋方式。",
+    "role": "視覺設計",
+    "cover": "dish",
+    "image": "/images/projects/cthouse/cthouse00.jpg",
+    "detailImageAlt": "中信房屋｜首頁橫向捲動視覺提案",
+    "gallery": [
+      {
+        "src": "cthouse01.jpg",
+        "title": "中信房屋｜首頁橫向捲動視覺提案",
+        "alt": "中信房屋首頁橫向捲動設計稿，依序呈現居家與辦公空間主視覺、房屋搜尋、服務介紹、品牌優勢及最新消息區塊。"
+      },
+      {
+        "src": "cthouse02.jpg",
+        "title": "中信房屋｜房屋物件詳情頁視覺提案",
+        "alt": "中信房屋物件詳情頁設計稿，包含透天別墅照片與售價、物件資料、預約賞屋表單、VR 室內實景、周邊地圖、影音及相關物件推薦。"
+      }
+    ]
+  },
+  {
     "id": "four-leaves-coffee",
     "featured": false,
     "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
