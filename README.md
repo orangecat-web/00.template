@@ -35,7 +35,7 @@ npm run preview
 | `src/components/SiteLayout.vue` | 共用頁首、導覽、頁尾與回頁首 |
 | `src/components/ProjectCard.vue` | 首頁精選與列表共用卡片 |
 | `src/components/MediaLightbox.vue` | 作品圖片與實驗室共用媒體檢視 |
-| `src/data/projects.json`、`src/data/projects.js` | 作品資料、分類與內頁網址 |
+| `src/data/projects-*.json`、`src/data/projects.js` | 三類作品資料、合併清單與內頁網址 |
 | `src/utils/pagination.js` | 列表分頁規則 |
 | `src/assets/sass/` | 共用樣式、頁面樣式與 Sass 工具 |
 | `public/images/` | 網站圖片；以 `/images/...` 引用 |
@@ -43,11 +43,11 @@ npm run preview
 
 ## 作品資料
 
-我將分類與作品集中在 `src/data/projects.json`。作品 `id` 唯一且穩定；`categoryIds` 對應分類；清單順序就是列表順序。首頁顯示前 3 件 `featured: true` 的作品。
+我把作品分在 `src/data/projects-web.json`、`projects-graphic.json`、`projects-product-photo.json`。新增作品只要放進對應檔案的陣列，不必填 `categoryIds`；`projects.js` 會按網頁、平面、商品攝影的順序合併「全部作品」，並自動給作品分類。各檔案內的順序就是分類列表順序。作品 `id` 在三份檔案間須唯一且穩定；首頁顯示合併後前 3 件 `featured: true` 的作品。
 
 作品卡片一律導向本站內頁。若有上線網站或可操作展示，我在該作品設定 `externalUrl`，內頁按鈕預設顯示「查看上線網站」；需要不同文字時才加 `externalLabel`。`gallery[].src` 是相對於 `image`（無 `image` 時為 `detailImage`）所在資料夾的檔名；內頁以 `MediaLightbox` 放大圖片。
 
-列表透過 `?category=web&page=2` 保存篩選與頁碼；內頁以 `?id=<id>&category=web&from=2` 保留返回列表的狀態。新增作品後執行 `npm run check:data`。本地 JSON 會進入建置結果，正式版更新內容需要重新建置與部署。
+列表透過 `?category=web&page=2` 保存篩選與頁碼；內頁以 `?id=<id>&category=web&from=2` 保留返回列表的狀態。新增作品後執行 `npm run build`，會自動檢查資料並更新 `dist/`。正式版更新內容需要部署新的建置結果。
 
 ## 部署與後端交接
 

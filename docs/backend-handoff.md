@@ -21,45 +21,38 @@ npm run preview
 
 ## 作品資料來源
 
-`src/data/projects.json` 是唯一的作品清單來源：
+作品資料按類別分成 `src/data/projects-web.json`、`projects-graphic.json`、`projects-product-photo.json`。三個檔案各是一個作品陣列；例如 `projects-web.json` 的單筆資料：
 
 ```json
-{
-  "projectCategories": [
-    { "id": "all", "label": "全部作品" },
-    { "id": "web", "label": "網頁設計" }
-  ],
-  "projects": [
-    {
-      "id": "example-work",
-      "featured": false,
-      "categoryIds": ["web"],
-      "category": "WEB / VISUAL DESIGN",
-      "title": "範例網站設計",
-      "summary": "首頁視覺與商品展示。",
-      "role": "網頁視覺設計",
-      "cover": "web-design",
-      "image": "/images/projects/example-work/homepage.jpg",
-      "imageAlt": "範例網站首頁",
-      "detailImage": "/images/projects/example-work/homepage.jpg",
-      "detailImageAlt": "範例網站首頁",
-      "gallery": [
-        { "src": "homepage.jpg", "title": "首頁", "alt": "範例網站首頁畫面" }
-      ],
-      "externalUrl": "https://example.com/"
-    }
-  ]
-}
+[
+  {
+    "id": "example-work",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "範例網站設計",
+    "summary": "首頁視覺與商品展示。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/example-work/homepage.jpg",
+    "imageAlt": "範例網站首頁",
+    "detailImage": "/images/projects/example-work/homepage.jpg",
+    "detailImageAlt": "範例網站首頁",
+    "gallery": [
+      { "src": "homepage.jpg", "title": "首頁", "alt": "範例網站首頁畫面" }
+    ],
+    "externalUrl": "https://example.com/"
+  }
+]
 ```
 
-這是欄位形狀的示例，不是需要新增到現有清單的作品；實際分類與作品數量以 `projects.json` 為準。
+這是欄位形狀的示例，不是需要新增到現有清單的作品。新增時只需選擇檔案；`projects.js` 依來源自動指定分類、合併「全部作品」，不需填 `categoryIds`。合併順序為網頁設計、平面設計、商品攝影；檔案內維持陣列順序。
 
 | 欄位 | 現有用途與約定 |
 | --- | --- |
 | `id` | 每件作品唯一且穩定的字串，作為 `/project.html?id=...` 的識別值；改名會使舊連結失效。 |
 | `featured` | 布林值；清單中前 3 件 `true` 的作品出現在首頁精選區。 |
-| `categoryIds` | 分類 id 陣列；須對應 `projectCategories`，可屬於多個分類。`all` 由前端代表全部作品。 |
-| `category` | 卡片及內頁顯示的類型文字，與篩選用的 `categoryIds` 分開。 |
+| 所屬分類 | 由檔名決定；目前每件作品屬於一個分類。前端合併時產生供篩選的 `categoryIds`；`all` 是全部作品檢視。 |
+| `category` | 卡片及內頁顯示的類型文字，與檔案決定的篩選分類分開。 |
 | `title`、`summary`、`role` | 作品名稱、簡介、負責項目；列表與內頁都會使用。 |
 | `cover` | 沒有 `image` 時的封面視覺樣式識別值；有圖片時也保留卡片樣式 class。 |
 | `image`、`imageAlt` | 列表封面圖及替代文字；無圖片時顯示既有文字佔位。 |
@@ -78,7 +71,7 @@ npm run preview
 
 ## 日後接 API 的界線
 
-以下是**建議的串接契約，尚未實作**。若需要管理後台，可讓 API 回傳與 `projects.json` 相同的 `projectCategories`、`projects` 欄位（例如 `GET /api/portfolio`），再以一個資料取得／轉換層替換 `src/data/projects.js` 對本地 JSON 的匯入。保持 `id`、排序、分類 id、圖片網址與 `gallery` 結構穩定，就能繼續使用現有卡片、內頁與燈箱。
+以下是**建議的串接契約，尚未實作**。若需要管理後台，可讓 API 回傳分類與作品清單（例如 `GET /api/portfolio`），每件作品附上分類 id；再以資料取得／轉換層替換 `src/data/projects.js` 的本地 JSON 匯入。保持 `id`、排序、分類 id、圖片網址與 `gallery` 結構穩定，就能繼續使用現有卡片、內頁與燈箱。
 
 接成非同步資料時，需要在首頁、列表、內頁加入載入中、失敗重試與找不到作品的處理；目前元件依同步資料初始化，**不能只把 import 換成 `fetch`**。若未來改為伺服器分頁，API 還需回傳總筆數、頁碼與穩定排序，並調整目前的瀏覽器端篩選、相鄰作品及返回頁邏輯。後端負責存放與發布圖片時，請提供可公開讀取的圖片網址，並維持前述 gallery 路徑規則或同步更新前端組址方式。
 

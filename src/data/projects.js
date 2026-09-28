@@ -1,11 +1,27 @@
-import projectData from './projects.json'
+import webProjects from './projects-web.json'
+import graphicProjects from './projects-graphic.json'
+import productPhotoProjects from './projects-product-photo.json'
 
-// 資料放 JSON，分類與作品內頁網址留在 JS。
-export const projectCategories = projectData.projectCategories
-export const projects = projectData.projects.map((project) =>
-  project.externalUrl && !project.externalLabel
-    ? { ...project, externalLabel: '查看上線網站' }
-    : project,
+// 新增作品只需放進對應分類的 JSON；「全部作品」由前端合併。
+export const projectCategories = [
+  { id: 'all', label: '全部作品' },
+  { id: 'graphic', label: '平面設計' },
+  { id: 'web', label: '網頁設計' },
+  { id: 'product-photo', label: '商品攝影' },
+]
+
+const projectGroups = [
+  ['web', webProjects],
+  ['graphic', graphicProjects],
+  ['product-photo', productPhotoProjects],
+]
+
+export const projects = projectGroups.flatMap(([categoryId, items]) =>
+  items.map((project) => ({
+    ...project,
+    categoryIds: [categoryId],
+    ...(project.externalUrl && !project.externalLabel ? { externalLabel: '查看上線網站' } : {}),
+  })),
 )
 
 export const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)

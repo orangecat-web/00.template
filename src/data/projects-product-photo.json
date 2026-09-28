@@ -1,0 +1,542 @@
+[
+  {
+    "id": "product-photo-watch",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "腕錶細節－商品攝影",
+    "summary": "黑色背景上的 Tissot 腕錶錶面特寫。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/watch.jpg",
+    "imageAlt": "黑色背景上的 Tissot 腕錶錶面特寫",
+    "detailImage": "/images/projects/product-photography-selection/watch.jpg",
+    "detailImageAlt": "黑色背景上的 Tissot 腕錶錶面特寫",
+    "gallery": [
+      {
+        "src": "watch.jpg",
+        "title": "腕錶細節",
+        "alt": "黑色背景上的 Tissot 腕錶錶面特寫"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-crystal-bracelet",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "水晶手鍊－商品攝影",
+    "summary": "黑色展示座上的金屬與水晶墜飾手鍊。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/crystal-bracelet.jpg",
+    "imageAlt": "黑色展示座上的金屬與水晶墜飾手鍊",
+    "detailImage": "/images/projects/product-photography-selection/crystal-bracelet.jpg",
+    "detailImageAlt": "黑色展示座上的金屬與水晶墜飾手鍊",
+    "gallery": [
+      {
+        "src": "crystal-bracelet.jpg",
+        "title": "水晶手鍊",
+        "alt": "黑色展示座上的金屬與水晶墜飾手鍊"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-crystal-necklace",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "水晶項鍊－商品攝影",
+    "summary": "暖光中放在黑色展示座上的幾何水晶項鍊。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/crystal-necklace.jpg",
+    "imageAlt": "暖光中放在黑色展示座上的幾何水晶項鍊",
+    "detailImage": "/images/projects/product-photography-selection/crystal-necklace.jpg",
+    "detailImageAlt": "暖光中放在黑色展示座上的幾何水晶項鍊",
+    "gallery": [
+      {
+        "src": "crystal-necklace.jpg",
+        "title": "水晶項鍊",
+        "alt": "暖光中放在黑色展示座上的幾何水晶項鍊"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-floral-ring",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "花形戒指－商品攝影",
+    "summary": "白色毛絨背景上的金色與銀色花形戒指。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/floral-ring.jpg",
+    "imageAlt": "白色毛絨背景上的金色與銀色花形戒指",
+    "detailImage": "/images/projects/product-photography-selection/floral-ring.jpg",
+    "detailImageAlt": "白色毛絨背景上的金色與銀色花形戒指",
+    "gallery": [
+      {
+        "src": "floral-ring.jpg",
+        "title": "花形戒指",
+        "alt": "白色毛絨背景上的金色與銀色花形戒指"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-blue-stone-ring",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "藍色寶石戒指－商品攝影",
+    "summary": "白色毛絨背景上的藍色寶石戒指。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/blue-stone-ring.jpg",
+    "imageAlt": "白色毛絨背景上的藍色寶石戒指",
+    "detailImage": "/images/projects/product-photography-selection/blue-stone-ring.jpg",
+    "detailImageAlt": "白色毛絨背景上的藍色寶石戒指",
+    "gallery": [
+      {
+        "src": "blue-stone-ring.jpg",
+        "title": "藍色寶石戒指",
+        "alt": "白色毛絨背景上的藍色寶石戒指"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-blue-earrings",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "藍色耳環－商品攝影",
+    "summary": "白色毛絨背景上的一對深藍色方形耳環。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/blue-earrings.jpg",
+    "imageAlt": "白色毛絨背景上的一對深藍色方形耳環",
+    "detailImage": "/images/projects/product-photography-selection/blue-earrings.jpg",
+    "detailImageAlt": "白色毛絨背景上的一對深藍色方形耳環",
+    "gallery": [
+      {
+        "src": "blue-earrings.jpg",
+        "title": "藍色耳環",
+        "alt": "白色毛絨背景上的一對深藍色方形耳環"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-bow-hair-clips",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "蝴蝶結髮夾組－商品攝影",
+    "summary": "木盒中排列的多色蝴蝶結髮夾。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/bow-hair-clips.jpg",
+    "imageAlt": "木盒中排列的多色蝴蝶結髮夾",
+    "detailImage": "/images/projects/product-photography-selection/bow-hair-clips.jpg",
+    "detailImageAlt": "木盒中排列的多色蝴蝶結髮夾",
+    "gallery": [
+      {
+        "src": "bow-hair-clips.jpg",
+        "title": "蝴蝶結髮夾組",
+        "alt": "木盒中排列的多色蝴蝶結髮夾"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-bow-hair-clips-detail",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "蝴蝶結髮夾特寫－商品攝影",
+    "summary": "粉色紙絲與木盒中的彩色蝴蝶結髮夾特寫。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/bow-hair-clips-detail.jpg",
+    "imageAlt": "粉色紙絲與木盒中的彩色蝴蝶結髮夾特寫",
+    "detailImage": "/images/projects/product-photography-selection/bow-hair-clips-detail.jpg",
+    "detailImageAlt": "粉色紙絲與木盒中的彩色蝴蝶結髮夾特寫",
+    "gallery": [
+      {
+        "src": "bow-hair-clips-detail.jpg",
+        "title": "蝴蝶結髮夾特寫",
+        "alt": "粉色紙絲與木盒中的彩色蝴蝶結髮夾特寫"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-dumplings",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "水餃餐點－商品攝影",
+    "summary": "木質桌面上搭配醬料與餐巾擺拍的水餃。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/dumplings.jpg",
+    "imageAlt": "木質桌面上搭配醬料與餐巾擺拍的水餃",
+    "detailImage": "/images/projects/product-photography-selection/dumplings.jpg",
+    "detailImageAlt": "木質桌面上搭配醬料與餐巾擺拍的水餃",
+    "gallery": [
+      {
+        "src": "dumplings.jpg",
+        "title": "水餃餐點",
+        "alt": "木質桌面上搭配醬料與餐巾擺拍的水餃"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-iced-tea",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "冰飲與吸管－商品攝影",
+    "summary": "竹簾與布巾旁的冰涼茶飲及金屬吸管。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/iced-tea.jpg",
+    "imageAlt": "竹簾與布巾旁的冰涼茶飲及金屬吸管",
+    "detailImage": "/images/projects/product-photography-selection/iced-tea.jpg",
+    "detailImageAlt": "竹簾與布巾旁的冰涼茶飲及金屬吸管",
+    "gallery": [
+      {
+        "src": "iced-tea.jpg",
+        "title": "冰飲與吸管",
+        "alt": "竹簾與布巾旁的冰涼茶飲及金屬吸管"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-incense",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "線香情境－商品攝影",
+    "summary": "竹簾前的線香、香座與長形包裝情境照。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/incense.jpg",
+    "imageAlt": "竹簾前的線香、香座與長形包裝情境照",
+    "detailImage": "/images/projects/product-photography-selection/incense.jpg",
+    "detailImageAlt": "竹簾前的線香、香座與長形包裝情境照",
+    "gallery": [
+      {
+        "src": "incense.jpg",
+        "title": "線香情境",
+        "alt": "竹簾前的線香、香座與長形包裝情境照"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-trail-shoes",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "越野鞋－商品攝影",
+    "summary": "木質地面上的藍橘色越野鞋與鞋底細節。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/trail-shoes.jpg",
+    "imageAlt": "木質地面上的藍橘色越野鞋與鞋底細節",
+    "detailImage": "/images/projects/product-photography-selection/trail-shoes.jpg",
+    "detailImageAlt": "木質地面上的藍橘色越野鞋與鞋底細節",
+    "gallery": [
+      {
+        "src": "trail-shoes.jpg",
+        "title": "越野鞋",
+        "alt": "木質地面上的藍橘色越野鞋與鞋底細節"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-phone-case",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "手機保護殼－商品攝影",
+    "summary": "紫色光線下的手機保護殼背面細節。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/phone-case.jpg",
+    "imageAlt": "紫色光線下的手機保護殼背面細節",
+    "detailImage": "/images/projects/product-photography-selection/phone-case.jpg",
+    "detailImageAlt": "紫色光線下的手機保護殼背面細節",
+    "gallery": [
+      {
+        "src": "phone-case.jpg",
+        "title": "手機保護殼",
+        "alt": "紫色光線下的手機保護殼背面細節"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-body-scale",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "電子體重計－商品攝影",
+    "summary": "淺色背景上的白色電子體重計俯拍。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/body-scale.jpg",
+    "imageAlt": "淺色背景上的白色電子體重計俯拍",
+    "detailImage": "/images/projects/product-photography-selection/body-scale.jpg",
+    "detailImageAlt": "淺色背景上的白色電子體重計俯拍",
+    "gallery": [
+      {
+        "src": "body-scale.jpg",
+        "title": "電子體重計",
+        "alt": "淺色背景上的白色電子體重計俯拍"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-red-headphones",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "紅色耳機－商品攝影",
+    "summary": "暖色光線下置於書本上的紅色耳罩耳機。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/red-headphones.jpg",
+    "imageAlt": "暖色光線下置於書本上的紅色耳罩耳機",
+    "detailImage": "/images/projects/product-photography-selection/red-headphones.jpg",
+    "detailImageAlt": "暖色光線下置於書本上的紅色耳罩耳機",
+    "gallery": [
+      {
+        "src": "red-headphones.jpg",
+        "title": "紅色耳機",
+        "alt": "暖色光線下置於書本上的紅色耳罩耳機"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-phone-repair-kit",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "手機與維修工具－商品攝影",
+    "summary": "木桌上平鋪的手機、電池與拆機工具。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/phone-repair-kit.jpg",
+    "imageAlt": "木桌上平鋪的手機、電池與拆機工具",
+    "detailImage": "/images/projects/product-photography-selection/phone-repair-kit.jpg",
+    "detailImageAlt": "木桌上平鋪的手機、電池與拆機工具",
+    "gallery": [
+      {
+        "src": "phone-repair-kit.jpg",
+        "title": "手機與維修工具",
+        "alt": "木桌上平鋪的手機、電池與拆機工具"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-vintage-cameras",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "古董相機－商品攝影",
+    "summary": "暖光桌面上的兩台復古雙眼相機。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/vintage-cameras.jpg",
+    "imageAlt": "暖光桌面上的兩台復古雙眼相機",
+    "detailImage": "/images/projects/product-photography-selection/vintage-cameras.jpg",
+    "detailImageAlt": "暖光桌面上的兩台復古雙眼相機",
+    "gallery": [
+      {
+        "src": "vintage-cameras.jpg",
+        "title": "古董相機",
+        "alt": "暖光桌面上的兩台復古雙眼相機"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-orange-camera",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "橘色相機－商品攝影",
+    "summary": "淡藍背景前的橘色復古造型相機。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/orange-camera.jpg",
+    "imageAlt": "淡藍背景前的橘色復古造型相機",
+    "detailImage": "/images/projects/product-photography-selection/orange-camera.jpg",
+    "detailImageAlt": "淡藍背景前的橘色復古造型相機",
+    "gallery": [
+      {
+        "src": "orange-camera.jpg",
+        "title": "橘色相機",
+        "alt": "淡藍背景前的橘色復古造型相機"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-paintball-marker",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "運動器材－商品攝影",
+    "summary": "黑色布景中的橘色漆彈標記器。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/paintball-marker.jpg",
+    "imageAlt": "黑色布景中的橘色漆彈標記器",
+    "detailImage": "/images/projects/product-photography-selection/paintball-marker.jpg",
+    "detailImageAlt": "黑色布景中的橘色漆彈標記器",
+    "gallery": [
+      {
+        "src": "paintball-marker.jpg",
+        "title": "運動器材",
+        "alt": "黑色布景中的橘色漆彈標記器"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-replica-equipment",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "仿真器材靜物－商品攝影",
+    "summary": "暖色木桌與布質裝備間的仿真器材靜物照。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/replica-equipment.jpg",
+    "imageAlt": "暖色木桌與布質裝備間的仿真器材靜物照",
+    "detailImage": "/images/projects/product-photography-selection/replica-equipment.jpg",
+    "detailImageAlt": "暖色木桌與布質裝備間的仿真器材靜物照",
+    "gallery": [
+      {
+        "src": "replica-equipment.jpg",
+        "title": "仿真器材靜物",
+        "alt": "暖色木桌與布質裝備間的仿真器材靜物照"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-fortune-figurines",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "招財擺飾－商品攝影",
+    "summary": "竹簾與金幣前的兩件招財人物擺飾。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/fortune-figurines.jpg",
+    "imageAlt": "竹簾與金幣前的兩件招財人物擺飾",
+    "detailImage": "/images/projects/product-photography-selection/fortune-figurines.jpg",
+    "detailImageAlt": "竹簾與金幣前的兩件招財人物擺飾",
+    "gallery": [
+      {
+        "src": "fortune-figurines.jpg",
+        "title": "招財擺飾",
+        "alt": "竹簾與金幣前的兩件招財人物擺飾"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-wooden-script-keychain",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "木質經文吊飾－商品攝影",
+    "summary": "麻布上的木質經文吊飾與金色繩結。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/wooden-script-keychain.jpg",
+    "imageAlt": "麻布上的木質經文吊飾與金色繩結",
+    "detailImage": "/images/projects/product-photography-selection/wooden-script-keychain.jpg",
+    "detailImageAlt": "麻布上的木質經文吊飾與金色繩結",
+    "gallery": [
+      {
+        "src": "wooden-script-keychain.jpg",
+        "title": "木質經文吊飾",
+        "alt": "麻布上的木質經文吊飾與金色繩結"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-script-bracelet",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "經文手環特寫－商品攝影",
+    "summary": "暖光下刻有文字的紅色手環局部。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/script-bracelet.jpg",
+    "imageAlt": "暖光下刻有文字的紅色手環局部",
+    "detailImage": "/images/projects/product-photography-selection/script-bracelet.jpg",
+    "detailImageAlt": "暖光下刻有文字的紅色手環局部",
+    "gallery": [
+      {
+        "src": "script-bracelet.jpg",
+        "title": "經文手環特寫",
+        "alt": "暖光下刻有文字的紅色手環局部"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-squirrel-figurine",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "松鼠擺飾－商品攝影",
+    "summary": "木質背景前抱著松果的粉色松鼠擺飾。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/squirrel-figurine.jpg",
+    "imageAlt": "木質背景前抱著松果的粉色松鼠擺飾",
+    "detailImage": "/images/projects/product-photography-selection/squirrel-figurine.jpg",
+    "detailImageAlt": "木質背景前抱著松果的粉色松鼠擺飾",
+    "gallery": [
+      {
+        "src": "squirrel-figurine.jpg",
+        "title": "松鼠擺飾",
+        "alt": "木質背景前抱著松果的粉色松鼠擺飾"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-poodle-figurine",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "貴賓狗擺飾－商品攝影",
+    "summary": "木質背景前的金色貴賓狗擺飾。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/poodle-figurine.jpg",
+    "imageAlt": "木質背景前的金色貴賓狗擺飾",
+    "detailImage": "/images/projects/product-photography-selection/poodle-figurine.jpg",
+    "detailImageAlt": "木質背景前的金色貴賓狗擺飾",
+    "gallery": [
+      {
+        "src": "poodle-figurine.jpg",
+        "title": "貴賓狗擺飾",
+        "alt": "木質背景前的金色貴賓狗擺飾"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-golden-crystal-bracelet",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "金色晶石手環－商品攝影",
+    "summary": "暖光中的金色髮晶珠飾特寫。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/golden-crystal-bracelet.jpg",
+    "imageAlt": "暖光中的金色髮晶珠飾特寫",
+    "detailImage": "/images/projects/product-photography-selection/golden-crystal-bracelet.jpg",
+    "detailImageAlt": "暖光中的金色髮晶珠飾特寫",
+    "gallery": [
+      {
+        "src": "golden-crystal-bracelet.jpg",
+        "title": "金色晶石手環",
+        "alt": "暖光中的金色髮晶珠飾特寫"
+      }
+    ]
+  },
+  {
+    "id": "product-photo-clear-pendant-necklace",
+    "featured": false,
+    "category": "PRODUCT PHOTOGRAPHY",
+    "title": "透明雕刻墜飾－商品攝影",
+    "summary": "麻布上的透明人物雕刻墜飾與串珠繩結。",
+    "role": "商品攝影",
+    "cover": "product-photo",
+    "image": "/images/projects/product-photography-selection/clear-pendant-necklace.jpg",
+    "imageAlt": "麻布上的透明人物雕刻墜飾與串珠繩結",
+    "detailImage": "/images/projects/product-photography-selection/clear-pendant-necklace.jpg",
+    "detailImageAlt": "麻布上的透明人物雕刻墜飾與串珠繩結",
+    "gallery": [
+      {
+        "src": "clear-pendant-necklace.jpg",
+        "title": "透明雕刻墜飾",
+        "alt": "麻布上的透明人物雕刻墜飾與串珠繩結"
+      }
+    ]
+  }
+]

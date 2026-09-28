@@ -10,7 +10,7 @@
 ## 專案慣例
 
 - 專案使用 Vue 3、Vite、Pug 與縮排式 Sass。保留既有視覺設計與共用元件，修改範圍以任務所需為準。
-- 作品資料位於 `src/data/projects.json`；新增作品時保留原有作品。每筆作品有自己的內頁；同一系列可共用內頁，無關的作品維持獨立。
+- 作品資料分在 `src/data/projects-web.json`、`projects-graphic.json`、`projects-product-photo.json`；新增作品只加到對應檔案，不填 `categoryIds`，保留原有作品。`src/data/projects.js` 自動合併全部作品並指定分類。每筆作品有自己的內頁；同一系列可共用內頁，無關的作品維持獨立。
 - 作品列表每頁 15 筆；系列圖片沿用 `src/components/MediaLightbox.vue`。
 - 作品有 `externalUrl` 時，`src/data/projects.js` 會自動補上「查看上線網站」。只有需要不同文案時才在 JSON 填 `externalLabel`。
 - 圖片路徑、檔名與作品資料須一致；改動作品 `id` 時留意既有內頁連結。

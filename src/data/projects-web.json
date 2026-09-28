@@ -1,0 +1,712 @@
+[
+  {
+    "id": "orange-cat-vue",
+    "featured": true,
+    "category": "FRONT-END / VUE 3",
+    "title": "互動實驗室",
+    "summary": "從 oc-template 延伸的 Vue 3 實作：影像輪播、媒體檢視、動態導覽與 Sass 視覺效果。",
+    "role": "視覺設計、前端實作",
+    "externalUrl": "/lab.html",
+    "externalLabel": "進入互動實驗室",
+    "cover": "photo",
+    "image": "/images/photos/IMG_8157.JPG",
+    "imageAlt": "兩隻橘白貓咪坐在沙發上的攝影作品"
+  },
+  {
+    "id": "bilingual-shop",
+    "featured": true,
+    "category": "WEBSITE / REAL PROJECT",
+    "title": "雙語商業資源入口網",
+    "summary": "涵蓋雙語檢索、內容列表、主題資源與相簿的網站作品。",
+    "role": "前端切版",
+    "externalUrl": "https://serv.gcis.nat.gov.tw/bilingualshop/tw/homepage",
+    "cover": "bilingual"
+  },
+  {
+    "id": "dish-life",
+    "featured": true,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "DISH-LIFE 網站設計",
+    "summary": "以商品影像、色彩與資訊層次構成的商業網站視覺作品。",
+    "role": "網頁視覺設計",
+    "cover": "dish",
+    "detailImage": "/images/projects/dish-life.jpg",
+    "detailImageAlt": "DISH-LIFE 網站設計長圖，呈現首頁商品、活動區塊與頁尾",
+    "gallery": [
+      {
+        "src": "dish-life.jpg",
+        "title": "既有首頁設計",
+        "alt": "DISH-LIFE 網站設計既有首頁長圖"
+      },
+      {
+        "src": "dish-life-02.jpg",
+        "title": "首頁設計提案 02",
+        "alt": "DISH-LIFE 商店網站首頁設計提案 02"
+      },
+      {
+        "src": "dish-life-03.jpg",
+        "title": "首頁設計提案 03",
+        "alt": "DISH-LIFE 商店網站首頁設計提案 03"
+      }
+    ]
+  },
+  {
+    "id": "four-leaves-coffee",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "四葉咖啡網站設計",
+    "summary": "四葉咖啡的網站首頁，以咖啡與品牌形象呈現導覽。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/four-leaves-coffee/homepage.jpg",
+    "imageAlt": "四葉咖啡網站設計首頁畫面",
+    "detailImage": "/images/projects/four-leaves-coffee/homepage.jpg",
+    "detailImageAlt": "四葉咖啡網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "四葉咖啡網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "furry-smiles-rescue",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "Furry Smiles 救援網站設計",
+    "summary": "Furry Smiles 動物救援網站首頁視覺。",
+    "role": "網頁視覺設計與前端切版",
+    "externalUrl": "https://www.lovefsir.org/",
+    "cover": "web-design",
+    "image": "/images/projects/furry-smiles-rescue/homepage.jpg",
+    "imageAlt": "Furry Smiles 救援網站設計首頁畫面",
+    "detailImage": "/images/projects/furry-smiles-rescue/homepage.jpg",
+    "detailImageAlt": "Furry Smiles 救援網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "Furry Smiles 救援網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "grc-site-concept",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "GRC 網站設計提案",
+    "summary": "GRC 企業網站首頁的版型提案。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/grc-site-concept/homepage-01.jpg",
+    "imageAlt": "GRC 網站設計提案 04首頁畫面",
+    "detailImage": "/images/projects/grc-site-concept/homepage-01.jpg",
+    "detailImageAlt": "GRC 網站設計提案 04首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage-01.jpg",
+        "title": "首頁網站畫面 01",
+        "alt": "GRC 網站設計提案 01完整畫面"
+      },
+      {
+        "src": "homepage-02.jpg",
+        "title": "首頁網站畫面 02",
+        "alt": "GRC 網站設計提案 02完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "ggs-company",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "GGS 企業網站設計",
+    "summary": "以風力發電影像作為主視覺的 GGS 企業網站首頁。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/ggs-company/homepage.jpg",
+    "imageAlt": "GGS 企業網站設計首頁畫面",
+    "detailImage": "/images/projects/ggs-company/homepage.jpg",
+    "detailImageAlt": "GGS 企業網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "GGS 企業網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "hello-berry",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "Hello Berry 網站設計",
+    "summary": "Hello Berry 冰凍優格品牌網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/hello-berry/homepage.jpg",
+    "imageAlt": "Hello Berry 網站設計首頁畫面",
+    "detailImage": "/images/projects/hello-berry/homepage.jpg",
+    "detailImageAlt": "Hello Berry 網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "Hello Berry 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "bemer-group",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "BEMER Group 網站設計",
+    "summary": "BEMER Group 產品介紹網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/bemer-group/homepage.jpg",
+    "imageAlt": "BEMER Group 網站設計首頁畫面",
+    "detailImage": "/images/projects/bemer-group/homepage.jpg",
+    "detailImageAlt": "BEMER Group 網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "BEMER Group 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "pink-holidays",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "品客假期網站設計",
+    "summary": "品客假期旅遊行程網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/pink-holidays/homepage.jpg",
+    "imageAlt": "品客假期網站設計首頁畫面",
+    "detailImage": "/images/projects/pink-holidays/homepage.jpg",
+    "detailImageAlt": "品客假期網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "品客假期網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "jazzdam",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "Jazzdam 購物網站設計",
+    "summary": "Jazzdam 包款購物網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/jazzdam/homepage.jpg",
+    "imageAlt": "Jazzdam 購物網站設計首頁畫面",
+    "detailImage": "/images/projects/jazzdam/homepage.jpg",
+    "detailImageAlt": "Jazzdam 購物網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "Jazzdam 購物網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "jdi",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "JDI 網站設計",
+    "summary": "JDI 通訊設備品牌網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/jdi/homepage.jpg",
+    "imageAlt": "JDI 網站設計首頁畫面",
+    "detailImage": "/images/projects/jdi/homepage.jpg",
+    "detailImageAlt": "JDI 網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "JDI 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "golden-bus-tour",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "金道旅遊網站設計",
+    "summary": "金道旅遊行程與遊覽車租賃網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/golden-bus-tour/homepage.jpg",
+    "imageAlt": "金道旅遊網站設計首頁畫面",
+    "detailImage": "/images/projects/golden-bus-tour/homepage.jpg",
+    "detailImageAlt": "金道旅遊網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "金道旅遊網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "jishi-charity",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "中華民國濟世功德會網站設計",
+    "summary": "中華民國濟世功德會網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/jishi-charity/homepage.jpg",
+    "imageAlt": "中華民國濟世功德會網站設計首頁畫面",
+    "detailImage": "/images/projects/jishi-charity/homepage.jpg",
+    "detailImageAlt": "中華民國濟世功德會網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "中華民國濟世功德會網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "hakka-opera",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "《戀戀臺三線》網站設計",
+    "summary": "2017 精緻客家大戲《戀戀臺三線》網站畫面。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/hakka-opera/homepage.jpg",
+    "imageAlt": "《戀戀臺三線》網站設計首頁畫面",
+    "detailImage": "/images/projects/hakka-opera/homepage.jpg",
+    "detailImageAlt": "《戀戀臺三線》網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "《戀戀臺三線》網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "lightning-creek",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "LIGHTNING CREEK 網站設計",
+    "summary": "戶外服飾品牌 LIGHTNING CREEK 網站入口視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/lightning-creek/homepage.jpg",
+    "imageAlt": "LIGHTNING CREEK 網站設計首頁畫面",
+    "detailImage": "/images/projects/lightning-creek/homepage.jpg",
+    "detailImageAlt": "LIGHTNING CREEK 網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "LIGHTNING CREEK 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "mim",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "MIM 網站設計",
+    "summary": "MIM 時尚品牌網站的入口與商品列表視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/mim/homepage.jpg",
+    "imageAlt": "MIM 網站設計首頁畫面",
+    "detailImage": "/images/projects/mim/homepage.jpg",
+    "detailImageAlt": "MIM 網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "MIM 網站設計完整畫面"
+      },
+      {
+        "src": "products.jpg",
+        "title": "商品列表畫面",
+        "alt": "MIM 時尚品牌網站商品列表設計"
+      }
+    ]
+  },
+  {
+    "id": "happy-farmhouse",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "快樂屋休閒民宿網站設計",
+    "summary": "快樂屋休閒民宿網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/happy-farmhouse/homepage.jpg",
+    "imageAlt": "快樂屋休閒民宿網站設計首頁畫面",
+    "detailImage": "/images/projects/happy-farmhouse/homepage.jpg",
+    "detailImageAlt": "快樂屋休閒民宿網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "快樂屋休閒民宿網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "actionpro",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "ActionPro 網站設計",
+    "summary": "ActionPro 運動攝影機品牌網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/actionpro/homepage.jpg",
+    "imageAlt": "ActionPro 網站設計首頁畫面",
+    "detailImage": "/images/projects/actionpro/homepage.jpg",
+    "detailImageAlt": "ActionPro 網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "ActionPro 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "business-consultant",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "企管顧問作業平台網站設計",
+    "summary": "企管顧問作業平台網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/business-consultant/homepage.jpg",
+    "imageAlt": "企管顧問作業平台網站設計首頁畫面",
+    "detailImage": "/images/projects/business-consultant/homepage.jpg",
+    "detailImageAlt": "企管顧問作業平台網站設計首頁畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "企管顧問作業平台網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "shi-yao-enterprise",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "世耀實業網站設計",
+    "summary": "世耀實業企業網站品質管理頁面視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/shi-yao-enterprise/homepage.jpg",
+    "imageAlt": "世耀實業網站設計網站畫面",
+    "detailImage": "/images/projects/shi-yao-enterprise/homepage.jpg",
+    "detailImageAlt": "世耀實業網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "世耀實業網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "funk-fun-game",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "恐怖歡樂 Funk & Fun 網站設計",
+    "summary": "Funk & Fun 互動遊戲品牌網站長頁設計。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/funk-fun-game/homepage.jpg",
+    "imageAlt": "恐怖歡樂 Funk & Fun 網站設計網站畫面",
+    "detailImage": "/images/projects/funk-fun-game/homepage.jpg",
+    "detailImageAlt": "恐怖歡樂 Funk & Fun 網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "恐怖歡樂 Funk & Fun 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "nineten",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "NINETEN 網站設計",
+    "summary": "NINETEN 產品與應用介紹網站長頁設計。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/nineten/homepage.jpg",
+    "imageAlt": "NINETEN 網站設計網站畫面",
+    "detailImage": "/images/projects/nineten/homepage.jpg",
+    "detailImageAlt": "NINETEN 網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "NINETEN 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "nine-sir",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "9sir 網站設計",
+    "summary": "9sir 外送服務網站的首頁長頁與局部畫面。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/nine-sir/homepage.jpg",
+    "imageAlt": "9sir 網站首頁完整畫面",
+    "detailImage": "/images/projects/nine-sir/homepage.jpg",
+    "detailImageAlt": "9sir 網站首頁完整畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "首頁完整畫面",
+        "alt": "9sir 外送服務網站首頁長頁設計"
+      },
+      {
+        "src": "edited.jpg",
+        "title": "首頁局部畫面",
+        "alt": "9sir 外送服務網站首頁上方局部畫面"
+      }
+    ]
+  },
+  {
+    "id": "mikuni",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "株式会社ミクニ 網站設計",
+    "summary": "株式会社ミクニ企業網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "externalUrl": "http://www.mikuni-inc.com/",
+    "cover": "web-design",
+    "image": "/images/projects/mikuni/homepage.jpg",
+    "imageAlt": "株式会社ミクニ 網站設計網站畫面",
+    "detailImage": "/images/projects/mikuni/homepage.jpg",
+    "detailImageAlt": "株式会社ミクニ 網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "株式会社ミクニ 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "vividventure",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "亞蒂芬奇產品頁設計",
+    "summary": "亞蒂芬奇珠寶網站的產品資訊頁設計。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/vividventure/homepage.jpg",
+    "imageAlt": "亞蒂芬奇產品頁設計網站畫面",
+    "detailImage": "/images/projects/vividventure/homepage.jpg",
+    "detailImageAlt": "亞蒂芬奇產品頁設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "亞蒂芬奇產品頁設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "zhen-luwei",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "貞滷味網站設計",
+    "summary": "貞滷味食品品牌網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/zhen-luwei/homepage.jpg",
+    "imageAlt": "貞滷味網站設計網站畫面",
+    "detailImage": "/images/projects/zhen-luwei/homepage.jpg",
+    "detailImageAlt": "貞滷味網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "貞滷味網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "jen-hon-education",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "健弘教育機構網站設計",
+    "summary": "健弘教育機構網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/jen-hon-education/homepage.jpg",
+    "imageAlt": "健弘教育機構網站設計網站畫面",
+    "detailImage": "/images/projects/jen-hon-education/homepage.jpg",
+    "detailImageAlt": "健弘教育機構網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "健弘教育機構網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "rts-tour",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "清晨旅行社網站設計",
+    "summary": "清晨旅行社旅遊行程網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/rts-tour/homepage.jpg",
+    "imageAlt": "清晨旅行社網站設計網站畫面",
+    "detailImage": "/images/projects/rts-tour/homepage.jpg",
+    "detailImageAlt": "清晨旅行社網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "清晨旅行社網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "mofa-hair",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "摩髮時尚髮型連鎖網站設計",
+    "summary": "摩髮時尚髮型連鎖網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/mofa-hair/homepage.jpg",
+    "imageAlt": "摩髮時尚髮型連鎖網站設計網站畫面",
+    "detailImage": "/images/projects/mofa-hair/homepage.jpg",
+    "detailImageAlt": "摩髮時尚髮型連鎖網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "摩髮時尚髮型連鎖網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "diandian-japan",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "點點日本網站設計",
+    "summary": "點點日本商品分類與列表頁設計。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/diandian-japan/homepage.jpg",
+    "imageAlt": "點點日本網站設計網站畫面",
+    "detailImage": "/images/projects/diandian-japan/homepage.jpg",
+    "detailImageAlt": "點點日本網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "點點日本網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "pm25-exhibition",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "《島嶼浮塵》網站設計",
+    "summary": "PM2.5 視界特展《島嶼浮塵》網站長頁設計。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/pm25-exhibition/homepage.jpg",
+    "imageAlt": "《島嶼浮塵》網站設計網站畫面",
+    "detailImage": "/images/projects/pm25-exhibition/homepage.jpg",
+    "detailImageAlt": "《島嶼浮塵》網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "《島嶼浮塵》網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "pp-vip",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "PP 哲學 VIP 網站設計",
+    "summary": "PP 哲學 VIP 網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "cover": "web-design",
+    "image": "/images/projects/pp-vip/homepage.jpg",
+    "imageAlt": "PP 哲學 VIP 網站設計網站畫面",
+    "detailImage": "/images/projects/pp-vip/homepage.jpg",
+    "detailImageAlt": "PP 哲學 VIP 網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "PP 哲學 VIP 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "pss-group",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "PSS 集團網站設計",
+    "summary": "PSS 集團企業網站首頁長頁設計。",
+    "role": "網頁視覺設計",
+    "externalUrl": "https://www.pss-group.com/",
+    "cover": "web-design",
+    "image": "/images/projects/pss-group/homepage.jpg",
+    "imageAlt": "PSS 集團網站設計網站畫面",
+    "detailImage": "/images/projects/pss-group/homepage.jpg",
+    "detailImageAlt": "PSS 集團網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "PSS 集團網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    "id": "pure-life",
+    "featured": false,
+    "category": "WEB / VISUAL DESIGN",
+    "title": "PURE LIFE 網站設計",
+    "summary": "PURE LIFE 口腔清潔用品購物網站首頁視覺。",
+    "role": "網頁視覺設計",
+    "externalUrl": "https://www.pure-life.com.tw/",
+    "cover": "web-design",
+    "image": "/images/projects/pure-life/homepage.jpg",
+    "imageAlt": "PURE LIFE 網站設計網站畫面",
+    "detailImage": "/images/projects/pure-life/homepage.jpg",
+    "detailImageAlt": "PURE LIFE 網站設計網站畫面",
+    "gallery": [
+      {
+        "src": "homepage.jpg",
+        "title": "網站畫面",
+        "alt": "PURE LIFE 網站設計完整畫面"
+      }
+    ]
+  }
+]
