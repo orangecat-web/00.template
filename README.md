@@ -26,12 +26,13 @@ npm run preview
 | `/project.html?id=<id>` | 作品內頁、圖片集與相鄰作品 |
 | `/lab.html` | 影像效果、導覽動態、媒體檢視、輪播與環景展示 |
 | `/icons.html` | Google Material Icons 樣式展示 |
+| `/404.html` | 找不到頁面時的搜尋與導覽入口 |
 
 ## 程式位置
 
 | 路徑 | 用途 |
 | --- | --- |
-| `src/App.vue`、`src/WorkApp.vue`、`src/ProjectApp.vue` | 首頁、作品列表、作品內頁 |
+| `src/App.vue`、`src/WorkApp.vue`、`src/ProjectApp.vue`、`src/NotFoundApp.vue` | 首頁、作品列表、作品內頁、404 頁 |
 | `src/components/SiteLayout.vue` | 共用頁首、導覽、頁尾與回頁首 |
 | `src/components/ProjectCard.vue` | 首頁精選與列表共用卡片 |
 | `src/components/MediaLightbox.vue` | 作品圖片與實驗室共用媒體檢視 |
@@ -52,5 +53,7 @@ npm run preview
 ## 部署與後端交接
 
 我將 `dist/` 部署在網站根目錄；目前網址與圖片使用 `/...` 絕對路徑。若部署在子路徑，需要調整 Vite `base` 與站內連結。
+
+建置會輸出 `dist/404.html`。部署時將伺服器的找不到頁面設定指向 `/404.html`，並維持 HTTP 404 狀態；直接開啟 `/404.html` 可檢查畫面。頁內搜尋會以 GET 前往 `/work.html?q=關鍵字`。
 
 目前沒有作品 API 或管理後台。我保留可獨立展示的資料版本；日後接 API 時，維持作品 `id`、分類、排序、圖片與 `gallery` 欄位，再補非同步載入、錯誤和空資料狀態。欄位契約與串接邊界見 [前後端交接說明](docs/backend-handoff.md)。

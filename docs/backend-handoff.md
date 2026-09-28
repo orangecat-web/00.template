@@ -15,7 +15,8 @@ npm run preview
 - `npm run dev` 啟動開發版；`npm run build` 產生 `dist/`；`npm run preview` 在本機檢查建置結果。
 - `npm run check:data` 檢查作品 id、分類、圖片檔案與 gallery 路徑；`npm run build` 會先執行這項檢查，避免缺圖資料進入正式版。
 - 部署 `dist/` 到網域根目錄即可提供目前的展示版。網站使用 `/work.html`、`/project.html` 和 `/images/...` 等**根目錄絕對路徑**；若掛在子路徑，需一併調整 Vite `base` 與這些連結。
-- 五個 HTML 入口是 `/`（`index.html`）、`/work.html`、`/project.html`、`/lab.html`、`/icons.html`。`/project.html?id=<id>` 是同一個作品內頁入口，依查詢參數選擇作品；目前不需伺服器提供動態路由重寫。
+- 六個 HTML 入口是 `/`（`index.html`）、`/work.html`、`/project.html`、`/lab.html`、`/icons.html`、`/404.html`。`/project.html?id=<id>` 是同一個作品內頁入口，依查詢參數選擇作品；目前不需伺服器提供動態路由重寫。
+- 將找不到的網址對應到 `dist/404.html` 並保留 HTTP 404 狀態；具體設定由部署的靜態伺服器決定。404 頁搜尋表單以 GET 導向 `/work.html?q=...`，不需後端 API。
 - `public/images/` 中的素材會以 `/images/...` 網址提供。上傳或部署時需保留檔名大小寫及目錄；前端字型、CSS 與 JS 由建置產生。
 - 目前編輯 `src/data/*.json` 或替換 `public/` 素材後，都需要重新建置並部署。畫面沒有依賴 API 的載入狀態，也沒有作品管理後台。
 
@@ -79,4 +80,4 @@ npm run preview
 
 ## 交接驗收
 
-建置後至少檢查 `/`、`/work.html`、`/project.html?id=mim`、`/lab.html`、`/icons.html`；在作品列表切換分類與頁碼、從卡片進內頁再返回、開啟 MIM 圖片燈箱、從互動實驗室內頁進 `/lab.html`，以及由雙語商業資源入口網內頁點「查看上線網站」。若外站已變更，更新 `externalUrl`，不要讓列表卡片直接跳出本站。
+建置後至少檢查 `/`、`/work.html`、`/project.html?id=mim`、`/lab.html`、`/icons.html`、`/404.html`；在 404 頁搜尋作品並確認跳到帶 `q` 的列表，部署後再檢查不存在的網址回傳 HTTP 404。另需檢查作品列表切換分類與頁碼、從卡片進內頁再返回、開啟 MIM 圖片燈箱、從互動實驗室內頁進 `/lab.html`，以及由雙語商業資源入口網內頁點「查看上線網站」。若外站已變更，更新 `externalUrl`，不要讓列表卡片直接跳出本站。
