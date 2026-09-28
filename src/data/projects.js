@@ -26,12 +26,62 @@ export const projects = projectGroups.flatMap(([categoryId, items]) =>
 
 export const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)
 
+// 同一分頁共用一個隨機種子，避免翻頁、進內頁再返回時作品跳位。
+function sessionSeed() {
+  const key = 'portfolio-work-order-v1'
+  try {
+    const saved = window.sessionStorage.getItem(key)
+    if (saved !== null) return Number(saved) >>> 0
+    const seed = Math.floor(Math.random() * 0x100000000)
+    window.sessionStorage.setItem(key, String(seed))
+    return seed
+  } catch {
+    return Math.floor(Math.random() * 0x100000000)
+  }
+}
+
+function seededRandom(seed) {
+  let state = seed
+  return () => {
+    state = (state + 0x6D2B79F5) | 0
+    let value = Math.imul(state ^ (state >>> 15), 1 | state)
+    value ^= value + Math.imul(value ^ (value >>> 7), 61 | value)
+    return ((value ^ (value >>> 14)) >>> 0) / 0x100000000
+  }
+}
+
+function shuffle(items, random) {
+  const shuffled = [...items]
+  for (let index = shuffled.length - 1; index > 0; index--) {
+    const next = Math.floor(random() * (index + 1))
+    const selected = shuffled[index]
+    shuffled[index] = shuffled[next]
+    shuffled[next] = selected
+  }
+  return shuffled
+}
+
+const random = seededRandom(sessionSeed())
+const laboratory = projects.find((project) => project.id === 'orange-cat-vue')
+const onlineWebProjects = projects.filter((project) =>
+  project !== laboratory && project.categoryIds.includes('web') && /^https?:\/\//i.test(project.externalUrl || ''),
+)
+const others = projects.filter((project) => project !== laboratory && !onlineWebProjects.includes(project))
+const allProjects = [
+  ...(laboratory ? [laboratory] : []),
+  ...shuffle(onlineWebProjects, random),
+  ...shuffle(others, random),
+]
+const allOrder = new Map(allProjects.map((project, index) => [project.id, index]))
+
 export function resolveProjectCategory(id) {
   return projectCategories.some((category) => category.id === id) ? id : 'all'
 }
 
 export function filterProjects(items, categoryId) {
-  return categoryId === 'all' ? items : items.filter((project) => project.categoryIds?.includes(categoryId))
+  return categoryId === 'all'
+    ? [...items].sort((first, second) => (allOrder.get(first.id) ?? Infinity) - (allOrder.get(second.id) ?? Infinity))
+    : items.filter((project) => project.categoryIds?.includes(categoryId))
 }
 
 export function searchProjects(items, query) {

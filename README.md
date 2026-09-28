@@ -43,7 +43,7 @@ npm run preview
 
 ## 作品資料
 
-我把作品分在 `src/data/projects-web.json`、`projects-graphic.json`、`projects-product-photo.json`。新增作品只要放進對應檔案的陣列，不必填 `categoryIds`；`projects.js` 會按網頁、平面、商品攝影的順序合併「全部作品」，並自動給作品分類。各檔案內的順序就是分類列表順序。作品 `id` 在三份檔案間須唯一且穩定；首頁顯示合併後前 3 件 `featured: true` 的作品。
+我把作品分在 `src/data/projects-web.json`、`projects-graphic.json`、`projects-product-photo.json`。新增作品只要放進對應檔案的陣列，不必填 `categoryIds`；`projects.js` 會合併「全部作品」，並自動給作品分類。分類列表維持各檔案的陣列順序。全部作品固定以互動實驗室開頭，接著隨機排列有 HTTP(S) 上線網址的網頁作品，再隨機排列其餘作品；同一瀏覽器分頁的順序保持一致，避免翻頁或返回內頁時跳位。作品 `id` 在三份檔案間須唯一且穩定；首頁顯示資料中前 3 件 `featured: true` 的作品。
 
 作品卡片一律導向本站內頁。若有上線網站或可操作展示，我在該作品設定 `externalUrl`，內頁按鈕預設顯示「查看上線網站」；需要不同文字時才加 `externalLabel`。`gallery[].src` 是相對於 `image`（無 `image` 時為 `detailImage`）所在資料夾的檔名；內頁以 `MediaLightbox` 放大圖片。
 

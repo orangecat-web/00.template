@@ -45,7 +45,7 @@ npm run preview
 ]
 ```
 
-這是欄位形狀的示例，不是需要新增到現有清單的作品。新增時只需選擇檔案；`projects.js` 依來源自動指定分類、合併「全部作品」，不需填 `categoryIds`。合併順序為網頁設計、平面設計、商品攝影；檔案內維持陣列順序。
+這是欄位形狀的示例，不是需要新增到現有清單的作品。新增時只需選擇檔案；`projects.js` 依來源自動指定分類、合併「全部作品」，不需填 `categoryIds`。分類頁維持檔案內的陣列順序；全部作品固定互動實驗室在第一筆，有 HTTP(S) 上線網址的網頁作品隨機排在其後，其餘作品再隨機排列。同一瀏覽器分頁維持順序，避免分頁、搜尋或從內頁返回時重複或漏掉作品。
 
 | 欄位 | 現有用途與約定 |
 | --- | --- |
@@ -60,7 +60,7 @@ npm run preview
 | `gallery` | 內頁可點開的圖片陣列；每筆有 `src`、`title`、`alt`，可選 `wide: true`。燈箱重用 `MediaLightbox`。 |
 | `externalUrl`、`externalLabel` | `externalUrl` 可選，只在作品內頁顯示額外按鈕，卡片一律先進內頁。`projects.js` 會補上預設文字「查看上線網站」；僅在需要不同文字時填 `externalLabel`。HTTP(S) 網址另開分頁；站內路徑留在本站。 |
 
-`gallery[].src` **目前是相對檔名**，前端以 `image`（若無則 `detailImage`）所在目錄組成完整網址。例如 `image: "/images/projects/mim/homepage.jpg"` 配 `src: "products.jpg"`，會讀取 `/images/projects/mim/products.jpg`。不能直接把 API 回傳的完整圖片網址塞入 `gallery[].src`，除非同步修改 `src/ProjectApp.vue` 的組址方式。作品陣列順序就是列表順序；分類頁保留原順序。
+`gallery[].src` **目前是相對檔名**，前端以 `image`（若無則 `detailImage`）所在目錄組成完整網址。例如 `image: "/images/projects/mim/homepage.jpg"` 配 `src: "products.jpg"`，會讀取 `/images/projects/mim/products.jpg`。不能直接把 API 回傳的完整圖片網址塞入 `gallery[].src`，除非同步修改 `src/ProjectApp.vue` 的組址方式。
 
 ## 頁面行為與網址
 
