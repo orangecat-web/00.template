@@ -13,6 +13,19 @@
     "imageAlt": "兩隻橘白貓咪坐在沙發上的攝影作品"
   },
   {
+    "id": "night-hospital-map",
+    "featured": true,
+    "category": "WEBSITE / FRONT-END / VUE 3",
+    "title": "夜間毛孩就醫",
+    "summary": "以 Vue 3 製作的動物急診查詢作品，提供全台縣市與院所搜尋、24 小時及急診條件篩選、Google 地圖嵌入與導航。院所樣本以 JSON 管理，並標示資料來源與查閱日期。",
+    "role": "網站規劃、視覺設計、前端切版與互動功能實作",
+    "externalUrl": "https://demo.orangecat.com.tw/night-hospital-map/",
+    "externalLabel": "進入夜間毛孩就醫",
+    "cover": "photo",
+    "image": "/images/photos/IMG_8167.JPG",
+    "imageAlt": "兩隻橘白貓咪坐在沙發上的攝影作品"
+  },
+  {
     "id": "bilingual-shop",
     "featured": true,
     "category": "WEBSITE / FRONT-END CODING",
