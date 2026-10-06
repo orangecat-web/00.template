@@ -2,7 +2,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { mergeGithubProjects } from '../src/utils/githubProjects.js'
+import { mergeGithubProjects, websiteUrl } from '../src/utils/githubProjects.js'
 import { fetchRepositories, normalizeRepositories } from '../src/services/github.js'
 const repo = (name) => ({ name, owner: { login: 'orangecat-web' }, private: false, description: null, language: 'JavaScript', pushed_at: '2026-10-01T00:00:00Z' })
 const response = (data) => ({ ok: true, json: async () => data })
@@ -120,4 +120,18 @@ test('17 個真實倉庫合併為 17 件前端作品，6 件對應既有作品�
   assert.equal(expanded.filter(item => item.id === 'github-future-new').length, 1)
   const supplemented = mergeGithubProjects(base, [extra], { ...config, overrides: { 'future-new': { title: '新作品', image: '/images/test.jpg', imageAlt: '展示', tags: ['Vue 3'] } } })
   assert.equal(supplemented.find(item => item.id === 'github-future-new').image, '/images/test.jpg')
+})
+
+
+test('列表線上作品只接受網站網址，支援站內 Demo 及未來 Repo homepage', () => {
+  assert.equal(websiteUrl('javascript:alert(1)'), '')
+  assert.equal(websiteUrl('https://github.com/orangecat-web/sunger'), '')
+  assert.equal(websiteUrl('//example.com'), '')
+  assert.equal(websiteUrl('/lab.html'), '/lab.html')
+  assert.equal(websiteUrl('https://orangecat-web.github.io/demo'), 'https://orangecat-web.github.io/demo')
+  const config = { organization: 'orangecat-web', projects: [], overrides: {} }
+  const result = mergeGithubProjects([], [{ name: 'demo', homepage: 'https://example.com/demo', language: 'JavaScript' }], config)
+  assert.equal(result[0].externalUrl, 'https://example.com/demo')
+  const bad = mergeGithubProjects([], [{ name: 'bad', homepage: 'javascript:alert(1)' }], config)
+  assert.equal(bad[0].externalUrl, undefined)
 })

@@ -372,6 +372,11 @@ a
     color: $muted
     font-size: rem(13)
     line-height: 1.7
+    display: -webkit-box            /* 將物件作為弹性伸缩盒子模型顯示 */
+    -webkit-box-orient: vertical    /* 設定或檢索伸縮盒專案的子元素排列方式 */
+    -webkit-line-clamp: 2           /* 限制顯示的文本行數為兩行 */
+    overflow: hidden                /* 超出範圍的內容隱藏 */
+    text-overflow: ellipsis         /* 當文本溢出時顯示省略標記（...） */
 
 .project-meta, .project-bottom
   display: flex
@@ -1379,3 +1384,12 @@ a
     overflow-wrap: anywhere
     font-size: clamp(1.25rem, 3vw, 2rem)
     line-height: 1.2
+
+// ═══ 卡片連結：線上作品與內容頁並列，小畫面可換行 ═══
+.project-links
+  display: flex
+  justify-content: flex-end
+  flex-wrap: wrap
+  gap: 10px 16px
+  a
+    white-space: nowrap

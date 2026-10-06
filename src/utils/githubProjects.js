@@ -1,3 +1,14 @@
+// ═══ 網站／Demo 網址驗證：原始碼倉庫不是線上作品連結 ═══
+export function websiteUrl(value) {
+  if (typeof value !== 'string') return ''
+  if (value.startsWith('/') && !value.startsWith('//')) return value
+  try {
+    const url = new URL(value)
+    if (!['http:', 'https:'].includes(url.protocol) || ['github.com', 'api.github.com', 'raw.githubusercontent.com'].includes(url.hostname.toLowerCase())) return ''
+    return url.href
+  } catch { return '' }
+}
+
 // ═══ GitHub 倉庫與作品合併：同倉庫只建立一件作品 ═══
 // 本地作品保留視覺與介紹；未對應的倉庫用文字封面，後續可用 overrides 補圖。
 export function mergeGithubProjects(base, repositories, config) {
@@ -11,6 +22,7 @@ export function mergeGithubProjects(base, repositories, config) {
       githubRepository: mapping.repository,
       githubUrl: `https://github.com/${config.organization}/${encodeURIComponent(mapping.repository)}`,
       techTags: mapping.tags || (repo?.language ? [repo.language] : []),
+      ...(!project.externalUrl && websiteUrl(repo?.homepage) ? { externalUrl: websiteUrl(repo.homepage), externalLabel: '查看線上作品' } : {}),
     }
   })
   // 固定以名稱排序，避免 API 最新推送順序造成列表與返回頁跳位。
@@ -18,6 +30,7 @@ export function mergeGithubProjects(base, repositories, config) {
     const mapping = mappings.get(repo.name.toLowerCase())
     if (mapping && base.some((item) => item.id === mapping.projectId)) continue
     const extra = config.overrides?.[repo.name] || {}
+    const online = websiteUrl(extra.externalUrl) || websiteUrl(repo.homepage)
     result.push({
       id: `github-${repo.name.toLowerCase()}`, title: extra.title || repo.name,
       summary: extra.summary || repo.description || 'GitHub 公開專案，詳細介紹與圖片整理中。',
@@ -26,7 +39,7 @@ export function mergeGithubProjects(base, repositories, config) {
       cover: 'github', ...(extra.image ? { image: extra.image, imageAlt: extra.imageAlt || extra.title || repo.name } : {}),
       githubRepository: repo.name, githubUrl: `https://github.com/${config.organization}/${encodeURIComponent(repo.name)}`,
       techTags: extra.tags || (repo.language ? [repo.language] : []),
-      ...(extra.externalUrl ? { externalUrl: extra.externalUrl, externalLabel: '查看 Demo' } : {}),
+      ...(online ? { externalUrl: online, externalLabel: '查看線上作品' } : {}),
     })
   }
   return result

@@ -10,9 +10,9 @@ import productPhotoProjects from "./projects-product-photo.json" with { type: "j
 export const projectCategories = [
   { id: "all", label: "全部作品" },
   { id: "frontend", label: "前端開發" },
-  { id: "graphic", label: "平面設計" },
-  { id: "web", label: "網頁設計" },
   { id: "product-photo", label: "商品攝影" },
+  { id: "web", label: "網頁設計" },
+  { id: "graphic", label: "平面設計" },
 ];
 
 const projectGroups = [

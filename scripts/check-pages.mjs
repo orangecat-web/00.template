@@ -10,6 +10,10 @@ try {
  let html = await renderToString(createSSRApp(Work))
  assert.equal((html.match(/class="project-card"/g)||[]).length, 15)
  assert.match(html, /17 件作品/)
+ assert.doesNotMatch(html, /class="github-project"/)
+ assert.match(html, /class="project-online"[^>]*href="https:\/\/demo.orangecat.com.tw\/night-hospital-map\/"/)
+ assert.match(html, /進入夜間毛孩就醫/)
+ assert.match(html, /查看作品內容/)
  assert.match(html, /<button class="work-category-tab"[^>]*>更新 GitHub 資料/)
  window.location.search='?category=web'
  const webHtml = await renderToString(createSSRApp(Work))

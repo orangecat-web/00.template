@@ -1,6 +1,6 @@
 <script setup>
-import GithubProject from './GithubProject.vue'
 import { computed } from 'vue'
+import { websiteUrl } from '../utils/githubProjects.js'
 import { projectDestination } from '../data/projects.js'
 
 const props = defineProps({
@@ -16,6 +16,9 @@ const destination = computed(() => projectDestination(props.project, {
   page: props.page,
   query: props.query,
 }))
+// ═══ 列表可直接開啟上線作品；GitHub 原始碼資訊留在內頁 ═══
+const onlineUrl = computed(() => websiteUrl(props.project.externalUrl))
+const isExternal = computed(() => /^https?:\/\//i.test(onlineUrl.value))
 </script>
 
 <template lang="pug">
@@ -44,9 +47,9 @@ article.project-card
       span {{ String(index + 1).padStart(2, '0') }} / {{ String(total).padStart(2, '0') }}
     h3 {{ project.title }}
     p {{ project.summary }}
-    //- ═══ 前端作品的技術與 GitHub 資料 ═══
-    GithubProject(v-if="project.githubRepository" :project="project")
     .project-bottom
       span {{ project.role }}
-      a(:href="destination.href") {{ destination.label }} ↗
+      .project-links
+        a.project-online(v-if="onlineUrl" :href="onlineUrl" :target="isExternal ? '_blank' : undefined" :rel="isExternal ? 'noopener noreferrer' : undefined") {{ project.externalLabel || '查看線上作品' }} ↗
+        a(:href="destination.href") {{ destination.label }} ↗
 </template>

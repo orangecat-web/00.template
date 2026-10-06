@@ -40,7 +40,6 @@ npm run preview
 | `src/utils/pagination.js` | 列表分頁規則 |
 | `src/assets/sass/` | 共用樣式、頁面樣式與 Sass 工具 |
 | `public/images/` | 網站圖片；以 `/images/...` 引用 |
-| `reference/legacy-sass/` | 從舊版保留的 Sass 參考檔 |
 
 ## 作品資料
 
@@ -108,3 +107,13 @@ npm run build
 ## v1.2：GitHub 資訊位置
 
 GitHub 更新提示與按鈕只顯示在 work 的前端開發分類，按鈕與分類共用 work-category-tab 樣式。內容頁保留原始碼資料讀取，技術標籤、語言／更新日期／Stars／Forks 與原始碼連結放進 project-detail-copy 介紹區，不再提供更新按鈕。
+
+## v1.3：清理未使用檔案
+
+刪除舊 projects.json 與其 JSONC、舊 panoramas.js、PhotoViewer、HelloWorld、初始 CSS、未引用的示範素材、與 public 完全相同的 src 圖片副本和根目錄圖示副本、舊 Sass 備查資料。正式來源仍是三份作品分類 JSON、panoramas.json、public/images 及目前 Sass 模組；刪除紀錄見 docs/cleanup-v1.3.md。
+
+JSONC 產生器會同步移除已不存在來源的自動產生副本，避免刪掉舊資料後又留下舊註解。
+
+## v1.3：列表直接看線上作品
+
+列表卡片不再顯示 GithubProject，技術標籤、GitHub 動態資訊與原始碼連結都在內頁 project-detail-copy 中。卡片仍可進入內容頁，另依 existing externalUrl 提供上線作品或站內 Demo 連結。GitHub 倉庫原始碼網址不會當作上線網站；未來倉庫 About 填入合法 homepage 或在 overrides 補 externalUrl，便能顯示線上作品連結。

@@ -1,6 +1,6 @@
 // ═══ JSON 註解副本：正式 JSON 是來源，JSONC 供閱讀 ═══
 // 不改 JSON 語法，避免瀏覽器、JSON.parse 或第三方系統無法讀取。
-import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync } from 'node:fs'
 import { resolve } from 'node:path'
 const root = resolve(import.meta.dirname, '..')
 const target = resolve(root, 'docs/json-comments')
@@ -38,7 +38,14 @@ const descriptions = {
   overrides: '以倉庫原名為鍵，補中文介紹、圖片與負責項目。',
   cacheMinutes: 'GitHub 快取有效分鐘数；過期會嘗試更新，失敗時明確標示舊資料。',
 }
-for (const filename of readdirSync(resolve(root, 'src/data')).filter((name) => name.endsWith('.json'))) {
+// 只清理本產生器的舊副本；不碰人工建立的其他文件。
+const filenames = readdirSync(resolve(root, 'src/data')).filter((name) => name.endsWith('.json'))
+const expected = new Set(filenames.map((name) => name.replace(/\.json$/, '.jsonc')))
+for (const name of readdirSync(target)) {
+  if (name.endsWith('.jsonc') && !expected.has(name)
+    && readFileSync(resolve(target, name), 'utf8').split('\n')[0].includes('閱讀用註解副本。')) unlinkSync(resolve(target, name))
+}
+for (const filename of filenames) {
   const source = JSON.parse(readFileSync(resolve(root, 'src/data', filename), 'utf8'))
   const lines = JSON.stringify(source, null, 2).split('\n')
   const annotated = lines.flatMap((line) => {

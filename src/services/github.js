@@ -7,6 +7,7 @@ export function normalizeRepositories(data, organization) {
     name: repo.name,
     description: typeof repo.description === 'string' ? repo.description : '',
     url: `https://github.com/${encodeURIComponent(organization)}/${encodeURIComponent(repo.name)}`,
+    homepage: typeof repo.homepage === 'string' ? repo.homepage : '',
     language: typeof repo.language === 'string' ? repo.language : '',
     pushedAt: typeof repo.pushed_at === 'string' ? repo.pushed_at : '',
     stars: Number.isFinite(repo.stargazers_count) ? repo.stargazers_count : 0,
