@@ -1336,3 +1336,46 @@ a
   // 經歷切換由訪客主動點擊，保留作品展示需要的水平轉場。
   .experience-widget .experience-forward-enter-active, .experience-widget .experience-forward-leave-active, .experience-widget .experience-backward-enter-active, .experience-widget .experience-backward-leave-active
     transition-duration: .7s !important
+
+// ═══ GitHub 前端開發資訊；使用既有色彩與字體 ═══
+.github-status
+  margin: 1.5rem 0
+  padding: 1.25rem
+  border: 1px solid rgba($ink, .15)
+  border-radius: .75rem
+  background: $white
+  p
+    margin: 0 0 .5rem
+  small
+    display: block
+    margin-bottom: .75rem
+    color: $muted
+  button:disabled
+    opacity: .6
+    cursor: wait
+
+.github-project
+  margin: 1rem 0
+  overflow-wrap: anywhere
+  p
+    margin: .5rem 0
+  .github-tags
+    color: $ink
+    font-weight: 600
+    font-size: .85rem
+  .github-meta
+    display: flex
+    flex-wrap: wrap
+    gap: .35rem
+    color: $muted
+    font-size: .8rem
+
+// ═══ GitHub 文字封面：倉庫長名稱自動折行 ═══
+.project-cover--github
+  .project-cover-design
+    background: $ink
+    color: $cream
+  strong
+    overflow-wrap: anywhere
+    font-size: clamp(1.25rem, 3vw, 2rem)
+    line-height: 1.2

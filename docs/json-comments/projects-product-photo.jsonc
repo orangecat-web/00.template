@@ -1,0 +1,894 @@
+// projects-product-photo.json：閱讀用註解副本。請編輯 src/data/projects-product-photo.json 後執行 npm run docs:json。
+[
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-watch",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "TISSOT PRC200 腕錶－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "TISSOT PRC200 腕錶錶面特寫。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/watch.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "TISSOT PRC200 腕錶錶面特寫",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/watch.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "TISSOT PRC200 腕錶錶面特寫",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "watch.jpg",
+        // 畫面顯示的標題。
+        "title": "腕錶細節",
+        // 媒體替代文字。
+        "alt": "TISSOT PRC200 腕錶錶面特寫"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-crystal-bracelet",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "Swarovski 水晶飾品－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "Swarovski 水晶飾品。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/crystal-bracelet.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "Swarovski 水晶墜飾手鍊",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/crystal-bracelet.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "Swarovski 水晶墜飾手鍊",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "crystal-bracelet.jpg",
+        // 畫面顯示的標題。
+        "title": "Swarovski 水晶手鍊",
+        // 媒體替代文字。
+        "alt": "Swarovski 水晶墜飾手鍊"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "crystal-necklace.jpg",
+        // 畫面顯示的標題。
+        "title": "Swarovski 水晶項鍊",
+        // 媒體替代文字。
+        "alt": "Swarovski 水晶項鍊"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-floral-ring",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "花形戒指－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "白色毛絨背景上的金色與銀色花形戒指。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/floral-ring.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "白色毛絨背景上的金色與銀色花形戒指",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/floral-ring.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "白色毛絨背景上的金色與銀色花形戒指",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "floral-ring.jpg",
+        // 畫面顯示的標題。
+        "title": "花形戒指",
+        // 媒體替代文字。
+        "alt": "白色毛絨背景上的金色與銀色花形戒指"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-blue-stone-ring",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "藍色寶石戒指－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "白色毛絨背景上的藍色寶石戒指。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/blue-stone-ring.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "白色毛絨背景上的藍色寶石戒指",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/blue-stone-ring.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "白色毛絨背景上的藍色寶石戒指",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "blue-stone-ring.jpg",
+        // 畫面顯示的標題。
+        "title": "藍色寶石戒指",
+        // 媒體替代文字。
+        "alt": "白色毛絨背景上的藍色寶石戒指"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-blue-earrings",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "藍色耳環－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "白色毛絨背景上的一對深藍色方形耳環。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/blue-earrings.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "白色毛絨背景上的一對深藍色方形耳環",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/blue-earrings.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "白色毛絨背景上的一對深藍色方形耳環",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "blue-earrings.jpg",
+        // 畫面顯示的標題。
+        "title": "藍色耳環",
+        // 媒體替代文字。
+        "alt": "白色毛絨背景上的一對深藍色方形耳環"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-bow-hair-clips",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "蝴蝶結髮夾組－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "木盒中排列的多色蝴蝶結髮夾。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/bow-hair-clips.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "木盒中排列的多色蝴蝶結髮夾",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/bow-hair-clips.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "木盒中排列的多色蝴蝶結髮夾",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "bow-hair-clips.jpg",
+        // 畫面顯示的標題。
+        "title": "蝴蝶結髮夾組",
+        // 媒體替代文字。
+        "alt": "木盒中排列的多色蝴蝶結髮夾"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "bow-hair-clips-detail.jpg",
+        // 畫面顯示的標題。
+        "title": "蝴蝶結髮夾特寫",
+        // 媒體替代文字。
+        "alt": "粉色紙絲與木盒中的彩色蝴蝶結髮夾特寫"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-dumplings",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "FOOD PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "煎餃餐點－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "木質桌面上搭配醬料與餐巾擺拍的水餃。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/dumplings.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "木質桌面上搭配醬料與餐巾擺拍的煎餃",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/dumplings.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "木質桌面上搭配醬料與餐巾擺拍的煎餃",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "dumplings.jpg",
+        // 畫面顯示的標題。
+        "title": "煎餃餐點",
+        // 媒體替代文字。
+        "alt": "木質桌面上搭配醬料與餐巾擺拍的煎餃"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-iced-tea",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "環保吸管－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "竹簾與布巾旁的冰涼茶飲及金屬吸管。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/iced-tea.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "竹簾與布巾旁的冰涼茶飲及金屬吸管",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/iced-tea.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "竹簾與布巾旁的冰涼茶飲及金屬吸管",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "iced-tea.jpg",
+        // 畫面顯示的標題。
+        "title": "環保吸管",
+        // 媒體替代文字。
+        "alt": "竹簾與布巾旁的冰涼茶飲及金屬吸管"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-incense",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "線香情境及香座－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "竹簾前的線香、香座與長形包裝情境照。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/incense.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "竹簾前的線香、香座與長形包裝情境照",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/incense.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "竹簾前的線香、香座與長形包裝情境照",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "incense.jpg",
+        // 畫面顯示的標題。
+        "title": "線香情境及香座",
+        // 媒體替代文字。
+        "alt": "竹簾前的線香、香座與長形包裝情境照"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-trail-shoes",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "美津濃慢跑鞋－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "木質地面上的藍橘色美津濃慢跑鞋與鞋底細節。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/trail-shoes.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "木質地面上的藍橘色美津濃慢跑鞋與鞋底細節",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/trail-shoes.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "木質地面上的藍橘色美津濃慢跑鞋與鞋底細節",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "trail-shoes.jpg",
+        // 畫面顯示的標題。
+        "title": "美津濃慢跑鞋",
+        // 媒體替代文字。
+        "alt": "木質地面上的藍橘色美津濃慢跑鞋與鞋底細節"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-phone-case",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "手機保護殼－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "紫色光線下的手機保護殼背面細節。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/phone-case.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "紫色光線下的手機保護殼背面細節",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/phone-case.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "紫色光線下的手機保護殼背面細節",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "phone-case.jpg",
+        // 畫面顯示的標題。
+        "title": "手機保護殼",
+        // 媒體替代文字。
+        "alt": "紫色光線下的手機保護殼背面細節"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-body-scale",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "電子體重計－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "淺色背景上的白色電子體重計俯拍。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/body-scale.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "淺色背景上的白色電子體重計俯拍",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/body-scale.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "淺色背景上的白色電子體重計俯拍",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "body-scale.jpg",
+        // 畫面顯示的標題。
+        "title": "電子體重計",
+        // 媒體替代文字。
+        "alt": "淺色背景上的白色電子體重計俯拍"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-red-headphones",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "紅色耳機－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "暖色光線下置於書本上的紅色耳罩耳機。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/red-headphones.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "暖色光線下置於書本上的紅色耳罩耳機",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/red-headphones.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "暖色光線下置於書本上的紅色耳罩耳機",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "red-headphones.jpg",
+        // 畫面顯示的標題。
+        "title": "紅色耳機",
+        // 媒體替代文字。
+        "alt": "暖色光線下置於書本上的紅色耳罩耳機"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-phone-repair-kit",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "手機維修工具－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "木桌上平鋪的手機、電池與拆機工具。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/phone-repair-kit.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "木桌上平鋪的手機、電池與拆機工具",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/phone-repair-kit.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "木桌上平鋪的手機、電池與拆機工具",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "phone-repair-kit.jpg",
+        // 畫面顯示的標題。
+        "title": "手機維修工具",
+        // 媒體替代文字。
+        "alt": "木桌上平鋪的手機、電池與拆機工具"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-vintage-cameras",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "古董相機－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "暖光桌面上的兩台復古雙眼相機。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/vintage-cameras.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "暖光桌面上的兩台復古雙眼相機",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/vintage-cameras.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "暖光桌面上的兩台復古雙眼相機",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "vintage-cameras.jpg",
+        // 畫面顯示的標題。
+        "title": "古董相機",
+        // 媒體替代文字。
+        "alt": "暖光桌面上的兩台復古雙眼相機"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-orange-camera",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "橘色相機－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "淡藍背景前的橘色復古造型相機。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/orange-camera.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "淡藍背景前的橘色復古造型相機",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/orange-camera.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "淡藍背景前的橘色復古造型相機",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "orange-camera.jpg",
+        // 畫面顯示的標題。
+        "title": "橘色相機",
+        // 媒體替代文字。
+        "alt": "淡藍背景前的橘色復古造型相機"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-paintball-marker",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "Invert Paintball Gun－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "黑色布景中的橘色漆彈標記器。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/paintball-marker.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "Invert Paintball Gun",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/paintball-marker.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "Invert Paintball Gun",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "paintball-marker.jpg",
+        // 畫面顯示的標題。
+        "title": "Invert Paintball Gun",
+        // 媒體替代文字。
+        "alt": "Invert Paintball Gun"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-replica-equipment",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": " WE HI CAPA 5.1 Airsoft Gun－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "暖色木桌與布質裝備間的 WE HI CAPA 5.1 Airsoft Gun。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/replica-equipment.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "暖色木桌與布質裝備間的 WE HI CAPA 5.1 Airsoft Gun",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/replica-equipment.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "暖色木桌與布質裝備間的 WE HI CAPA 5.1 Airsoft Gun",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "replica-equipment.jpg",
+        // 畫面顯示的標題。
+        "title": "WE HI CAPA 5.1 Airsoft Gun",
+        // 媒體替代文字。
+        "alt": "暖色木桌與布質裝備間的 WE HI CAPA 5.1 Airsoft Gun"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-fortune-figurines",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "招財擺飾－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "竹簾與金幣前的兩件招財人物擺飾。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/fortune-figurines.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "竹簾與金幣前的兩件招財人物擺飾",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/fortune-figurines.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "竹簾與金幣前的兩件招財人物擺飾",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "fortune-figurines.jpg",
+        // 畫面顯示的標題。
+        "title": "招財擺飾",
+        // 媒體替代文字。
+        "alt": "竹簾與金幣前的兩件招財人物擺飾"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-wooden-script-keychain",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "木質經文吊飾－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "麻布上的木質經文吊飾與金色繩結。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/wooden-script-keychain.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "麻布上的木質經文吊飾與金色繩結",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/wooden-script-keychain.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "麻布上的木質經文吊飾與金色繩結",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "wooden-script-keychain.jpg",
+        // 畫面顯示的標題。
+        "title": "木質經文吊飾",
+        // 媒體替代文字。
+        "alt": "麻布上的木質經文吊飾與金色繩結"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-script-bracelet",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "經文手環特寫－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "暖光下刻有文字的紅色手環局部。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/script-bracelet.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "暖光下刻有文字的紅色手環局部",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/script-bracelet.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "暖光下刻有文字的紅色手環局部",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "script-bracelet.jpg",
+        // 畫面顯示的標題。
+        "title": "經文手環特寫",
+        // 媒體替代文字。
+        "alt": "暖光下刻有文字的紅色手環局部"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-squirrel-figurine",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "松鼠擺飾－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "木質背景前抱著松果的粉色松鼠擺飾。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/squirrel-figurine.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "木質背景前抱著松果的粉色松鼠擺飾",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/squirrel-figurine.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "木質背景前抱著松果的粉色松鼠擺飾",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "squirrel-figurine.jpg",
+        // 畫面顯示的標題。
+        "title": "松鼠擺飾",
+        // 媒體替代文字。
+        "alt": "木質背景前抱著松果的粉色松鼠擺飾"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-poodle-figurine",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "貴賓狗擺飾－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "木質背景前的金色貴賓狗擺飾。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/poodle-figurine.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "木質背景前的金色貴賓狗擺飾",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/poodle-figurine.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "木質背景前的金色貴賓狗擺飾",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "poodle-figurine.jpg",
+        // 畫面顯示的標題。
+        "title": "貴賓狗擺飾",
+        // 媒體替代文字。
+        "alt": "木質背景前的金色貴賓狗擺飾"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-golden-crystal-bracelet",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "金色晶石手環－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "暖光中的金色髮晶珠飾特寫。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/golden-crystal-bracelet.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "暖光中的金色髮晶珠飾特寫",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/golden-crystal-bracelet.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "暖光中的金色髮晶珠飾特寫",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "golden-crystal-bracelet.jpg",
+        // 畫面顯示的標題。
+        "title": "金色晶石手環",
+        // 媒體替代文字。
+        "alt": "暖光中的金色髮晶珠飾特寫"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "product-photo-clear-pendant-necklace",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "PRODUCT PHOTOGRAPHY",
+    // 畫面顯示的標題。
+    "title": "水晶雕刻墜飾－商品攝影",
+    // 作品摘要與搜尋內容。
+    "summary": "麻布上的透明人物雕刻墜飾與串珠繩結。",
+    // 實際負責項目。
+    "role": "商品攝影",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "product-photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/product-photography-selection/clear-pendant-necklace.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "麻布上的水晶雕刻墜飾與串珠繩結",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/product-photography-selection/clear-pendant-necklace.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "麻布上的水晶雕刻墜飾與串珠繩結",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "clear-pendant-necklace.jpg",
+        // 畫面顯示的標題。
+        "title": "水晶雕刻墜飾",
+        // 媒體替代文字。
+        "alt": "麻布上的水晶雕刻墜飾與串珠繩結"
+      }
+    ]
+  }
+]

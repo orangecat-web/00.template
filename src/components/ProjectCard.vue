@@ -1,4 +1,5 @@
 <script setup>
+import GithubProject from './GithubProject.vue'
 import { computed } from 'vue'
 import { projectDestination } from '../data/projects.js'
 
@@ -22,7 +23,12 @@ article.project-card
   a.project-cover(:class="`project-cover--${project.cover}`" :href="destination.href" :aria-label="`${project.title}：${destination.label}`")
     img(v-if="project.image" :src="project.image" :alt="project.imageAlt" loading="lazy")
     .project-cover-design(v-else aria-hidden="true")
-      template(v-if="project.cover === 'bilingual'")
+      //- ═══ 未補圖片的倉庫，先顯示文字封面 ═══
+      template(v-if="project.cover === 'github'")
+        span.cover-small FRONT-END / GITHUB
+        strong {{ project.title }}
+        span.cover-end 公開原始碼 / 圖片待補
+      template(v-else-if="project.cover === 'bilingual'")
         span.cover-small ENGLISH FRIENDLY / TAIWAN
         strong 雙語<br>商業資源
         span.cover-line
@@ -38,6 +44,8 @@ article.project-card
       span {{ String(index + 1).padStart(2, '0') }} / {{ String(total).padStart(2, '0') }}
     h3 {{ project.title }}
     p {{ project.summary }}
+    //- ═══ 前端作品的技術與 GitHub 資料 ═══
+    GithubProject(v-if="project.githubRepository" :project="project")
     .project-bottom
       span {{ project.role }}
       a(:href="destination.href") {{ destination.label }} ↗

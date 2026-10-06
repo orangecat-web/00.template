@@ -1,0 +1,317 @@
+// github-snapshot.json：閱讀用註解副本。請編輯 src/data/github-snapshot.json 後執行 npm run docs:json。
+{
+  "_comment": "GitHub 公開倉庫實際擷取快照；啟動先顯示快照，API 成功後更新。擷取時間不是程式更新時間。",
+  // 公開 GitHub 組織名稱；API 只取得這個組織的公開倉庫。
+  "organization": "orangecat-web",
+  // 資料擷取時間（毫秒時間戳），不是程式的最後更新時間。
+  "fetchedAt": 1791259785582,
+  // 本次真實擷取的全部公開倉庫，啟動可先顯示。
+  "repositories": [
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "sunger",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "上格西服-網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/sunger",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "JavaScript",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T07:02:59Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "00.template",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "用 Vue 3 製作的作品集與互動展示。網站可獨立執行；作品資料目前由本地 JSON 提供，尚未連接後端 API。",
+      "url": "https://github.com/orangecat-web/00.template",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "Sass",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2026-10-06T03:18:01Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "cier_sme",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "中經院-中小企業動態資料庫",
+      "url": "https://github.com/orangecat-web/cier_sme",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "Sass",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2024-06-10T20:40:16Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "tycadm",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "達特康 - 桃園市二手輔具資源站",
+      "url": "https://github.com/orangecat-web/tycadm",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "HTML",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2024-06-11T05:45:52Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "airloft",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "租房及買房網站設計",
+      "url": "https://github.com/orangecat-web/airloft",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "JavaScript",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T05:57:59Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "888hotel",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/888hotel",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "JavaScript",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T06:38:31Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "empyrean-test",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "",
+      "url": "https://github.com/orangecat-web/empyrean-test",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "Sass",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2021-03-03T02:27:54Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "bonniee",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "邦妮美腿網站設計及前端語法撰寫",
+      "url": "https://github.com/orangecat-web/bonniee",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "JavaScript",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T06:22:25Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "night-hospital-map",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "",
+      "url": "https://github.com/orangecat-web/night-hospital-map",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "Sass",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2026-10-06T02:59:08Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "EFShop",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "商業服務業雙語資源入口(英語店家通)",
+      "url": "https://github.com/orangecat-web/EFShop",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "HTML",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2024-06-10T20:25:14Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "cthouse-horizontal-demo",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "",
+      "url": "https://github.com/orangecat-web/cthouse-horizontal-demo",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "Sass",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2026-10-05T19:23:12Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "asd",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "網站設計及前端語法編寫",
+      "url": "https://github.com/orangecat-web/asd",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "HTML",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T06:36:20Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "naid",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "中華民國室內設計裝修商業同業公會全國聯合會網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/naid",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "HTML",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T07:01:07Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "hong-cang.github.io",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "",
+      "url": "https://github.com/orangecat-web/hong-cang.github.io",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "CSS",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2026-05-06T11:08:41Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "the-mikuni-whisky",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "株式会社ミクニ",
+      "url": "https://github.com/orangecat-web/the-mikuni-whisky",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "JavaScript",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T07:04:38Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "starmediaplatform",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "星光藝意傳媒網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/starmediaplatform",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "JavaScript",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T07:00:26Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+      "name": "dish-life",
+      // GitHub 原始倉庫描述，沒有描述时保留空字串。
+      "description": "dish-life 網頁設計及前端語法",
+      "url": "https://github.com/orangecat-web/dish-life",
+      // GitHub 偵測的主要語言，不代表專案的全部技術。
+      "language": "PHP",
+      // GitHub 最後程式推送時間。
+      "pushedAt": "2020-12-07T06:30:39Z",
+      // GitHub 星號數量。
+      "stars": 0,
+      // GitHub 分支複製數量。
+      "forks": 0,
+      // GitHub 倉庫主題標籤。
+      "topics": [],
+      "homepage": ""
+    }
+  ]
+}

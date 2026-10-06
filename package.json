@@ -1,13 +1,16 @@
 {
   "name": "00.template",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
     "check:data": "node scripts/check-project-data.mjs",
     "build": "npm run check:data && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test",
+    "docs:json": "node scripts/annotate-json.mjs",
+    "check:pages": "node scripts/check-pages.mjs"
   },
   "dependencies": {
     "vue": "^3.5.42"

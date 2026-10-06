@@ -1,0 +1,417 @@
+// icons.json：閱讀用註解副本。請編輯 src/data/icons.json 後執行 npm run docs:json。
+[
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "base",
+    // 畫面顯示的標題。
+    "title": "基本常用",
+    "items": [
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "home",
+        // 按鈕或導覽顯示文字。
+        "label": "Home"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "nav",
+        // 按鈕或導覽顯示文字。
+        "label": "手機版選單 1"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "app",
+        // 按鈕或導覽顯示文字。
+        "label": "手機版選單 2"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "close",
+        // 按鈕或導覽顯示文字。
+        "label": "關閉"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "gotop",
+        // 按鈕或導覽顯示文字。
+        "label": "回到頂層"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "first",
+        // 按鈕或導覽顯示文字。
+        "label": "第一頁"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "next",
+        // 按鈕或導覽顯示文字。
+        "label": "下一頁"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "prev",
+        // 按鈕或導覽顯示文字。
+        "label": "上一頁"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "search",
+        // 按鈕或導覽顯示文字。
+        "label": "搜尋"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "download",
+        // 按鈕或導覽顯示文字。
+        "label": "下載"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "cloud_download",
+        // 按鈕或導覽顯示文字。
+        "label": "下載"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "info",
+        // 按鈕或導覽顯示文字。
+        "label": "Info"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "renew",
+        // 按鈕或導覽顯示文字。
+        "label": "Renew"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "contact",
+    // 畫面顯示的標題。
+    "title": "聯絡 & 表單",
+    "items": [
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "email",
+        // 按鈕或導覽顯示文字。
+        "label": "E-mail"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "alternate_email",
+        // 按鈕或導覽顯示文字。
+        "label": "E-mail"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "phone",
+        // 按鈕或導覽顯示文字。
+        "label": "電話"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "mobile",
+        // 按鈕或導覽顯示文字。
+        "label": "手機"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "fax",
+        // 按鈕或導覽顯示文字。
+        "label": "FAX"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "support_agent",
+        // 按鈕或導覽顯示文字。
+        "label": "客服"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "qr_code",
+        // 按鈕或導覽顯示文字。
+        "label": "QR Code"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "location",
+        // 按鈕或導覽顯示文字。
+        "label": "地址"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "checkbox",
+        // 按鈕或導覽顯示文字。
+        "label": "input check box"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "checkbox_checked",
+        // 按鈕或導覽顯示文字。
+        "label": "Input check box checked"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "radio",
+        // 按鈕或導覽顯示文字。
+        "label": "Radio"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "radio_checked",
+        // 按鈕或導覽顯示文字。
+        "label": "Radio checked"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "checklist",
+        // 按鈕或導覽顯示文字。
+        "label": "Checklist"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "member",
+    // 畫面顯示的標題。
+    "title": "會員",
+    "items": [
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "assignment_ind",
+        // 按鈕或導覽顯示文字。
+        "label": "會員"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "account_circle",
+        // 按鈕或導覽顯示文字。
+        "label": "會員"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "person",
+        // 按鈕或導覽顯示文字。
+        "label": "會員"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "groups",
+        // 按鈕或導覽顯示文字。
+        "label": "會員群組"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "login",
+        // 按鈕或導覽顯示文字。
+        "label": "login"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "logout",
+        // 按鈕或導覽顯示文字。
+        "label": "logout"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "male",
+        // 按鈕或導覽顯示文字。
+        "label": "Male"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "female",
+        // 按鈕或導覽顯示文字。
+        "label": "Female"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "visibility",
+        // 按鈕或導覽顯示文字。
+        "label": "密碼可視"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "visibility_off",
+        // 按鈕或導覽顯示文字。
+        "label": "密碼可視"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "upload",
+        // 按鈕或導覽顯示文字。
+        "label": "Upload"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "lock",
+        // 按鈕或導覽顯示文字。
+        "label": "Lock"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "manage_accounts",
+        // 按鈕或導覽顯示文字。
+        "label": "Manage accounts"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "edit",
+        // 按鈕或導覽顯示文字。
+        "label": "Edit"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "cart",
+    // 畫面顯示的標題。
+    "title": "購物車",
+    "items": [
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "shopping_cart",
+        // 按鈕或導覽顯示文字。
+        "label": "購物車"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "shopping_bag",
+        // 按鈕或導覽顯示文字。
+        "label": "購物車"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "remove_cart",
+        // 按鈕或導覽顯示文字。
+        "label": "清空購物車"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "add_cart",
+        // 按鈕或導覽顯示文字。
+        "label": "加入購物車"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "pay",
+        // 按鈕或導覽顯示文字。
+        "label": "轉帳"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "credit_card",
+        // 按鈕或導覽顯示文字。
+        "label": "信用卡"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "delete",
+        // 按鈕或導覽顯示文字。
+        "label": "Delete"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "video",
+    // 畫面顯示的標題。
+    "title": "影音",
+    "items": [
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "video",
+        // 按鈕或導覽顯示文字。
+        "label": "影音"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "smart_display",
+        // 按鈕或導覽顯示文字。
+        "label": "YouTube"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "play_arrow",
+        // 按鈕或導覽顯示文字。
+        "label": "播放"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "stop_play",
+        // 按鈕或導覽顯示文字。
+        "label": "停止播放"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "pause",
+        // 按鈕或導覽顯示文字。
+        "label": "暫停"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "skip_next",
+        // 按鈕或導覽顯示文字。
+        "label": "下一首"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "skip_previous",
+        // 按鈕或導覽顯示文字。
+        "label": "上一首"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "fast_forward",
+        // 按鈕或導覽顯示文字。
+        "label": "快轉"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "fast_rewind",
+        // 按鈕或導覽顯示文字。
+        "label": "倒退"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "other",
+    // 畫面顯示的標題。
+    "title": "其他",
+    "items": [
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "desktop",
+        // 按鈕或導覽顯示文字。
+        "label": "Desktop"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "laptop",
+        // 按鈕或導覽顯示文字。
+        "label": "Laptop"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "print",
+        // 按鈕或導覽顯示文字。
+        "label": "Print"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "clock",
+        // 按鈕或導覽顯示文字。
+        "label": "Clock"
+      },
+      {
+        // GitHub 倉庫名稱，未補中文標題時用此名稱顯示。
+        "name": "settings",
+        // 按鈕或導覽顯示文字。
+        "label": "Settings"
+      }
+    ]
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "_comment": "GitHub 串接設定；_comment 開頭的欄位只作說明，不參與作品合併。",
+  "organization": "orangecat-web",
+  "_comment_cacheMinutes": "瀏覽器快取有效分鐘數；過期時重新呼叫 API，失敗可沿用旧快取並標示。",
+  "cacheMinutes": 15,
+  "_comment_projects": "已確認的倉庫與既有作品對應；其他公開倉庫會自動建立前端開發作品，不限這份清單。",
+  "projects": [
+    {
+      "projectId": "orange-cat-vue",
+      "repository": "00.template",
+      "tags": [
+        "Vue 3",
+        "Vite",
+        "Pug",
+        "Sass",
+        "GitHub API"
+      ]
+    },
+    {
+      "projectId": "night-hospital-map",
+      "repository": "night-hospital-map",
+      "tags": [
+        "Vue 3",
+        "農業部 API",
+        "搜尋篩選",
+        "地圖整合"
+      ]
+    },
+    {
+      "projectId": "cthouse",
+      "repository": "cthouse-horizontal-demo",
+      "tags": [
+        "前端切版",
+        "橫向捲動",
+        "RWD"
+      ]
+    },
+    {
+      "projectId": "bilingual-shop",
+      "repository": "EFShop",
+      "tags": [
+        "HTML",
+        "前端切版",
+        "雙語網站"
+      ]
+    },
+    {
+      "projectId": "dish-life",
+      "repository": "dish-life",
+      "tags": [
+        "網站設計",
+        "前端切版"
+      ]
+    },
+    {
+      "projectId": "mikuni",
+      "repository": "the-mikuni-whisky",
+      "tags": [
+        "JavaScript",
+        "前端切版"
+      ]
+    }
+  ],
+  "_comment_overrides": "用倉庫原名作為鍵值，補 title、summary、role、image、imageAlt、tags、externalUrl；圖片可稍後補，沒填時用文字封面。",
+  "overrides": {}
+}

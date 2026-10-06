@@ -1,11 +1,14 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import PaginationNav from './components/PaginationNav.vue'
+import { useGithub } from './composables/useGithub.js'
+import GithubStatus from './components/GithubStatus.vue'
 import ProjectCard from './components/ProjectCard.vue'
 import SiteLayout from './components/SiteLayout.vue'
 import { filterProjects, projectCategories, projects, resolveProjectCategory, searchProjects, workListUrl } from './data/projects.js'
 import { clampPage, pageSlice, PROJECTS_PER_PAGE, totalPages } from './utils/pagination.js'
 
+// ═══ 從網址還原分類、搜尋及頁碼 ═══
 function stateFromUrl() {
   const params = new URLSearchParams(window.location.search)
   const category = resolveProjectCategory(params.get('category'))
@@ -14,6 +17,8 @@ function stateFromUrl() {
   return { category, query, page: clampPage(params.get('page'), results.length) }
 }
 
+// ═══ 作品列表的狀態、篩選與每頁切片 ═══
+useGithub()
 const layout = ref(null)
 const initialState = stateFromUrl()
 const category = ref(initialState.category)
@@ -23,6 +28,13 @@ const filteredProjects = computed(() => searchProjects(filterProjects(projects, 
 const count = computed(() => totalPages(filteredProjects.value.length))
 const visibleProjects = computed(() => pageSlice(filteredProjects.value, page.value))
 const pageHref = (nextPage) => workListUrl({ category: category.value, page: nextPage, query: query.value })
+
+// ═══ 操作與瀏覽器上一頁同步 ═══
+// API 更新筆數後維持合法頁碼，避免停在已不存在的分頁。
+watch(() => filteredProjects.value.length, (length) => {
+  page.value = clampPage(page.value, length)
+  window.history.replaceState(null, '', workListUrl({ category: category.value, page: page.value, query: query.value }))
+})
 
 function updateList(nextCategory, nextPage) {
   if (nextCategory === category.value && nextPage === page.value) return
@@ -77,6 +89,8 @@ SiteLayout(ref="layout" page-id="work")
             path(d="m16 16 4.5 4.5")
       .work-category-tabs(role="group" aria-label="作品分類")
         button.work-category-tab(v-for="item in projectCategories" :key="item.id" type="button" :class="{ 'is-active': category === item.id }" :aria-pressed="category === item.id" @click="selectCategory(item.id)") {{ item.label }}
+    //- ═══ 前端開發：API 載入、來源狀態與重試 ═══
+    GithubStatus(v-if="category === 'frontend'")
     p.work-result-count(v-if="query.trim()") 符合「{{ query.trim() }}」的 {{ filteredProjects.length }} 件作品
     p.work-result-count(v-else) {{ filteredProjects.length }} 件作品
     .project-grid(v-if="visibleProjects.length")

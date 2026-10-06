@@ -77,6 +77,21 @@ for (const [categoryId, filename] of projectFiles) {
   }
 }
 
+// ═══ 前端開發對應設定：禁止不存在的 id 或重複對應 ═══
+try {
+  const config = JSON.parse(readFileSync(resolve(root, 'src/data/github.json'), 'utf8'))
+  if (!/^[a-zA-Z0-9-]+$/.test(config.organization)) errors.push('GitHub organization 格式不正確')
+  if (!Number.isFinite(config.cacheMinutes) || config.cacheMinutes < 1) errors.push('GitHub cacheMinutes 必須至少 1 分鐘')
+  const selected = new Set()
+  for (const item of config.projects) {
+    if (!ids.has(item.projectId)) errors.push(`GitHub 對應作品不存在：${item.projectId}`)
+    if (selected.has(item.projectId)) errors.push(`GitHub 重複對應作品：${item.projectId}`)
+    selected.add(item.projectId)
+    if (!/^[a-zA-Z0-9_.-]+$/.test(item.repository)) errors.push(`GitHub repository 格式不正確：${item.repository}`)
+    if (!Array.isArray(item.tags) || !item.tags.every((tag) => typeof tag === 'string')) errors.push(`GitHub tags 格式不正確：${item.projectId}`)
+  }
+} catch (error) { errors.push(`github.json: ${error.message}`) }
+
 if (errors.length) {
   console.error(errors.map((error) => `- ${error}`).join('\n'))
   process.exitCode = 1

@@ -1,0 +1,84 @@
+// panoramas.json：閱讀用註解副本。請編輯 src/data/panoramas.json 後執行 npm run docs:json。
+[
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "xingwu-nordic-room",
+    "group": "tour",
+    "availability": "showcase",
+    // 按鈕或導覽顯示文字。
+    "label": "醒吾北歐風套房",
+    // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+    "src": "/images/panoramas/360room.jpg",
+    // GitHub 原始倉庫描述，沒有描述时保留空字串。
+    "description": "醒吾北歐風套房的實拍 360° 環景；拖曳畫面查看床鋪、窗邊與工作區。",
+    "credit": "醒吾北歐風套房 / 360° 實拍 · 2048 × 1024",
+    "initialYaw": 0,
+    "initialPitch": 0,
+    "hotspots": [
+      {
+        // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+        "id": "room-door",
+        // 按鈕或導覽顯示文字。
+        "label": "走出房間 · 走廊示意",
+        "yaw": 169,
+        "pitch": -7,
+        "targetSceneId": "fourth-floor-corridor"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "fourth-floor-corridor",
+    "group": "tour",
+    "availability": "shared",
+    "parentId": "xingwu-nordic-room",
+    // 按鈕或導覽顯示文字。
+    "label": "四樓走廊（模擬）",
+    // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+    "src": "/images/panoramas/corridor-simulated.png",
+    // GitHub 原始倉庫描述，沒有描述时保留空字串。
+    "description": "依四樓平面圖、從藍色標記位置模擬的走廊 360° 場景；左側近處為 407 房門。此圖為生成示意，並非實景拍攝。",
+    "credit": "四樓走廊 / 依平面圖模擬 · 非實拍 · 1774 × 887",
+    "initialYaw": 0,
+    "initialPitch": 0,
+    "hotspots": [
+      {
+        // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+        "id": "corridor-room-407",
+        // 按鈕或導覽顯示文字。
+        "label": "返回醒吾北歐風套房",
+        "yaw": -135,
+        "pitch": -3,
+        "targetSceneId": "xingwu-nordic-room"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "mountain-lake",
+    "group": "demo",
+    // 按鈕或導覽顯示文字。
+    "label": "山間湖景",
+    // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+    "src": "/images/panoramas/mountain-lake.svg",
+    // GitHub 原始倉庫描述，沒有描述时保留空字串。
+    "description": "以向量繪製的示範環景，用來展示 360° 球面觀看與縮放。",
+    "credit": "向量插畫示意場景 / 非實拍照片",
+    "initialYaw": 0,
+    "initialPitch": 0
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "design-studio",
+    "group": "demo",
+    // 按鈕或導覽顯示文字。
+    "label": "設計展間",
+    // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+    "src": "/images/panoramas/design-studio.svg",
+    // GitHub 原始倉庫描述，沒有描述时保留空字串。
+    "description": "第二個示範場景，展示同一個檢視器切換素材。",
+    "credit": "向量插畫示意場景 / 非實拍照片",
+    "initialYaw": 35,
+    "initialPitch": 0
+  }
+]

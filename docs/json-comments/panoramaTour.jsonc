@@ -1,0 +1,35 @@
+// panoramaTour.json：閱讀用註解副本。請編輯 src/data/panoramaTour.json 後執行 npm run docs:json。
+{
+  "floorPlan": {
+    "rootSceneId": "xingwu-nordic-room",
+    // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+    "src": "/images/panoramas/fourth-floor-plan.jpg",
+    // 媒體替代文字。
+    "alt": "四樓平面圖：紅框標出 407 套房，橘框標出模擬走廊，藍圈標出走廊環景的相機位置",
+    "caption": "點選紅框房間或橘框走廊進入環景；藍點是模擬走廊機位。",
+    "spots": [
+      {
+        // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+        "id": "room-407",
+        // 按鈕或導覽顯示文字。
+        "label": "407 房間",
+        "sceneId": "xingwu-nordic-room",
+        "left": 63,
+        "top": 53,
+        "width": 32,
+        "height": 40
+      },
+      {
+        // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+        "id": "fourth-floor-hall",
+        // 按鈕或導覽顯示文字。
+        "label": "四樓走廊",
+        "sceneId": "fourth-floor-corridor",
+        "left": 23,
+        "top": 44,
+        "width": 53,
+        "height": 7
+      }
+    ]
+  }
+}

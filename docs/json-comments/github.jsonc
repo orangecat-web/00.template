@@ -1,0 +1,89 @@
+// github.json：閱讀用註解副本。請編輯 src/data/github.json 後執行 npm run docs:json。
+{
+  "_comment": "GitHub 串接設定；_comment 開頭的欄位只作說明，不參與作品合併。",
+  // 公開 GitHub 組織名稱；API 只取得這個組織的公開倉庫。
+  "organization": "orangecat-web",
+  "_comment_cacheMinutes": "瀏覽器快取有效分鐘數；過期時重新呼叫 API，失敗可沿用旧快取並標示。",
+  // GitHub 快取有效分鐘数；過期會嘗試更新，失敗時明確標示舊資料。
+  "cacheMinutes": 15,
+  "_comment_projects": "已確認的倉庫與既有作品對應；其他公開倉庫會自動建立前端開發作品，不限這份清單。",
+  // 倉庫與既有作品的對應清單；未對應的倉庫會自動建立作品。
+  "projects": [
+    {
+      // 對應既有作品 id；不要新增重複作品資料。
+      "projectId": "orange-cat-vue",
+      // orangecat-web 組織底下的 GitHub 倉庫名稱。
+      "repository": "00.template",
+      // 人工確認的技術標籤，也可透過作品搜尋找到。
+      "tags": [
+        "Vue 3",
+        "Vite",
+        "Pug",
+        "Sass",
+        "GitHub API"
+      ]
+    },
+    {
+      // 對應既有作品 id；不要新增重複作品資料。
+      "projectId": "night-hospital-map",
+      // orangecat-web 組織底下的 GitHub 倉庫名稱。
+      "repository": "night-hospital-map",
+      // 人工確認的技術標籤，也可透過作品搜尋找到。
+      "tags": [
+        "Vue 3",
+        "農業部 API",
+        "搜尋篩選",
+        "地圖整合"
+      ]
+    },
+    {
+      // 對應既有作品 id；不要新增重複作品資料。
+      "projectId": "cthouse",
+      // orangecat-web 組織底下的 GitHub 倉庫名稱。
+      "repository": "cthouse-horizontal-demo",
+      // 人工確認的技術標籤，也可透過作品搜尋找到。
+      "tags": [
+        "前端切版",
+        "橫向捲動",
+        "RWD"
+      ]
+    },
+    {
+      // 對應既有作品 id；不要新增重複作品資料。
+      "projectId": "bilingual-shop",
+      // orangecat-web 組織底下的 GitHub 倉庫名稱。
+      "repository": "EFShop",
+      // 人工確認的技術標籤，也可透過作品搜尋找到。
+      "tags": [
+        "HTML",
+        "前端切版",
+        "雙語網站"
+      ]
+    },
+    {
+      // 對應既有作品 id；不要新增重複作品資料。
+      "projectId": "dish-life",
+      // orangecat-web 組織底下的 GitHub 倉庫名稱。
+      "repository": "dish-life",
+      // 人工確認的技術標籤，也可透過作品搜尋找到。
+      "tags": [
+        "網站設計",
+        "前端切版"
+      ]
+    },
+    {
+      // 對應既有作品 id；不要新增重複作品資料。
+      "projectId": "mikuni",
+      // orangecat-web 組織底下的 GitHub 倉庫名稱。
+      "repository": "the-mikuni-whisky",
+      // 人工確認的技術標籤，也可透過作品搜尋找到。
+      "tags": [
+        "JavaScript",
+        "前端切版"
+      ]
+    }
+  ],
+  "_comment_overrides": "用倉庫原名作為鍵值，補 title、summary、role、image、imageAlt、tags、externalUrl；圖片可稍後補，沒填時用文字封面。",
+  // 以倉庫原名為鍵，補中文介紹、圖片與負責項目。
+  "overrides": {}
+}

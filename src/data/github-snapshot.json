@@ -1,0 +1,194 @@
+{
+  "_comment": "GitHub 公開倉庫實際擷取快照；啟動先顯示快照，API 成功後更新。擷取時間不是程式更新時間。",
+  "organization": "orangecat-web",
+  "fetchedAt": 1791259785582,
+  "repositories": [
+    {
+      "name": "sunger",
+      "description": "上格西服-網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/sunger",
+      "language": "JavaScript",
+      "pushedAt": "2020-12-07T07:02:59Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "00.template",
+      "description": "用 Vue 3 製作的作品集與互動展示。網站可獨立執行；作品資料目前由本地 JSON 提供，尚未連接後端 API。",
+      "url": "https://github.com/orangecat-web/00.template",
+      "language": "Sass",
+      "pushedAt": "2026-10-06T03:18:01Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "cier_sme",
+      "description": "中經院-中小企業動態資料庫",
+      "url": "https://github.com/orangecat-web/cier_sme",
+      "language": "Sass",
+      "pushedAt": "2024-06-10T20:40:16Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "tycadm",
+      "description": "達特康 - 桃園市二手輔具資源站",
+      "url": "https://github.com/orangecat-web/tycadm",
+      "language": "HTML",
+      "pushedAt": "2024-06-11T05:45:52Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "airloft",
+      "description": "租房及買房網站設計",
+      "url": "https://github.com/orangecat-web/airloft",
+      "language": "JavaScript",
+      "pushedAt": "2020-12-07T05:57:59Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "888hotel",
+      "description": "網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/888hotel",
+      "language": "JavaScript",
+      "pushedAt": "2020-12-07T06:38:31Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "empyrean-test",
+      "description": "",
+      "url": "https://github.com/orangecat-web/empyrean-test",
+      "language": "Sass",
+      "pushedAt": "2021-03-03T02:27:54Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "bonniee",
+      "description": "邦妮美腿網站設計及前端語法撰寫",
+      "url": "https://github.com/orangecat-web/bonniee",
+      "language": "JavaScript",
+      "pushedAt": "2020-12-07T06:22:25Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "night-hospital-map",
+      "description": "",
+      "url": "https://github.com/orangecat-web/night-hospital-map",
+      "language": "Sass",
+      "pushedAt": "2026-10-06T02:59:08Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "EFShop",
+      "description": "商業服務業雙語資源入口(英語店家通)",
+      "url": "https://github.com/orangecat-web/EFShop",
+      "language": "HTML",
+      "pushedAt": "2024-06-10T20:25:14Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "cthouse-horizontal-demo",
+      "description": "",
+      "url": "https://github.com/orangecat-web/cthouse-horizontal-demo",
+      "language": "Sass",
+      "pushedAt": "2026-10-05T19:23:12Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "asd",
+      "description": "網站設計及前端語法編寫",
+      "url": "https://github.com/orangecat-web/asd",
+      "language": "HTML",
+      "pushedAt": "2020-12-07T06:36:20Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "naid",
+      "description": "中華民國室內設計裝修商業同業公會全國聯合會網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/naid",
+      "language": "HTML",
+      "pushedAt": "2020-12-07T07:01:07Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "hong-cang.github.io",
+      "description": "",
+      "url": "https://github.com/orangecat-web/hong-cang.github.io",
+      "language": "CSS",
+      "pushedAt": "2026-05-06T11:08:41Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "the-mikuni-whisky",
+      "description": "株式会社ミクニ",
+      "url": "https://github.com/orangecat-web/the-mikuni-whisky",
+      "language": "JavaScript",
+      "pushedAt": "2020-12-07T07:04:38Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "starmediaplatform",
+      "description": "星光藝意傳媒網站前端語法編寫",
+      "url": "https://github.com/orangecat-web/starmediaplatform",
+      "language": "JavaScript",
+      "pushedAt": "2020-12-07T07:00:26Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    },
+    {
+      "name": "dish-life",
+      "description": "dish-life 網頁設計及前端語法",
+      "url": "https://github.com/orangecat-web/dish-life",
+      "language": "PHP",
+      "pushedAt": "2020-12-07T06:30:39Z",
+      "stars": 0,
+      "forks": 0,
+      "topics": [],
+      "homepage": ""
+    }
+  ]
+}

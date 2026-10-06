@@ -1,0 +1,119 @@
+// media.json：閱讀用註解副本。請編輯 src/data/media.json 後執行 npm run docs:json。
+{
+  "categoryNames": {
+    "cats": "貓咪肖像",
+    "spaces": "空間攝影",
+    "videos": "影片",
+    "places": "地點"
+  },
+  "items": [
+    {
+      // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+      "id": 1,
+      // 內容或媒體類型。
+      "type": "image",
+      // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+      "category": "cats",
+      "categoryLabel": "CAT PORTRAIT",
+      // 畫面顯示的標題。
+      "title": "午後雙貓",
+      "caption": "影像、留白與標題的組合。",
+      // 媒體替代文字。
+      "alt": "兩隻橘白色貓咪窩在沙發上",
+      // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+      "src": "/images/photos/IMG_8157.JPG"
+    },
+    {
+      // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+      "id": 2,
+      // 內容或媒體類型。
+      "type": "image",
+      // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+      "category": "cats",
+      "categoryLabel": "CAT PORTRAIT",
+      // 畫面顯示的標題。
+      "title": "盆裡的好奇心",
+      "caption": "圖像裁切與滑入疊層效果。",
+      // 媒體替代文字。
+      "alt": "一隻橘白色貓咪坐在圓形容器裡",
+      // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+      "src": "/images/photos/IMG_8167.JPG"
+    },
+    {
+      // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+      "id": 3,
+      // 內容或媒體類型。
+      "type": "image",
+      // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+      "category": "spaces",
+      "categoryLabel": "SPACE STUDY",
+      // 畫面顯示的標題。
+      "title": "走向光的角落",
+      "caption": "直式影像的節奏與比例。",
+      // 媒體替代文字。
+      "alt": "室內走廊通向明亮的洗手台空間",
+      // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+      "src": "/images/photos/IMG_8236.JPG"
+    },
+    {
+      // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+      "id": 4,
+      // 內容或媒體類型。
+      "type": "image",
+      // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+      "category": "spaces",
+      "categoryLabel": "SPACE STUDY",
+      // 畫面顯示的標題。
+      "title": "日常場景",
+      "caption": "空間影像與資訊層級。",
+      // 媒體替代文字。
+      "alt": "有床、書桌和小廚具的房間",
+      // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+      "src": "/images/photos/IMG_8242.JPG"
+    },
+    {
+      // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+      "id": 5,
+      // 內容或媒體類型。
+      "type": "image",
+      // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+      "category": "spaces",
+      "categoryLabel": "SPACE STUDY",
+      // 畫面顯示的標題。
+      "title": "俯視的構圖",
+      "caption": "同一空間，不同取景方式。",
+      // 媒體替代文字。
+      "alt": "由上往下拍攝床與書桌的室內場景",
+      // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+      "src": "/images/photos/IMG_8249.JPG"
+    },
+    {
+      // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+      "id": "film-1",
+      // 內容或媒體類型。
+      "type": "youtube",
+      // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+      "category": "videos",
+      "categoryLabel": "VIDEO",
+      // 畫面顯示的標題。
+      "title": "YouTube 嵌入示範",
+      "caption": "影片與圖片共用同一個媒體檢視元件。",
+      // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+      "src": "https://www.youtube.com/watch?v=iyBqtc03b9M"
+    },
+    {
+      // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+      "id": "place-1",
+      // 內容或媒體類型。
+      "type": "map",
+      // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+      "category": "places",
+      "categoryLabel": "LOCATION",
+      // 畫面顯示的標題。
+      "title": "Google 地圖嵌入示範",
+      "caption": "地圖也能從圖文卡片開啟與切換。",
+      // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+      "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1300!2d120.292146!3d22.68234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e059f55ca6d3b%3A0x6b5b827a9b90955c!2z5bem54ef5ZWf5piO5aCC!5e0!3m2!1szh-TW!2stw!4v1790189831097!5m2!1szh-TW!2stw"
+    }
+  ]
+}

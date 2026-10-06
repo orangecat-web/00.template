@@ -1,42 +1,46 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
+import { useGithub } from './composables/useGithub.js'
+import GithubProject from './components/GithubProject.vue'
 import SiteLayout from './components/SiteLayout.vue'
 import MediaLightbox from './components/MediaLightbox.vue'
 import { filterProjects, projectDestination, projects, resolveProjectCategory, searchProjects, workListUrl } from './data/projects.js'
 import { clampPage } from './utils/pagination.js'
 
+// ═══ 作品 id 與列表返回狀態 ═══
 const params = new URLSearchParams(window.location.search)
 const id = params.get('id')
-const selectedProject = projects.find((item) => item.id === id)
+// ═══ API 載入後自動解析新增倉庫的作品內頁 ═══
+useGithub()
+const selectedProject = computed(() => projects.find((item) => item.id === id))
 const requestedCategory = resolveProjectCategory(params.get('category'))
 const query = params.get('q') || ''
-const category = selectedProject && filterProjects([selectedProject], requestedCategory).length
-  ? requestedCategory : 'all'
-const siblings = searchProjects(filterProjects(projects, category), query)
-const fromPage = clampPage(params.get('from'), siblings.length)
-const context = { category, page: fromPage, query }
-const backUrl = workListUrl(context)
-const index = siblings.findIndex((item) => item.id === id)
-const project = siblings[index]
-const previous = index > 0 ? siblings[index - 1] : null
-const next = index >= 0 && index < siblings.length - 1 ? siblings[index + 1] : null
-const previousDestination = previous && projectDestination(previous, context)
-const nextDestination = next && projectDestination(next, context)
+const category = computed(() => selectedProject.value && filterProjects([selectedProject.value], requestedCategory).length ? requestedCategory : 'all')
+const siblings = computed(() => searchProjects(filterProjects(projects, category.value), query))
+const context = computed(() => ({ category: category.value, page: clampPage(params.get('from'), siblings.value.length), query }))
+const backUrl = computed(() => workListUrl(context.value))
+const index = computed(() => siblings.value.findIndex((item) => item.id === id))
+const project = selectedProject
+const previous = computed(() => index.value > 0 ? siblings.value[index.value - 1] : null)
+const next = computed(() => index.value >= 0 && index.value < siblings.value.length - 1 ? siblings.value[index.value + 1] : null)
+const previousDestination = computed(() => previous.value && projectDestination(previous.value, context.value))
+const nextDestination = computed(() => next.value && projectDestination(next.value, context.value))
+// ═══ 同系列圖片映射到共用媒體檢視 ═══
 const galleryLightbox = ref(null)
-const galleryBase = project?.image || project?.detailImage
-const galleryItems = computed(() => (project?.gallery || []).map((item, galleryIndex) => ({
-  ...item,
-  id: `${project.id}-${galleryIndex}`,
-  type: 'image',
-  src: `${galleryBase.slice(0, galleryBase.lastIndexOf('/') + 1)}${item.src}`,
-})))
+const galleryItems = computed(() => {
+  const base = project.value?.image || project.value?.detailImage
+  return (project.value?.gallery || []).map((item, galleryIndex) => ({
+    ...item, id: `${project.value.id}-${galleryIndex}`, type: 'image',
+    src: `${base.slice(0, base.lastIndexOf('/') + 1)}${item.src}`,
+  }))
+})
 
 function openGallery(item, event) {
   galleryLightbox.value?.open(item.id, event.currentTarget.querySelector('img'))
 }
 
-onMounted(() => {
-  document.title = project ? `${project.title} — 陳泓蒼 Orange Cat` : '找不到作品 — 陳泓蒼 Orange Cat'
+watchEffect(() => {
+  document.title = project.value ? `${project.value.title} — 陳泓蒼 Orange Cat` : '找不到作品 — 陳泓蒼 Orange Cat'
 })
 </script>
 
@@ -66,6 +70,8 @@ SiteLayout(page-id="work")
             div
               dt 負責項目
               dd {{ project.role }}
+          //- ═══ 介紹區內顯示技術標籤、GitHub 資訊與原始碼連結 ═══
+          GithubProject(v-if="project.githubRepository" :project="project" detail)
           a.project-detail-external(v-if="project.externalUrl" :href="project.externalUrl" :target="project.externalUrl.startsWith('http') ? '_blank' : undefined" :rel="project.externalUrl.startsWith('http') ? 'noopener noreferrer' : undefined") {{ project.externalLabel }} ↗
       section.project-series(v-if="galleryItems.length" aria-labelledby="project-series-title")
         .project-series-heading

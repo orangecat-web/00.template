@@ -1,0 +1,1309 @@
+// projects-web.json：閱讀用註解副本。請編輯 src/data/projects-web.json 後執行 npm run docs:json。
+[
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "orange-cat-vue",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": true,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "FRONT-END / VUE 3",
+    // 畫面顯示的標題。
+    "title": "互動實驗室",
+    // 作品摘要與搜尋內容。
+    "summary": "從 oc-template 延伸的 Vue 3 實作：影像輪播、媒體檢視、動態導覽與 Sass 視覺效果。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 可操作展示或上線網站網址；站內路徑可使用 / 開頭。
+    "externalUrl": "/lab.html",
+    // 外連按鈕文字；省略時使用預設文案。
+    "externalLabel": "進入互動實驗室",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/photos/IMG_8157.JPG",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "兩隻橘白貓咪坐在沙發上的攝影作品"
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "night-hospital-map",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": true,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEBSITE / FRONT-END / VUE 3",
+    // 畫面顯示的標題。
+    "title": "夜間毛孩就醫",
+    // 作品摘要與搜尋內容。
+    "summary": "以 Vue 3 製作的動物急診查詢公益作品，串接農業部開放資料 API，結合 JSON 管理的人工查閱夜間急診資訊，提供全台縣市與院所搜尋、24 小時及急診條件篩選、Google 地圖嵌入與導航。實作資料清洗與合併、分頁、非同步載入、錯誤重試及快取備援，並分別標示資料來源、名冊擷取時間與人工查閱日期。",
+    // 實際負責項目。
+    "role": "網站規劃、視覺設計、前端切版與互動功能實作",
+    // 可操作展示或上線網站網址；站內路徑可使用 / 開頭。
+    "externalUrl": "https://demo.orangecat.com.tw/night-hospital-map/",
+    // 外連按鈕文字；省略時使用預設文案。
+    "externalLabel": "進入夜間毛孩就醫",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "photo",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/photos/IMG_8167.JPG",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "兩隻橘白貓咪坐在沙發上的攝影作品"
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "bilingual-shop",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": true,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEBSITE / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "雙語商業資源入口網",
+    // 作品摘要與搜尋內容。
+    "summary": "涵蓋雙語檢索、內容列表、主題資源與相簿的網站作品。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 可操作展示或上線網站網址；站內路徑可使用 / 開頭。
+    "externalUrl": "https://serv.gcis.nat.gov.tw/bilingualshop/tw/homepage",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "bilingual"
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "dish-life",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": true,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "DISH-LIFE 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "以商品影像、色彩與資訊層次構成的商業網站視覺作品。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "dish",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/dish-life.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "DISH-LIFE 網站設計長圖，呈現首頁商品、活動區塊與頁尾",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "dish-life.jpg",
+        // 畫面顯示的標題。
+        "title": "首頁設計提案 01",
+        // 媒體替代文字。
+        "alt": "DISH-LIFE 網站設計既有首頁長圖"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "dish-life-02.jpg",
+        // 畫面顯示的標題。
+        "title": "首頁設計提案 02",
+        // 媒體替代文字。
+        "alt": "DISH-LIFE 商店網站首頁設計提案 02"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "dish-life-03.jpg",
+        // 畫面顯示的標題。
+        "title": "首頁設計提案 03",
+        // 媒體替代文字。
+        "alt": "DISH-LIFE 商店網站首頁設計提案 03"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "cthouse",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": true,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN",
+    // 畫面顯示的標題。
+    "title": "中信房屋網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "以明亮的居家場景帶出「找到你的最適生活圈」主題，將區域、CP 值、捷運及地圖找屋方式集中在首頁首屏，讓訪客一進站就能選擇適合自己的搜尋方式。",
+    // 實際負責項目。
+    "role": "視覺設計",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "中信房屋｜首頁橫向捲動視覺提案",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/cthouse/cthouse00.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "中信房屋｜首頁橫向捲動視覺提案",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "cthouse01.jpg",
+        // 畫面顯示的標題。
+        "title": "中信房屋｜首頁橫向捲動視覺提案",
+        // 媒體替代文字。
+        "alt": "中信房屋首頁橫向捲動設計稿，依序呈現居家與辦公空間主視覺、房屋搜尋、服務介紹、品牌優勢及最新消息區塊。"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "cthouse02.jpg",
+        // 畫面顯示的標題。
+        "title": "中信房屋｜房屋物件詳情頁視覺提案",
+        // 媒體替代文字。
+        "alt": "中信房屋物件詳情頁設計稿，包含透天別墅照片與售價、物件資料、預約賞屋表單、VR 室內實景、周邊地圖、影音及相關物件推薦。"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "four-leaves-coffee",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "四葉咖啡網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "四葉咖啡的網站首頁，以咖啡與品牌形象呈現導覽。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/four-leaves-coffee/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "四葉咖啡網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/four-leaves-coffee/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "四葉咖啡網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "四葉咖啡網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "furry-smiles-rescue",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "Furry Smiles 救援網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "Furry Smiles 動物救援網站首頁視覺。",
+    // 實際負責項目。
+    "role": "網頁視覺設計與前端切版",
+    // 可操作展示或上線網站網址；站內路徑可使用 / 開頭。
+    "externalUrl": "https://www.lovefsir.org/",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/furry-smiles-rescue/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "Furry Smiles 救援網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/furry-smiles-rescue/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "Furry Smiles 救援網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "Furry Smiles 救援網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "grc-site-concept",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "GRC 網站設計提案",
+    // 作品摘要與搜尋內容。
+    "summary": "GRC 企業網站首頁的版型提案。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/grc-site-concept/homepage-01.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "GRC 網站設計提案 04首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/grc-site-concept/homepage-01.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "GRC 網站設計提案 04首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage-01.jpg",
+        // 畫面顯示的標題。
+        "title": "首頁網站畫面 01",
+        // 媒體替代文字。
+        "alt": "GRC 網站設計提案 01完整畫面"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage-02.jpg",
+        // 畫面顯示的標題。
+        "title": "首頁網站畫面 02",
+        // 媒體替代文字。
+        "alt": "GRC 網站設計提案 02完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "ggs-company",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "GGS 企業網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "以風力發電影像作為主視覺的 GGS 企業網站首頁。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/ggs-company/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "GGS 企業網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/ggs-company/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "GGS 企業網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "GGS 企業網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "hello-berry",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "Hello Berry 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "Hello Berry 冰凍優格品牌網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/hello-berry/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "Hello Berry 網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/hello-berry/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "Hello Berry 網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "Hello Berry 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "bemer-group",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "BEMER Group 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "BEMER Group 產品介紹網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/bemer-group/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "BEMER Group 網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/bemer-group/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "BEMER Group 網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "BEMER Group 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "pink-holidays",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "品客假期網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "品客假期旅遊行程網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/pink-holidays/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "品客假期網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/pink-holidays/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "品客假期網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "品客假期網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "jazzdam",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "Jazzdam 購物網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "Jazzdam 包款購物網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/jazzdam/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "Jazzdam 購物網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/jazzdam/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "Jazzdam 購物網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "Jazzdam 購物網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "jdi",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "JDI 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "JDI 通訊設備品牌網站首頁視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/jdi/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "JDI 網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/jdi/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "JDI 網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "JDI 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "golden-bus-tour",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "金道旅遊網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "金道旅遊行程與遊覽車租賃網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/golden-bus-tour/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "金道旅遊網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/golden-bus-tour/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "金道旅遊網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "金道旅遊網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "jishi-charity",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "中華民國濟世功德會網站",
+    // 作品摘要與搜尋內容。
+    "summary": "中華民國濟世功德會網站首頁視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/jishi-charity/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "中華民國濟世功德會網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/jishi-charity/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "中華民國濟世功德會網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "中華民國濟世功德會網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "hakka-opera",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "《戀戀臺三線》網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "2017 精緻客家大戲《戀戀臺三線》網站畫面。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/hakka-opera/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "《戀戀臺三線》網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/hakka-opera/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "《戀戀臺三線》網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "《戀戀臺三線》網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "lightning-creek",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "LIGHTNING CREEK 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "戶外服飾品牌 LIGHTNING CREEK 網站入口視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/lightning-creek/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "LIGHTNING CREEK 網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/lightning-creek/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "LIGHTNING CREEK 網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "LIGHTNING CREEK 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "mim",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN",
+    // 畫面顯示的標題。
+    "title": "MIM 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "MIM 時尚品牌網站的入口與商品列表視覺。",
+    // 實際負責項目。
+    "role": "視覺設計",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/mim/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "MIM 網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/mim/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "MIM 網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "MIM 網站設計完整畫面"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "products.jpg",
+        // 畫面顯示的標題。
+        "title": "商品列表畫面",
+        // 媒體替代文字。
+        "alt": "MIM 時尚品牌網站商品列表設計"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "happy-farmhouse",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "快樂屋休閒民宿網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "快樂屋休閒民宿網站首頁視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/happy-farmhouse/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "快樂屋休閒民宿網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/happy-farmhouse/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "快樂屋休閒民宿網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "快樂屋休閒民宿網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "actionpro",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "ActionPro 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "ActionPro 運動攝影機品牌網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/actionpro/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "ActionPro 網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/actionpro/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "ActionPro 網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "ActionPro 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "business-consultant",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "企管顧問作業平台網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "企管顧問作業平台網站首頁視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/business-consultant/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "企管顧問作業平台網站設計首頁畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/business-consultant/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "企管顧問作業平台網站設計首頁畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "企管顧問作業平台網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "shi-yao-enterprise",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "世耀實業網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "世耀實業企業網站品質管理頁面視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/shi-yao-enterprise/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "世耀實業網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/shi-yao-enterprise/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "世耀實業網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "世耀實業網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "funk-fun-game",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "恐怖歡樂 Funk & Fun 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "Funk & Fun 互動遊戲品牌網站長頁設計。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/funk-fun-game/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "恐怖歡樂 Funk & Fun 網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/funk-fun-game/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "恐怖歡樂 Funk & Fun 網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "恐怖歡樂 Funk & Fun 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "nineten",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "NINETEN 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "NINETEN 產品與應用介紹網站長頁設計。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/nineten/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "NINETEN 網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/nineten/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "NINETEN 網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "NINETEN 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "nine-sir",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "9sir 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "9sir 外送服務網站的首頁長頁與局部畫面。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/nine-sir/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "9sir 網站首頁完整畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/nine-sir/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "9sir 網站首頁完整畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "首頁完整畫面",
+        // 媒體替代文字。
+        "alt": "9sir 外送服務網站首頁長頁設計"
+      },
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "edited.jpg",
+        // 畫面顯示的標題。
+        "title": "首頁局部畫面",
+        // 媒體替代文字。
+        "alt": "9sir 外送服務網站首頁上方局部畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "mikuni",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "株式会社ミクニ 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "株式会社ミクニ企業網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 可操作展示或上線網站網址；站內路徑可使用 / 開頭。
+    "externalUrl": "http://www.mikuni-inc.com/",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/mikuni/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "株式会社ミクニ 網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/mikuni/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "株式会社ミクニ 網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "株式会社ミクニ 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "vividventure",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "亞蒂芬奇產品頁",
+    // 作品摘要與搜尋內容。
+    "summary": "亞蒂芬奇珠寶網站的產品資訊頁。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/vividventure/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "亞蒂芬奇產品頁設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/vividventure/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "亞蒂芬奇產品頁設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "亞蒂芬奇產品頁設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "zhen-luwei",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "貞滷味網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "貞滷味食品品牌網站首頁視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/zhen-luwei/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "貞滷味網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/zhen-luwei/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "貞滷味網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "貞滷味網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "jen-hon-education",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "健弘教育機構網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "健弘教育機構網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/jen-hon-education/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "健弘教育機構網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/jen-hon-education/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "健弘教育機構網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "健弘教育機構網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "rts-tour",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "清晨旅行社網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "清晨旅行社旅遊行程網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/rts-tour/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "清晨旅行社網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/rts-tour/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "清晨旅行社網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "清晨旅行社網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "mofa-hair",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "摩髮時尚髮型連鎖網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "摩髮時尚髮型連鎖網站首頁視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/mofa-hair/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "摩髮時尚髮型連鎖網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/mofa-hair/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "摩髮時尚髮型連鎖網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "摩髮時尚髮型連鎖網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "diandian-japan",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "點點日本網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "點點日本商品分類與列表頁設計。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/diandian-japan/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "點點日本網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/diandian-japan/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "點點日本網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "點點日本網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "pm25-exhibition",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "《島嶼浮塵》網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "PM2.5 視界特展《島嶼浮塵》網站長頁設計。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/pm25-exhibition/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "《島嶼浮塵》網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/pm25-exhibition/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "《島嶼浮塵》網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "《島嶼浮塵》網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "pp-vip",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "PP 哲學 VIP 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "PP 哲學 VIP 網站首頁視覺。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/pp-vip/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "PP 哲學 VIP 網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/pp-vip/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "PP 哲學 VIP 網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "PP 哲學 VIP 網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "pss-group",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "PSS 集團網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "PSS 集團企業網站首頁長頁設計。",
+    // 實際負責項目。
+    "role": "前端切版",
+    // 可操作展示或上線網站網址；站內路徑可使用 / 開頭。
+    "externalUrl": "https://www.pss-group.com/",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/pss-group/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "PSS 集團網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/pss-group/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "PSS 集團網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "PSS 集團網站設計完整畫面"
+      }
+    ]
+  },
+  {
+    // 穩定識別碼；站內連結與資料對應使用，請勿任意修改。
+    "id": "pure-life",
+    // 是否納入首頁精選；目前取合併清單中前三筆。
+    "featured": false,
+    // 畫面顯示的作品類型文字；篩選分類由 projects.js 指定。
+    "category": "WEB / VISUAL DESIGN / FRONT-END CODING",
+    // 畫面顯示的標題。
+    "title": "PURE LIFE 網站設計",
+    // 作品摘要與搜尋內容。
+    "summary": "PURE LIFE 口腔清潔用品購物網站首頁視覺。",
+    // 實際負責項目。
+    "role": "視覺設計、前端切版",
+    // 可操作展示或上線網站網址；站內路徑可使用 / 開頭。
+    "externalUrl": "https://www.pure-life.com.tw/",
+    // 封面樣式名稱；有 image 時優先顯示圖片。
+    "cover": "web-design",
+    // 主要圖片，作品封面使用 /images/... 絕對路徑。
+    "image": "/images/projects/pure-life/homepage.jpg",
+    // 主要圖片的替代文字，供無障礙閱讀。
+    "imageAlt": "PURE LIFE 網站設計網站畫面",
+    // 作品內頁主圖；省略時沿用 image。
+    "detailImage": "/images/projects/pure-life/homepage.jpg",
+    // 作品內頁主圖的替代文字。
+    "detailImageAlt": "PURE LIFE 網站設計網站畫面",
+    // 同系列的圖集，透過共用 MediaLightbox 放大。
+    "gallery": [
+      {
+        // 媒體來源；作品 gallery 使用與主圖同目錄的檔名。
+        "src": "homepage.jpg",
+        // 畫面顯示的標題。
+        "title": "網站畫面",
+        // 媒體替代文字。
+        "alt": "PURE LIFE 網站設計完整畫面"
+      }
+    ]
+  }
+]
