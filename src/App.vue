@@ -27,9 +27,9 @@ SiteLayout(ref="layout" page-id="home")
           span(aria-hidden="true") ↗
         a.pill.pill-outline(href="#services" @click.prevent="goTo('services')") 看合作服務
       .hero-footnote
-        span WEB DESIGN
         span FRONT-END
         span PHOTOGRAPHY
+        span WEB DESIGN
     HeroCarousel(:photos="heroPhotos")
   section#work.work-section(aria-labelledby="work-title")
     .shell

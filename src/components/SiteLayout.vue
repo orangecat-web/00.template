@@ -42,7 +42,7 @@ div#top(:class="[isHome ? 'site' : 'standard-page', { 'nav-pushed': navVisible &
     .shell.header-inner
       a.brand(:href="isHome ? '#top' : '/'" :aria-label="isHome ? 'Orange Cat 回到頁首' : 'Orange Cat 回首頁'" @click="isHome ? navigate($event, '#top') : undefined")
         img(src="/images/logo.svg" alt="Orange Cat")
-      span.header-caption VISUAL DESIGN / FRONT-END
+      span.header-caption FRONT-END / PHOTOGRAPHY / VISUAL DESIGN
       button.menu-button(type="button" :aria-expanded="menuOpen" aria-controls="site-nav" aria-label="切換導覽選單" @click="toggleMenu($event)")
         span
         span
