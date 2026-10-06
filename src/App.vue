@@ -55,19 +55,19 @@ SiteLayout(ref="layout" page-id="home")
           div
             h3 網站視覺與前端製作
             p 形象網站、活動頁與商品頁的視覺規劃、響應式切版和互動實作。
-          span.service-icon(aria-hidden="true") ↗
+          //- span.service-icon(aria-hidden="true") ↗
         article.service-item
           span.service-number 02
           div
             h3 既有網站改版
             p 整理內容層級與共用元件，讓既有網站更容易閱讀與維護。
-          span.service-icon(aria-hidden="true") ↗
+          //- span.service-icon(aria-hidden="true") ↗
         article.service-item
           span.service-number 03
           div
             h3 商品攝影與視覺素材
             p 以商品影像與平面視覺，補足網站展示需要的素材與品牌氛圍。
-          span.service-icon(aria-hidden="true") ↗
+          //- span.service-icon(aria-hidden="true") ↗
   section#experience.experience-section(aria-labelledby="experience-title")
     .shell
       .experience-heading

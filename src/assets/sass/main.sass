@@ -372,11 +372,10 @@ a
     color: $muted
     font-size: rem(13)
     line-height: 1.7
-    display: -webkit-box            /* 將物件作為弹性伸缩盒子模型顯示 */
-    -webkit-box-orient: vertical    /* 設定或檢索伸縮盒專案的子元素排列方式 */
-    -webkit-line-clamp: 2           /* 限制顯示的文本行數為兩行 */
-    overflow: hidden                /* 超出範圍的內容隱藏 */
-    text-overflow: ellipsis         /* 當文本溢出時顯示省略標記（...） */
+    display: -webkit-box
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+    overflow: hidden
 
 .project-meta, .project-bottom
   display: flex
@@ -408,7 +407,7 @@ a
 
 .services-grid
   display: grid
-  grid-template-columns: .95fr 1.05fr
+  grid-template-columns: 1fr 1fr
   gap: clamp(45px, 8vw, 120px)
 
 .services-intro
