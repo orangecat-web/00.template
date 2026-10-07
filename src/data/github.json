@@ -17,6 +17,17 @@
       ]
     },
     {
+      "projectId": "street-corner-parking",
+      "repository": "street-corner-parking",
+      "tags": [
+        "Vue 3",
+        "Node.js",
+        "政府開放資料 API",
+        "搜尋篩選",
+        "地圖整合"
+      ]
+    },
+    {
       "projectId": "night-hospital-map",
       "repository": "night-hospital-map",
       "tags": [

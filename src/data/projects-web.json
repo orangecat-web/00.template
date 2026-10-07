@@ -13,6 +13,19 @@
     "imageAlt": "兩隻橘白貓咪坐在沙發上的攝影作品"
   },
   {
+    "id": "street-corner-parking",
+    "featured": true,
+    "category": "WEBSITE / FRONT-END / VUE 3",
+    "title": "街角停車",
+    "summary": "以 Vue 3 製作的雙北停車查詢網站，透過 Node.js 串接官方開放資料，整合路邊停車格與路外停車場。提供車種、行政區與停車場型態篩選、地址搜尋、地圖定位及導航，並整理官方收費資訊，以色點呈現車種停放狀態、月租與身障格資訊，顯示官方提供的剩餘車位數。",
+    "role": "獨立負責 UI／UX 設計、Vue 3 前端開發、Node.js API 串接與資料整理，完成地圖互動、搜尋篩選、停車資訊呈現，以及 GitHub 版本管理與 Render 部署。",
+    "externalUrl": "https://street-corner-parking.onrender.com/",
+    "externalLabel": "進入街角停車",
+    "cover": "photo",
+    "image": "/images/projects/street-corner-parking/my-bike.png",
+    "imageAlt": "街角停車"
+  },
+  {
     "id": "night-hospital-map",
     "featured": true,
     "category": "WEBSITE / FRONT-END / VUE 3",
