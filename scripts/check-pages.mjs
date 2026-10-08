@@ -20,12 +20,14 @@ try {
  assert.match(html, new RegExp(`${frontendCount} 件作品`))
  assert.doesNotMatch(html, /class="github-project"/)
  assert.match(html, /class="project-online"[^>]*href="https:\/\/demo.orangecat.com.tw\/night-hospital-map\/"/)
- assert.match(html, /進入夜間毛孩就醫/)
+ assert.match(html, /class="project-bottom"/)
+ assert.doesNotMatch(html, /獨立負責 UI／UX 設計/)
  assert.match(html, /查看作品內容/)
  assert.match(html, /<button class="work-category-tab"[^>]*>更新 GitHub 資料/)
  window.location.search='?category=web'
  const webHtml = await renderToString(createSSRApp(Work))
  assert.doesNotMatch(webHtml, /class="github-status"/)
+ assert.match(webHtml, /class="project-bottom"/)
  assert.match(html, /公開原始碼 \/ 圖片待補/)
  window.location.search='?category=frontend&page=2'
  html = await renderToString(createSSRApp(Work))

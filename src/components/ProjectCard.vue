@@ -16,7 +16,7 @@ const destination = computed(() => projectDestination(props.project, {
   page: props.page,
   query: props.query,
 }))
-// ═══ 列表可直接開啟上線作品；GitHub 原始碼資訊留在內頁 ═══
+// ═══ 卡片保留線上作品與內容頁連結；負責項目只在內頁顯示 ═══
 const onlineUrl = computed(() => websiteUrl(props.project.externalUrl))
 const isExternal = computed(() => /^https?:\/\//i.test(onlineUrl.value))
 </script>
@@ -47,8 +47,8 @@ article.project-card
       span {{ String(index + 1).padStart(2, '0') }} / {{ String(total).padStart(2, '0') }}
     h3 {{ project.title }}
     p {{ project.summary }}
+    //- ═══ 列表只顯示操作連結；不在卡片重複顯示負責項目 ═══
     .project-bottom
-      span {{ project.role }}
       .project-links
         a.project-online(v-if="onlineUrl" :href="onlineUrl" :target="isExternal ? '_blank' : undefined" :rel="isExternal ? 'noopener noreferrer' : undefined") {{ project.externalLabel || '查看線上作品' }} ↗
         a(:href="destination.href") {{ destination.label }} ↗

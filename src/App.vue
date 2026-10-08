@@ -48,7 +48,7 @@ SiteLayout(ref="layout" page-id="home")
         p.kicker 02 / WHAT I DO
         h2#services-title 網站、影像與視覺，<br>讓想法完整落地<span class="period">．</span>
         p 從畫面規劃、前端製作到商品影像，能依專案需要組合。想評估合作方向，可先從相關作品開始看。
-        a.text-link(href="#work" @click.prevent="goTo('work')") 看作品與實作 ↗
+        a.text-link(href="/work.html") 看作品與實作 ↗
       .service-list
         article.service-item
           span.service-number 01
