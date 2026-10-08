@@ -25,6 +25,20 @@
     },
     {
       // 對應既有作品 id；不要新增重複作品資料。
+      "projectId": "street-corner-parking",
+      // orangecat-web 組織底下的 GitHub 倉庫名稱。
+      "repository": "street-corner-parking",
+      // 人工確認的技術標籤，也可透過作品搜尋找到。
+      "tags": [
+        "Vue 3",
+        "Node.js",
+        "政府開放資料 API",
+        "搜尋篩選",
+        "地圖整合"
+      ]
+    },
+    {
+      // 對應既有作品 id；不要新增重複作品資料。
       "projectId": "night-hospital-map",
       // orangecat-web 組織底下的 GitHub 倉庫名稱。
       "repository": "night-hospital-map",

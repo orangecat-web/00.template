@@ -36,7 +36,12 @@ test('精選 Repo 對應既有作品、分類不重複、搜尋與返回網址�
   const config = JSON.parse(readFileSync(new URL('../src/data/github.json', import.meta.url)))
   const frontend = filterProjects(projects, 'frontend')
   const snapshot = JSON.parse(readFileSync(new URL('../src/data/github-snapshot.json', import.meta.url)))
-  assert.equal(frontend.length, snapshot.repositories.length)
+  // 設定裡的作品即使倉庫不在快照中，仍屬前端分類（例如 cthouse）。
+  const expectedCount = new Set([
+    ...snapshot.repositories.map((item) => item.name.toLowerCase()),
+    ...config.projects.map((item) => item.repository.toLowerCase()),
+  ]).size
+  assert.equal(frontend.length, expectedCount)
   assert.equal(new Set(projects.map((p) => p.id)).size, projects.length)
   for (const item of frontend) {
     if (!item.id.startsWith('github-')) assert.ok(item.categoryIds.includes('web'))
@@ -97,15 +102,18 @@ test('共用狀態：快取、過期資料、重試、請求去重與儲存不�
 })
 
 // ═══ 全量倉庫：合併既有作品、候補圖片與未來新增倉庫 ═══
-test('17 個真實倉庫合併為 17 件前端作品，6 件對應既有作品、11 件自動新增', () => {
+test('快照與人工對應合併為前端作品，且不重複新增', () => {
   const config = JSON.parse(readFileSync(new URL('../src/data/github.json', import.meta.url)))
   const snapshot = JSON.parse(readFileSync(new URL('../src/data/github-snapshot.json', import.meta.url)))
   const web = JSON.parse(readFileSync(new URL('../src/data/projects-web.json', import.meta.url)))
   const base = web.map(item => ({ ...item, categoryIds: ['web'] }))
   const results = mergeGithubProjects(base, snapshot.repositories, config)
-  assert.equal(results.filter(item => item.categoryIds.includes('frontend')).length, 17)
-  assert.equal(results.filter(item => item.id.startsWith('github-')).length, 11)
-  assert.equal(results.length, base.length + 11)
+  const mapped = new Set(config.projects.map(item => item.repository.toLowerCase()))
+  const expectedNew = snapshot.repositories.filter(item => !mapped.has(item.name.toLowerCase())).length
+  const expectedFrontend = new Set([...snapshot.repositories.map(item => item.name.toLowerCase()), ...mapped]).size
+  assert.equal(results.filter(item => item.categoryIds.includes('frontend')).length, expectedFrontend)
+  assert.equal(results.filter(item => item.id.startsWith('github-')).length, expectedNew)
+  assert.equal(results.length, base.length + expectedNew)
   assert.equal(new Set(results.map(item => item.id)).size, results.length)
   const matched = results.find(item => item.id === 'bilingual-shop')
   assert.equal(matched.githubRepository, 'EFShop')

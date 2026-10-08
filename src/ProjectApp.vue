@@ -73,6 +73,15 @@ SiteLayout(page-id="work")
           //- ═══ 介紹區內顯示技術標籤、GitHub 資訊與原始碼連結 ═══
           GithubProject(v-if="project.githubRepository" :project="project" detail)
           a.project-detail-external(v-if="project.externalUrl" :href="project.externalUrl" :target="project.externalUrl.startsWith('http') ? '_blank' : undefined" :rel="project.externalUrl.startsWith('http') ? 'noopener noreferrer' : undefined") {{ project.externalLabel }} ↗
+      //- ═══ 各作品自行決定小標題與文字；未填時不顯示空欄 ═══
+      section.project-case-study(v-if="project.caseStudy?.length" aria-labelledby="project-case-study-title")
+        .project-case-study-heading
+          p.kicker BEHIND THE WORK
+          h2#project-case-study-title 作品思路<span class="period">．</span>
+        .project-case-study-grid
+          article.project-case-study-item(v-for="(item, noteIndex) in project.caseStudy" :key="`${project.id}-note-${noteIndex}`")
+            h3 {{ item.heading }}
+            p {{ item.body }}
       section.project-series(v-if="galleryItems.length" aria-labelledby="project-series-title")
         .project-series-heading
           div

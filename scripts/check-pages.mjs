@@ -2,14 +2,22 @@ import assert from 'node:assert/strict'
 import { createServer } from 'vite'
 import { createSSRApp } from 'vue'
 import { renderToString } from 'vue/server-renderer'
+import { readFileSync } from 'node:fs'
+// ═══ 快照與人工對應都可能增加前端分類，頁數依資料計算 ═══
+const config = JSON.parse(readFileSync(new URL('../src/data/github.json', import.meta.url)))
+const snapshot = JSON.parse(readFileSync(new URL('../src/data/github-snapshot.json', import.meta.url)))
+const frontendCount = new Set([
+ ...snapshot.repositories.map(item => item.name.toLowerCase()),
+ ...config.projects.map(item => item.repository.toLowerCase()),
+]).size
 globalThis.window = { location: { search: '?category=frontend' }, sessionStorage: {getItem:()=> '123',setItem(){} } }
 globalThis.document = { title: '' }
-const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' })
+const server = await createServer({ server: { middlewareMode: true, hmr: false }, appType: 'custom' })
 try {
  const { default: Work } = await server.ssrLoadModule('/src/WorkApp.vue')
  let html = await renderToString(createSSRApp(Work))
  assert.equal((html.match(/class="project-card"/g)||[]).length, 15)
- assert.match(html, /17 件作品/)
+ assert.match(html, new RegExp(`${frontendCount} 件作品`))
  assert.doesNotMatch(html, /class="github-project"/)
  assert.match(html, /class="project-online"[^>]*href="https:\/\/demo.orangecat.com.tw\/night-hospital-map\/"/)
  assert.match(html, /進入夜間毛孩就醫/)
@@ -21,7 +29,7 @@ try {
  assert.match(html, /公開原始碼 \/ 圖片待補/)
  window.location.search='?category=frontend&page=2'
  html = await renderToString(createSSRApp(Work))
- assert.equal((html.match(/class="project-card"/g)||[]).length,2)
+ assert.equal((html.match(/class="project-card"/g)||[]).length,frontendCount-15)
  window.location.search='?category=frontend&id=github-sunger&from=2'
  const { default: Project } = await server.ssrLoadModule('/src/ProjectApp.vue')
  html = await renderToString(createSSRApp(Project))
@@ -34,5 +42,5 @@ try {
  assert.match(html, /https:\/\/github.com\/orangecat-web\/sunger/)
  assert.match(html, /category=frontend/)
  assert.match(html, /上格西服/)
- console.log('SSR 頁面檢查通過：17 筆、15+2 分頁、文字封面、倉庫內頁、返回分類。')
+ console.log(`SSR 頁面檢查通過：${frontendCount} 筆、15+${frontendCount-15} 分頁、文字封面、倉庫內頁、返回分類。`)
 } finally { await server.close() }

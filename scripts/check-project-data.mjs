@@ -58,6 +58,18 @@ for (const [categoryId, filename] of projectFiles) {
         errors.push(`${label}: externalUrl must be HTTP(S) or a site-root path`)
       }
     }
+    // ═══ 可選的內頁作品思路：每個區塊均需有標題與正文 ═══
+    if (project.caseStudy !== undefined) {
+      if (!Array.isArray(project.caseStudy) || !project.caseStudy.length) {
+        errors.push(`${label}: caseStudy must be a nonempty array`)
+      } else {
+        for (const [index, item] of project.caseStudy.entries()) {
+          if (!item || typeof item.heading !== 'string' || !item.heading.trim() || typeof item.body !== 'string' || !item.body.trim()) {
+            errors.push(`${label}.caseStudy[${index}]: heading and body are required`)
+          }
+        }
+      }
+    }
     if (!project.gallery) continue
     if (!Array.isArray(project.gallery)) {
       errors.push(`${label}: gallery must be an array`)
