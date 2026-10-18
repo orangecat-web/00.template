@@ -77,6 +77,29 @@
     ]
   },
   {
+    "id": "rental_management",
+    "featured": true,
+    "category": "WEB / UI・UX DESIGN",
+    "title": "租屋管理",
+    "summary": "從房東的日常管理需求出發，將房客資料、每月收租、電表抄錄與帳務報表整合在同一個工作區。以清楚的房間總覽與操作流程，減少來回核對資料的時間，讓每間房的租務狀態一目了然。",
+    "role": "視覺設計",
+    "externalUrl": "https://orangecat-web.github.io/rental_management/",
+    "cover": "web-design",
+    "imageAlt": "中信房屋｜首頁橫向捲動視覺提案",
+    "image": "/images/projects/rental_management/_MG_3787-HDR.webp",
+    "detailImageAlt": "中信房屋｜首頁橫向捲動視覺提案",
+    "caseStudy": [
+      {
+        "heading": "設計理念",
+        "body": "從自身的租務管理需求出發，希望少一點重複填寫，少一點來回核對。將房客、收款與用電資料整理在同一個工作區，搭配清楚易讀的綠白介面，讓每月管理更省事，也更容易掌握各房狀況。"
+      },
+      {
+        "heading": "資訊編排",
+        "body": "以房間總覽作為入口，依序整理房客與租約、每月帳務、電表及照片，再透過收租與用電報表呈現變化。區分已收、未收與待補資料，讓需要處理的項目更容易被找到。"
+      }
+    ]
+  },
+  {
     "id": "bilingual-shop",
     "featured": true,
     "category": "WEBSITE / FRONT-END CODING",

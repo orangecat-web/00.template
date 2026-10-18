@@ -17,6 +17,17 @@
       ]
     },
     {
+      "projectId": "rental_management",
+      "repository": "rental_management",
+      "tags": [
+        "Vue 3",
+        "Node.js",
+        "政府開放資料 API",
+        "搜尋篩選",
+        "地圖整合"
+      ]
+    },
+    {
       "projectId": "street-corner-parking",
       "repository": "street-corner-parking",
       "tags": [
