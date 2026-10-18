@@ -21,10 +21,11 @@
       "repository": "rental_management",
       "tags": [
         "Vue 3",
-        "Node.js",
-        "政府開放資料 API",
-        "搜尋篩選",
-        "地圖整合"
+        "Google APP Script",
+        "JavaScript",
+        "Google 試算表串接",
+        "租務管理",
+        "帳務與用電視覺化"
       ]
     },
     {
