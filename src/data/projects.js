@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 import snapshot from "./github-snapshot.json" with { type: "json" };
 import { mergeGithubProjects } from "../utils/githubProjects.js";
 import githubConfig from "./github.json" with { type: "json" };
@@ -31,10 +31,17 @@ const baseProjects = projectGroups.flatMap(([categoryId, items]) =>
       : {}),
   })),
 );
-export const projects = reactive(
-  mergeGithubProjects(baseProjects, snapshot.repositories, githubConfig),
-);
+// managed 模式只顯示 API 的已發布清單，失敗時不回退舊 JSON。
+export const portfolioPreview = typeof window !== 'undefined' && new URLSearchParams(window.location?.search || '').get('preview') === '1';
+export const portfolioPreviewReady = ref(false);
+export const managedPortfolio = import.meta.env?.VITE_PORTFOLIO_MODE === 'managed' || portfolioPreview;
+export const projects = reactive(managedPortfolio ? [] : mergeGithubProjects(baseProjects, snapshot.repositories, githubConfig));
+export function replacePublishedProjects(items) {
+  projects.splice(0, projects.length, ...[...items].sort((a,b)=>(a.sortOrder ?? 0)-(b.sortOrder ?? 0)));
+  rebuildOrder();
+}
 export function updateGithubProjects(repositories) {
+  if (managedPortfolio) return;
   projects.splice(
     0,
     projects.length,
@@ -42,9 +49,10 @@ export function updateGithubProjects(repositories) {
   );
 }
 
-export const featuredProjects = projects
-  .filter((project) => project.featured)
-  .slice(0, 3);
+export const featuredProjects = computed(() => projects
+  .filter(project => project.featured)
+  .sort((a,b)=>(a.featuredOrder ?? 0)-(b.featuredOrder ?? 0))
+  .slice(0,3));
 
 // 同一分頁共用一個隨機種子，避免翻頁、進內頁再返回時作品跳位。
 function sessionSeed() {
@@ -82,25 +90,17 @@ function shuffle(items, random) {
   return shuffled;
 }
 
-const random = seededRandom(sessionSeed());
-const laboratory = projects.find((project) => project.id === "orange-cat-vue");
-const onlineWebProjects = projects.filter(
-  (project) =>
-    project !== laboratory &&
-    project.categoryIds.includes("web") &&
-    /^https?:\/\//i.test(project.externalUrl || ""),
-);
-const others = projects.filter(
-  (project) => project !== laboratory && !onlineWebProjects.includes(project),
-);
-const allProjects = [
-  ...(laboratory ? [laboratory] : []),
-  ...shuffle(onlineWebProjects, random),
-  ...shuffle(others, random),
-];
-const allOrder = new Map(
-  allProjects.map((project, index) => [project.id, index]),
-);
+const orderSeed = sessionSeed();
+const allOrder = new Map();
+function rebuildOrder() {
+  const random = seededRandom(orderSeed);
+  const laboratory = projects.find(project => project.id === 'orange-cat-vue');
+  const online = projects.filter(project => project !== laboratory && project.categoryIds.includes('web') && /^https?:\/\//i.test(project.externalUrl || ''));
+  const others = projects.filter(project => project !== laboratory && !online.includes(project));
+  allOrder.clear();
+  [...(laboratory ? [laboratory] : []), ...shuffle(online,random), ...shuffle(others,random)].forEach((project,index)=>allOrder.set(project.id,index));
+}
+rebuildOrder();
 
 // ═══ 分類驗證、篩選與搜尋 ═══
 export function resolveProjectCategory(id) {

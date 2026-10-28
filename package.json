@@ -1,22 +1,30 @@
 {
   "name": "00.template",
   "private": true,
-  "version": "1.5.0",
+  "version": "1.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
     "check:data": "node scripts/check-project-data.mjs",
-    "build": "npm run check:data && vite build",
+    "build": "npm run check:data && node scripts/export-portfolio-seed.mjs && vite build",
     "preview": "vite preview",
-    "test": "node --test",
+    "test": "node --test tests/*.test.js",
     "docs:json": "node scripts/annotate-json.mjs",
-    "check:pages": "node scripts/check-pages.mjs"
+    "check:pages": "node scripts/check-pages.mjs",
+    "build:managed": "node scripts/build-managed.mjs",
+    "dev:managed": "node scripts/dev-managed.mjs",
+    "test:admin": "node tests/admin.integration.mjs",
+    "dev:php": "node scripts/dev-php.mjs",
+    "prepare:admin": "node scripts/package-admin.mjs",
+    "package:admin": "node scripts/package-admin.mjs"
   },
   "dependencies": {
     "vue": "^3.5.42"
   },
   "devDependencies": {
+    "@playwright/test": "1.58.2",
     "@vitejs/plugin-vue": "^6.0.8",
+    "fflate": "0.8.2",
     "pug": "^3.0.4",
     "sass": "^1.104.1",
     "vite": "^8.3.0"

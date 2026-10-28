@@ -22,3 +22,13 @@ dist/*
 *.njsproj
 *.sln
 *.sw?
+
+# 管理後台的私有設定、執行資料與上傳檔，不進 Git。
+portfolio-private/
+public/uploads/
+
+!docs/portfolio-admin.md
+portfolio-install.local/
+
+public/images/projects/uploads/
+portfolio-release.local/

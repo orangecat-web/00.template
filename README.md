@@ -1,6 +1,6 @@
 # 00.template
 
-我用 Vue 3 製作的作品集與互動展示。網站可獨立執行；作品介紹由本地 JSON 管理，前端開發作品串接 GitHub REST API，顯示公開專案的語言、更新時間與原始碼連結。
+我用 Vue 3 製作的作品集與互動展示。提供靜態 JSON 模式與可選的 PHP 圖文管理模式；前端開發作品可串接 GitHub REST API，顯示公開專案的語言、更新時間與原始碼連結。
 
 ## 技術與啟動
 
@@ -55,7 +55,7 @@ npm run preview
 
 建置會輸出 `dist/404.html`。部署時將伺服器的找不到頁面設定指向 `/404.html`，並維持 HTTP 404 狀態；直接開啟 `/404.html` 可檢查畫面。頁內搜尋會以 GET 前往 `/work.html?q=關鍵字`。
 
-目前已串接 GitHub 公開 Repository API，尚無自建作品 API 或管理後台。我保留可獨立展示的資料版本；日後接 API 時，維持作品 `id`、分類、排序、圖片與 `gallery` 欄位，再補非同步載入、錯誤和空資料狀態。欄位契約與串接邊界見 [前後端交接說明](docs/backend-handoff.md)。
+靜態模式串接 GitHub 公開 Repository API；v1.6 另提供 PHP 作品 API 與管理後台，設定方式見文末。我保留可獨立展示的資料版本；日後接 API 時，維持作品 `id`、分類、排序、圖片與 `gallery` 欄位，再補非同步載入、錯誤和空資料狀態。欄位契約與串接邊界見 [前後端交接說明](docs/backend-handoff.md)。
 
 ## v1.1：全部公開倉庫納入前端開發
 
@@ -125,3 +125,17 @@ JSONC 產生器會同步移除已不存在來源的自動產生副本，避免�
 ## v1.3：列表直接看線上作品
 
 列表卡片不再顯示 GithubProject，技術標籤、GitHub 動態資訊與原始碼連結都在內頁 project-detail-copy 中。卡片仍可進入內容頁，另依 existing externalUrl 提供上線作品或站內 Demo 連結。GitHub 倉庫原始碼網址不會當作上線網站；未來倉庫 About 填入合法 homepage 或在 overrides 補 externalUrl，便能顯示線上作品連結。
+
+## v1.6：作品管理後台
+
+交付方式：開發程式與驗證完成後推送 GitHub，由使用者本機 `git pull --ff-only origin main`、`npm ci` 後確認；確認後再執行打包並自行上傳主機。雲端不代為部署，安裝包不提交 Git。
+
+新增 `/admin.html` 的管理員登入、圖文編輯、圖片自動處理、私人預覽、確認發布與歷史還原。
+
+`npm run package:admin` 一次產出首次安裝 ZIP：原本結構的 `dist/` 與一個 `portfolio-private/`。前者內容照原方式放到公開根目錄，後者放在上一層；用安裝包中的一次性安裝碼在網頁設定自己的帳密。管理者只需要原本的 Node.js 打包，不必在本機裝 PHP／Docker，也不依賴主機 SSH。
+
+主機需 PHP 8.2+、GD/WebP、Exif、Fileinfo、Session；程式讀取主機目前的容量與記憶體，大圖先由瀏覽器縮小，不要求預先調高到 20MB／512MB。新公開圖片放在 `images/projects/uploads/`，更新網站時保留這個目錄。完整原檔在瀏覽器縮小時仍留在本機；主機保留的是實際上傳版本。
+
+原靜態模式仍可 `npm run dev`／`npm run build`；安裝包自動建置管理版，前台只讀取已發布 API，失敗不回退舊 JSON，GitHub 新倉庫先進後台待整理。後台日常編輯不自動提交 Git。此版尚未部署到正式主機。
+
+詳見 [作品管理後台：打包與安裝](docs/portfolio-admin.md)。原本描述「沒有後端」的段落為舊靜態模式說明。

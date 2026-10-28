@@ -4,7 +4,7 @@ import { useGithub } from './composables/useGithub.js'
 import GithubProject from './components/GithubProject.vue'
 import SiteLayout from './components/SiteLayout.vue'
 import MediaLightbox from './components/MediaLightbox.vue'
-import { filterProjects, projectDestination, projects, resolveProjectCategory, searchProjects, workListUrl } from './data/projects.js'
+import { portfolioPreview, portfolioPreviewReady, filterProjects, projectDestination, projects, resolveProjectCategory, searchProjects, workListUrl } from './data/projects.js'
 import { clampPage } from './utils/pagination.js'
 
 // ═══ 作品 id 與列表返回狀態 ═══
@@ -31,7 +31,7 @@ const galleryItems = computed(() => {
   const base = project.value?.image || project.value?.detailImage
   return (project.value?.gallery || []).map((item, galleryIndex) => ({
     ...item, id: `${project.value.id}-${galleryIndex}`, type: 'image',
-    src: `${base.slice(0, base.lastIndexOf('/') + 1)}${item.src}`,
+    src: item.src.startsWith('/') || /^https?:\/\//i.test(item.src) ? item.src : `${base?.slice(0, base.lastIndexOf('/') + 1) || ''}${item.src}`,
   }))
 })
 
@@ -46,6 +46,9 @@ watchEffect(() => {
 
 <template lang="pug">
 SiteLayout(page-id="work")
+  aside.portfolio-preview(v-if="portfolioPreview" role="status") 草稿預覽 · 只有登入管理員可以查看，尚未對外發布。
+    span(v-if="portfolioPreviewReady") 預覽已就緒，確認後可回後台發布。
+    a(href="/admin.html") 返回管理後台
   template(v-if="project")
     section.project-detail(aria-labelledby="project-title")
       .project-detail-top

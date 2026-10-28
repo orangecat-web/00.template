@@ -1,0 +1,206 @@
+// 後台頁面專用樣式，不影響既有作品集的視覺與 Lightbox。
+:root
+  font-family: system-ui, sans-serif
+  font-size: 16px
+  color: #233b32
+  background: #f3f5f0
+body
+  margin: 0
+*
+  box-sizing: border-box
+.admin-shell
+  max-width: 1500px
+  margin: auto
+  padding: 24px
+  font-size: 16px
+  line-height: 1.6
+  h1, h2, h3, p
+    overflow-wrap: anywhere
+  button, input, select, textarea
+    font: inherit
+  button, a
+    touch-action: manipulation
+  button, .admin-actions a
+    border: 1px solid #9caf9f
+    border-radius: 8px
+    padding: 9px 14px
+    color: #233b32
+    background: #fff
+    cursor: pointer
+  button:disabled
+    opacity: .55
+    cursor: default
+  button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visible
+    outline: 3px solid #be6d17
+    outline-offset: 3px
+  .admin-primary
+    background: #295e48
+    color: #fff
+    border-color: #295e48
+  label
+    display: grid
+    gap: 6px
+    margin-block: 12px
+  input:not([type=checkbox]), textarea, select
+    width: 100%
+    min-width: 0
+    max-width: 100%
+    padding: 10px
+    border: 1px solid #9caf9f
+    border-radius: 6px
+    background: white
+    color: #233b32
+  input[type=checkbox]
+    width: 20px
+    height: 20px
+    vertical-align: middle
+  fieldset
+    margin-block: 22px
+    padding: 20px
+    min-width: 0
+    border: 1px solid #d1dcd1
+    border-radius: 12px
+    background: #fff
+  legend
+    padding-inline: 8px
+    font-size: 20px
+    font-weight: 700
+  img
+    max-width: 100%
+    object-fit: contain
+  summary
+    cursor: pointer
+    font-weight: 700
+  .admin-error, .admin-message
+    padding: 16px
+    border-radius: 8px
+  .admin-error
+    background: #ffe5de
+    color: #782b17
+  .admin-message
+    background: #dfeee0
+.admin-header
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-between
+  gap: 20px
+  nav
+    display: flex
+    align-items: center
+    gap: 24px
+  h1
+    margin-top: 0
+.admin-kicker
+  letter-spacing: .12em
+.admin-login
+  max-width: 440px
+  margin: 6vh auto
+  padding: 28px
+  background: #fff
+  border-radius: 16px
+.admin-layout
+  display: grid
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr)
+  align-items: start
+  gap: 28px
+.admin-sidebar
+  position: sticky
+  top: 16px
+  max-height: calc(100dvh - 32px)
+  overflow: auto
+  padding: 4px 8px 12px 4px
+  details
+    margin-top: 24px
+  details button
+    display: block
+    width: 100%
+    margin-block: 8px
+    overflow-wrap: anywhere
+.admin-records
+  display: grid
+  gap: 8px
+  button
+    display: grid
+    text-align: left
+    gap: 4px
+  .is-selected
+    background: #e0eddf
+    border-color: #295e48
+.admin-editor
+  min-width: 0
+.admin-actions
+  position: sticky
+  z-index: 2
+  top: 0
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: 10px
+  padding: 12px
+  background: #f3f5f0
+  border-bottom: 1px solid #c4d0c1
+  a
+    text-decoration: none
+.admin-category-options
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: 16px
+  label
+    display: flex
+    align-items: center
+.admin-order, .admin-upload-options, .admin-main-images
+  display: grid
+  grid-template-columns: repeat(2, minmax(0,1fr))
+  gap: 20px
+.admin-main-images img
+  width: 100%
+  height: 190px
+.admin-assets
+  display: grid
+  grid-template-columns: repeat(2, minmax(0,1fr))
+  gap: 20px
+  article
+    padding: 12px
+    border: 1px solid #d1dcd1
+  img
+    height: 140px
+    width: 100%
+  button
+    margin: 4px
+.admin-gallery-item, .admin-note
+  padding-block: 16px
+  border-bottom: 1px solid #d1dcd1
+  img
+    width: 100%
+    height: 180px
+  button
+    margin: 4px
+.admin-drag
+  display: block
+  padding: 8px
+  background: #edf2e8
+  cursor: grab
+.admin-row-actions
+  display: flex
+  flex-wrap: wrap
+  gap: 8px
+@media (max-width: 800px)
+  .admin-shell
+    padding: 14px
+  .admin-layout
+    grid-template-columns: minmax(0,1fr)
+  .admin-sidebar
+    position: static
+    max-height: 340px
+  .admin-order, .admin-upload-options, .admin-main-images, .admin-assets
+    grid-template-columns: minmax(0,1fr)
+
+.admin-order label:has(input[type=checkbox]), .admin-gallery-item label:has(input[type=checkbox])
+  display: flex
+  align-items: center
+  gap: 8px
+.admin-gallery-item img
+  object-fit: cover
+  object-position: top
