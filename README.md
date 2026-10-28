@@ -136,6 +136,6 @@ JSONC 產生器會同步移除已不存在來源的自動產生副本，避免�
 
 主機需 PHP 8.2+、GD/WebP、Exif、Fileinfo、Session；程式讀取主機目前的容量與記憶體，大圖先由瀏覽器縮小，不要求預先調高到 20MB／512MB。新公開圖片放在 `images/projects/uploads/`，更新網站時保留這個目錄。完整原檔在瀏覽器縮小時仍留在本機；主機保留的是實際上傳版本。
 
-原靜態模式仍可 `npm run dev`／`npm run build`；安裝包自動建置管理版，前台只讀取已發布 API，失敗不回退舊 JSON，GitHub 新倉庫先進後台待整理。後台日常編輯不自動提交 Git。此版尚未部署到正式主機。
+本機靜態開發仍可 `npm run dev`；正式 `npm run build` 預設建置管理版，無後台的靜態展示另用 `npm run build:static`。安裝包也會建置管理版，前台只讀取已發布 API，失敗不回退舊 JSON，GitHub 新倉庫先進後台待整理。後台日常編輯不自動提交 Git。正式網站由使用者自行部署。
 
 詳見 [作品管理後台：打包與安裝](docs/portfolio-admin.md)。原本描述「沒有後端」的段落為舊靜態模式說明。

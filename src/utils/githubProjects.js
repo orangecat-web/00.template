@@ -13,7 +13,8 @@ export function websiteUrl(value) {
 // 本地作品保留視覺與介紹；未對應的倉庫用文字封面，後續可用 overrides 補圖。
 export function mergeGithubProjects(base, repositories, config) {
   const mappings = new Map(config.projects.map((item) => [item.repository.toLowerCase(), item]))
-  const records = new Map(repositories.map((repo) => [repo.name.toLowerCase(), repo]))
+  const excluded = new Set((config.excludedRepositories || []).map(name => name.toLowerCase()))
+  const records = new Map(repositories.filter(repo => !excluded.has(repo.name.toLowerCase())).map((repo) => [repo.name.toLowerCase(), repo]))
   const result = base.map((project) => {
     const mapping = config.projects.find((item) => item.projectId === project.id)
     if (!mapping) return { ...project, categoryIds: [...project.categoryIds] }

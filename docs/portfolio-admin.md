@@ -39,11 +39,13 @@ FTP 若無法進入公開目錄上一層，需請主機商提供 PHP 可讀寫�
 
 **登入 → 編輯圖文 → 儲存草稿 → 預覽 → 確認發布。**
 
+- 左側可選分類並搭配搜尋，各類顯示件數；切換篩選保留未儲存表單，新增作品沿用目前分類。
 - 表單支援作品名稱、分類、類型文字、介紹、負責項目、展示網址、GitHub 倉庫／技術標籤、首頁精選與排序、封面、內頁主圖、多張作品圖及作品思路。
 - 圖片可拖曳排序或用上下移動按鈕；每張可填標題、替代文字與寬版設定。首頁最多三件精選。
 - 草稿可不填完整，發布前檢查必填。預覽共用正式作品頁與 Lightbox，只有管理員登入才能讀取草稿與私人圖片。顯示「預覽已就緒」後再確認發布。
 - 每次重新儲存會讓舊預覽失效；已公開作品修改時，訪客繼續看到舊版，直到再次發布。
 - GitHub 新倉庫先進待整理，補好資料、預覽後才發布；已發布作品仍可讀取語言、更新時間及 Stars／Forks。
+- 「刪除作品」具名確認後移除公開內容與草稿。未公開草稿刪除後不能由公開歷史還原；已公開版本可從歷史還原，圖片不自動刪除。
 - 下架後保留私人草稿；已公開圖片的原網址仍保留，不能把下架視為撤回已公開的檔案。
 - 最近 20 次公開清單變更可還原。還原替換整份公開清單，保留私人草稿；被移出公開清單且沒有草稿的作品也會轉存草稿。
 - 跨分頁修改會檢查版本，避免舊內容覆蓋新資料；API 失敗不回退舊 JSON。已開啟的訪客頁面重新讀取後才看到新發布內容。
@@ -64,7 +66,7 @@ FTP 若無法進入公開目錄上一層，需請主機商提供 PHP 可讀寫�
 
 ## 開發與驗證
 
-靜態前台仍可 `npm run dev`／`npm run build`。管理版用 `npm run dev:managed`／`npm run build:managed`；`package:admin` 已自動建置管理版。
+本機靜態畫面可用 `npm run dev`；正式 `npm run build` 預設是管理版，讀取後台已發布資料。無後台的純靜態展示另用 `npm run build:static`。管理版開發用 `npm run dev:managed`，`npm run build:managed` 保留為正式建置別名；`package:admin` 已自動建置管理版。
 
 開發 PHP API 需要 PHP 8.2+、GD（JPEG／PNG／WebP）、Exif、Fileinfo、Session。先執行 `node scripts/export-portfolio-seed.mjs`，再 `php portfolio-server/cli.php init`，以 `npm run dev:php` 與另一個終端的 `npm run dev:managed` 開發。這些 PHP／Docker 工具只供開發與測試，網站管理者使用首次安裝包不需要它們。
 
@@ -80,3 +82,9 @@ npm run test:admin
 ```
 
 test:admin 使用 Docker、PHP／GD 與 Chromium（可用 PLAYWRIGHT_CHROMIUM_EXECUTABLE 指定）。每次建立獨立安裝包、**真正解壓 ZIP 後**以 2MB／8MB／128MB 啟動站點，驗證網頁首次設定、登入、圖片處理、預覽發布、還原與未登入隔離，結束後清除測試服務及資料。正式 PHP 主機不需要 Docker。
+
+## 已安裝網站更新至 1.6.1
+
+先拉取 Git 並 npm ci，在本機確認後執行 npm run build。將 dist 內容合併更新到公開根目錄，保留 images/projects/uploads。另將 portfolio-server/api.php 更新到主機的 portfolio-private/server/api.php，才會啟用新的刪除 API；其他私有執行資料都保留。不要用首次安裝包的初始資料覆蓋已使用的後台。
+
+naid 已從 Git 快照移除，並加入 github.json 的 excludedRepositories，避免舊 API／快取再次自動帶入。管理模式以主機已發布清單為準，不會因為 GitHub 更新而重新加入已刪作品。

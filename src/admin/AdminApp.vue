@@ -3,16 +3,22 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { prepareImage } from './prepare-image.js'
 import { api } from '../services/portfolio.js'
-import { managedPortfolio } from '../data/projects.js'
+import { managedPortfolio, projectCategories } from '../data/projects.js'
 import { fetchRepositories } from '../services/github.js'
 const setupRequired=ref(false), setupCode=ref(''), confirmPassword=ref(''), limits=ref(null)
 const authenticated=ref(null), csrf=ref(''), username=ref(''), password=ref('')
 const busy=ref(false), error=ref(''), message=ref(''), records=ref([]), history=ref([]), revision=ref(0)
-const currentId=ref(''), version=ref(0), form=ref(null), baseline=ref(''), assets=ref([]), search=ref('')
+const currentId=ref(''), version=ref(0), form=ref(null), baseline=ref(''), assets=ref([]), search=ref(''), categoryFilter=ref('all')
 const uploadMode=ref('photo'), uploadTarget=ref('gallery'), repositories=ref([]), inboxLoaded=ref(false)
 const categories=[['web','網頁設計'],['graphic','平面設計'],['product-photo','商品攝影'],['frontend','前端開發']]
 const dirty=computed(()=>!!form.value && JSON.stringify(form.value)!==baseline.value)
-const visibleRecords=computed(()=>records.value.filter(r=>`${r.project.title} ${r.project.id}`.toLowerCase().includes(search.value.toLowerCase())))
+// 分類與搜尋只篩選清單，不改動右側尚未儲存的表單。
+const categoryCounts=computed(()=>Object.fromEntries(projectCategories.map(category=>[category.id,category.id==='all'?records.value.length:records.value.filter(record=>record.project.categoryIds?.includes(category.id)).length])))
+const visibleRecords=computed(()=>{
+  const keyword=search.value.trim().toLocaleLowerCase()
+  return records.value.filter(record=>(categoryFilter.value==='all'||record.project.categoryIds?.includes(categoryFilter.value)) && `${record.project.title} ${record.project.id}`.toLocaleLowerCase().includes(keyword))
+})
+function clearFilters(){categoryFilter.value='all';search.value=''}
 const inbox=computed(()=>repositories.value.filter(repo=>!records.value.some(r=>r.project.githubRepository?.toLowerCase()===repo.name.toLowerCase())))
 const tags=computed({get:()=>form.value?.techTags?.join(', ')||'',set:value=>{form.value.techTags=value.split(/[,，·]/).map(t=>t.trim()).filter(Boolean)}})
 const currentRecord=computed(()=>records.value.find(item=>item.project.id===currentId.value))
@@ -41,7 +47,7 @@ async function setup() {
 }
 function discardAllowed() {return !dirty.value || confirm('還有未儲存內容，要捨棄這些修改嗎？')}
 async function select(id) {if(!discardAllowed())return;await run(async()=>{setRecord(await call(`project&id=${encodeURIComponent(id)}`));await loadAssets()})}
-function newProject() {if(!discardAllowed())return;currentId.value='';version.value=0;form.value=blank();assets.value=[];baseline.value=JSON.stringify(form.value);error.value='';message.value=''}
+function newProject() {if(!discardAllowed())return;currentId.value='';version.value=0;form.value=blank();if(categoryFilter.value!=='all'){form.value.categoryIds=[categoryFilter.value];form.value.category={frontend:'FRONT-END / GITHUB',web:'WEB / VISUAL DESIGN',graphic:'GRAPHIC / VISUAL DESIGN','product-photo':'PRODUCT PHOTOGRAPHY'}[categoryFilter.value]||'';}assets.value=[];baseline.value=JSON.stringify(form.value);error.value='';message.value=''}
 async function save() {
   const data=await call('save',{body:{id:currentId.value,version:version.value,project:form.value}})
   setRecord(data);await loadRecords();message.value='草稿已儲存，公開版本尚未變更。'
@@ -55,6 +61,15 @@ async function unpublish() {
   if(dirty.value){error.value='請先儲存草稿。';return}
   if(!confirm('確認將這件作品下架？已公開圖片仍保留供歷史版本還原。'))return
   await run(async()=>{setRecord(await call('unpublish',{body:{id:currentId.value,version:version.value}}));await loadRecords();message.value='作品已下架，內容保留為私人草稿。'})
+}
+async function deleteProject() {
+  const title=form.value?.title || '未命名作品'
+  if(!currentId.value || !confirm(`確認刪除「${title}」？公開作品與草稿會一起移除，未儲存修改也會捨棄。圖片檔保留供歷史還原。`))return
+  await run(async()=>{
+    await call('delete',{body:{id:currentId.value,version:version.value}})
+    form.value=null;currentId.value='';version.value=0;assets.value=[];baseline.value=''
+    await loadRecords();message.value=`已刪除「${title}」。`
+  })
 }
 function preview(event) {if(dirty.value){event.preventDefault();error.value='請先儲存目前內容，再開啟預覽。'}}
 async function restore(id) {
@@ -143,12 +158,19 @@ main.admin-shell
   .admin-layout(v-if="authenticated")
     aside.admin-sidebar
       button.admin-primary(type="button" :disabled="busy" @click="newProject") 新增作品
+      label(for="admin-category-filter") 作品分類
+      select#admin-category-filter(v-model="categoryFilter")
+        option(v-for="category in projectCategories" :key="category.id" :value="category.id") {{ category.label }}（{{ categoryCounts[category.id] }}）
       label 搜尋作品
         input(v-model="search" type="search")
+      p.admin-filter-count(role="status") 顯示 {{ visibleRecords.length }} / {{ records.length }} 件作品
       nav.admin-records(aria-label="作品清單")
         button(v-for="item in visibleRecords" :key="item.project.id" type="button" :class="{ 'is-selected': currentId === item.project.id }" :disabled="busy" @click="select(item.project.id)")
           strong {{ item.project.title || '未命名作品' }}
           span {{ item.published ? (item.hasDraft ? '已公開 · 有修改草稿' : '已公開') : '私人草稿' }}
+      .admin-empty(v-if="!visibleRecords.length")
+        p 沒有符合條件的作品。
+        button(type="button" @click="clearFilters") 清除篩選與搜尋
       details.admin-inbox
         summary GitHub 待整理
         p 新倉庫先編輯、預覽與發布，才會出現在網站。
@@ -168,6 +190,7 @@ main.admin-shell
           a(v-if="currentId && currentRecord?.hasDraft" :href="previewUrl" target="_blank" rel="noopener" @click="preview") 預覽草稿 ↗
           button(type="button" :disabled="busy || !currentRecord?.hasDraft || dirty || !managedPortfolio" @click="publish") 確認發布
           button(v-if="currentRecord?.published" type="button" :disabled="busy" @click="unpublish") 下架
+          button.admin-danger(v-if="currentId" type="button" :disabled="busy" @click="deleteProject") 刪除作品
           span {{ dirty ? '有未儲存修改' : '目前內容已儲存' }}
         fieldset(:disabled="busy")
           legend 基本資料

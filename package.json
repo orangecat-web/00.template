@@ -1,12 +1,12 @@
 {
   "name": "00.template",
   "private": true,
-  "version": "1.6.0",
+  "version": "1.6.1",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
     "check:data": "node scripts/check-project-data.mjs",
-    "build": "npm run check:data && node scripts/export-portfolio-seed.mjs && vite build",
+    "build": "node scripts/build-managed.mjs",
     "preview": "vite preview",
     "test": "node --test tests/*.test.js",
     "docs:json": "node scripts/annotate-json.mjs",
@@ -16,7 +16,8 @@
     "test:admin": "node tests/admin.integration.mjs",
     "dev:php": "node scripts/dev-php.mjs",
     "prepare:admin": "node scripts/package-admin.mjs",
-    "package:admin": "node scripts/package-admin.mjs"
+    "package:admin": "node scripts/package-admin.mjs",
+    "build:static": "node scripts/build-managed.mjs --static"
   },
   "dependencies": {
     "vue": "^3.5.42"

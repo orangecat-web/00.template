@@ -1,6 +1,6 @@
 # 00.template 前後端交接說明
 
-> v1.6 已新增可選的 PHP 管理模式，請見 [作品管理後台](portfolio-admin.md)。下文保留原靜態模式的資料契約；管理模式改讀已發布 API，gallery 也支援固定的圖片路徑。
+> 正式 `npm run build` 預設建置 PHP 管理模式；以下保留純靜態模式（`build:static`）的交接說明，請見 [作品管理後台](portfolio-admin.md)。下文保留原靜態模式的資料契約；管理模式改讀已發布 API，gallery 也支援固定的圖片路徑。
 
 這是可獨立展示的 Vue 3 作品集。**目前沒有後端 API，也不需要後端才能展示作品**。本文件說明現有資料來源、頁面網址與部署方式，供未來串接後台或 API 時使用；現有視覺與互動以目前前端版本為準。
 
@@ -10,12 +10,12 @@
 npm ci
 npm run dev
 npm run check:data
-npm run build
+npm run build:static
 npm run preview
 ```
 
-- `npm run dev` 啟動開發版；`npm run build` 產生 `dist/`；`npm run preview` 在本機檢查建置結果。
-- `npm run check:data` 檢查作品 id、分類、圖片檔案與 gallery 路徑；`npm run build` 會先執行這項檢查，避免缺圖資料進入正式版。
+- `npm run dev` 啟動開發版；`npm run build:static` 產生 `dist/`；`npm run preview` 在本機檢查建置結果。
+- `npm run check:data` 檢查作品 id、分類、圖片檔案與 gallery 路徑；`npm run build:static` 會先執行這項檢查，避免缺圖資料進入正式版。
 - 部署 `dist/` 到網域根目錄即可提供目前的展示版。網站使用 `/work.html`、`/project.html` 和 `/images/...` 等**根目錄絕對路徑**；若掛在子路徑，需一併調整 Vite `base` 與這些連結。
 - 六個 HTML 入口是 `/`（`index.html`）、`/work.html`、`/project.html`、`/lab.html`、`/icons.html`、`/404.html`。`/project.html?id=<id>` 是同一個作品內頁入口，依查詢參數選擇作品；目前不需伺服器提供動態路由重寫。
 - 將找不到的網址對應到 `dist/404.html` 並保留 HTTP 404 狀態；具體設定由部署的靜態伺服器決定。404 頁搜尋表單以 GET 導向 `/work.html?q=...`，不需後端 API。

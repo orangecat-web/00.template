@@ -93,6 +93,17 @@ try {
         $s['versions'][$id]++; $s['drafts'][$id]=['project'=>$project,'reviewed'=>0];
         return record($s,$id);
     },true));
+    if ($action==='delete') json_response(store(function(&$s)use($body,$id) {
+        if(!find_project($s,$id)) fail(404,'找不到作品。');
+        check_version($s,$id,$body['version']??null);
+        $wasPublished=in_array($id,array_column($s['published'],'id'),true);
+        if($wasPublished) snapshot($s);
+        $s['published']=array_values(array_filter($s['published'],fn($p)=>$p['id']!==$id));
+        unset($s['drafts'][$id]);
+        // 保留版本墓碑與圖片，避免舊視窗重建已刪作品，並保留公開歷史的還原能力。
+        $s['versions'][$id]++;
+        return ['ok'=>true];
+    },true));
     if ($action==='restore') json_response(store(function(&$s)use($body) {
         if(($body['revision']??null)!==$s['revision']) fail(409,'資料已更新，請重新載入版本清單。');
         $historyId=text_field($body,'historyId',100); $target=null;

@@ -143,3 +143,11 @@ test('列表線上作品只接受網站網址，支援站內 Demo 及未來 Repo
   const bad = mergeGithubProjects([], [{ name: 'bad', homepage: 'javascript:alert(1)' }], config)
   assert.equal(bad[0].externalUrl, undefined)
 })
+
+
+test('已排除的倉庫不會從 API 或舊快取重新建立作品',()=>{
+  const config={organization:'orangecat-web',projects:[],overrides:{},excludedRepositories:['naid']}
+  const oldCache=[{name:'NAID',language:'HTML',description:'已移除作品'},{name:'keep-this',language:'JavaScript',description:'仍保留'}]
+  const result=mergeGithubProjects([],oldCache,config)
+  assert.deepEqual(result.map(project=>project.id),['github-keep-this'])
+})

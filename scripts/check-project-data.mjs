@@ -94,6 +94,8 @@ try {
   const config = JSON.parse(readFileSync(resolve(root, 'src/data/github.json'), 'utf8'))
   if (!/^[a-zA-Z0-9-]+$/.test(config.organization)) errors.push('GitHub organization 格式不正確')
   if (!Number.isFinite(config.cacheMinutes) || config.cacheMinutes < 1) errors.push('GitHub cacheMinutes 必須至少 1 分鐘')
+  const excluded=config.excludedRepositories??[]
+  if(!Array.isArray(excluded)||excluded.some(name=>typeof name!=='string'||!/^[a-zA-Z0-9_.-]+$/.test(name))) errors.push('GitHub excludedRepositories 格式不正確')
   const selected = new Set()
   for (const item of config.projects) {
     if (!ids.has(item.projectId)) errors.push(`GitHub 對應作品不存在：${item.projectId}`)

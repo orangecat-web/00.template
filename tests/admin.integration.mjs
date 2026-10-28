@@ -44,6 +44,10 @@ async function run() {
     else {mkdirSync(resolve(target,'..'),{recursive:true});writeFileSync(target,zip[name])}
   }
   const setupCode=readFileSync(resolve(fixture,'deployed/portfolio-private/首次安裝碼.txt'),'utf8').trim()
+  // 一般 npm run build 也必須連到後台；驗證它與安裝包的管理版入口一致。
+  if(!process.env.npm_execpath)throw new Error('請使用 npm run test:admin 執行整合測試。')
+  command(process.execPath,[process.env.npm_execpath,'run','build','--','--outDir',site])
+  assert.equal(readFileSync(resolve(site,'admin.html'),'utf8'),Buffer.from(zip['dist/admin.html']).toString('utf8'))
   try {command('docker',['image','inspect',image])} catch {command('docker',['build','-t',image,'tools/php'],{env:{...process.env,BUILDX_CONFIG:resolve(fixture,'buildx')}})}
   const uid=process.getuid?.()??1000,gid=process.getgid?.()??1000
   const mounts=['--user',`${uid}:${gid}`,'--mount',`type=bind,src=${root},dst=/app,readonly`,'--mount',`type=bind,src=${fixture},dst=/runtime`,'--mount',`type=bind,src=${site},dst=/site`]
@@ -193,6 +197,16 @@ async function run() {
   assert.deepEqual((await anonymous.request('portfolio')).data.projects.map(p=>p.id),initial.projects.map(p=>p.id))
   passed++;console.log('PASS 發布圖片與資料、修改保留舊公開版、再編輯使預覽失效、歷史還原')
 
+  // 刪除需登入／CSRF／新版本；刪掉草稿與公開內容，但保留歷史使用的圖片。
+  const remove=(await admin.request('save',{body:{project:{...project,title:'刪除測試',image:'',imageAlt:'',gallery:[]}}})).data
+  assert.equal((await anonymous.request('delete',{body:{id:remove.project.id,version:remove.version}})).status,401)
+  assert.equal((await admin.request('delete',{body:{id:remove.project.id,version:remove.version},token:'invalid'})).status,403)
+  assert.equal((await admin.request('delete',{body:{id:remove.project.id,version:remove.version-1}})).status,409)
+  assert.equal((await admin.request('delete',{body:{id:remove.project.id,version:remove.version}})).status,200)
+  assert.equal((await admin.request(`project&id=${remove.project.id}`)).status,404)
+  assert.equal((await admin.request('save',{body:{id:remove.project.id,version:remove.version,project}})).status,404)
+  passed++;console.log('PASS 刪除登入／CSRF／版本保護、草稿移除、舊視窗不能重建作品')
+
   // 瀏覽器使用正式建置：登入、表單、預覽、Lightbox、發布與訪客畫面。
   browser ||= await chromium.launch({executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||'/usr/bin/chromium',headless:true,args:['--no-sandbox']})
   const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),errors=[]
@@ -201,7 +215,34 @@ async function run() {
   const mockRepo={name:'not-published-yet',owner:{login:'orangecat-web'},private:false,description:'新增倉庫不應自動上架',language:'JavaScript'}
   await context.route('https://api.github.com/**',route=>route.fulfill({json:[mockRepo]}))
   await page.goto(base+'/admin.html');await page.getByLabel('帳號',{exact:true}).fill(credential.username);await page.getByLabel('密碼',{exact:true}).fill(credential.password);await page.getByRole('button',{name:'登入',exact:true}).click()
+  await page.locator('.admin-records button').first().waitFor()
+  const adminRecords=(await admin.request('projects')).data.records
+  const categorySelect=page.getByRole('combobox',{name:'作品分類',exact:true})
+  const search=page.getByRole('searchbox',{name:'搜尋作品',exact:true})
+  for(const category of ['frontend','web','graphic','product-photo']){
+    await categorySelect.selectOption(category)
+    const expected=adminRecords.filter(item=>item.project.categoryIds.includes(category))
+    assert.equal(await page.locator('.admin-records button').count(),expected.length)
+    const selectedLabel=await categorySelect.locator('option:checked').textContent()
+    assert.ok(selectedLabel.includes(`（${expected.length}）`))
+  }
+  await categorySelect.selectOption('frontend');await search.fill('互動實驗室')
+  assert.equal(await page.locator('.admin-records button').count(),1)
+  await categorySelect.selectOption('graphic')
+  await page.getByText('沒有符合條件的作品。',{exact:true}).waitFor()
+  await page.getByRole('button',{name:'清除篩選與搜尋',exact:true}).click()
+  assert.equal(await categorySelect.inputValue(),'all');assert.equal(await search.inputValue(),'')
+  await page.locator('.admin-records button').first().click()
+  const originalTitle=await page.getByLabel('作品名稱',{exact:true}).inputValue()
+  await page.getByLabel('作品名稱',{exact:true}).fill('尚未儲存的分類切換測試')
+  await categorySelect.selectOption('product-photo')
+  assert.equal(await page.getByLabel('作品名稱',{exact:true}).inputValue(),'尚未儲存的分類切換測試')
+  await page.getByLabel('作品名稱',{exact:true}).fill(originalTitle)
   await page.getByRole('button',{name:'新增作品',exact:true}).click()
+  assert.equal(await page.locator('.admin-category-options').getByRole('checkbox',{name:'商品攝影',exact:true}).isChecked(),true)
+  await categorySelect.selectOption('all')
+  passed++;console.log('PASS 分類件數／搜尋交集／空結果清除／保留未儲存編輯／新增沿用分類')
+
   await page.getByLabel('作品名稱',{exact:true}).fill('瀏覽器發布測試')
   await page.getByLabel('作品簡介',{exact:true}).fill('使用完整頁面操作驗證。')
   await page.getByLabel('負責項目',{exact:true}).fill('視覺設計、前端開發')
@@ -242,6 +283,25 @@ async function run() {
   await page.screenshot({path:'/tmp/orangecat-admin-mobile.png',fullPage:true})
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
   assert.deepEqual(errors,[])
+  // 取消刪除不改內容；確認名稱後公開／草稿一起消失，圖片仍可供歷史還原。
+  const deletionDialogs=[]
+  page.removeAllListeners('dialog')
+  page.once('dialog',async dialog=>{deletionDialogs.push(dialog.message());await dialog.dismiss()})
+  await page.getByRole('button',{name:'刪除作品',exact:true}).click()
+  assert.equal((await admin.request(`project&id=${publishedId}`)).status,200)
+  page.once('dialog',async dialog=>{deletionDialogs.push(dialog.message());await dialog.accept()})
+  await page.getByRole('button',{name:'刪除作品',exact:true}).click()
+  await page.getByRole('status').filter({hasText:'已刪除「瀏覽器發布測試」'}).waitFor()
+  assert.ok(deletionDialogs.every(message=>message.includes('瀏覽器發布測試')))
+  assert.equal((await admin.request(`project&id=${publishedId}`)).status,404)
+  assert.ok(!(await anonymous.request('portfolio')).data.projects.some(p=>p.id===publishedId))
+  await publicPage.goto(`${base}/project.html?id=${publishedId}`)
+  await publicPage.getByRole('heading',{name:'找不到這件作品',exact:false}).waitFor()
+  assert.equal(await publicPage.locator('.project-detail').count(),0)
+  const deletedHistory=(await admin.request('projects')).data
+  assert.equal((await admin.request('restore',{body:{historyId:deletedHistory.history[0].id,revision:deletedHistory.revision}})).status,200)
+  assert.ok((await anonymous.request('portfolio')).data.projects.some(p=>p.id===publishedId))
+  passed++;console.log('PASS 具名刪除確認／取消、前台同步移除、已公開歷史可還原')
   await page.getByRole('button',{name:'登出',exact:true}).click();await page.getByRole('heading',{name:'管理員登入'}).waitFor()
   await previewPage.reload();await previewPage.getByRole('alert').filter({hasText:'請先登入'}).waitFor()
   passed++;console.log('PASS 正式建置的瀏覽器登入／編輯／上傳／私人預覽／發布／登出／手機布局；GitHub 不繞過發布')

@@ -85,5 +85,9 @@
     }
   ],
   "_comment_overrides": "用倉庫原名作為鍵值，補 title、summary、role、image、imageAlt、tags、externalUrl；圖片可稍後補，沒填時用文字封面。",
-  "overrides": {}
+  "overrides": {},
+  "_comment_excludedRepositories": "不自動帶入的倉庫；同時排除 API 與舊瀏覽器快取，不影響其他作品。",
+  "excludedRepositories": [
+    "naid"
+  ]
 }
