@@ -73,7 +73,7 @@ SiteLayout(ref="layout" page-id="work")
   section.work-page-intro(aria-labelledby="work-page-title")
     p.kicker SELECTED WORK / ARCHIVE
     h1#work-page-title 每一件作品，<br>都有自己的任務<span class="period">．</span>
-    p 從前端互動、商業網站到視覺設計，這裡收錄目前公開的專案；後續作品會繼續加入同一份清單。
+    p 從網站互動、視覺設計，到商業靜物與空間攝影，探索畫面、光影與使用體驗的不同可能。每件作品，都有值得停留的細節。
   section#work-list.work-page-list(aria-label="作品列表")
     .work-filter-bar
       .work-filter-heading
