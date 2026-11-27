@@ -11,6 +11,14 @@ const busy=ref(false), error=ref(''), message=ref(''), records=ref([]), history=
 const currentId=ref(''), version=ref(0), form=ref(null), baseline=ref(''), assets=ref([]), search=ref(''), categoryFilter=ref('all')
 const uploadMode=ref('photo'), uploadTarget=ref('gallery'), repositories=ref([]), inboxLoaded=ref(false)
 const categories=[['web','網頁設計'],['graphic','平面設計'],['product-photo','商品攝影'],['frontend','前端開發']]
+const categoryTypeLabels={web:'WEB',graphic:'GRAPHIC','product-photo':'PRODUCT PHOTOGRAPHY',frontend:'FRONT-END DEVELOPMENT'}
+function categoryTypeText(ids) {
+  const labels=categories.filter(([id])=>ids.includes(id)).map(([id])=>categoryTypeLabels[id])
+  if(ids.includes('web') || ids.includes('graphic'))labels.push('VISUAL DESIGN')
+  return labels.join(' / ')
+}
+// 僅在操作分類時帶入；讀取作品與手動改字都不觸發，保留既有文案。
+function updateCategoryType() {form.value.category=categoryTypeText(form.value.categoryIds)}
 const dirty=computed(()=>!!form.value && JSON.stringify(form.value)!==baseline.value)
 // 分類與搜尋只篩選清單，不改動右側尚未儲存的表單。
 const categoryCounts=computed(()=>Object.fromEntries(projectCategories.map(category=>[category.id,category.id==='all'?records.value.length:records.value.filter(record=>record.project.categoryIds?.includes(category.id)).length])))
@@ -47,7 +55,7 @@ async function setup() {
 }
 function discardAllowed() {return !dirty.value || confirm('還有未儲存內容，要捨棄這些修改嗎？')}
 async function select(id) {if(!discardAllowed())return;await run(async()=>{setRecord(await call(`project&id=${encodeURIComponent(id)}`));await loadAssets()})}
-function newProject() {if(!discardAllowed())return;currentId.value='';version.value=0;form.value=blank();if(categoryFilter.value!=='all'){form.value.categoryIds=[categoryFilter.value];form.value.category={frontend:'FRONT-END / GITHUB',web:'WEB / VISUAL DESIGN',graphic:'GRAPHIC / VISUAL DESIGN','product-photo':'PRODUCT PHOTOGRAPHY'}[categoryFilter.value]||'';}assets.value=[];baseline.value=JSON.stringify(form.value);error.value='';message.value=''}
+function newProject() {if(!discardAllowed())return;currentId.value='';version.value=0;form.value=blank();if(categoryFilter.value!=='all'){form.value.categoryIds=[categoryFilter.value];updateCategoryType()}assets.value=[];baseline.value=JSON.stringify(form.value);error.value='';message.value=''}
 async function save() {
   const data=await call('save',{body:{id:currentId.value,version:version.value,project:form.value}})
   setRecord(data);await loadRecords();message.value='草稿已儲存，公開版本尚未變更。'
@@ -199,10 +207,11 @@ main.admin-shell
           .admin-category-options
             span 作品分類
             label(v-for="[id, label] in categories" :key="id")
-              input(v-model="form.categoryIds" type="checkbox" :value="id")
+              input(v-model="form.categoryIds" type="checkbox" :value="id" @change="updateCategoryType")
               | {{ label }}
           label 類型文字
             input(v-model="form.category" placeholder="WEB / VISUAL DESIGN")
+          p 勾選或取消分類會自動更新類型文字，帶入後仍可手動修改。
           label 作品簡介
             textarea(v-model="form.summary" rows="5")
           label 負責項目
