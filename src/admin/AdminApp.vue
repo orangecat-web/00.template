@@ -95,7 +95,7 @@ function picture(src, variant='cover') {
 }
 function applyAsset(asset, target) {
   const src=`asset:${asset.id}`
-  if(target==='gallery')form.value.gallery.push({src,title:'',alt:'',wide:false})
+  if(target==='gallery')form.value.gallery.push({src,title:asset.originalName || '',alt:'',wide:false})
   else {form.value[target]=src;form.value[target+'Alt']=''}
 }
 async function upload(event) {
@@ -276,6 +276,7 @@ main.admin-shell
                 button(type="button" @click="applyAsset(asset, 'gallery')") 加入作品圖
         fieldset(:disabled="busy")
           legend 多張作品圖
+          p 新加入的作品圖會先帶入原始檔名作為標題，之後可自行修改；替代文字請另填圖片內容說明。
           p 拖曳左側把手可排序，也可使用上移、下移按鈕。
           article.admin-gallery-item(v-for="(item, index) in form.gallery" :key="index")
             span.admin-drag(draggable="true" aria-label="拖曳排序" @dragstart="$event.dataTransfer.setData('text/plain', String(index))" @dragover.prevent @drop.prevent="move(form.gallery, Number($event.dataTransfer.getData('text/plain')), index - Number($event.dataTransfer.getData('text/plain')))") ☰
